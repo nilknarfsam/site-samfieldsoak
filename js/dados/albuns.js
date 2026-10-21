@@ -25,7 +25,20 @@ export const series = {
     planejado: 'Quatro volumes e 34 faixas. Cada volume termina onde o próprio texto fecha um ato: 4.25, 8.39, 11.36 e 16.25-27, que reencontra as palavras do começo da carta (1.1-5).',
     aCaminho: 'Vol. III (Romanos 9–11) e Vol. IV (Romanos 12–16) estão a caminho.',
   },
+  salmos: {
+    titulo: 'A série dos Salmos',
+    resumo: 'O livro dos Salmos cantado em ordem, doze salmos por álbum.',
+    planejado: 'Já lançados: álbuns 1 a 4 (Salmos 1–48) e 7 a 9 (Salmos 73–108).',
+  },
 };
+
+// Singles e EPs oficiais (Spotify).
+export const singles = [
+  { slug: 'pelo-teu-nome', titulo: 'Pelo Teu Nome', base: 'Salmo 54', spotifyId: '' },
+  { slug: 'o-cantico-da-criacao', titulo: 'O Cântico da Criação', base: 'Salmo 104', spotifyId: '' },
+  { slug: 'ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', spotifyId: '' },
+  { slug: 'o-corre-do-aldeney', titulo: 'O Corre do Aldeney', base: '', spotifyId: '' },
+];
 
 export const albuns = [
   {
@@ -34,6 +47,7 @@ export const albuns = [
     titulo: 'Reinará a Graça', subtitulo: 'Tratado de Romanos, Vol. II',
     base: 'Romanos 5–8', estilo: 'Nu-metal e metal alternativo', faixas: 9,
     lancamento: '2026-10-03', spotifyId: '0gFuqI5kLJjNuafW25r81d',
+    notaLetras: 'Letras baseadas na tradução Almeida, em domínio público.',
     capa: 'imagens/albuns/tratado-de-romanos-vol-2', destaque: true,
     frase: 'De “quem me livrará” a “quem nos separará”.',
     resumo: 'Da paz com Deus ao “nada nos separará”: Romanos 5 a 8 em nove faixas.',
@@ -61,6 +75,7 @@ export const albuns = [
     titulo: 'Toda Boca Se Cale', subtitulo: 'Tratado de Romanos, Vol. I',
     base: 'Romanos 1–4', estilo: 'Nu-metal e metal alternativo', faixas: 8,
     lancamento: '2026-09-16', spotifyId: '11GUZ9cbmvq0etqGEA1Swe',
+    notaLetras: 'Letras baseadas na tradução Almeida, em domínio público.',
     capa: 'imagens/albuns/tratado-de-romanos-vol-1',
     frase: 'A acusação e a absolvição que ninguém pediu.',
     resumo: 'Romanos 1 a 4: o tribunal em que todos se calam e a justiça que vem de graça.',
@@ -81,26 +96,55 @@ export const albuns = [
       { titulo: 'A capa', texto: 'Uma boca de pedra fechada, com uma trinca no lábio. É o título ao pé da letra: “para que toda boca se cale” (Romanos 3.19).' },
     ],
   },
-  { slug: 'o-reino-inabalavel', titulo: 'O Reino Inabalável', base: '', estilo: '', faixas: 15, situacao: 'No Spotify e no YouTube Music (perfil de artista acima).' },
-  { slug: 'rugido-dos-justos', titulo: 'Rugido dos Justos', base: 'Salmos 1–35', estilo: '', faixas: null },
-  { slug: 'fogo-devorador', titulo: 'Fogo Devorador', base: 'Salmos 36–50', estilo: 'Rock', faixas: null, situacao: 'Relançamento (antigo "Trono de Fogo"). Links em breve.' },
-  { slug: 'altar-da-contricao', titulo: 'Altar da Contrição', base: 'Salmos 51–65', estilo: '', faixas: null },
-  { slug: 'santuario-do-altissimo', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12 },
-  { slug: 'ecos-de-adoracao', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12 },
-  { slug: 'o-rei-dos-povos', titulo: 'O Rei dos Povos', base: 'Salmos 97–108', estilo: 'Metal épico', faixas: null },
-  { slug: 'o-caminho-da-sabedoria', titulo: 'O Caminho da Sabedoria', base: 'Provérbios 1–9', estilo: 'Rap com beat hip hop clássico', faixas: 9 },
-  { slug: 'integridade', titulo: 'Integridade', base: 'Provérbios 10–22', estilo: 'Rap intenso e cinematográfico', faixas: 13 },
-  { slug: 'codigos-da-eternidade', titulo: 'Códigos da Eternidade', base: 'Antigo Testamento', estilo: 'Rock worship épico', faixas: 21 },
-  { slug: 'o-caminho-de-jesus', titulo: 'O Caminho de Jesus', base: 'Evangelhos', estilo: 'Folk-surf acústico', faixas: 10 },
+  {
+    slug: 'o-reino-inabalavel',
+    titulo: 'O Reino Inabalável', base: 'Hebreus', estilo: '', faixas: 15,
+    lancamento: '2026-09-07', spotifyId: '4lCEJvWc3CsPcuhCK5eTcP',
+    capa: 'imagens/albuns/o-reino-inabalavel',
+    frase: 'A carta aos Hebreus: Cristo acima de tudo, um reino que não pode ser abalado.',
+    faixasLista: [
+      { titulo: 'Acima dos Anjos - Esplendor da Glória' },
+      { titulo: 'O Trono da Graça' },
+      { titulo: 'Escrita no Coração - A Nova Aliança' },
+      { titulo: 'O Véu Rasgado' },
+      { titulo: 'Não Retrocedo - Não Abro Mão' },
+      { titulo: 'A Âncora da Alma' },
+      { titulo: 'O Meu Descanso - Em Casa' },
+      { titulo: 'A Escritura de Posse - Já é Meu' },
+      { titulo: 'Olhos Fitos - O Autor e Consumador' },
+      { titulo: 'Sacrifício de Louvor - A Oferta' },
+      { titulo: 'A Melhor Riqueza' },
+      { titulo: 'O Grande Pastor' },
+      { titulo: 'O Mesmo Deus - Ontem, Hoje e Sempre' },
+      { titulo: 'Inabalável - Monte Sião' },
+      { titulo: 'O Único e Suficiente' },
+    ],
+  },
+  { slug: 'a-forca-da-promessa', serie: 'salmos', volume: '3', subtitulo: 'Série dos Salmos, Álbum 3', titulo: 'A Força da Promessa', base: 'Salmos 25–36', estilo: '', faixas: 12, lancamento: '2026-08-16', spotifyId: '3j3YEwJq94gmhfdc8oUoAn', capa: 'imagens/albuns/a-forca-da-promessa' },
+  { slug: 'refugio-inabalavel', serie: 'salmos', volume: '2', subtitulo: 'Série dos Salmos, Álbum 2', titulo: 'Refúgio Inabalável', base: 'Salmos 13–24', estilo: '', faixas: 12, lancamento: '2026-08-09', spotifyId: '5VoZbzP2XHzGKJI7tA9AqL', capa: 'imagens/albuns/refugio-inabalavel' },
+  { slug: 'o-rei-dos-povos', serie: 'salmos', volume: '9', subtitulo: 'Série dos Salmos, Álbum 9', titulo: 'O Rei dos Povos', base: 'Salmos 97–108', estilo: 'Metal épico', faixas: 12, lancamento: '2026-07-15', spotifyId: '6lLIScGkvmEHiqRMlTgEOP', capa: 'imagens/albuns/o-rei-dos-povos' },
+  { slug: 'o-trono-intocavel', serie: 'salmos', volume: '4', subtitulo: 'Série dos Salmos, Álbum 4', titulo: 'O Trono Intocável', base: 'Salmos 37–48', estilo: '', faixas: 12, lancamento: '2026-06-27', spotifyId: '7CKFwj4A12IwN3ubuf4CSO', capa: '' },
+  { slug: 'ecos-de-adoracao', serie: 'salmos', volume: '8', subtitulo: 'Série dos Salmos, Álbum 8', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12, lancamento: '2026-05-21', spotifyId: '6E8L5CSoLCFMqGCn2tk8hw', capa: '' },
+  { slug: 'o-despertar-do-justo', serie: 'salmos', volume: '1', subtitulo: 'Série dos Salmos, Álbum 1', titulo: 'O Despertar do Justo', base: 'Salmos 1–12', estilo: '', faixas: 12, lancamento: '2026-04-19', spotifyId: '5mNZTCUDzL64oLjtS6i1K3', capa: '' },
+  { slug: 'santuario-do-altissimo', serie: 'salmos', volume: '7', subtitulo: 'Série dos Salmos, Álbum 7', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12, lancamento: '2026-03-20', spotifyId: '5P3UmxFhhORrQmSoxDr8f9', capa: '' },
 ];
 
 export const buscarAlbum = (slug) => albuns.find((a) => a.slug === slug);
 export const albumDestaque = () => albuns.find((a) => a.destaque) || albuns[0];
 
 // Faixas dos Salmos já cobertas, a partir do campo base ("Salmos 1–35").
+// Salmos já cobertos, a partir do campo base ("Salmos 1–35" nos álbuns, "Salmo 54" nos singles).
+// Um single dentro de um trecho que um álbum já cobre não conta de novo.
 export function salmosCobertos() {
-  return albuns.flatMap((a) => {
+  const trechos = albuns.flatMap((a) => {
     const m = /^Salmos (\d+)[–-](\d+)$/.exec(a.base || '');
     return m ? [{ de: Number(m[1]), ate: Number(m[2]), album: a }] : [];
-  }).sort((x, y) => x.de - y.de);
+  });
+  singles.forEach((s) => {
+    const m = /^Salmo (\d+)$/.exec(s.base || '');
+    if (!m) return;
+    const n = Number(m[1]);
+    if (!trechos.some((t) => n >= t.de && n <= t.ate)) trechos.push({ de: n, ate: n, album: s, single: true });
+  });
+  return trechos.sort((x, y) => x.de - y.de);
 }

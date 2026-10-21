@@ -1,5 +1,5 @@
-import { albuns, artista, albumDestaque, salmosCobertos } from '../dados/albuns.js';
-import { heroAlbum, cartaoNota, jornadaSalmos, cartaoAlbumCapa, botoesPerfis } from '../modules/templates-musica.js';
+import { albuns, singles, artista, albumDestaque, salmosCobertos } from '../dados/albuns.js';
+import { heroAlbum, cartaoNota, jornadaSalmos, cartaoAlbumCapa, cartaoSingle, botoesPerfis } from '../modules/templates-musica.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
@@ -27,6 +27,7 @@ export function iniciarMusica(app) {
 
   const lista = app.querySelector('[data-lista]');
   lista.innerHTML = albuns.map(cartaoAlbumCapa).join('');
+  app.querySelector('[data-singles]').innerHTML = singles.map(cartaoSingle).join('');
   animarCartoes(app);
   protegerCapas(app);
 }
