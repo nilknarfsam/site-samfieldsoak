@@ -5,10 +5,15 @@
 const TIPOS = ['artist', 'album', 'playlist', 'track'];
 const ID_VALIDO = /^[A-Za-z0-9]{22}$/;   // IDs do Spotify têm 22 caracteres base62
 
-export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'Ouvir aqui' }) {
+export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'Ouvir aqui', compacto = false }) {
   if (!container) return;
   if (!TIPOS.includes(tipo) || !ID_VALIDO.test(id)) { container.hidden = true; return; }
-  container.innerHTML = `
+  container.innerHTML = compacto
+    ? `<button class="player__fachada player__fachada--compacta" type="button" data-acao="carregar-player">
+      <span class="player__icone" aria-hidden="true">▶</span>
+      <span class="player__texto"><strong>${rotulo}</strong></span>
+    </button>`
+    : `
     <button class="player__fachada" type="button" data-acao="carregar-player">
       <span class="player__icone" aria-hidden="true">▶</span>
       <span class="player__texto">
@@ -18,7 +23,7 @@ export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'O
     </button>`;
   container.querySelector('button').addEventListener('click', () => {
     const quadro = document.createElement('iframe');
-    quadro.className = 'player__quadro';
+    quadro.className = compacto ? 'player__quadro player__quadro--compacto' : 'player__quadro';
     quadro.src = `https://open.spotify.com/embed/${tipo}/${id}?theme=0`;
     quadro.title = titulo;
     quadro.loading = 'lazy';
