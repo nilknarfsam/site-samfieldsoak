@@ -71,6 +71,11 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 - Google: título e descrição no `index.html`, dados de pessoa (JSON-LD), `robots.txt` e `sitemap.xml`. Falta cadastrar o site no Google Search Console (o Franklin faz, com a conta Google dele).
 - Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies), ligado em 21/10/2026 com o código `samfieldsoak`. Painel: https://samfieldsoak.goatcounter.com (cada rota do hash aparece como uma página). A página Sobre explica a contagem anônima.
 
+## Letras
+
+- Ficam em `js/dados/letras/<arquivo>.js` (slug do álbum → lista de letras na ordem das faixas) e o álbum aponta para o arquivo no campo `letras`. Carregam só na página do álbum.
+- Prontas: Tratado de Romanos (Vol. I e II). As fontes de cada álbum estão no "Mapa das letras" (Drive, pasta docs do projeto do site).
+
 ## Capas dos álbuns
 
 O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px fica no Drive. Proteção leve em `js/modules/protecao.js` e na classe `.capa[data-protegida]`: sem menu "salvar imagem" (clique direito e toque longo), sem arrastar. Não existe proteção total na web: print sempre funciona.
