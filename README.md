@@ -75,9 +75,18 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 
 ## Publicação
 
-- No ar pelo GitHub Pages (branch `main`, raiz): **https://samfieldsoak.com.br** (domínio no Registro.br, arquivo `CNAME` na raiz).
+- No ar desde 21/10/2026 pelo GitHub Pages (branch `main`, raiz): **https://samfieldsoak.com.br** (domínio no Registro.br, arquivo `CNAME` na raiz).
+- DNS no Registro.br (zona DNS, modo avançado): registros A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` e CNAME `www` → `nilknarfsam.github.io`. **Não** mexer em "Alterar servidores DNS".
 - Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
 - Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
+
+## O que falta
+
+- Links oficiais dos álbuns e do Spotify (`js/dados/albuns.js`, `js/dados/links.js`).
+- Primeira reflexão da Palavra, tela de detalhe e ligação reflexão ↔ música.
+- Logo no Início (hoje um "S" provisório) e vinheta Lottie.
+- Capa do guia `verdades-ia-instagram`.
+- Testes mínimos de `docs/02-arquitetura.md`; conferir "reduzir movimento", validador W3C, leitor de tela e F5 no site publicado.
 
 ## Uso de IA
 
