@@ -15,7 +15,7 @@ const rotulosCategoria = { instagram: 'Instagram', video: 'Vídeo', voz: 'Voz', 
 export const rotuloStatus = (s) => rotulosStatus[s] || s;
 export const rotuloCategoria = (c) => rotulosCategoria[c] || c;
 
-const linkExterno = (url, rotulo, classe = '') =>
+export const linkExterno = (url, rotulo, classe = '') =>
   `<a${classe ? ` class="${classe}"` : ''} href="${escapar(url)}" target="_blank" rel="noopener">${escapar(rotulo)}<span class="visualmente-oculto"> (abre em nova aba)</span></a>`;
 
 export function telaErro(titulo, mensagem) {

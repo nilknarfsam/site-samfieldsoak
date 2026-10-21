@@ -230,17 +230,18 @@
    Movimento (pedido "animações do site")
    Só transform e opacity. Botões: feedback de toque.
    ========================================================= */
-.botao, .botao-bio, .chip span, .menu__link, .cartao--link {
+.botao, .botao-bio, .chip span, .menu__link, .cartao--link, .player__fachada {
   transition-property: transform, background-color, border-color, color;
   transition-duration: var(--duracao-toque);
   transition-timing-function: var(--curva-saida);
 }
-.botao:active, .botao-bio:active, .chip span:active, .cartao--link:active { transform: scale(var(--escala-toque)); }
+.botao:active, .botao-bio:active, .chip span:active, .cartao--link:active, .player__fachada:active { transform: scale(var(--escala-toque)); }
 
 @media (hover: hover) and (pointer: fine) {
   .botao:hover { background: var(--cor-texto); border-color: var(--cor-texto); color: var(--cor-sobre-destaque); }
   .botao--contorno:hover { background: transparent; border-color: var(--cor-texto); color: var(--cor-texto); }
   .botao-bio:hover, .cartao--link:hover { border-color: var(--cor-destaque); }
+  .player__fachada:hover { background: var(--cor-superficie-alta); }
   .botao-bio:hover .botao-bio__seta { transform: translateX(3px); }
   .chip span:hover { border-color: var(--cor-texto); }
   .menu__link:hover { color: var(--cor-destaque); }
@@ -262,6 +263,38 @@
   /* Menos movimento: mantém só a troca de opacidade, sem deslocar nada */
   .mov-cartao { animation-name: entrar-tela; animation-delay: 0ms; }
   .mov-tela .progresso__barra span { animation: none; }
-  .botao:active, .botao-bio:active, .chip span:active, .cartao--link:active { transform: none; }
+  .botao:active, .botao-bio:active, .chip span:active, .cartao--link:active, .player__fachada:active { transform: none; }
   .botao-bio:hover .botao-bio__seta { transform: none; }
 }
+
+/* ---------- Player de música (fachada que vira iframe no toque) ---------- */
+.player { border-radius: var(--raio); overflow: hidden; }
+.player__fachada {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  width: 100%;
+  min-height: 9rem;
+  padding: var(--esp-4);
+  border: 2px solid var(--cor-destaque);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.player__icone {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font-size: var(--texto-md);
+}
+.player__texto strong { display: block; font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); line-height: var(--altura-linha-titulo); }
+.player__texto small { color: var(--cor-texto-suave); font-size: var(--texto-xs); }
+.player__quadro { display: block; width: 100%; height: var(--altura-player); border: 0; border-radius: var(--raio); background: var(--cor-superficie); }

@@ -30,7 +30,8 @@ Não escreva código ainda. Espere meu ok.
 
 ### Fase 3 – Música e Palavra
 - [x] `js/dados/albuns.js` com `conteudo/musica-e-links.md`.
-- [ ] Links oficiais dos álbuns e do perfil de artista no Spotify (Franklin passa os links).
+- [x] Perfis de artista (Spotify e YouTube Music) e player do Spotify na página Música.
+- [ ] Links oficiais de cada álbum (Franklin passa os links).
 - [ ] `js/dados/reflexoes.js` e as telas da Palavra (lista + detalhe).
 - [ ] Ligações entre reflexão e música.
 

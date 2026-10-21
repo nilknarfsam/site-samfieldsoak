@@ -59,6 +59,7 @@
   --borda: 1px solid var(--cor-borda);
   --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
   --toque-minimo: 44px;
+  --altura-player: 352px;   /* altura padrão do embed do Spotify */
 
   /* Layout */
   --container: 72rem;

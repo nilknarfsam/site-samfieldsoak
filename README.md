@@ -17,7 +17,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/inicio` | Link na bio + Novidade | pronto |
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/musica` | Álbuns | pronto, sem links das plataformas (o Franklin preenche em `js/dados/albuns.js`) |
+| `#/musica` | Player do Spotify (perfil de artista, carrega só no toque) + álbuns | pronto; faltam os links de cada álbum (`js/dados/albuns.js`) |
 | `#/palavra` | Reflexões | casca pronta, sem conteúdo; o detalhe entra com a primeira reflexão |
 | `#/sobre` | Quem é e o compromisso | pronto |
 
@@ -82,7 +82,7 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 
 ## O que falta
 
-- Links oficiais dos álbuns e do Spotify (`js/dados/albuns.js`, `js/dados/links.js`).
+- Links oficiais de cada álbum (`js/dados/albuns.js`); com o link do álbum no Spotify, o cartão pode ganhar o próprio player.
 - Primeira reflexão da Palavra, tela de detalhe e ligação reflexão ↔ música.
 - Logo no Início (hoje um "S" provisório) e vinheta Lottie.
 - Capa do guia `verdades-ia-instagram`.
