@@ -1,8 +1,9 @@
 import { marcarMenuAtivo, fecharMenu } from './menu.js';
 import { telaErro } from './templates.js';
 import { animarTela } from './movimento.js';
+import { contarVisita } from './contador.js';
 
-const NOME_SITE = 'Samfield';
+const NOME_SITE = 'Franklin Carvalho';
 let rotas = {}, app, navegacaoAtual = 0;
 const cache = new Map();
 
@@ -38,6 +39,7 @@ async function renderizar() {
     try { titulo = alvoRota.iniciar(app, segundo) || titulo; } catch (e) { console.error('[roteador]', e); }
   }
   document.title = NOME_SITE + ' | ' + titulo;
+  contarVisita();
   window.scrollTo(0, 0);
   animarTela(app);
   const secaoAncora = ancora && document.getElementById(ancora);

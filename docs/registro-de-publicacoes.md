@@ -13,4 +13,5 @@
 | 2026-10-21 | Início | Home nova "Fé, música e tecnologia" (mosaico, papéis, números, último lançamento, atalhos, frentes) e rodapé com redes; Sobre e CLAUDE.md sem "músico"/"engenheiro" | `#/inicio` | publicado em 21/10/2026. |
 | 2026-10-21 | Música | Transparência: selo "Música criada com IA" (Música, página de cada álbum, home) e seção "Como eu faço as músicas" em 7 passos, em primeira pessoa | `#/musica`, `#/musica/como-eu-faco`, `#/musica/<slug>`, `#/inicio` | publicado em 21/10/2026. |
 | 2026-10-21 | Música | As primeiras versões: 7 álbuns que ficaram só no Suno (link para ouvir sem conta) e "Também no Suno" em Ecos de Adoração, Santuário do Altíssimo e O Rei dos Povos | `#/musica/primeiras-versoes` | publicado em 21/10/2026. |
-| 2026-10-21 | Música | Capas das 7 primeiras versões e dos singles Pelo Teu Nome e O Corre do Aldeney | `#/musica/primeiras-versoes`, `#/musica` | PR aberto, aguardando aprovação. |
+| 2026-10-21 | Música | Capas das 7 primeiras versões e dos singles Pelo Teu Nome e O Corre do Aldeney | `#/musica/primeiras-versoes`, `#/musica` | publicado em 21/10/2026. |
+| 2026-10-21 | Site inteiro | Foto do Franklin na home e no ícone da aba; prévia ao compartilhar (1200×630); título, JSON-LD, robots.txt e sitemap.xml; contador de visitas preparado (desligado) | todas | PR aberto, aguardando aprovação. |

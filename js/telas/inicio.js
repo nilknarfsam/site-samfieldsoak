@@ -25,7 +25,7 @@ function numeros() {
 }
 
 const retrato = () => (perfil.foto
-  ? `<img src="${escapar(perfil.foto)}-480.webp" alt="Foto de ${escapar(perfil.nome)}" width="480" height="480">`
+  ? `<img src="${escapar(perfil.foto)}-240.webp" srcset="${escapar(perfil.foto)}-240.webp 240w, ${escapar(perfil.foto)}-480.webp 480w" sizes="7rem" alt="Foto de ${escapar(perfil.nome)}" width="240" height="240">`
   : `<span aria-hidden="true">${escapar(perfil.monograma)}</span>`);
 
 function lancamento(a) {
