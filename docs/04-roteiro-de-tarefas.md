@@ -15,29 +15,35 @@ Não escreva código ainda. Espere meu ok.
 ## Fases
 
 ### Fase 0 – Preparação (Franklin)
-- [ ] Decidir o nome do site e o repositório (recomendado `nilknarfsam.github.io`).
-- [ ] Criar o repositório no GitHub e ligar à pasta do projeto (o Claude Code pode guiar).
-- [ ] Escolher como as ideias chegam ao PC (opção A ou B em `docs/05-fluxo-de-ideias.md`).
+- [x] Decidir o nome do site e o repositório (`site-samfieldsoak`, domínio `samfieldsoak.com.br`).
+- [x] Criar o repositório no GitHub e ligar à pasta do projeto (o Claude Code pode guiar).
+- [x] Escolher como as ideias chegam ao PC (opção B). (opção A ou B em `docs/05-fluxo-de-ideias.md`).
 
 ### Fase 1 – Casca, roteador e Design System
-- [ ] `index.html`, roteador por hash, menu com as seções, rodapé.
-- [ ] `css/variaveis.css` com os tokens de `docs/03-design-system.md` e fontes baixadas.
-- [ ] `#/inicio` no estilo link na bio.
+- [x] `index.html`, roteador por hash, menu com as seções, rodapé.
+- [x] `css/variaveis.css` com os tokens de `docs/03-design-system.md` e fontes baixadas.
+- [x] `#/inicio` no estilo link na bio.
 
 ### Fase 2 – IA sem lábia
-- [ ] `js/dados/ferramentas.js` com `conteudo/ferramentas-iniciais.md` e os itens da caixa de entrada desta seção.
-- [ ] Lista com filtro e página de detalhe com tratamento de slug inválido.
+- [x] `js/dados/ferramentas.js` com `conteudo/ferramentas-iniciais.md` e os itens da caixa de entrada desta seção.
+- [x] Lista com filtro e página de detalhe com tratamento de slug inválido.
 
 ### Fase 3 – Música e Palavra
-- [ ] `js/dados/albuns.js` com `conteudo/musica-e-links.md` (Franklin preenche os links).
+- [x] `js/dados/albuns.js` com `conteudo/musica-e-links.md`.
+- [ ] Links oficiais dos álbuns e do perfil de artista no Spotify (Franklin passa os links).
 - [ ] `js/dados/reflexoes.js` e as telas da Palavra (lista + detalhe).
 - [ ] Ligações entre reflexão e música.
 
 ### Fase 4 – Sobre, testes e publicação
-- [ ] Página Sobre.
+- [x] Página Sobre.
 - [ ] Testes mínimos de `docs/02-arquitetura.md`.
-- [ ] Publicar no GitHub Pages e colocar o link na bio.
-- [ ] README com o que está pronto, testado e o que falta.
+- [x] Publicar no GitHub Pages com domínio próprio (no ar em 21/10/2026).
+- [ ] Colocar `samfieldsoak.com.br` na bio do Instagram.
+- [x] README com o que está pronto, testado e o que falta.
+
+### Pendências visuais
+- [ ] Logo do Franklin no lugar do "S" provisório do Início e vinheta Lottie do logo.
+- [ ] Capa do guia `verdades-ia-instagram` (`capa_v02.png`).
 
 ## Rotina depois do lançamento
 

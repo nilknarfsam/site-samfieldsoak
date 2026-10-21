@@ -44,8 +44,11 @@ Detalhes do fluxo: `docs/05-fluxo-de-ideias.md`. Padrão dos posts: `docs/06-pad
 2. Abrir o terminal na pasta, rodar `claude` e colar o primeiro pedido de `docs/04-roteiro-de-tarefas.md`.
 3. Para as próximas ideias, ver as duas opções em `docs/05-fluxo-de-ideias.md` (baixar só a caixa de entrada, ou ligar o Google Drive para computador).
 
+## Decisões tomadas
+
+- Nome do site: **Samfield** (título das abas: "Samfield | ...").
+- Repositório: `nilknarfsam/site-samfieldsoak`, publicado em **https://samfieldsoak.com.br** (no ar desde 21/10/2026).
+
 ## Decisões em aberto
 
-- Nome do site (a seção de IA já se chama **IA sem lábia**). Sugestões para o site todo: "Samfield", "Franklin Carvalho" ou "Samfield | fé, música e IA sem lábia".
-- Repositório: recomendado `nilknarfsam.github.io` (endereço https://nilknarfsam.github.io).
 - Cor de destaque de cada seção (sugestão em `docs/03-design-system.md`).
