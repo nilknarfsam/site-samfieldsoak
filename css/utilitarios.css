@@ -7,6 +7,7 @@
 }
 .texto-suave { color: var(--cor-texto-suave); }
 .mono { font-family: var(--fonte-mono); }
+.mt-0 { margin-top: 0; }
 .mt-3 { margin-top: var(--esp-3); }
 .mt-5 { margin-top: var(--esp-5); }
 .mb-0 { margin-bottom: 0; }

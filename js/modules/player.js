@@ -5,14 +5,14 @@
 const TIPOS = ['artist', 'album', 'playlist', 'track'];
 const ID_VALIDO = /^[A-Za-z0-9]{22}$/;   // IDs do Spotify têm 22 caracteres base62
 
-export function prepararPlayerSpotify(container, { tipo, id, titulo }) {
+export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'Ouvir aqui' }) {
   if (!container) return;
   if (!TIPOS.includes(tipo) || !ID_VALIDO.test(id)) { container.hidden = true; return; }
   container.innerHTML = `
     <button class="player__fachada" type="button" data-acao="carregar-player">
       <span class="player__icone" aria-hidden="true">▶</span>
       <span class="player__texto">
-        <strong>Ouvir aqui</strong>
+        <strong>${rotulo}</strong>
         <small>Player do Spotify. Carrega só quando você tocar.</small>
       </span>
     </button>`;

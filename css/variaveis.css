@@ -33,6 +33,7 @@
   --fonte-titulo: 'Oswald', 'Arial Narrow', sans-serif;
   --fonte-texto: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fonte-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --texto-2xs: 0.625rem;   /* só em miniaturas (capa tipográfica) */
   --texto-xs: 0.875rem;
   --texto-sm: 0.9375rem;
   --texto-base: 1rem;
@@ -60,6 +61,8 @@
   --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
   --toque-minimo: 44px;
   --altura-player: 352px;   /* altura padrão do embed do Spotify */
+  --altura-jornada: 2.5rem; /* barra 1–150 dos Salmos */
+  --cor-veu: rgba(0, 0, 0, 0.55); /* degradê sobre capas e véus */
 
   /* Layout */
   --container: 72rem;

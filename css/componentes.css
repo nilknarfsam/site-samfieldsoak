@@ -298,3 +298,94 @@
 .player__texto strong { display: block; font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); line-height: var(--altura-linha-titulo); }
 .player__texto small { color: var(--cor-texto-suave); font-size: var(--texto-xs); }
 .player__quadro { display: block; width: 100%; height: var(--altura-player); border: 0; border-radius: var(--raio); background: var(--cor-superficie); }
+
+/* =========================================================
+   Música: landing e página do álbum
+   ========================================================= */
+.secao-musica { padding-block: var(--esp-6) 0; }
+.secao-musica__titulo { font-size: var(--texto-h2); margin-bottom: var(--esp-2); }
+.secao-musica > .texto-suave { margin-bottom: var(--esp-4); }
+
+/* Capa (com proteção leve: sem seleção, sem toque longo, véu por cima da imagem) */
+.capa { position: relative; aspect-ratio: 1; border-radius: var(--raio); overflow: hidden; background: var(--cor-superficie-alta); box-shadow: var(--sombra); }
+.capa img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.capa[data-protegida] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.capa[data-protegida] img { pointer-events: none; }
+.capa[data-protegida]::after { content: ''; position: absolute; inset: 0; }
+.capa--texto {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--esp-2);
+  padding: var(--esp-4); text-align: center;
+  background: radial-gradient(circle at 50% 30%, var(--cor-superficie-alta), var(--cor-fundo) 75%);
+  border: var(--borda);
+}
+.capa__volume { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-destaque); text-transform: uppercase; letter-spacing: 0.2em; }
+.capa__titulo { font-family: var(--fonte-titulo); font-weight: 700; text-transform: uppercase; font-size: var(--texto-h2); line-height: var(--altura-linha-titulo); }
+.capa__artista { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); letter-spacing: 0.15em; text-transform: uppercase; }
+
+/* Lançamento em destaque */
+.hero-album {
+  display: grid; gap: var(--esp-5); align-items: center;
+  padding: var(--esp-4); border: var(--borda); border-radius: var(--raio);
+  background: linear-gradient(160deg, var(--cor-superficie), var(--cor-fundo));
+}
+.hero-album__serie { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-destaque); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: var(--esp-1); }
+.hero-album__titulo { font-size: var(--texto-h1); line-height: var(--altura-linha-titulo); text-transform: uppercase; margin-bottom: var(--esp-3); }
+@media (min-width: 768px) {
+  .hero-album { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); padding: var(--esp-5); }
+}
+
+/* Por trás das músicas */
+.nota-criacao { gap: var(--esp-2); height: 100%; text-decoration: none; color: var(--cor-texto); }
+.nota-criacao__titulo { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); line-height: var(--altura-linha-titulo); }
+.nota-criacao__texto { color: var(--cor-texto-suave); flex: 1; }
+.nota-criacao__mais { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-destaque); }
+
+/* Jornada pelos Salmos */
+.jornada__contagem { font-size: var(--texto-md); margin-bottom: var(--esp-3); }
+.jornada__contagem strong { font-family: var(--fonte-titulo); font-size: var(--texto-h2); color: var(--cor-destaque); }
+.jornada__barra {
+  position: relative; height: var(--altura-jornada);
+  border-radius: var(--raio-pequeno); background: var(--cor-superficie-alta); border: var(--borda); overflow: hidden;
+}
+.jornada__trecho {
+  position: absolute; top: 0; bottom: 0;
+  left: calc(var(--inicio) / 150 * 100%); width: calc(var(--tamanho) / 150 * 100%);
+  background: var(--cor-destaque); border-right: 2px solid var(--cor-fundo);
+}
+.jornada__trecho:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: -3px; }
+.jornada__escala { display: flex; justify-content: space-between; font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); margin-top: var(--esp-1); }
+.jornada__legenda { display: flex; flex-wrap: wrap; gap: var(--esp-2) var(--esp-4); margin-top: var(--esp-3); font-size: var(--texto-sm); }
+.jornada__legenda a { color: var(--cor-texto); }
+.jornada__legenda span { font-family: var(--fonte-mono); color: var(--cor-texto-suave); }
+
+/* Discografia */
+.cartao-album { gap: var(--esp-2); height: 100%; text-decoration: none; color: var(--cor-texto); }
+.cartao-album__capa { margin-bottom: var(--esp-2); box-shadow: none; }
+.cartao-album__capa .capa__titulo { font-size: var(--texto-lg); }
+.cartao-album__titulo { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); line-height: var(--altura-linha-titulo); }
+.cartao-album__meta { color: var(--cor-texto-suave); font-size: var(--texto-sm); }
+
+/* Página do álbum */
+.album-topo { display: grid; gap: var(--esp-4); align-items: end; margin-bottom: var(--esp-4); }
+.album-topo__capa { max-width: 28rem; }
+@media (min-width: 768px) { .album-topo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+.notas { display: grid; gap: var(--esp-4); }
+@media (min-width: 768px) { .notas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nota-album { padding-left: var(--esp-3); border-left: 3px solid var(--cor-destaque); }
+.nota-album h3 { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-md); margin-bottom: var(--esp-2); }
+.nota-album p { color: var(--cor-texto-suave); margin: 0; }
+.faixas { list-style: none; padding: 0; margin: 0; counter-reset: faixa; border-top: var(--borda); }
+.faixas li { counter-increment: faixa; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--esp-1) var(--esp-3); padding: var(--esp-3) 0; border-bottom: var(--borda); }
+.faixas li + li { margin-top: 0; }
+.faixas li::before { content: counter(faixa, decimal-leading-zero); font-family: var(--fonte-mono); color: var(--cor-destaque); min-width: 2ch; }
+.faixas__titulo { font-weight: 600; flex: 1; }
+.faixas__texto { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
+/* Discografia: 2 por linha no celular, 3 no tablet, 4 no desktop */
+.discografia > li { grid-column: span 6; }
+@media (min-width: 768px) { .discografia > li { grid-column: span 4; } }
+@media (min-width: 992px) { .discografia > li { grid-column: span 3; } }
+.discografia .cartao-album { padding: var(--esp-3); }
+.discografia .cartao-album__titulo { font-size: var(--texto-md); }
+.discografia .capa--texto { padding: var(--esp-2); }
+.discografia .capa__titulo { font-size: var(--texto-md); }
+.discografia .capa__artista { font-size: var(--texto-2xs); letter-spacing: 0.1em; }

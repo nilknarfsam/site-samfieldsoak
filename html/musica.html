@@ -1,14 +1,32 @@
-<section>
+<section class="musica">
   <header class="mb-5">
     <p class="sobretitulo">Música cristã com base bíblica</p>
     <h1 class="titulo-faixa"><span class="titulo-faixa__marca">Música</span></h1>
-    <p class="lead">Álbuns baseados nos Salmos, em Provérbios, nos Evangelhos e em Romanos.</p>
+    <p class="lead">A Bíblia cantada, livro por livro: os Salmos, Provérbios, os Evangelhos e agora a carta aos Romanos.</p>
   </header>
-  <section class="player-bloco mb-5" aria-labelledby="titulo-player">
-    <h2 id="titulo-player" class="sobretitulo">Ouça agora</h2>
+
+  <section class="hero-album" aria-label="Lançamento mais recente" data-hero></section>
+
+  <section class="secao-musica" aria-labelledby="titulo-por-tras">
+    <h2 id="titulo-por-tras" class="secao-musica__titulo">Por trás das músicas</h2>
+    <p class="texto-suave">Como cada álbum nasceu: as escolhas de texto, de som e de capa.</p>
+    <ul class="grid lista-limpa" data-notas></ul>
+  </section>
+
+  <section class="secao-musica jornada" aria-labelledby="titulo-jornada">
+    <h2 id="titulo-jornada" class="secao-musica__titulo">A jornada pelos Salmos</h2>
+    <div data-jornada></div>
+  </section>
+
+  <section class="secao-musica" aria-labelledby="titulo-ouvir">
+    <h2 id="titulo-ouvir" class="secao-musica__titulo">Todas as músicas</h2>
+    <p class="texto-suave">O perfil de artista com tudo o que já foi lançado.</p>
     <div class="player" data-player></div>
     <ul class="links-oficiais mt-3" data-perfis></ul>
   </section>
-  <h2 class="sobretitulo">Álbuns</h2>
-  <ul class="grid lista-limpa" data-lista></ul>
+
+  <section class="secao-musica" aria-labelledby="titulo-discografia">
+    <h2 id="titulo-discografia" class="secao-musica__titulo">Discografia</h2>
+    <ul class="grid lista-limpa discografia" data-lista></ul>
+  </section>
 </section>
