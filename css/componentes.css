@@ -488,3 +488,10 @@
 .processo__passo::before { content: counter(passo, decimal-leading-zero); font-family: var(--fonte-mono); color: var(--cor-destaque); font-size: var(--texto-xs); }
 .processo__passo strong { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-md); }
 .processo__passo span { color: var(--cor-texto-suave); font-size: var(--texto-sm); }
+
+/* As primeiras versões (Suno): visual mais apagado que a discografia oficial */
+.primeira-versao { gap: var(--esp-2); height: 100%; padding: var(--esp-3); }
+.primeira-versao .botao { margin-top: auto; width: 100%; padding-inline: var(--esp-2); font-size: var(--texto-sm); white-space: nowrap; }
+.capa--antiga { box-shadow: none; border-style: dashed; filter: grayscale(0.6); }
+.capa--antiga .capa__volume { color: var(--cor-texto-suave); }
+.discografia .capa--antiga .capa__titulo { font-size: var(--texto-md); }

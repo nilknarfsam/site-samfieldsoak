@@ -99,7 +99,8 @@ export function detalheAlbum(a, serie, irmaos) {
 
   partes.push(a.spotifyId
     ? `<section class="bloco"><h2>Ouça o álbum</h2><div class="selo-ia selo-ia--curto" role="note" data-selo-ia></div><div class="player" data-player-album></div>
-        <ul class="links-oficiais mt-3" data-perfis></ul></section>`
+        <ul class="links-oficiais mt-3" data-perfis></ul>
+        ${a.suno ? `<p class="nota">Também no Suno: ${linkExterno(a.suno, 'ouvir a página do álbum no Suno')}</p>` : ''}</section>`
     : `<section class="bloco"><h2>Ouça</h2><p class="nota">${escapar(a.situacao || 'Links do álbum em breve. Enquanto isso, ouça no perfil de artista.')}</p>
         <ul class="links-oficiais mt-3" data-perfis></ul></section>`);
 
@@ -147,3 +148,18 @@ export const seloIA = (c, completo = true) => completo
 
 export const passosProcesso = (c) => c.passos.map((p) => `
   <li class="processo__passo" data-animar><strong>${escapar(p.titulo)}</strong><span>${escapar(p.texto)}</span></li>`).join('');
+
+// As primeiras versões (Suno): capa só de texto, botão para a página do álbum no Suno.
+export const cartaoPrimeiraVersao = (a) => `
+  <li data-animar>
+    <article class="cartao primeira-versao">
+      <div class="capa capa--texto capa--antiga" role="img" aria-label="${escapar(`Primeira versão: ${a.titulo}`)}">
+        <span class="capa__volume">Primeira versão</span>
+        <span class="capa__titulo">${escapar(a.titulo)}</span>
+      </div>
+      <span class="album__base">${escapar(a.base)}</span>
+      <strong class="cartao-album__titulo">${escapar(a.titulo)}</strong>
+      ${a.estilo ? `<span class="cartao-album__meta">${escapar(a.estilo)}</span>` : ''}
+      ${linkExterno(a.suno, 'Ouvir no Suno', 'botao botao--contorno')}
+    </article>
+  </li>`;
