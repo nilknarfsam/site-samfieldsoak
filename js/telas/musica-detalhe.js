@@ -1,5 +1,5 @@
 import { albuns, artista, buscarAlbum, series, comoFaco } from '../dados/albuns.js';
-import { detalheAlbum, botoesPerfis, seloIA } from '../modules/templates-musica.js';
+import { detalheAlbum, botoesPerfis, seloIA, blocoLetra } from '../modules/templates-musica.js';
 import { naoEncontrado } from '../modules/templates.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
@@ -29,6 +29,14 @@ export function iniciarMusicaDetalhe(app, slug) {
     });
   }
   alvo.querySelector('[data-perfis]').innerHTML = botoesPerfis(artista);
+  if (a.letras && /^[a-z0-9-]+$/.test(a.letras)) {
+    import(`../dados/letras/${a.letras}.js`).then(({ letras }) => {
+      (letras[a.slug] || []).forEach((linhas, i) => {
+        const li = alvo.querySelector(`[data-faixa="${i}"]`);
+        if (li && a.faixasLista[i]) li.insertAdjacentHTML('beforeend', blocoLetra(a.faixasLista[i].titulo, linhas));
+      });
+    }).catch((e) => console.error('[letras]', e));   // sem letras, a lista de faixas continua normal
+  }
   animarCartoes(alvo);
   protegerCapas(alvo);
   return a.subtitulo ? `${a.titulo} (${a.subtitulo})` : a.titulo;

@@ -112,7 +112,7 @@ export function detalheAlbum(a, serie, irmaos) {
 
   if (tem(a.faixasLista)) {
     partes.push(`<section class="bloco"><h2>Faixas</h2>
-      <ol class="faixas">${a.faixasLista.map((f) => `<li><span class="faixas__titulo">${escapar(f.titulo)}</span>${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}</li>`).join('')}</ol>
+      <ol class="faixas">${a.faixasLista.map((f, i) => `<li data-faixa="${i}"><span class="faixas__titulo">${escapar(f.titulo)}</span>${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}</li>`).join('')}</ol>
       ${a.notaLetras ? `<p class="nota">${escapar(a.notaLetras)}</p>` : ''}
     </section>`);
   }
@@ -167,3 +167,10 @@ export const cartaoPrimeiraVersao = (a) => `
       ${linkExterno(a.suno, 'Ouvir no Suno', 'botao botao--contorno')}
     </article>
   </li>`;
+
+// Letra de uma faixa, recolhida (abre no toque). Linhas passam por escapar().
+export const blocoLetra = (titulo, linhas) => `
+  <details class="letra">
+    <summary>Ver letra<span class="visualmente-oculto"> de ${escapar(titulo)}</span></summary>
+    <p>${linhas.map(escapar).join('<br>')}</p>
+  </details>`;
