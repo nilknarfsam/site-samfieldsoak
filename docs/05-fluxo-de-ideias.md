@@ -27,7 +27,7 @@ Quando uma ideia debatida no chat servir para o site (o Franklin diz "isso vai p
 
 ### Opção B – Google Drive para computador (automática, recomendada depois)
 
-1. Instalar o Google Drive para computador e entrar com a conta nilknarfsam@gmail.com.
+1. Instalar o Google Drive para computador e entrar com a sua conta Google.
 2. A pasta do Drive aparece como uma unidade (ex.: `G:\Meu Drive\Claude\Site @samfieldsoak (projeto Claude Code)\caixa-de-entrada`).
 3. **O repositório do site fica fora do Drive** (ex.: `C:\Projetos\site-samfieldsoak`). Git dentro de pasta sincronizada dá conflito.
 4. No `CLAUDE.md` local, acrescentar a linha: `Caixa de entrada: G:\Meu Drive\Claude\Site @samfieldsoak (projeto Claude Code)\caixa-de-entrada` (ajustar a letra da unidade).
