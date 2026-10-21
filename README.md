@@ -75,7 +75,9 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 
 ## Publicação
 
-Ainda não publicado. Falta criar o repositório (recomendado `nilknarfsam.github.io`) e ligar o GitHub Pages na branch `main`.
+- No ar pelo GitHub Pages (branch `main`, raiz): **https://samfieldsoak.com.br** (domínio no Registro.br, arquivo `CNAME` na raiz).
+- Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
+- Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
 
 ## Uso de IA
 
