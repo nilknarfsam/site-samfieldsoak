@@ -16,4 +16,5 @@
 | 2026-10-21 | Música | Capas das 7 primeiras versões e dos singles Pelo Teu Nome e O Corre do Aldeney | `#/musica/primeiras-versoes`, `#/musica` | publicado em 21/10/2026. |
 | 2026-10-21 | Site inteiro | Foto do Franklin na home e no ícone da aba; prévia ao compartilhar (1200×630); título, JSON-LD, robots.txt e sitemap.xml; contador de visitas preparado (desligado) | todas | publicado em 21/10/2026. |
 | 2026-10-21 | Site inteiro | Contador de visitas ligado (GoatCounter `samfieldsoak`, anônimo, sem cookies); Sobre e CLAUDE.md atualizados | todas | publicado em 21/10/2026. |
-| 2026-10-21 | Música | Letras do Tratado de Romanos (17 faixas, Vol. I e II), com "Ver letra" em cada faixa | `#/musica/toda-boca-se-cale`, `#/musica/reinara-a-graca` | PR aberto, aguardando aprovação. |
+| 2026-10-21 | Música | Letras do Tratado de Romanos (17 faixas, Vol. I e II), com "Ver letra" em cada faixa | `#/musica/toda-boca-se-cale`, `#/musica/reinara-a-graca` | publicado em 21/10/2026. |
+| 2026-10-21 | Música | Proteção das letras contra seleção e cópia | `#/musica/<slug>` | PR aberto, aguardando aprovação. |
