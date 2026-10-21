@@ -1,5 +1,5 @@
-import { albuns, artista, buscarAlbum, series } from '../dados/albuns.js';
-import { detalheAlbum, botoesPerfis } from '../modules/templates-musica.js';
+import { albuns, artista, buscarAlbum, series, comoFaco } from '../dados/albuns.js';
+import { detalheAlbum, botoesPerfis, seloIA } from '../modules/templates-musica.js';
 import { naoEncontrado } from '../modules/templates.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
@@ -21,6 +21,8 @@ export function iniciarMusicaDetalhe(app, slug) {
     ? albuns.filter((x) => x.serie === a.serie && x.slug !== a.slug).sort((x, y) => ordem(x) - ordem(y))
     : [];
   alvo.innerHTML = detalheAlbum(a, serie, irmaos);
+  const selo = alvo.querySelector('[data-selo-ia]');
+  if (selo) selo.innerHTML = seloIA(comoFaco, false);
   if (a.spotifyId) {
     prepararPlayerSpotify(alvo.querySelector('[data-player-album]'), {
       tipo: 'album', id: a.spotifyId, titulo: `${a.titulo} no Spotify`,

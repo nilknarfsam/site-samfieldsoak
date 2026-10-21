@@ -147,3 +147,18 @@ export function salmosCobertos() {
   });
   return trechos.sort((x, y) => x.de - y.de);
 }
+
+// Transparência: como as músicas são feitas (texto do Franklin, em primeira pessoa).
+export const comoFaco = {
+  selo: 'Minhas músicas são criadas com IA. Eu escolho o texto bíblico e escrevo as letras com ajuda de IA, revisando cada verso para ficar fiel à Bíblia e teologicamente correto. As vozes e os instrumentos são gerados no Suno, e a masterização é automática, no LANDR.',
+  seloCurto: 'Música criada com IA',
+  passos: [
+    { titulo: 'O texto', texto: 'Escolho o trecho da Bíblia e estudo o que ele diz antes de qualquer coisa.' },
+    { titulo: 'A letra', texto: 'Escrevo com ajuda de IA e reviso cada verso para ficar fiel ao texto e teologicamente correto.' },
+    { titulo: 'O estilo', texto: 'Defino o som de cada álbum (rock, metal, folk) e o clima de cada faixa.' },
+    { titulo: 'A geração', texto: 'As vozes e os instrumentos são gerados por IA no Suno. Não há banda nem cantor gravando.' },
+    { titulo: 'A escolha', texto: 'Ouço as versões geradas e escolho a melhor. O que não ficou bom, eu refaço.' },
+    { titulo: 'A masterização', texto: 'Automática, no LANDR. Não é masterização de estúdio: é um ajuste final automático do som.' },
+    { titulo: 'O lançamento', texto: 'Distribuo pelo DistroKid para o Spotify, o YouTube Music e as outras plataformas.' },
+  ],
+};

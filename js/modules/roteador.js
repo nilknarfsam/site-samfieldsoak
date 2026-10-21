@@ -20,7 +20,9 @@ async function renderizar() {
   if (!nome || !rotas[nome]) { nome = 'inicio'; segundo = undefined; history.replaceState(null, '', '#/inicio'); }
   const rota = rotas[nome];
   // Seções com páginas de detalhe usam o segundo segmento como slug (#/ia-sem-labia/<slug>)
-  const alvoRota = segundo && rota.detalhe ? rota.detalhe : rota;
+  // Âncoras declaradas na rota (#/musica/como-eu-faco) rolam até a seção em vez de abrir um detalhe.
+  const ancora = segundo && (!rota.detalhe || (rota.ancoras || []).includes(segundo)) ? segundo : null;
+  const alvoRota = segundo && rota.detalhe && !ancora ? rota.detalhe : rota;
   const esta = ++navegacaoAtual;                 // descarta resposta atrasada (condição de corrida)
   app.setAttribute('aria-busy', 'true');
   let html, titulo = rota.titulo, ok = true;
@@ -38,8 +40,10 @@ async function renderizar() {
   document.title = NOME_SITE + ' | ' + titulo;
   window.scrollTo(0, 0);
   animarTela(app);
-  const alvo = (!rota.detalhe && segundo && document.getElementById(segundo)) || app.querySelector('h1');
+  const secaoAncora = ancora && document.getElementById(ancora);
+  const alvo = secaoAncora || app.querySelector('h1');
   if (alvo) { alvo.setAttribute('tabindex', '-1'); alvo.focus({ preventScroll: true }); } // foco gerenciado para leitor de tela
+  if (secaoAncora) secaoAncora.scrollIntoView();
 }
 
 export function iniciarRoteador(mapa) {

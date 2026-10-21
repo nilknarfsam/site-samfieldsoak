@@ -14,3 +14,4 @@
 .mb-5 { margin-bottom: var(--esp-5); }
 .lista-limpa { list-style: none; padding: 0; }
 .lista-limpa li + li { margin-top: 0; }
+[id] { scroll-margin-top: var(--esp-7); }

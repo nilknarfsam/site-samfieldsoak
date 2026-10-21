@@ -1,9 +1,9 @@
 import { linksBio, novidade } from '../dados/links.js';
 import { buscarFerramenta } from '../dados/ferramentas.js';
-import { albuns, albumDestaque, salmosCobertos } from '../dados/albuns.js';
+import { albuns, albumDestaque, salmosCobertos, comoFaco } from '../dados/albuns.js';
 import { perfil } from '../dados/perfil.js';
 import { renderizarLista, botaoBio, cartaoNovidade, escapar } from '../modules/templates.js';
-import { capaAlbum } from '../modules/templates-musica.js';
+import { capaAlbum, seloIA } from '../modules/templates-musica.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
@@ -35,6 +35,7 @@ function lancamento(a) {
       ${a.subtitulo ? `<p class="hero-album__serie">${escapar(a.subtitulo)}</p>` : ''}
       <p class="lancamento__titulo">${escapar(a.titulo)}</p>
       ${a.frase ? `<p class="texto-suave">${escapar(a.frase)}</p>` : ''}
+      <div class="selo-ia selo-ia--curto" role="note">${seloIA(comoFaco, false)}</div>
       <div class="player" data-player-album></div>
     </div>`;
 }
