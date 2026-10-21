@@ -11,7 +11,7 @@ export const perfil = {
 
 // Contador de visitas (GoatCounter: grátis, sem cookies, sem dados pessoais).
 // Fica desligado até o Franklin criar a conta e colocar o código aqui (ex.: 'samfieldsoak').
-export const contador = { codigo: '' };
+export const contador = { codigo: 'samfieldsoak' };
 
 export const redes = [
   { rotulo: 'Instagram', url: 'https://instagram.com/samfieldsoak' },
