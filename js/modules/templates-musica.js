@@ -98,7 +98,7 @@ export function detalheAlbum(a, serie, irmaos) {
     </header>`];
 
   partes.push(a.spotifyId
-    ? `<section class="bloco"><h2>Ouça o álbum</h2><div class="player" data-player-album></div>
+    ? `<section class="bloco"><h2>Ouça o álbum</h2><div class="selo-ia selo-ia--curto" role="note" data-selo-ia></div><div class="player" data-player-album></div>
         <ul class="links-oficiais mt-3" data-perfis></ul></section>`
     : `<section class="bloco"><h2>Ouça</h2><p class="nota">${escapar(a.situacao || 'Links do álbum em breve. Enquanto isso, ouça no perfil de artista.')}</p>
         <ul class="links-oficiais mt-3" data-perfis></ul></section>`);
@@ -139,3 +139,11 @@ export const cartaoSingle = (s) => `
     </div>
     ${s.spotifyId ? `<div class="player" data-player-single="${escapar(s.spotifyId)}" data-titulo="${escapar(s.titulo)}"></div>` : ''}
   </li>`;
+
+// Selo de transparência (IA). completo = texto inteiro; senão, só o selo curto com link.
+export const seloIA = (c, completo = true) => completo
+  ? `<p><strong>${escapar(c.seloCurto)}.</strong> ${escapar(c.selo.replace(/^Minhas músicas são criadas com IA\.\s*/, ''))} <a href="#/musica/como-eu-faco">Como eu faço →</a></p>`
+  : `<p><strong>${escapar(c.seloCurto)}</strong> · <a href="#/musica/como-eu-faco">como eu faço →</a></p>`;
+
+export const passosProcesso = (c) => c.passos.map((p) => `
+  <li class="processo__passo" data-animar><strong>${escapar(p.titulo)}</strong><span>${escapar(p.texto)}</span></li>`).join('');

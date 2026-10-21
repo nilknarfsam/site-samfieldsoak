@@ -1,10 +1,12 @@
-import { albuns, singles, artista, albumDestaque, salmosCobertos } from '../dados/albuns.js';
-import { heroAlbum, cartaoNota, jornadaSalmos, cartaoAlbumCapa, cartaoSingle, botoesPerfis } from '../modules/templates-musica.js';
+import { albuns, singles, artista, albumDestaque, salmosCobertos, comoFaco } from '../dados/albuns.js';
+import { heroAlbum, cartaoNota, jornadaSalmos, cartaoAlbumCapa, cartaoSingle, botoesPerfis, seloIA, passosProcesso } from '../modules/templates-musica.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
 
 export function iniciarMusica(app) {
+  app.querySelector('[data-selo-ia]').innerHTML = seloIA(comoFaco);
+  app.querySelector('[data-processo]').innerHTML = passosProcesso(comoFaco);
   const destaque = albumDestaque();
   app.querySelector('[data-hero]').innerHTML = heroAlbum(destaque);
   if (destaque.spotifyId) {
