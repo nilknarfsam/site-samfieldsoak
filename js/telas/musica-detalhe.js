@@ -4,6 +4,7 @@ import { naoEncontrado } from '../modules/templates.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
+import { blocoPalavraDoAlbum } from '../modules/templates-palavra.js';
 
 // Devolve o título da aba.
 export function iniciarMusicaDetalhe(app, slug) {
@@ -29,6 +30,10 @@ export function iniciarMusicaDetalhe(app, slug) {
     });
   }
   alvo.querySelector('[data-perfis]').innerHTML = botoesPerfis(artista);
+  // Pregações ligadas a este álbum, logo depois das faixas.
+  const palavra = blocoPalavraDoAlbum(a.slug);
+  const faixas = alvo.querySelector('.faixas');
+  if (palavra && faixas) faixas.closest('section').insertAdjacentHTML('afterend', palavra);
   if (a.letras && /^[a-z0-9-]+$/.test(a.letras)) {
     import(`../dados/letras/${a.letras}.js`).then(({ letras }) => {
       (letras[a.slug] || []).forEach((linhas, i) => {

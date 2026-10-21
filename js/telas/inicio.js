@@ -1,5 +1,6 @@
 import { linksBio, novidade } from '../dados/links.js';
 import { buscarFerramenta } from '../dados/ferramentas.js';
+import { buscarReflexao } from '../dados/reflexoes.js';
 import { albuns, albumDestaque, salmosCobertos, comoFaco } from '../dados/albuns.js';
 import { perfil } from '../dados/perfil.js';
 import { renderizarLista, botaoBio, cartaoNovidade, escapar } from '../modules/templates.js';
@@ -8,9 +9,10 @@ import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
 
-// Seções que podem aparecer como "Novidade" (cresce quando a Palavra tiver conteúdo).
+// Seções que podem aparecer como "Novidade".
 const secoes = {
   'ia-sem-labia': { buscar: buscarFerramenta, rotulo: 'IA sem lábia' },
+  palavra: { buscar: buscarReflexao, rotulo: 'Palavra' },
 };
 
 // Números da home, calculados dos dados: atualizam sozinhos a cada lançamento.
@@ -47,7 +49,7 @@ function frentes() {
       topo: `<div class="frente__mosaico" aria-hidden="true">${capas.map((a) => `<img src="${escapar(a.capa)}-480.webp" alt="" width="240" height="240" loading="lazy" draggable="false">`).join('')}</div>` },
     { rota: '#/ia-sem-labia', titulo: 'Tecnologia', texto: 'IA sem lábia: ferramentas explicadas sem exagero, com preço e fonte. E os meus projetos no GitHub.',
       topo: '<div class="frente__simbolo" aria-hidden="true">⚡</div>' },
-    { rota: '#/palavra', titulo: 'Palavra', texto: 'Versículos e reflexões. As primeiras chegam em breve.',
+    { rota: '#/palavra', titulo: 'Palavra', texto: 'Pregações e reflexões, ponto a ponto, com explicação das passagens difíceis.',
       topo: '<div class="frente__simbolo frente__simbolo--palavra" aria-hidden="true">✝</div>' },
   ].map((f) => `
     <li class="col-md-6 col-lg-4" data-animar>

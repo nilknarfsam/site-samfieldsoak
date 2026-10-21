@@ -512,3 +512,44 @@
 .letra summary:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: 2px; }
 .letra p { margin: 0 0 var(--esp-3); padding-left: var(--esp-3); border-left: 2px solid var(--cor-borda); color: var(--cor-texto-suave); line-height: 1.8; }
 .letra p[data-protegida] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+
+/* Palavra: pregações e reflexões */
+.progresso--palavra .progresso__barra span { background: var(--cor-palavra); }
+.selo--palavra { color: var(--cor-palavra); }
+.cartao--palavra .album__base { color: var(--cor-palavra); }
+.citacao {
+  margin: var(--esp-4) 0;
+  padding: var(--esp-3) var(--esp-4);
+  border-left: 3px solid var(--cor-palavra);
+  border-radius: 0 var(--raio-pequeno) var(--raio-pequeno) 0;
+  background: var(--cor-superficie);
+}
+.citacao p { margin: 0 0 var(--esp-2); font-size: var(--texto-md); line-height: 1.45; }
+.citacao footer { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
+.citacao cite { font-style: normal; color: var(--cor-palavra); }
+.citacao__versao { margin-left: var(--esp-1); }
+.citacao--destaque p { font-family: var(--fonte-titulo); font-size: var(--texto-lg); line-height: 1.25; }
+.frase-tema { font-weight: 700; font-size: var(--texto-md); }
+.bloco--texto p { max-width: var(--container-texto); }
+.bloco--texto h3 { margin-top: var(--esp-5); }
+.ponto__numero { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-palavra); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--esp-2); }
+.nota-estudo { margin-top: var(--esp-4); border: var(--borda); border-radius: var(--raio-pequeno); background: var(--cor-superficie); }
+.nota-estudo + .nota-estudo { margin-top: var(--esp-3); }
+.nota-estudo summary {
+  display: flex; flex-direction: column; gap: var(--esp-1);
+  min-height: var(--toque-minimo); padding: var(--esp-3) var(--esp-4) var(--esp-3) var(--esp-6);
+  position: relative; cursor: pointer; list-style: none;
+}
+.nota-estudo summary::-webkit-details-marker { display: none; }
+.nota-estudo summary::before {
+  content: '+'; position: absolute; left: var(--esp-4); top: var(--esp-3);
+  font-family: var(--fonte-mono); font-weight: 700; color: var(--cor-palavra);
+}
+.nota-estudo[open] summary::before { content: '−'; }
+.nota-estudo summary:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: 2px; border-radius: var(--raio-pequeno); }
+.nota-estudo__rotulo { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-palavra); text-transform: uppercase; letter-spacing: 0.08em; }
+.nota-estudo__titulo { font-weight: 700; }
+.nota-estudo__corpo { padding: 0 var(--esp-4) var(--esp-3); color: var(--cor-texto-suave); }
+.nota-estudo__corpo p { font-size: var(--texto-sm); }
+.apelo { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); line-height: var(--altura-linha-titulo); border-left: 3px solid var(--cor-palavra); padding-left: var(--esp-3); }
+.credito-biblico .nota { margin-top: var(--esp-2); }

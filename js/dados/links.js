@@ -8,7 +8,7 @@ export const linksBio = [
   { rotulo: 'Minhas músicas', dica: 'Salmos, Hebreus e Romanos', icone: '♪', destino: '#/musica' },
   { rotulo: 'Ouvir no Spotify', icone: '♫', destino: artista.spotify },
   { rotulo: 'Ouvir no YouTube Music', icone: '▶', destino: artista.youtubeMusic },
-  { rotulo: 'Palavra', dica: 'Versículos e reflexões', icone: '✝', destino: '#/palavra' },
+  { rotulo: 'Palavra', dica: 'Pregações e reflexões', icone: '✝', destino: '#/palavra' },
   { rotulo: 'Instagram @samfieldsoak', icone: '◎', destino: 'https://instagram.com/samfieldsoak' },
   { rotulo: 'GitHub', icone: '⌘', destino: 'https://github.com/nilknarfsam' },
 ];
