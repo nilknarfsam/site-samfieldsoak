@@ -18,7 +18,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
-| `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo só no Tratado de Romanos |
+| `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
 | `#/palavra` | Reflexões | casca pronta, sem conteúdo; o detalhe entra com a primeira reflexão |
 | `#/sobre` | Quem é e o compromisso | pronto |
 
@@ -87,7 +87,8 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 
 ## O que falta
 
-- Música: capas, links do Spotify e notas "Por trás do álbum" dos outros álbuns (`js/dados/albuns.js`; capas em `imagens/albuns/<slug>-480.webp` e `-960.webp`).
+- Música: links do Spotify dos singles (`spotifyId` em `singles`, `js/dados/albuns.js`), capas de O Trono Intocável, Ecos de Adoração, O Despertar do Justo e Santuário do Altíssimo, notas "Por trás do álbum" dos álbuns além de Romanos. Capas em `imagens/albuns/<slug>-480.webp` e `-960.webp`.
+- A discografia mostra só os lançamentos oficiais no Spotify (21/10/2026); os álbuns que estão só no Suno saíram do site.
 - Primeira reflexão da Palavra, tela de detalhe e ligação reflexão ↔ música.
 - Logo no Início (hoje um "S" provisório) e vinheta Lottie.
 - Capa do guia `verdades-ia-instagram`.

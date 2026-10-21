@@ -389,3 +389,14 @@
 .discografia .capa--texto { padding: var(--esp-2); }
 .discografia .capa__titulo { font-size: var(--texto-md); }
 .discografia .capa__artista { font-size: var(--texto-2xs); letter-spacing: 0.1em; }
+.jornada__trecho--single { background: var(--cor-palavra); }
+.jornada__legenda small { color: var(--cor-texto-suave); }
+
+/* Singles */
+.singles { display: grid; gap: var(--esp-2); }
+@media (min-width: 768px) { .singles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.singles li + li { margin-top: 0; }
+.single { display: flex; align-items: center; gap: var(--esp-3); padding: var(--esp-3); background: var(--cor-superficie); border: var(--borda); border-radius: var(--raio); }
+.single__icone { display: grid; place-items: center; flex: none; width: var(--toque-minimo); height: var(--toque-minimo); border-radius: var(--raio-pequeno); background: var(--cor-superficie-alta); color: var(--cor-destaque); }
+.single__texto strong { display: block; }
+.single__texto small { color: var(--cor-texto-suave); font-family: var(--fonte-mono); font-size: var(--texto-xs); }

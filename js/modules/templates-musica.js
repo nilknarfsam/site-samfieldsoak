@@ -12,7 +12,7 @@ export function capaAlbum(a, { tamanho = 480, carregamento = 'lazy', classe = ''
   const rotulo = `Capa do álbum ${a.subtitulo ? a.subtitulo + ' — ' : ''}${a.titulo}`;
   if (!a.capa) {
     return `<div class="capa capa--texto ${classe}" role="img" aria-label="${escapar(rotulo)}">
-      ${a.volume ? `<span class="capa__volume">Vol. ${escapar(a.volume)}</span>` : ''}
+      ${a.volume ? `<span class="capa__volume">${a.serie === 'salmos' ? 'Álbum' : 'Vol.'} ${escapar(a.volume)}</span>` : ''}
       <span class="capa__titulo">${escapar(a.titulo)}</span>
       <span class="capa__artista">Franklin Carvalho</span>
     </div>`;
@@ -57,17 +57,19 @@ export const cartaoNota = (a) => `
 // Barra 1–150 com os trechos dos Salmos que já viraram álbum.
 export function jornadaSalmos(trechos) {
   const total = trechos.reduce((s, t) => s + (t.ate - t.de + 1), 0);
-  const segmentos = trechos.map((t) => `
-    <a class="jornada__trecho" href="${rotaAlbum(t.album)}"
-       style="--inicio:${t.de - 1};--tamanho:${t.ate - t.de + 1}"
-       title="${escapar(t.album.titulo)}: Salmos ${t.de}–${t.ate}">
-      <span class="visualmente-oculto">${escapar(t.album.titulo)}: Salmos ${t.de} a ${t.ate}</span>
-    </a>`).join('');
+  const faixaSalmos = (t) => (t.de === t.ate ? `Salmo ${t.de}` : `Salmos ${t.de}–${t.ate}`);
+  const segmentos = trechos.map((t) => {
+    const estilo = `style="--inicio:${t.de - 1};--tamanho:${t.ate - t.de + 1}"`;
+    const rotulo = `${escapar(t.album.titulo)}${t.single ? ' (single)' : ''}: ${faixaSalmos(t)}`;
+    return t.single
+      ? `<span class="jornada__trecho jornada__trecho--single" ${estilo} title="${rotulo}"></span>`
+      : `<a class="jornada__trecho" href="${rotaAlbum(t.album)}" ${estilo} title="${rotulo}"><span class="visualmente-oculto">${rotulo}</span></a>`;
+  }).join('');
   return `
     <p class="jornada__contagem"><strong>${total}</strong> de 150 salmos já viraram música</p>
     <div class="jornada__barra">${segmentos}</div>
     <div class="jornada__escala" aria-hidden="true"><span>1</span><span>50</span><span>100</span><span>150</span></div>
-    <ul class="jornada__legenda lista-limpa">${trechos.map((t) => `<li><a href="${rotaAlbum(t.album)}">${escapar(t.album.titulo)}</a> <span>${t.de}–${t.ate}</span></li>`).join('')}</ul>`;
+    <ul class="jornada__legenda lista-limpa">${trechos.map((t) => `<li>${t.single ? `${escapar(t.album.titulo)} <small>(single)</small>` : `<a href="${rotaAlbum(t.album)}">${escapar(t.album.titulo)}</a>`} <span>${t.de === t.ate ? t.de : `${t.de}–${t.ate}`}</span></li>`).join('')}</ul>`;
 }
 
 export const cartaoAlbumCapa = (a) => `
@@ -109,8 +111,8 @@ export function detalheAlbum(a, serie, irmaos) {
 
   if (tem(a.faixasLista)) {
     partes.push(`<section class="bloco"><h2>Faixas</h2>
-      <ol class="faixas">${a.faixasLista.map((f) => `<li><span class="faixas__titulo">${escapar(f.titulo)}</span><span class="faixas__texto">${escapar(f.texto)}</span></li>`).join('')}</ol>
-      <p class="nota">Letras baseadas na tradução Almeida, em domínio público.</p>
+      <ol class="faixas">${a.faixasLista.map((f) => `<li><span class="faixas__titulo">${escapar(f.titulo)}</span>${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}</li>`).join('')}</ol>
+      ${a.notaLetras ? `<p class="nota">${escapar(a.notaLetras)}</p>` : ''}
     </section>`);
   }
 
@@ -128,3 +130,9 @@ export const botoesPerfis = (artista) => [
   linkExterno(artista.spotify, 'Ouvir no Spotify', 'botao'),
   linkExterno(artista.youtubeMusic, 'Ouvir no YouTube Music', 'botao botao--contorno'),
 ].map((l) => `<li>${l}</li>`).join('');
+
+export const cartaoSingle = (s) => `
+  <li class="single" data-animar>
+    <span class="single__icone" aria-hidden="true">♪</span>
+    <span class="single__texto"><strong>${escapar(s.titulo)}</strong>${s.base ? `<small>${escapar(s.base)}</small>` : ''}</span>
+  </li>`;

@@ -5,7 +5,7 @@ import { artista } from './albuns.js';
 export const linksBio = [
   { rotulo: 'IA sem lábia', dica: 'Ferramentas de IA: o que o post não conta', icone: '⚡', destino: '#/ia-sem-labia', destaque: true },
   { rotulo: 'Guia: as verdades sobre IA no Instagram', icone: '📌', destino: '#/ia-sem-labia/verdades-ia-instagram' },
-  { rotulo: 'Minhas músicas', dica: 'Álbuns dos Salmos, Provérbios e mais', icone: '♪', destino: '#/musica' },
+  { rotulo: 'Minhas músicas', dica: 'Salmos, Hebreus e Romanos', icone: '♪', destino: '#/musica' },
   { rotulo: 'Ouvir no Spotify', icone: '♫', destino: artista.spotify },
   { rotulo: 'Ouvir no YouTube Music', icone: '▶', destino: artista.youtubeMusic },
   { rotulo: 'Palavra', dica: 'Versículos e reflexões', icone: '✝', destino: '#/palavra' },

@@ -15,7 +15,11 @@ export function iniciarMusicaDetalhe(app, slug) {
     return 'Conteúdo não encontrado';
   }
   const serie = a.serie ? series[a.serie] : null;
-  const irmaos = serie ? albuns.filter((x) => x.serie === a.serie && x.slug !== a.slug) : [];
+  const ordemRomana = { I: 1, II: 2, III: 3, IV: 4 };
+  const ordem = (x) => ordemRomana[x.volume] || Number(x.volume) || 0;
+  const irmaos = serie
+    ? albuns.filter((x) => x.serie === a.serie && x.slug !== a.slug).sort((x, y) => ordem(x) - ordem(y))
+    : [];
   alvo.innerHTML = detalheAlbum(a, serie, irmaos);
   if (a.spotifyId) {
     prepararPlayerSpotify(alvo.querySelector('[data-player-album]'), {
