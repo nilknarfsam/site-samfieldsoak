@@ -61,6 +61,7 @@
   --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
   --toque-minimo: 44px;
   --altura-player: 352px;   /* altura padrão do embed do Spotify */
+  --altura-player-compacto: 152px; /* embed compacto (singles) */
   --altura-jornada: 2.5rem; /* barra 1–150 dos Salmos */
   --cor-veu: rgba(0, 0, 0, 0.55); /* degradê sobre capas e véus */
 

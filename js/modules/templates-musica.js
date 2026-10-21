@@ -133,6 +133,9 @@ export const botoesPerfis = (artista) => [
 
 export const cartaoSingle = (s) => `
   <li class="single" data-animar>
-    <span class="single__icone" aria-hidden="true">♪</span>
-    <span class="single__texto"><strong>${escapar(s.titulo)}</strong>${s.base ? `<small>${escapar(s.base)}</small>` : ''}</span>
+    <div class="single__topo">
+      <span class="single__icone" aria-hidden="true">♪</span>
+      <span class="single__texto"><strong>${escapar(s.titulo)}</strong><small>${escapar([s.base, ano(s.lancamento)].filter(Boolean).join(' · '))}</small></span>
+    </div>
+    ${s.spotifyId ? `<div class="player" data-player-single="${escapar(s.spotifyId)}" data-titulo="${escapar(s.titulo)}"></div>` : ''}
   </li>`;
