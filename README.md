@@ -74,7 +74,8 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 ## Letras
 
 - Ficam em `js/dados/letras/<arquivo>.js` (slug do álbum → lista de letras na ordem das faixas) e o álbum aponta para o arquivo no campo `letras`. Carregam só na página do álbum.
-- Prontas: Tratado de Romanos (Vol. I e II). As fontes de cada álbum estão no "Mapa das letras" (Drive, pasta docs do projeto do site).
+- Prontas: Tratado de Romanos (Vol. I e II).
+- Proteção leve: as letras não deixam selecionar nem copiar (`data-protegida` + `js/modules/protecao.js`). Print continua possível. As fontes de cada álbum estão no "Mapa das letras" (Drive, pasta docs do projeto do site).
 
 ## Capas dos álbuns
 

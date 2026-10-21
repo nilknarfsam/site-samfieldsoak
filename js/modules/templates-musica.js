@@ -172,5 +172,5 @@ export const cartaoPrimeiraVersao = (a) => `
 export const blocoLetra = (titulo, linhas) => `
   <details class="letra">
     <summary>Ver letra<span class="visualmente-oculto"> de ${escapar(titulo)}</span></summary>
-    <p>${linhas.map(escapar).join('<br>')}</p>
+    <p data-protegida>${linhas.map(escapar).join('<br>')}</p>
   </details>`;

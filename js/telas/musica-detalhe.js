@@ -35,6 +35,7 @@ export function iniciarMusicaDetalhe(app, slug) {
         const li = alvo.querySelector(`[data-faixa="${i}"]`);
         if (li && a.faixasLista[i]) li.insertAdjacentHTML('beforeend', blocoLetra(a.faixasLista[i].titulo, linhas));
       });
+      protegerCapas(alvo);
     }).catch((e) => console.error('[letras]', e));   // sem letras, a lista de faixas continua normal
   }
   animarCartoes(alvo);

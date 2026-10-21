@@ -511,3 +511,4 @@
 .letra[open] summary::before { content: '−'; }
 .letra summary:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: 2px; }
 .letra p { margin: 0 0 var(--esp-3); padding-left: var(--esp-3); border-left: 2px solid var(--cor-borda); color: var(--cor-texto-suave); line-height: 1.8; }
+.letra p[data-protegida] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
