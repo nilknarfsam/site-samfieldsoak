@@ -135,7 +135,9 @@ export const botoesPerfis = (artista) => [
 export const cartaoSingle = (s) => `
   <li class="single" data-animar>
     <div class="single__topo">
-      <span class="single__icone" aria-hidden="true">♪</span>
+      ${s.capa
+        ? `<span class="single__capa" data-protegida><img src="${escapar(s.capa)}-480.webp" alt="" width="64" height="64" loading="lazy" draggable="false"></span>`
+        : '<span class="single__icone" aria-hidden="true">♪</span>'}
       <span class="single__texto"><strong>${escapar(s.titulo)}</strong><small>${escapar([s.base, ano(s.lancamento)].filter(Boolean).join(' · '))}</small></span>
     </div>
     ${s.spotifyId ? `<div class="player" data-player-single="${escapar(s.spotifyId)}" data-titulo="${escapar(s.titulo)}"></div>` : ''}
@@ -153,10 +155,12 @@ export const passosProcesso = (c) => c.passos.map((p) => `
 export const cartaoPrimeiraVersao = (a) => `
   <li data-animar>
     <article class="cartao primeira-versao">
-      <div class="capa capa--texto capa--antiga" role="img" aria-label="${escapar(`Primeira versão: ${a.titulo}`)}">
+      ${a.capa
+        ? capaAlbum({ ...a, subtitulo: 'Primeira versão' }, { classe: 'cartao-album__capa capa--antiga' })
+        : `<div class="capa capa--texto capa--antiga" role="img" aria-label="${escapar(`Primeira versão: ${a.titulo}`)}">
         <span class="capa__volume">Primeira versão</span>
         <span class="capa__titulo">${escapar(a.titulo)}</span>
-      </div>
+      </div>`}
       <span class="album__base">${escapar(a.base)}</span>
       <strong class="cartao-album__titulo">${escapar(a.titulo)}</strong>
       ${a.estilo ? `<span class="cartao-album__meta">${escapar(a.estilo)}</span>` : ''}

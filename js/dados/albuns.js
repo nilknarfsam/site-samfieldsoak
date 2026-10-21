@@ -37,21 +37,21 @@ export const series = {
 export const primeirasVersoes = {
   texto: 'Antes da série que está hoje no Spotify, eu já tinha transformado os Salmos e outros livros da Bíblia em música, em outros estilos. Precisei tirar esses álbuns das plataformas por um problema na distribuidora e aproveitei para refazer tudo do zero. As primeiras versões continuam no Suno, e qualquer pessoa pode ouvir sem precisar de conta.',
   albuns: [
-    { titulo: 'Rugido dos Justos', base: 'Salmos 1–35', estilo: '', suno: 'https://suno.com/s/3Vb7kwK3TAKQWNuV' },
-    { titulo: 'Trono de Fogo', base: 'Salmos 36–50', estilo: 'Rock', suno: 'https://suno.com/s/vPLdRdYVncNyF6xW' },
-    { titulo: 'Altar da Contrição', base: 'Salmos 51–65', estilo: '', suno: 'https://suno.com/s/6Nl2r7tjKZKlgEYg' },
-    { titulo: 'O Caminho da Sabedoria', base: 'Provérbios 1–9', estilo: 'Rap com beat hip hop clássico', suno: 'https://suno.com/s/N1BW5uHOBZvKZGpq' },
-    { titulo: 'Integridade', base: 'Provérbios 10–22', estilo: 'Rap intenso e cinematográfico', suno: 'https://suno.com/s/eqXRvU5wUhsu5ebB' },
-    { titulo: 'Códigos da Eternidade', base: 'Antigo Testamento', estilo: 'Rock worship épico', suno: 'https://suno.com/s/ZAwzn2IRMtpMF5WW' },
-    { titulo: 'O Caminho de Jesus', base: 'Evangelhos', estilo: 'Folk-surf acústico', suno: 'https://suno.com/s/O4JAxHbtpTXgS6oS' },
+    { titulo: 'Rugido dos Justos', slug: 'rugido-dos-justos', capa: 'imagens/albuns/rugido-dos-justos', base: 'Salmos 1–35', estilo: '', suno: 'https://suno.com/s/3Vb7kwK3TAKQWNuV' },
+    { titulo: 'Trono de Fogo', slug: 'trono-de-fogo', capa: 'imagens/albuns/trono-de-fogo', base: 'Salmos 36–50', estilo: 'Rock', suno: 'https://suno.com/s/vPLdRdYVncNyF6xW' },
+    { titulo: 'Altar da Contrição', slug: 'altar-da-contricao', capa: 'imagens/albuns/altar-da-contricao', base: 'Salmos 51–65', estilo: '', suno: 'https://suno.com/s/6Nl2r7tjKZKlgEYg' },
+    { titulo: 'O Caminho da Sabedoria', slug: 'o-caminho-da-sabedoria', capa: 'imagens/albuns/o-caminho-da-sabedoria', base: 'Provérbios 1–9', estilo: 'Rap com beat hip hop clássico', suno: 'https://suno.com/s/N1BW5uHOBZvKZGpq' },
+    { titulo: 'Integridade', slug: 'integridade', capa: 'imagens/albuns/integridade', base: 'Provérbios 10–22', estilo: 'Rap intenso e cinematográfico', suno: 'https://suno.com/s/eqXRvU5wUhsu5ebB' },
+    { titulo: 'Códigos da Eternidade', slug: 'codigos-da-eternidade', capa: 'imagens/albuns/codigos-da-eternidade', base: 'Antigo Testamento', estilo: 'Rock worship épico', suno: 'https://suno.com/s/ZAwzn2IRMtpMF5WW' },
+    { titulo: 'O Caminho de Jesus', slug: 'o-caminho-de-jesus', capa: 'imagens/albuns/o-caminho-de-jesus', base: 'Evangelhos', estilo: 'Folk-surf acústico', suno: 'https://suno.com/s/O4JAxHbtpTXgS6oS' },
   ],
 };
 
 // Singles e EPs oficiais (Spotify).
 export const singles = [
-  { slug: 'pelo-teu-nome', titulo: 'Pelo Teu Nome', base: 'Salmo 54', lancamento: '2026-08-09', spotifyId: '2LzNT6BCFzrPnaTHqypNHf' },
-  { slug: 'ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', lancamento: '2026-06-27', spotifyId: '2Yq3bSlxaRWG3mZQIwl2z7' },
-  { slug: 'o-corre-do-aldeney', titulo: 'O Corre do Aldeney', base: '', lancamento: '2026-06-18', spotifyId: '3ejdXr4DkkUvuZt47Sfoti' },
+  { slug: 'pelo-teu-nome', capa: 'imagens/albuns/pelo-teu-nome', titulo: 'Pelo Teu Nome', base: 'Salmo 54', lancamento: '2026-08-09', spotifyId: '2LzNT6BCFzrPnaTHqypNHf' },
+  { slug: 'ao-som-da-harpa', capa: 'imagens/albuns/ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', lancamento: '2026-06-27', spotifyId: '2Yq3bSlxaRWG3mZQIwl2z7' },
+  { slug: 'o-corre-do-aldeney', capa: 'imagens/albuns/o-corre-do-aldeney', titulo: 'O Corre do Aldeney', base: '', lancamento: '2026-06-18', spotifyId: '3ejdXr4DkkUvuZt47Sfoti' },
 ];
 
 export const albuns = [
