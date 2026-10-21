@@ -4,10 +4,14 @@
 export const perfil = {
   nome: 'Franklin Carvalho',
   monograma: 'FC',
-  foto: '',   // quando chegar: 'imagens/perfil/franklin' (com -480.webp e -960.webp)
+  foto: 'imagens/perfil/franklin',   // -240.webp e -480.webp
   frase: 'Fé, música e tecnologia',
   papeis: ['Música criada com IA', 'Desenvolvedor', 'Técnico em engenharia de testes', 'Estudante de ADS'],
 };
+
+// Contador de visitas (GoatCounter: grátis, sem cookies, sem dados pessoais).
+// Fica desligado até o Franklin criar a conta e colocar o código aqui (ex.: 'samfieldsoak').
+export const contador = { codigo: '' };
 
 export const redes = [
   { rotulo: 'Instagram', url: 'https://instagram.com/samfieldsoak' },

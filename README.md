@@ -14,7 +14,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 
 | Rota | Tela | Situação |
 |---|---|---|
-| `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, Novidade e as três frentes | pronto; falta a foto (`js/dados/perfil.js`) |
+| `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, Novidade e as três frentes | pronto, com foto |
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
@@ -64,6 +64,12 @@ Seguem a skill `animate`: só `transform` e `opacity`, curva `cubic-bezier(0.23,
 - `prefers-reduced-motion`: só opacidade, sem deslocamento, sem cascata.
 
 GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A vinheta Lottie do logo espera o arquivo do logo.
+
+## Compartilhamento, Google e contador
+
+- Prévia ao compartilhar (WhatsApp, Instagram, Facebook): `imagens/compartilhar/samfieldsoak-1200x630.jpg` e as tags `og:` no `index.html`. Como o site usa rotas por hash, a prévia é a mesma para todas as páginas.
+- Google: título e descrição no `index.html`, dados de pessoa (JSON-LD), `robots.txt` e `sitemap.xml`. Falta cadastrar o site no Google Search Console (o Franklin faz, com a conta Google dele).
+- Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies). Desligado até o código ser colocado em `contador.codigo` (`js/dados/perfil.js`). Ao ligar, atualizar a frase "sem rastreamento" da página Sobre.
 
 ## Capas dos álbuns
 
