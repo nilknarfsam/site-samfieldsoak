@@ -6,6 +6,7 @@ import { iniciarIaDetalhe } from './telas/ia-detalhe.js';
 import { iniciarMusica } from './telas/musica.js';
 import { iniciarMusicaDetalhe } from './telas/musica-detalhe.js';
 import { iniciarPalavraLista } from './telas/palavra-lista.js';
+import { iniciarPalavraDetalhe } from './telas/palavra-detalhe.js';
 
 const rotas = {
   inicio: { view: 'html/inicio.html', titulo: 'Início', iniciar: iniciarInicio },
@@ -17,7 +18,10 @@ const rotas = {
     view: 'html/musica.html', titulo: 'Música', iniciar: iniciarMusica, ancoras: ['como-eu-faco', 'primeiras-versoes'],
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarMusicaDetalhe },
   },
-  palavra: { view: 'html/palavra-lista.html', titulo: 'Palavra', iniciar: iniciarPalavraLista },
+  palavra: {
+    view: 'html/palavra-lista.html', titulo: 'Palavra', iniciar: iniciarPalavraLista,
+    detalhe: { view: 'html/palavra-detalhe.html', iniciar: iniciarPalavraDetalhe },
+  },
   sobre: { view: 'html/sobre.html', titulo: 'Sobre' },
 };
 

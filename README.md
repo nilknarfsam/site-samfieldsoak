@@ -19,7 +19,8 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
 | `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
-| `#/palavra` | Reflexões | casca pronta, sem conteúdo; o detalhe entra com a primeira reflexão |
+| `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 3 pregações de Romanos |
+| `#/palavra/<slug>` | Pregação ponto a ponto: referência e versão, citações curtas da NVI, notas "Para entender melhor" (passagens difíceis ou debatidas), oração, link para a faixa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/sobre` | Quem é e o compromisso | pronto |
 
 Rota inválida volta para `#/inicio`; `404.html` redireciona para o início.
@@ -33,7 +34,7 @@ css/             variaveis → base → layout → componentes → utilitarios
 fontes/          Oswald, Inter, JetBrains Mono (OFL, servidas localmente)
 imagens/ia/<slug>/
 js/main.js       rotas
-js/dados/        ferramentas.js, albuns.js, reflexoes.js, links.js
+js/dados/        ferramentas.js, albuns.js, reflexoes.js (Palavra), links.js
 js/modules/      roteador, templates (escapar), menu, movimento
 js/telas/        uma por tela
 docs/  conteudo/  caixa-de-entrada/feitos/
