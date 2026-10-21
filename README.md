@@ -17,7 +17,8 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/inicio` | Link na bio + Novidade | pronto |
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/musica` | Player do Spotify (perfil de artista, carrega só no toque) + álbuns | pronto; faltam os links de cada álbum (`js/dados/albuns.js`) |
+| `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
+| `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo só no Tratado de Romanos |
 | `#/palavra` | Reflexões | casca pronta, sem conteúdo; o detalhe entra com a primeira reflexão |
 | `#/sobre` | Quem é e o compromisso | pronto |
 
@@ -64,6 +65,10 @@ Seguem a skill `animate`: só `transform` e `opacity`, curva `cubic-bezier(0.23,
 
 GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A vinheta Lottie do logo espera o arquivo do logo.
 
+## Capas dos álbuns
+
+O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px fica no Drive. Proteção leve em `js/modules/protecao.js` e na classe `.capa[data-protegida]`: sem menu "salvar imagem" (clique direito e toque longo), sem arrastar. Não existe proteção total na web: print sempre funciona.
+
 ## Testes feitos (20/10/2026, navegador do Claude)
 
 - Todas as rotas, slug inválido, rota inválida: ok.
@@ -82,7 +87,7 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 
 ## O que falta
 
-- Links oficiais de cada álbum (`js/dados/albuns.js`); com o link do álbum no Spotify, o cartão pode ganhar o próprio player.
+- Música: capas, links do Spotify e notas "Por trás do álbum" dos outros álbuns (`js/dados/albuns.js`; capas em `imagens/albuns/<slug>-480.webp` e `-960.webp`).
 - Primeira reflexão da Palavra, tela de detalhe e ligação reflexão ↔ música.
 - Logo no Início (hoje um "S" provisório) e vinheta Lottie.
 - Capa do guia `verdades-ia-instagram`.
