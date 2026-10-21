@@ -1,8 +1,15 @@
 // Música (conteudo/musica-e-links.md). Só links oficiais; o Franklin preenche os que faltam.
 // Ordem da página: lançamento mais recente, série dos Salmos, Provérbios e os demais.
 
+// Perfis oficiais de artista (links sem parâmetros de rastreio ?si= / utm_).
+export const artista = {
+  spotifyId: '3GPXN15BS5UPhtmy94hwsR',
+  spotify: 'https://open.spotify.com/artist/3GPXN15BS5UPhtmy94hwsR',
+  youtubeMusic: 'https://music.youtube.com/@franklincarvalho-oficial',
+};
+
 export const albuns = [
-  { slug: 'o-reino-inabalavel', titulo: 'O Reino Inabalável', base: '', estilo: '', faixas: 15, destaque: true, situacao: 'No Spotify e no YouTube Music. Links em breve.', links: [] },
+  { slug: 'o-reino-inabalavel', titulo: 'O Reino Inabalável', base: '', estilo: '', faixas: 15, destaque: true, situacao: 'No Spotify e no YouTube Music (perfil de artista acima).', links: [] },
   { slug: 'rugido-dos-justos', titulo: 'Rugido dos Justos', base: 'Salmos 1–35', estilo: '', faixas: null, links: [] },
   { slug: 'fogo-devorador', titulo: 'Fogo Devorador', base: 'Salmos 36–50', estilo: 'Rock', faixas: null, situacao: 'Relançamento (antigo "Trono de Fogo"). Links em breve.', links: [] },
   { slug: 'altar-da-contricao', titulo: 'Altar da Contrição', base: 'Salmos 51–65', estilo: '', faixas: null, links: [] },
