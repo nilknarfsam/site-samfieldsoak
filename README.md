@@ -69,7 +69,7 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 
 - Prévia ao compartilhar (WhatsApp, Instagram, Facebook): `imagens/compartilhar/samfieldsoak-1200x630.jpg` e as tags `og:` no `index.html`. Como o site usa rotas por hash, a prévia é a mesma para todas as páginas.
 - Google: título e descrição no `index.html`, dados de pessoa (JSON-LD), `robots.txt` e `sitemap.xml`. Falta cadastrar o site no Google Search Console (o Franklin faz, com a conta Google dele).
-- Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies). Desligado até o código ser colocado em `contador.codigo` (`js/dados/perfil.js`). Ao ligar, atualizar a frase "sem rastreamento" da página Sobre.
+- Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies), ligado em 21/10/2026 com o código `samfieldsoak`. Painel: https://samfieldsoak.goatcounter.com (cada rota do hash aparece como uma página). A página Sobre explica a contagem anônima.
 
 ## Capas dos álbuns
 

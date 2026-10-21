@@ -44,7 +44,7 @@ Quando o Franklin pedir "processe a caixa de entrada":
 2. **Palavra:** citar sempre a referência bíblica e a versão. Citações longas de versões com direitos autorais (como a NVI) precisam respeitar as regras de citação da editora; preferir trechos curtos e o texto próprio do Franklin. Não alterar a reflexão dele sem pedir.
 3. **Música:** só links oficiais das plataformas; capas só dos lançamentos dele. Sempre deixar claro que a música é criada com IA (vozes e instrumentos no Suno, letras com ajuda de IA revisadas pelo Franklin, masterização automática no LANDR), em primeira pessoa; o texto fica em `comoFaco` (`js/dados/albuns.js`).
 4. **Nada pessoal:** sem telefone, e-mail pessoal, endereço, ou anotações da família, da confeitaria e da igreja que não foram pensadas para publicar.
-5. **Sem coleta de dados** na versão 1.
+5. **Sem coleta de dados pessoais.** Só o contador anônimo do GoatCounter (sem cookies), ligado em 21/10/2026; nada de formulário, cadastro ou outro rastreador.
 6. Português correto, com acentos.
 
 ## Fluxo de trabalho
