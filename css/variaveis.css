@@ -1,0 +1,78 @@
+/* =========================================================
+   Tokens do Design System (docs/03-design-system.md)
+   Único lugar com valores soltos.
+   Breakpoints (media query não aceita var()):
+   576px · 768px · 992px · 1200px
+   ========================================================= */
+
+@font-face { font-family: 'Oswald'; font-weight: 600; font-display: swap; src: url('../fontes/oswald-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Oswald'; font-weight: 700; font-display: swap; src: url('../fontes/oswald-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url('../fontes/inter-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 600; font-display: swap; src: url('../fontes/inter-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 700; font-display: swap; src: url('../fontes/inter-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 400; font-display: swap; src: url('../fontes/jetbrains-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'JetBrains Mono'; font-weight: 700; font-display: swap; src: url('../fontes/jetbrains-mono-latin-700-normal.woff2') format('woff2'); }
+
+:root {
+  /* Cores (contraste medido sobre --cor-fundo; ver README) */
+  --cor-fundo: #121212;
+  --cor-superficie: #1C1C1C;
+  --cor-superficie-alta: #242424;
+  --cor-borda: #2A2A2A;
+  --cor-grade: rgba(255, 255, 255, 0.035);
+  --cor-texto: #FFFFFF;
+  --cor-texto-suave: #B3B3B3;
+  --cor-destaque: #FF7A1A;
+  --cor-sobre-destaque: #121212;   /* branco sobre laranja não passa 4,5:1 */
+  --cor-verdade: #2ECC71;
+  --cor-alerta: #FF4D4D;
+  --cor-palavra: #E0B04B;
+  --cor-foco: #FFFFFF;
+
+  /* Tipografia (escala 1,25 a partir de 16px) */
+  --fonte-titulo: 'Oswald', 'Arial Narrow', sans-serif;
+  --fonte-texto: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fonte-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --texto-xs: 0.875rem;
+  --texto-sm: 0.9375rem;
+  --texto-base: 1rem;
+  --texto-md: 1.25rem;
+  --texto-lg: 1.5625rem;
+  --texto-h2: clamp(1.5625rem, 1.2rem + 1.6vw, 2.25rem);
+  --texto-h1: clamp(2.25rem, 1.5rem + 3.6vw, 3.8rem);
+  --altura-linha: 1.6;
+  --altura-linha-titulo: 1.05;
+
+  /* Espaçamento (escala de 8px) */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 1rem;
+  --esp-4: 1.5rem;
+  --esp-5: 2rem;
+  --esp-6: 3rem;
+  --esp-7: 4rem;
+
+  /* Forma */
+  --raio: 12px;
+  --raio-pequeno: 6px;
+  --raio-pilula: 999px;
+  --borda: 1px solid var(--cor-borda);
+  --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --toque-minimo: 44px;
+
+  /* Layout */
+  --container: 72rem;
+  --container-texto: 44rem;
+  --colunas: 12;
+  --gutter: 1rem;
+
+  /* Movimento (skill animate: curvas fortes, UI abaixo de 300ms) */
+  --duracao-toque: 140ms;
+  --duracao-rapida: 180ms;
+  --duracao-media: 240ms;
+  --curva-saida: cubic-bezier(0.23, 1, 0.32, 1);
+  --curva-hover: ease;
+  --cascata: 50ms;          /* intervalo entre cartões na entrada */
+  --deslocamento-entrada: 8px;
+  --escala-toque: 0.97;
+}

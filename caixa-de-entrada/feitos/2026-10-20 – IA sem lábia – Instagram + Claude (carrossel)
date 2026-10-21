@@ -1,0 +1,31 @@
+# IA sem lábia – "O Instagram se conecta com o Claude?"
+
+## Pedido para o Claude Code
+Criar um post na seção "IA sem lábia" do site com o texto abaixo, ligado ao carrossel de mesmo tema.
+
+## Contexto
+Carrossel viral afirma "ÚLTIMA HORA: Agora o Instagram se conecta com Claude", com foto de aperto de mão entre executivos. Não há anúncio oficial Meta + Anthropic. O que existe são conectores MCP de empresas terceiras que usam a API oficial da Meta.
+
+## Texto do post
+**Não houve parceria oficial.** A integração é feita por conectores de terceiros que você adiciona no Claude (Configurações → Conectores → conector personalizado).
+
+**Quem faz o quê**
+- Métricas e agendamento: Metricool (tem plano gratuito)
+- Comentário → DM e caixa de entrada: ChatPlace, Inrō (pagos)
+- Publicação: Blotato, Markifact
+
+**Requisitos**
+- Conta Instagram Profissional (Criador ou Empresa) ligada a uma Página do Facebook.
+
+**Onde a propaganda engana**
+- "Sem mensalidade": os conectores de DM costumam ser pagos; o grátis exige criar app na Meta e servidor próprio.
+- "Responde todas as DMs": a Meta só deixa responder até 24h após a última mensagem da pessoa.
+- "Sem risco": pela API oficial, sim. Mas servidores do GitHub que pedem login e senha do Instagram violam os termos e podem derrubar a conta. Nunca cole token/chave fora do painel oficial.
+
+**O jeito certo**
+1. Ative a conta profissional.
+2. Escolha um serviço parceiro da Meta.
+3. Adicione o conector no Claude.
+4. Comece pelo gratuito (Metricool) antes de pagar qualquer coisa.
+
+Fontes: metricool.com/connect-claude-to-instagram · markifact.com/blog/post-to-instagram-with-claude · blog.chatplace.io · instantdm.com · databloo.com

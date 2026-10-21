@@ -1,0 +1,4 @@
+# Originais pesados da caixa de entrada (as imagens usadas já estão em imagens/)
+caixa-de-entrada/**/*.zip
+Thumbs.db
+desktop.ini

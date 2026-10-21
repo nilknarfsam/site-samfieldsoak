@@ -1,0 +1,82 @@
+# Site do @samfieldsoak
+
+Site pessoal estático (link da bio do Instagram): **IA sem lábia**, **Música**, **Palavra** e **Sobre**. HTML, CSS e JavaScript puro, SPA com roteador por hash, no padrão da skill `base-site-spa-franklin`.
+
+## Como rodar
+
+```bash
+python -m http.server 8080
+```
+
+Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fetch`).
+
+## Rotas
+
+| Rota | Tela | Situação |
+|---|---|---|
+| `#/inicio` | Link na bio + Novidade | pronto |
+| `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
+| `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
+| `#/musica` | Álbuns | pronto, sem links das plataformas (o Franklin preenche em `js/dados/albuns.js`) |
+| `#/palavra` | Reflexões | casca pronta, sem conteúdo; o detalhe entra com a primeira reflexão |
+| `#/sobre` | Quem é e o compromisso | pronto |
+
+Rota inválida volta para `#/inicio`; `404.html` redireciona para o início.
+
+## Estrutura
+
+```
+index.html  404.html
+html/            views (um fragmento por tela)
+css/             variaveis → base → layout → componentes → utilitarios
+fontes/          Oswald, Inter, JetBrains Mono (OFL, servidas localmente)
+imagens/ia/<slug>/
+js/main.js       rotas
+js/dados/        ferramentas.js, albuns.js, reflexoes.js, links.js
+js/modules/      roteador, templates (escapar), menu, movimento
+js/telas/        uma por tela
+docs/  conteudo/  caixa-de-entrada/feitos/
+.claude/skills/animate   skill de animação (Emil Kowalski, MIT)
+```
+
+## Design System
+
+Tokens em `css/variaveis.css` (docs/03). Contraste medido com a fórmula WCAG:
+
+| Par | Contraste |
+|---|---|
+| texto `#FFF` / fundo `#121212` | 18,73:1 |
+| texto suave `#B3B3B3` / fundo | 8,93:1 (8,13:1 sobre cartão) |
+| laranja `#FF7A1A` / fundo | 7,18:1 |
+| texto `#121212` / laranja (botões) | 7,18:1 |
+| verde `#2ECC71` / fundo | 8,91:1 |
+| branco / laranja | 2,61:1 (**não usado**) |
+
+## Animações
+
+Seguem a skill `animate`: só `transform` e `opacity`, curva `cubic-bezier(0.23, 1, 0.32, 1)`, tudo abaixo de 300 ms.
+
+- Troca de rota: fade de 180 ms.
+- Cartões das listas: sobem 8 px com cascata de 50 ms (no máximo 8 posições).
+- Botões: `scale(0.97)` no toque; hover só em mouse (`hover: hover`).
+- Barra de progresso do detalhe enche uma vez.
+- `prefers-reduced-motion`: só opacidade, sem deslocamento, sem cascata.
+
+GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A vinheta Lottie do logo espera o arquivo do logo.
+
+## Testes feitos (20/10/2026, navegador do Claude)
+
+- Todas as rotas, slug inválido, rota inválida: ok.
+- 375 px e 1280 px sem rolagem horizontal; um `h1` por tela.
+- Menu do celular abre e fecha; Esc fecha.
+- Cartões terminam todos visíveis (opacidade 1) depois da cascata.
+- Console sem erros.
+- **Não testado ainda:** "reduzir movimento" ligado no sistema (só conferido no código), validador W3C, leitor de tela, F5 no GitHub Pages.
+
+## Publicação
+
+Ainda não publicado. Falta criar o repositório (recomendado `nilknarfsam.github.io`) e ligar o GitHub Pages na branch `main`.
+
+## Uso de IA
+
+Construído com o Claude Code a partir dos pedidos do Franklin na caixa de entrada.
