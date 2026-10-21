@@ -50,7 +50,7 @@ export const primeirasVersoes = {
 // Singles e EPs oficiais (Spotify).
 export const singles = [
   { slug: 'pelo-teu-nome', capa: 'imagens/albuns/pelo-teu-nome', titulo: 'Pelo Teu Nome', base: 'Salmo 54', lancamento: '2026-08-09', spotifyId: '2LzNT6BCFzrPnaTHqypNHf' },
-  { slug: 'ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', lancamento: '2026-06-27', spotifyId: '2Yq3bSlxaRWG3mZQIwl2z7' },
+  { slug: 'ao-som-da-harpa', capa: 'imagens/albuns/ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', lancamento: '2026-06-27', spotifyId: '2Yq3bSlxaRWG3mZQIwl2z7' },
   { slug: 'o-corre-do-aldeney', capa: 'imagens/albuns/o-corre-do-aldeney', titulo: 'O Corre do Aldeney', base: '', lancamento: '2026-06-18', spotifyId: '3ejdXr4DkkUvuZt47Sfoti' },
 ];
 
