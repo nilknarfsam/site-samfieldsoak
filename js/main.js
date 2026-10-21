@@ -14,7 +14,7 @@ const rotas = {
     detalhe: { view: 'html/ia-detalhe.html', iniciar: iniciarIaDetalhe },
   },
   musica: {
-    view: 'html/musica.html', titulo: 'Música', iniciar: iniciarMusica, ancoras: ['como-eu-faco'],
+    view: 'html/musica.html', titulo: 'Música', iniciar: iniciarMusica, ancoras: ['como-eu-faco', 'primeiras-versoes'],
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarMusicaDetalhe },
   },
   palavra: { view: 'html/palavra-lista.html', titulo: 'Palavra', iniciar: iniciarPalavraLista },
