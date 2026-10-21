@@ -111,6 +111,8 @@
 .rodape__linha { display: flex; flex-wrap: wrap; gap: var(--esp-2) var(--esp-4); align-items: center; justify-content: space-between; }
 .rodape a { color: var(--cor-texto); }
 .rodape p { margin: 0; }
+.rodape__redes { display: flex; flex-wrap: wrap; gap: var(--esp-2) var(--esp-4); }
+.rodape__redes li + li { margin-top: 0; }
 
 /* Pular para o conteúdo */
 .pular {

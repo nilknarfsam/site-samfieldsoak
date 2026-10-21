@@ -14,7 +14,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 
 | Rota | Tela | Situação |
 |---|---|---|
-| `#/inicio` | Link na bio + Novidade | pronto |
+| `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, Novidade e as três frentes | pronto; falta a foto (`js/dados/perfil.js`) |
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
