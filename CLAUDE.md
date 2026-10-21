@@ -2,7 +2,7 @@
 
 ## Quem é o dono e como falar com ele
 
-- Franklin, de Manaus/AM. Engenheiro de testes de hardware, desenvolvedor (Python, Flutter, C#, web), designer, músico e criador de conteúdo. Líder na Igreja Batista da Paz. Instagram @samfieldsoak, GitHub nilknarfsam.
+- Franklin, de Manaus/AM. Técnico em engenharia de testes de hardware (não escrever "engenheiro"), desenvolvedor (Python, Flutter, C#, web), designer, estudante de ADS, cria música com IA (não escrever "músico": ele não toca instrumento) e criador de conteúdo. Líder na Igreja Batista da Paz. Instagram @samfieldsoak, GitHub nilknarfsam.
 - Falar em português do Brasil, direto e simples. Explicar o que vai fazer antes de fazer.
 - Nunca apagar arquivos, nunca `git push --force`, `reset --hard` ou apagar branch/tag sem ele pedir.
 
