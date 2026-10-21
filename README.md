@@ -87,7 +87,8 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 
 ## O que falta
 
-- Música: links do Spotify dos singles (`spotifyId` em `singles`, `js/dados/albuns.js`), capas de O Trono Intocável, Ecos de Adoração, O Despertar do Justo e Santuário do Altíssimo, notas "Por trás do álbum" dos álbuns além de Romanos. Capas em `imagens/albuns/<slug>-480.webp` e `-960.webp`.
+- Música: notas "Por trás do álbum" dos álbuns além de Romanos; referências bíblicas das faixas de O Reino Inabalável. Capas em `imagens/albuns/<slug>-480.webp` e `-960.webp`.
+- Ideia em aberto: seção separada para os álbuns que estão só no Suno.
 - A discografia mostra só os lançamentos oficiais no Spotify (21/10/2026); os álbuns que estão só no Suno saíram do site.
 - Primeira reflexão da Palavra, tela de detalhe e ligação reflexão ↔ música.
 - Logo no Início (hoje um "S" provisório) e vinheta Lottie.

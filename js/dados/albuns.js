@@ -34,10 +34,9 @@ export const series = {
 
 // Singles e EPs oficiais (Spotify).
 export const singles = [
-  { slug: 'pelo-teu-nome', titulo: 'Pelo Teu Nome', base: 'Salmo 54', spotifyId: '' },
-  { slug: 'o-cantico-da-criacao', titulo: 'O Cântico da Criação', base: 'Salmo 104', spotifyId: '' },
-  { slug: 'ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', spotifyId: '' },
-  { slug: 'o-corre-do-aldeney', titulo: 'O Corre do Aldeney', base: '', spotifyId: '' },
+  { slug: 'pelo-teu-nome', titulo: 'Pelo Teu Nome', base: 'Salmo 54', lancamento: '2026-08-09', spotifyId: '2LzNT6BCFzrPnaTHqypNHf' },
+  { slug: 'ao-som-da-harpa', titulo: 'Ao Som da Harpa', base: '', lancamento: '2026-06-27', spotifyId: '2Yq3bSlxaRWG3mZQIwl2z7' },
+  { slug: 'o-corre-do-aldeney', titulo: 'O Corre do Aldeney', base: '', lancamento: '2026-06-18', spotifyId: '3ejdXr4DkkUvuZt47Sfoti' },
 ];
 
 export const albuns = [
@@ -123,10 +122,10 @@ export const albuns = [
   { slug: 'a-forca-da-promessa', serie: 'salmos', volume: '3', subtitulo: 'Série dos Salmos, Álbum 3', titulo: 'A Força da Promessa', base: 'Salmos 25–36', estilo: '', faixas: 12, lancamento: '2026-08-16', spotifyId: '3j3YEwJq94gmhfdc8oUoAn', capa: 'imagens/albuns/a-forca-da-promessa' },
   { slug: 'refugio-inabalavel', serie: 'salmos', volume: '2', subtitulo: 'Série dos Salmos, Álbum 2', titulo: 'Refúgio Inabalável', base: 'Salmos 13–24', estilo: '', faixas: 12, lancamento: '2026-08-09', spotifyId: '5VoZbzP2XHzGKJI7tA9AqL', capa: 'imagens/albuns/refugio-inabalavel' },
   { slug: 'o-rei-dos-povos', serie: 'salmos', volume: '9', subtitulo: 'Série dos Salmos, Álbum 9', titulo: 'O Rei dos Povos', base: 'Salmos 97–108', estilo: 'Metal épico', faixas: 12, lancamento: '2026-07-15', spotifyId: '6lLIScGkvmEHiqRMlTgEOP', capa: 'imagens/albuns/o-rei-dos-povos' },
-  { slug: 'o-trono-intocavel', serie: 'salmos', volume: '4', subtitulo: 'Série dos Salmos, Álbum 4', titulo: 'O Trono Intocável', base: 'Salmos 37–48', estilo: '', faixas: 12, lancamento: '2026-06-27', spotifyId: '7CKFwj4A12IwN3ubuf4CSO', capa: '' },
-  { slug: 'ecos-de-adoracao', serie: 'salmos', volume: '8', subtitulo: 'Série dos Salmos, Álbum 8', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12, lancamento: '2026-05-21', spotifyId: '6E8L5CSoLCFMqGCn2tk8hw', capa: '' },
-  { slug: 'o-despertar-do-justo', serie: 'salmos', volume: '1', subtitulo: 'Série dos Salmos, Álbum 1', titulo: 'O Despertar do Justo', base: 'Salmos 1–12', estilo: '', faixas: 12, lancamento: '2026-04-19', spotifyId: '5mNZTCUDzL64oLjtS6i1K3', capa: '' },
-  { slug: 'santuario-do-altissimo', serie: 'salmos', volume: '7', subtitulo: 'Série dos Salmos, Álbum 7', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12, lancamento: '2026-03-20', spotifyId: '5P3UmxFhhORrQmSoxDr8f9', capa: '' },
+  { slug: 'o-trono-intocavel', serie: 'salmos', volume: '4', subtitulo: 'Série dos Salmos, Álbum 4', titulo: 'O Trono Intocável', base: 'Salmos 37–48', estilo: '', faixas: 12, lancamento: '2026-06-27', spotifyId: '7CKFwj4A12IwN3ubuf4CSO', capa: 'imagens/albuns/o-trono-intocavel' },
+  { slug: 'ecos-de-adoracao', serie: 'salmos', volume: '8', subtitulo: 'Série dos Salmos, Álbum 8', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12, lancamento: '2026-05-21', spotifyId: '6E8L5CSoLCFMqGCn2tk8hw', capa: 'imagens/albuns/ecos-de-adoracao' },
+  { slug: 'o-despertar-do-justo', serie: 'salmos', volume: '1', subtitulo: 'Série dos Salmos, Álbum 1', titulo: 'O Despertar do Justo', base: 'Salmos 1–12', estilo: '', faixas: 12, lancamento: '2026-04-19', spotifyId: '5mNZTCUDzL64oLjtS6i1K3', capa: 'imagens/albuns/o-despertar-do-justo' },
+  { slug: 'santuario-do-altissimo', serie: 'salmos', volume: '7', subtitulo: 'Série dos Salmos, Álbum 7', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12, lancamento: '2026-03-20', spotifyId: '5P3UmxFhhORrQmSoxDr8f9', capa: 'imagens/albuns/santuario-do-altissimo' },
 ];
 
 export const buscarAlbum = (slug) => albuns.find((a) => a.slug === slug);
