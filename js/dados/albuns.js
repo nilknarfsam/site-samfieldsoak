@@ -117,6 +117,7 @@ export const albuns = [
     titulo: 'O Reino Inabalável', base: 'Hebreus', estilo: '', faixas: 15,
     lancamento: '2026-09-07', spotifyId: '4lCEJvWc3CsPcuhCK5eTcP',
     capa: 'imagens/albuns/o-reino-inabalavel',
+    letras: 'o-reino-inabalavel', notaLetras: 'Letras minhas, escritas a partir da carta aos Hebreus, com ajuda de IA e revisadas por mim.',
     frase: 'A carta aos Hebreus: Cristo acima de tudo, um reino que não pode ser abalado.',
     faixasLista: [
       { titulo: 'Acima dos Anjos - Esplendor da Glória' },
@@ -141,7 +142,24 @@ export const albuns = [
   { slug: 'o-rei-dos-povos', serie: 'salmos', volume: '9', subtitulo: 'Série dos Salmos, Álbum 9', titulo: 'O Rei dos Povos', base: 'Salmos 97–108', estilo: 'Metal épico', faixas: 12, lancamento: '2026-07-15', spotifyId: '6lLIScGkvmEHiqRMlTgEOP', suno: 'https://suno.com/s/TJ2IG1oF2J1txVIo', capa: 'imagens/albuns/o-rei-dos-povos' },
   { slug: 'o-trono-intocavel', serie: 'salmos', volume: '4', subtitulo: 'Série dos Salmos, Álbum 4', titulo: 'O Trono Intocável', base: 'Salmos 37–48', estilo: '', faixas: 12, lancamento: '2026-06-27', spotifyId: '7CKFwj4A12IwN3ubuf4CSO', capa: 'imagens/albuns/o-trono-intocavel' },
   { slug: 'ecos-de-adoracao', serie: 'salmos', volume: '8', subtitulo: 'Série dos Salmos, Álbum 8', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12, lancamento: '2026-05-21', spotifyId: '6E8L5CSoLCFMqGCn2tk8hw', suno: 'https://suno.com/s/mE98iPfpt0KOV6MR', capa: 'imagens/albuns/ecos-de-adoracao' },
-  { slug: 'o-despertar-do-justo', serie: 'salmos', volume: '1', subtitulo: 'Série dos Salmos, Álbum 1', titulo: 'O Despertar do Justo', base: 'Salmos 1–12', estilo: '', faixas: 12, lancamento: '2026-04-19', spotifyId: '5mNZTCUDzL64oLjtS6i1K3', capa: 'imagens/albuns/o-despertar-do-justo' },
+  {
+    slug: 'o-despertar-do-justo', serie: 'salmos', volume: '1', subtitulo: 'Série dos Salmos, Álbum 1', titulo: 'O Despertar do Justo', base: 'Salmos 1–12', estilo: '', faixas: 12, lancamento: '2026-04-19', spotifyId: '5mNZTCUDzL64oLjtS6i1K3', capa: 'imagens/albuns/o-despertar-do-justo',
+    letras: 'o-despertar-do-justo', notaLetras: 'Letras minhas, escritas a partir dos Salmos 1 a 12, com ajuda de IA e revisadas por mim.',
+    faixasLista: [
+      { titulo: 'A Verdadeira Felicidade', texto: 'Salmo 1' },
+      { titulo: 'Decreto de Sião', texto: 'Salmo 2' },
+      { titulo: 'Oração na Batalha', texto: 'Salmo 3' },
+      { titulo: 'Em Paz Me Deito', texto: 'Salmo 4' },
+      { titulo: 'O Clamor da Manhã', texto: 'Salmo 5' },
+      { titulo: 'Lágrimas e Livramento', texto: 'Salmo 6' },
+      { titulo: 'O Justo Juiz', texto: 'Salmo 7' },
+      { titulo: 'Coroado de Glória', texto: 'Salmo 8' },
+      { titulo: 'Refúgio na Angústia', texto: 'Salmo 9' },
+      { titulo: 'O Grito do Oprimido', texto: 'Salmo 10' },
+      { titulo: 'Fogo e Enxofre', texto: 'Salmo 11' },
+      { titulo: 'Prata Refinada', texto: 'Salmo 12' },
+    ],
+  },
   { slug: 'santuario-do-altissimo', serie: 'salmos', volume: '7', subtitulo: 'Série dos Salmos, Álbum 7', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12, lancamento: '2026-03-20', spotifyId: '5P3UmxFhhORrQmSoxDr8f9', suno: 'https://suno.com/s/MonMgpICt9kvQWml', capa: 'imagens/albuns/santuario-do-altissimo' },
 ];
 
