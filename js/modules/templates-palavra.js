@@ -83,6 +83,7 @@ export function detalheReflexao(r, album) {
   if (r.apelo || tem(r.oracao)) {
     partes.push(`<section class="bloco bloco--apelo">
       ${r.apelo ? `<p class="apelo">${escapar(r.apelo)}</p>` : ''}
+      ${r.citacaoFinal ? citacao(r.citacaoFinal, r.versao || 'NVI') : ''}
       ${tem(r.oracao) ? `<h2>${escapar(r.tituloOracao || 'Para orar')}</h2><ol class="lista-numerada">${r.oracao.map((t) => `<li>${escapar(t)}</li>`).join('')}</ol>` : ''}
     </section>`);
   }
@@ -90,8 +91,8 @@ export function detalheReflexao(r, album) {
   if (r.musica && album) {
     partes.push(`<section class="bloco"><h2>A música</h2>
       <a class="cartao cartao--link nota-criacao" href="#/musica/${encodeURIComponent(album.slug)}">
-        <span class="album__base">${escapar(album.subtitulo || album.titulo)} · Faixa ${escapar(r.musica.numero)}</span>
-        <strong class="nota-criacao__titulo">${escapar(r.musica.faixa)}</strong>
+        <span class="album__base">${escapar(album.subtitulo || album.titulo)}${r.musica.numero ? ` · Faixa ${escapar(r.musica.numero)}` : ''}</span>
+        <strong class="nota-criacao__titulo">${escapar(r.musica.numero ? r.musica.faixa : album.titulo)}</strong>
         <span class="nota-criacao__texto">${escapar(r.musica.texto)}</span>
         <span class="nota-criacao__mais">Ouvir o álbum e ler a letra <span aria-hidden="true">→</span></span>
       </a></section>`);
@@ -118,7 +119,7 @@ export function blocoPalavraDoAlbum(slugAlbum) {
     <p class="texto-suave">Pregações ligadas a estas músicas.</p>
     <ul class="grid lista-limpa">${ligadas.map((r) => `
       <li class="col-md-6" data-animar><a class="cartao cartao--link nota-criacao" href="${rotaReflexao(r)}">
-        <span class="album__base">Faixa ${escapar(r.musica.numero)}, “${escapar(r.musica.faixa)}” · ${escapar(r.referencia)}</span>
+        <span class="album__base">${r.musica.numero ? `Faixa ${escapar(r.musica.numero)}, “${escapar(r.musica.faixa)}” · ` : ''}${escapar(r.referencia)}</span>
         <strong class="nota-criacao__titulo">${escapar(r.titulo)}</strong>
         <span class="nota-criacao__texto">${escapar(r.resumo)}</span>
         <span class="nota-criacao__mais">Ler a pregação <span aria-hidden="true">→</span></span>
