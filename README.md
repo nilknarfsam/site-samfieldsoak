@@ -19,7 +19,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
 | `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
-| `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 3 pregações de Romanos |
+| `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 7 pregações (Romanos, Salmos 73, 74 e 94, Hebreus 7) |
 | `#/palavra/<slug>` | Pregação ponto a ponto: referência e versão, citações curtas da NVI, notas "Para entender melhor" (passagens difíceis ou debatidas), oração, link para a faixa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/sobre` | Quem é e o compromisso | pronto |
 
