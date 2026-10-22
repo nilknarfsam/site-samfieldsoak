@@ -1,3 +1,12 @@
+<!-- organizacao-github:inicio -->
+> [!NOTE]
+> **📌 Organização do GitHub (22/10/2026): ✅ MANTER (vitrine)**
+>
+> Site pessoal, ativo. Fixar no perfil.
+>
+> _Nota temporária do Claude. Some quando a organização terminar._
+<!-- organizacao-github:fim -->
+
 # Site do @samfieldsoak
 
 Site pessoal estático (link da bio do Instagram): **IA sem lábia**, **Música**, **Palavra** e **Sobre**. HTML, CSS e JavaScript puro, SPA com roteador por hash, no padrão da skill `base-site-spa-franklin`.
