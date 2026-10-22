@@ -14,4 +14,4 @@ export const linksBio = [
 ];
 
 // "Novidade" do Início: a publicação em destaque (seção + slug).
-export const novidade = { secao: 'ia-sem-labia', slug: 'verdades-ia-instagram' };
+export const novidade = { secao: 'palavra', slug: 'quem-me-livrara' };

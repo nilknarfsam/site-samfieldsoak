@@ -34,6 +34,7 @@ export function iniciarMusicaDetalhe(app, slug) {
   const palavra = blocoPalavraDoAlbum(a.slug);
   const faixas = alvo.querySelector('.faixas');
   if (palavra && faixas) faixas.closest('section').insertAdjacentHTML('afterend', palavra);
+  else if (palavra) alvo.insertAdjacentHTML('beforeend', palavra);
   if (a.letras && /^[a-z0-9-]+$/.test(a.letras)) {
     import(`../dados/letras/${a.letras}.js`).then(({ letras }) => {
       (letras[a.slug] || []).forEach((linhas, i) => {

@@ -18,4 +18,5 @@
 | 2026-10-21 | Site inteiro | Contador de visitas ligado (GoatCounter `samfieldsoak`, anônimo, sem cookies); Sobre e CLAUDE.md atualizados | todas | publicado em 21/10/2026. |
 | 2026-10-21 | Música | Letras do Tratado de Romanos (17 faixas, Vol. I e II), com "Ver letra" em cada faixa | `#/musica/toda-boca-se-cale`, `#/musica/reinara-a-graca` | publicado em 21/10/2026. |
 | 2026-10-21 | Música | Proteção das letras contra seleção e cópia | `#/musica/<slug>` | publicado em 21/10/2026. |
-| 2026-10-21 | Palavra | Seção Palavra no ar: Quem me livrará? (Rm 7), Dois Adãos (Rm 5) e A troca da glória (Rm 1), com notas de estudo e link para as faixas; bloco "Da Palavra" nos álbuns do Tratado de Romanos | `#/palavra`, `#/palavra/<slug>` | PR aberto, aguardando aprovação. |
+| 2026-10-21 | Palavra | Seção Palavra no ar: Quem me livrará? (Rm 7), Dois Adãos (Rm 5) e A troca da glória (Rm 1), com notas de estudo e link para as faixas; bloco "Da Palavra" nos álbuns do Tratado de Romanos | `#/palavra`, `#/palavra/<slug>` | publicado em 21/10/2026. |
+| 2026-10-21 | Palavra | Mais quatro pregações: Quando a visão engana (Sl 73), O mistério dos machados (Sl 74), O Deus que segura, ouve e consola (Sl 94), O Rei que veio servir (Melquisedeque); Palavra como Novidade na home | `#/palavra/<slug>`, `#/inicio` | PR aberto, aguardando aprovação. |
