@@ -7,9 +7,15 @@ import { iniciarMusica } from './telas/musica.js';
 import { iniciarMusicaDetalhe } from './telas/musica-detalhe.js';
 import { iniciarPalavraLista } from './telas/palavra-lista.js';
 import { iniciarPalavraDetalhe } from './telas/palavra-detalhe.js';
+import { iniciarNovidadesLista } from './telas/novidades-lista.js';
+import { iniciarNovidadesDetalhe } from './telas/novidades-detalhe.js';
 
 const rotas = {
   inicio: { view: 'html/inicio.html', titulo: 'Início', iniciar: iniciarInicio },
+  novidades: {
+    view: 'html/novidades-lista.html', titulo: 'Novidades', iniciar: iniciarNovidadesLista,
+    detalhe: { view: 'html/novidades-detalhe.html', iniciar: iniciarNovidadesDetalhe },
+  },
   'ia-sem-labia': {
     view: 'html/ia-lista.html', titulo: 'IA sem lábia', iniciar: iniciarIaLista,
     detalhe: { view: 'html/ia-detalhe.html', iniciar: iniciarIaDetalhe },

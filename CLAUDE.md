@@ -13,7 +13,7 @@
 
 ## O que estamos construindo
 
-Um site pessoal estático no GitHub Pages, usado como link da bio. Seções: Início, **IA sem lábia**, **Música**, **Palavra** (versículos e reflexões), **Sobre**. Leia, nesta ordem: `LEIA-ME-PRIMEIRO.md`, `docs/01` a `docs/06`, depois `caixa-de-entrada/` e `conteudo/`.
+Um site pessoal estático no GitHub Pages, usado como link da bio. Seções: Início, **Novidades** (pilha, a mais nova em cima), **IA sem lábia**, **Música**, **Palavra** (versículos e reflexões), **Sobre**. Leia, nesta ordem: `LEIA-ME-PRIMEIRO.md`, `docs/01` a `docs/06`, depois `caixa-de-entrada/` e `conteudo/`.
 
 ## Arquitetura obrigatória (padrão do Franklin)
 
@@ -37,6 +37,10 @@ Quando o Franklin pedir "processe a caixa de entrada":
 4. Rodar o site local e mostrar a página nova (rota exata).
 5. Com o ok do Franklin: commit (`feat(conteudo): ...`), mudar o cabeçalho para `status: publicado` com a data, mover o arquivo para `caixa-de-entrada/processadas/` e registrar uma linha em `docs/registro-de-publicacoes.md` (criar se não existir).
 6. Lembrar o Franklin de avisar o Claude do celular o que foi publicado, para ele marcar no Drive.
+
+## Rotina rápida: publicar novidades
+
+Quando o Franklin pedir "verifica a fila e publica" (ou "publica as novidades"): seguir `docs/07-novidades.md`. A fila são os arquivos `*_novidade_*.md` com `status: pendente` na caixa de entrada do Drive. Cada novidade é uma entrada no fim de `js/dados/novidades.js`; a página `#/novidades` e as 3 mais novas da home se atualizam sozinhas. O ChatGPT (Codex) segue o mesmo passo a passo pelo `AGENTS.md`.
 
 ## Regras de conteúdo
 
