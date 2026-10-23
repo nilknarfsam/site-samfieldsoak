@@ -4,6 +4,10 @@
 //
 // Passo a passo para quem publica (Claude ou ChatGPT/Codex): docs/07-novidades.md.
 //
+// REGRA (23/10/2026): a página é o CONTEÚDO COMPLETO para leitura (o documento pesquisado
+// e escrito), não o carrossel. Não colocar os cards do Instagram no site. Imagem só quando
+// ajudar a explicar, no meio do texto (objeto { imagem, alt, legenda } em paragrafos).
+//
 // Campos:
 //   slug       obrigatório. Minúsculas, sem acento, com hífen. Único.
 //   data       obrigatório. 'AAAA-MM-DD' (dia da publicação).
@@ -12,13 +16,16 @@
 //   resumo     obrigatório. Uma ou duas frases (aparece no cartão).
 //   rota       opcional. Se a novidade só aponta para uma página que já existe no site
 //              (ex.: '#/musica/o-despertar-do-justo'), use rota e deixe paragrafos vazio.
-//   paragrafos opcional. Texto da página própria (#/novidades/<slug>). Cada item é um parágrafo.
-//              "## " no começo vira subtítulo; "- " no começo vira item de lista.
-//   links      opcional. [{ rotulo, url }] (links úteis para o leitor).
+//   paragrafos o texto completo da página (#/novidades/<slug>). Cada item da lista é:
+//              - um parágrafo comum;
+//              - "## Título" → subtítulo (pode começar com um emoji como ícone: "## ⚙️ Ambientes");
+//              - "- item" → item de lista (itens seguidos ficam na mesma lista);
+//              - "> texto" → destaque (caixa com borda, para um resumo ou um aviso importante);
+//              - { imagem: 'imagens/novidades/<slug>/nome.webp', alt: 'o que a imagem mostra', legenda: 'opcional' }.
+//   links      opcional. [{ rotulo, url }] (links úteis, inclusive o post do Instagram, se houver).
 //   fontes     opcional. [{ rotulo, url }] (de onde veio a informação; obrigatório em tecnologia).
 //   conferidoEm opcional. 'AAAA-MM-DD' (quando as fontes foram conferidas).
-//   arte       opcional. 'pendente' enquanto o carrossel não chegou (a novidade entra no ar sem imagem).
-//   carrossel  opcional. { capa, post, cards: [{ src, alt }] }. Imagens em imagens/novidades/<slug>/.
+//   carrossel  LEGADO: só a novidade do Claude Code (23/10/2026) usa. Não usar nas novas.
 
 export const temasNovidade = {
   tecnologia: 'Tecnologia',

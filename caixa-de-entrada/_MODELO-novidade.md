@@ -4,7 +4,6 @@ status: pendente          # rascunho | pendente | publicado | descartado
 data: AAAA-MM-DD          # dia em que a novidade deve aparecer no site
 tema: tecnologia          # tecnologia | musica | palavra | site
 slug: titulo-curto-sem-acento
-arte: pendente            # pendente | pronta (e onde está no Drive)
 origem: Claude | ChatGPT  # quem escreveu
 publicado:                # preenchido por quem publicar
 ---
@@ -21,7 +20,9 @@ Se a novidade só aponta para algo que já existe no site, escreva a rota (ex.: 
 
 Rota: 
 
-Texto (um parágrafo por linha; "## " vira subtítulo, "- " vira item de lista):
+Conteúdo completo para leitura (o documento inteiro, não o resumo do carrossel).
+Um parágrafo por linha; "## " vira subtítulo (pode começar com um emoji), "- " item de lista, "> " destaque.
+Imagem só se explicar algo: [IMAGEM: arquivo, o que mostra, legenda].
 
 ...
 
@@ -34,6 +35,6 @@ Texto (um parágrafo por linha; "## " vira subtítulo, "- " vira item de lista):
 - 
 Conferido em: AAAA-MM-DD
 
-## Arte
+## Imagens da página (só se precisar)
 
-Pasta do carrossel no Drive (se já existir) e o texto de cada card para o alt.
+Nenhuma, ou a lista do que gerar/recortar para o texto. Os cards do carrossel NÃO vão para o site.

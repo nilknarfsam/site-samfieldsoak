@@ -6,7 +6,15 @@ import { temasNovidade, rotaNovidade } from '../dados/novidades.js';
 const tem = (lista) => Array.isArray(lista) && lista.length > 0;
 export const rotuloTema = (t) => temasNovidade[t] || t;
 
-// "## " vira subtítulo, "- " vira item de lista (itens seguidos ficam na mesma lista).
+// Imagem no meio do texto: { imagem, alt, legenda }. Só caminhos do próprio site.
+const figura = (f) => (/^imagens\//.test(f.imagem || '') ? `
+  <figure class="novidade-figura">
+    <img src="${escapar(f.imagem)}" alt="${escapar(f.alt)}" loading="lazy">
+    ${f.legenda ? `<figcaption>${escapar(f.legenda)}</figcaption>` : ''}
+  </figure>` : '');
+
+// "## " vira subtítulo, "- " vira item de lista (itens seguidos ficam na mesma lista),
+// "> " vira destaque e um objeto { imagem, alt, legenda } vira figura.
 function corpo(paragrafos) {
   const partes = [];
   let itens = [];
@@ -15,9 +23,13 @@ function corpo(paragrafos) {
     itens = [];
   };
   paragrafos.forEach((t) => {
+    if (t && typeof t === 'object') { fecharLista(); partes.push(figura(t)); return; }
+    t = String(t ?? '');
     if (t.startsWith('- ')) { itens.push(`<li>${escapar(t.slice(2))}</li>`); return; }
     fecharLista();
-    partes.push(t.startsWith('## ') ? `<h2>${escapar(t.slice(3))}</h2>` : `<p>${escapar(t)}</p>`);
+    if (t.startsWith('## ')) partes.push(`<h2>${escapar(t.slice(3))}</h2>`);
+    else if (t.startsWith('> ')) partes.push(`<p class="novidade-destaque">${escapar(t.slice(2))}</p>`);
+    else partes.push(`<p>${escapar(t)}</p>`);
   });
   fecharLista();
   return partes.join('');

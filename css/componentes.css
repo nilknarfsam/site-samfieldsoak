@@ -565,3 +565,7 @@
 .novidade-item__titulo { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-md); line-height: 1.15; }
 .novidade-corpo h2 { margin-top: var(--esp-5); }
 @media (min-width: 768px) { .novidade-item { gap: var(--esp-4); } .novidade-item__capa { width: 108px; } }
+.novidade-destaque { border-left: 4px solid var(--cor-destaque); background: var(--cor-superficie); padding: var(--esp-3) var(--esp-4); border-radius: var(--raio); font-weight: 600; }
+.novidade-figura { margin: var(--esp-5) 0; }
+.novidade-figura img { width: 100%; height: auto; border-radius: var(--raio); border: var(--borda); }
+.novidade-figura figcaption { margin-top: var(--esp-2); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
