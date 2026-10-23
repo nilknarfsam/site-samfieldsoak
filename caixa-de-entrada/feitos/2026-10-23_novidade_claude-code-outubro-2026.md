@@ -1,12 +1,12 @@
 ---
 tipo: novidade
-status: pendente
+status: publicado
 data: 2026-10-23
 tema: tecnologia
 slug: claude-code-outubro-2026
 arte: pronta
 origem: ChatGPT
-publicado:
+publicado: 2026-10-23
 ---
 
 # Claude Code: mais controle para criar com IA
@@ -96,3 +96,8 @@ Alt: SAIBA MAIS. NO LINK DA BIO. Comente e compartilhe com quem precisa ver isso
 
 ## Publicação no GitHub
 Preparada na branch feat/novidades-2026-10-23. PR para revisão; entrada no ar depende da aprovação e do merge.
+
+
+## Situação da publicação
+PR aberto: https://github.com/nilknarfsam/site-samfieldsoak/pull/18
+O status publicado registra o envio ao fluxo de publicação do GitHub conforme o guia. O conteúdo ainda não está no site: aguarda conferência visual em 390 px e 1280 px, aprovação e merge pelo Franklin.
