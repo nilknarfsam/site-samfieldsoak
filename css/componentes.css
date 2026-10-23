@@ -558,10 +558,10 @@
 .novidade__lista { display: flex; flex-direction: column; gap: var(--esp-3); }
 .novidade__todas { margin-top: var(--esp-3); font-size: var(--texto-sm); }
 .novidades-lista { display: flex; flex-direction: column; gap: var(--esp-3); max-width: 48rem; }
-.novidade-item { flex-direction: row; align-items: center; gap: var(--esp-4); text-decoration: none; color: var(--cor-texto); }
-.novidade-item__capa { width: 72px; flex: none; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio); }
+.novidade-item { flex-direction: row; align-items: center; gap: var(--esp-3); text-decoration: none; color: var(--cor-texto); }
+.novidade-item__capa { width: 56px; flex: none; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--raio); }
 .novidade-item__texto { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--esp-1); }
 .novidade-item__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2); font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
 .novidade-item__titulo { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-md); line-height: 1.15; }
 .novidade-corpo h2 { margin-top: var(--esp-5); }
-@media (min-width: 768px) { .novidade-item__capa { width: 108px; } }
+@media (min-width: 768px) { .novidade-item { gap: var(--esp-4); } .novidade-item__capa { width: 108px; } }

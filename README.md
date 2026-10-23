@@ -122,3 +122,4 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 ## Uso de IA
 
 Construído com o Claude Code a partir dos pedidos do Franklin na caixa de entrada.
+
