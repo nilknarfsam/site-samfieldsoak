@@ -16,7 +16,7 @@ Decisão do Franklin (23/10/2026). O carrossel é do Instagram; o site é o luga
 
 ## A ideia em uma frase
 
-Em qualquer chat, o Franklin manda um assunto e diz "manda pro site". A IA salva o assunto na **fila** do Drive. Quando ele pedir "verifica a fila e publica tudo", quem tiver acesso ao GitHub publica todas as pendentes num PR só. A arte pode vir depois.
+Em qualquer chat, o Franklin manda um assunto e diz "manda pro site". A IA salva o assunto na **fila** do Drive. Quando ele pedir "verifica a fila e publica tudo", quem tiver acesso ao GitHub publica todas as pendentes num PR só. O carrossel do Instagram é feito à parte e não entra no site.
 
 ## 1. Guardar na fila (qualquer chat, com acesso ao Drive)
 
