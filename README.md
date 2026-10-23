@@ -122,3 +122,10 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 ## Uso de IA
 
 Construído com o Claude Code a partir dos pedidos do Franklin na caixa de entrada.
+
+## Novidade preparada em 23/10/2026
+
+- Claude Code: mais controle para criar com IA, em `#/novidades/claude-code-outubro-2026`.
+- Texto com fontes oficiais e data de conferência; oito cards 1080 × 1350 em WebP.
+- Preparada para revisão em PR; publicação depende da aprovação e do merge.
+- Validação desta mudança: sintaxe, ordenação, fontes, oito imagens e dimensões conferidas. A verificação visual em 390 px e 1280 px ficou pendente: o navegador de teste não acessou o servidor local desta sessão.
