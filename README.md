@@ -23,7 +23,9 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 
 | Rota | Tela | Situação |
 |---|---|---|
-| `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, Novidade e as três frentes | pronto, com foto |
+| `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, as 3 Novidades mais novas e as três frentes | pronto, com foto |
+| `#/novidades` | Pilha de novidades (a mais nova em cima, ordenada pela data), filtro por tema | pronto |
+| `#/novidades/<slug>` | Página da novidade: texto, carrossel, links e fontes (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
@@ -106,6 +108,7 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 - DNS no Registro.br (zona DNS, modo avançado): registros A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` e CNAME `www` → `nilknarfsam.github.io`. **Não** mexer em "Alterar servidores DNS".
 - Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
 - Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
+- Novidades (Claude e ChatGPT): passo a passo em `docs/07-novidades.md`; regras para qualquer agente em `AGENTS.md`.
 
 ## O que falta
 

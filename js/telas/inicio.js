@@ -1,6 +1,6 @@
-import { linksBio, novidade } from '../dados/links.js';
-import { buscarFerramenta } from '../dados/ferramentas.js';
-import { buscarReflexao } from '../dados/reflexoes.js';
+import { linksBio } from '../dados/links.js';
+import { novidades, rotaNovidade } from '../dados/novidades.js';
+import { rotuloTema } from '../modules/templates-novidades.js';
 import { albuns, albumDestaque, salmosCobertos, comoFaco } from '../dados/albuns.js';
 import { perfil } from '../dados/perfil.js';
 import { renderizarLista, botaoBio, cartaoNovidade, escapar } from '../modules/templates.js';
@@ -9,11 +9,8 @@ import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
 
-// Seções que podem aparecer como "Novidade".
-const secoes = {
-  'ia-sem-labia': { buscar: buscarFerramenta, rotulo: 'IA sem lábia' },
-  palavra: { buscar: buscarReflexao, rotulo: 'Palavra' },
-};
+// Quantas novidades aparecem na home (as mais novas de js/dados/novidades.js).
+const NOVIDADES_NA_HOME = 3;
 
 // Números da home, calculados dos dados: atualizam sozinhos a cada lançamento.
 function numeros() {
@@ -85,10 +82,10 @@ export function iniciarInicio(app) {
 
   // Atalhos (botões da bio) e Novidade
   renderizarLista(app.querySelector('[data-links]'), linksBio, botaoBio);
-  const secao = secoes[novidade.secao];
-  const item = secao && secao.buscar(novidade.slug);
-  if (item) {
-    app.querySelector('[data-novidade]').innerHTML = cartaoNovidade(item, `#/${novidade.secao}/${item.slug}`, secao.rotulo);
+  const ultimas = novidades.slice(0, NOVIDADES_NA_HOME);
+  if (ultimas.length) {
+    app.querySelector('[data-novidade]').innerHTML = ultimas
+      .map((n) => `<li>${cartaoNovidade(n, rotaNovidade(n), rotuloTema(n.tema))}</li>`).join('');
     app.querySelector('#novidade').hidden = false;
   }
 
