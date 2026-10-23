@@ -110,35 +110,35 @@ const lista = [
       "cards": [
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-01.webp",
-          "alt": "CLAUDE CODE. NOVA FASE. MAIS CONTROLE PARA CRIAR. Novidades para quem programa com IA.. OUTUBRO 2026"
+          "alt": "CLAUDE CODE. NOVA FASE. MAIS CONTROLE PARA CRIAR. Novidades para quem programa com IA. OUTUBRO 2026"
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-02.webp",
-          "alt": "VEJA O QUE. ESTÁ ACONTECENDO. O painel lateral reúne ambiente, contexto, alterações e tarefas da sessão.. NA PRÁTICA. Mais visibilidade para acompanhar o trabalho.. E para retomar o projeto certo?"
+          "alt": "VEJA O QUE ESTÁ ACONTECENDO. O painel lateral reúne ambiente, contexto, alterações e tarefas da sessão. NA PRÁTICA. Mais visibilidade para acompanhar o trabalho. E para retomar o projeto certo?"
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-03.webp",
-          "alt": "SEU PROJETO,. SEU AMBIENTE. Salve onde trabalhar: pasta local, SSH, nuvem ou uma máquina com Remote Control.. NA PRÁTICA. Retome o ambiente com suas opções de branch e worktree.. Agora, dá para separar tarefas."
+          "alt": "SEU PROJETO, SEU AMBIENTE. Salve onde trabalhar: pasta local, SSH, nuvem ou uma máquina com Remote Control. NA PRÁTICA. Retome o ambiente com suas opções de branch e worktree. Agora, dá para separar tarefas."
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-04.webp",
-          "alt": "UMA CONVERSA,. TAREFAS SEPARADAS. Nas sessões locais e SSH, o Claude pode abrir uma tarefa em uma sessão vinculada e trazer o resultado.. SESSÕES ANINHADAS. Cada sessão faz suas próprias requisições e consome uso.. E como acompanhar o Pull Request?"
+          "alt": "UMA CONVERSA, TAREFAS SEPARADAS. Nas sessões locais e SSH, o Claude pode abrir uma tarefa em uma sessão vinculada e trazer o resultado. SESSÕES ANINHADAS. Cada sessão faz suas próprias requisições e consome uso. E como acompanhar o Pull Request?"
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-05.webp",
-          "alt": "SEU PULL REQUEST. MAIS À VISTA. Os controles do PR ficam no cartão de alterações, com Auto-fix e Merge when ready.. ATENÇÃO AO PROJETO. O merge depende das regras e da configuração do repositório.. As instruções também evoluíram."
+          "alt": "SEU PULL REQUEST. MAIS À VISTA. Os controles do PR ficam no cartão de alterações, com Auto-fix e Merge when ready. ATENÇÃO AO PROJETO. O merge depende das regras e da configuração do repositório. As instruções também evoluíram."
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-06.webp",
-          "alt": "MENOS REPETIÇÃO. COM AGENTS.md. O Claude Code pode carregar AGENTS.md quando não há CLAUDE.md ou CLAUDE.local.md na pasta ou acima dela.. REQUER VERSÃO COMPATÍVEL. O suporte direto começa no Claude Code 2.1.277.. O ganho aparece no seu método."
+          "alt": "MENOS REPETIÇÃO. COM AGENTS.md. O Claude Code pode carregar AGENTS.md quando não há CLAUDE.md ou CLAUDE.local.md na pasta ou acima dela. REQUER VERSÃO COMPATÍVEL. O suporte direto começa no Claude Code 2.1.277. O ganho aparece no seu método."
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-07.webp",
-          "alt": "TRANSFORME RECURSOS. EM UM MÉTODO. Defina a tarefa. Isole a branch. Implemente. Teste. Revise o PR.. EXEMPLO: UM NOVO PAINEL. Use instruções claras e registre o próximo passo.. A disponibilidade varia por versão, ambiente e implantação.. Mais organização para criar melhor."
+          "alt": "TRANSFORME RECURSOS. EM UM MÉTODO. Defina a tarefa. Isole a branch. Implemente. Teste. Revise o PR. EXEMPLO: UM NOVO PAINEL. Use instruções claras e registre o próximo passo. A disponibilidade varia por versão, ambiente e implantação. Mais organização para criar melhor."
         },
         {
           "src": "imagens/novidades/claude-code-outubro-2026/card-08.webp",
-          "alt": "SAIBA MAIS. NO LINK DA BIO. Comente e compartilhe com quem precisa ver isso.. Qual recurso você quer testar primeiro?. IA e tecnologia com aplicação prática."
+          "alt": "SAIBA MAIS. NO LINK DA BIO. Comente e compartilhe com quem precisa ver isso. Qual recurso você quer testar primeiro? IA e tecnologia com aplicação prática."
         }
       ]
     }
