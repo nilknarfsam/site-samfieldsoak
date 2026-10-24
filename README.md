@@ -25,10 +25,10 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 |---|---|---|
 | `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, as 3 Novidades mais novas e as três frentes | pronto, com foto |
 | `#/novidades` | Pilha de novidades (a mais nova em cima, ordenada pela data), filtro por tema | pronto |
-| `#/novidades/<slug>` | Página da novidade: texto, carrossel, links e fontes (slug inválido mostra "Conteúdo não encontrado") | pronto |
+| `#/novidades/<slug>` | Página da novidade: texto completo, tempo de leitura, links, fontes, anterior/próxima e Compartilhar (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/musica` | Landing: lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
+| `#/musica` | Landing com índice "Nesta página" (`#/musica/discografia`, `#/musica/singles`...): lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
 | `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
 | `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 7 pregações (Romanos, Salmos 73, 74 e 94, Hebreus 7) |
 | `#/palavra/<slug>` | Pregação ponto a ponto: referência e versão, citações curtas da NVI, notas "Para entender melhor" (passagens difíceis ou debatidas), oração, link para a faixa (slug inválido mostra "Conteúdo não encontrado") | pronto |
@@ -79,6 +79,8 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 
 ## Compartilhamento, Google e contador
 
+- Botão **Compartilhar** nas páginas de detalhe (`js/modules/compartilhar.js`): no celular abre o compartilhar do sistema, no computador copia o link. Sem SDK de rede social.
+
 - Prévia ao compartilhar (WhatsApp, Instagram, Facebook): `imagens/compartilhar/samfieldsoak-1200x630.jpg` e as tags `og:` no `index.html`. Como o site usa rotas por hash, a prévia é a mesma para todas as páginas.
 - Google: título e descrição no `index.html`, dados de pessoa (JSON-LD), `robots.txt` e `sitemap.xml`. Falta cadastrar o site no Google Search Console (o Franklin faz, com a conta Google dele).
 - Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies), ligado em 21/10/2026 com o código `samfieldsoak`. Painel: https://samfieldsoak.goatcounter.com (cada rota do hash aparece como uma página). A página Sobre explica a contagem anônima.
@@ -92,6 +94,17 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 ## Capas dos álbuns
 
 O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px fica no Drive. Proteção leve em `js/modules/protecao.js` e na classe `.capa[data-protegida]`: sem menu "salvar imagem" (clique direito e toque longo), sem arrastar. Não existe proteção total na web: print sempre funciona.
+
+## Conferência automática
+
+Rodar antes de abrir qualquer PR (o GitHub Actions roda os dois em todo PR, em `.github/workflows/conferir.yml`, e mostra se o PR é da pista Conteúdo ou Produto):
+
+```bash
+node ferramentas/conferir-dados.mjs              # slugs, datas, imagens, fontes, HTML dentro de dado
+node ferramentas/testar-rotas.mjs --capturas     # todas as rotas em 390 e 1280 px (precisa do Playwright)
+```
+
+As capturas vão para `ferramentas/capturas/` (fora do Git). Node 22 ou mais novo.
 
 ## Testes feitos (20/10/2026, navegador do Claude)
 
@@ -109,6 +122,7 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 - Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
 - Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
 - Novidades (Claude e ChatGPT): passo a passo em `docs/07-novidades.md`; regras para qualquer agente em `AGENTS.md`.
+- **Como publicar e corrigir qualquer coisa (o "console" do site):** `docs/10-sistema-de-publicacao.md` (moldes fixos, pistas Conteúdo/Produto, frases de comando, status da fila, garantias automáticas).
 - Melhorias de design e funções: auditoria de 24/10/2026 em `docs/08-auditoria-2026-10-24.md` e o roteiro de tarefas (T-01 a T-19) em `docs/09-plano-de-melhorias.md`.
 
 ## O que falta

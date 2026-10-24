@@ -1,6 +1,6 @@
 // HTML da seção Música (landing e página de cada álbum). Todo texto de dados passa por escapar().
 
-import { escapar, dataBR, linkExterno } from './templates.js';
+import { escapar, dataBR, linkExterno, botaoCompartilhar } from './templates.js';
 
 const tem = (lista) => Array.isArray(lista) && lista.length > 0;
 const rotaAlbum = (a) => `#/musica/${encodeURIComponent(a.slug)}`;
@@ -62,7 +62,7 @@ export function jornadaSalmos(trechos) {
     const estilo = `style="--inicio:${t.de - 1};--tamanho:${t.ate - t.de + 1}"`;
     const rotulo = `${escapar(t.album.titulo)}${t.single ? ' (single)' : ''}: ${faixaSalmos(t)}`;
     return t.single
-      ? `<span class="jornada__trecho jornada__trecho--single" ${estilo} title="${rotulo}"></span>`
+      ? `<span class="jornada__trecho jornada__trecho--single" ${estilo} title="${rotulo}" role="img" aria-label="${rotulo}"></span>`
       : `<a class="jornada__trecho" href="${rotaAlbum(t.album)}" ${estilo} title="${rotulo}"><span class="visualmente-oculto">${rotulo}</span></a>`;
   }).join('');
   return `
@@ -94,6 +94,7 @@ export function detalheAlbum(a, serie, irmaos) {
         <h1 class="hero-album__titulo">${escapar(a.titulo)}</h1>
         ${a.frase ? `<p class="lead">${escapar(a.frase)}</p>` : ''}
         <p class="nota mt-0">${escapar([linhaMeta(a), a.estilo].filter(Boolean).join(' · '))}</p>
+        ${botaoCompartilhar()}
       </div>
     </header>`];
 

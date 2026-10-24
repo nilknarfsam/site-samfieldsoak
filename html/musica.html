@@ -6,9 +6,22 @@
     <div class="selo-ia" role="note" data-selo-ia></div>
   </header>
 
-  <section class="hero-album" aria-label="Lançamento mais recente" data-hero></section>
+  <nav class="indice" aria-label="Nesta página">
+    <ul class="indice__lista lista-limpa">
+      <li><a class="indice__link" href="#/musica/lancamento">Lançamento</a></li>
+      <li data-indice-para="por-tras"><a class="indice__link" href="#/musica/por-tras">Por trás</a></li>
+      <li><a class="indice__link" href="#/musica/como-eu-faco">Como eu faço</a></li>
+      <li><a class="indice__link" href="#/musica/jornada">Salmos</a></li>
+      <li><a class="indice__link" href="#/musica/ouvir">Ouvir tudo</a></li>
+      <li><a class="indice__link" href="#/musica/discografia">Discografia</a></li>
+      <li><a class="indice__link" href="#/musica/singles">Singles</a></li>
+      <li><a class="indice__link" href="#/musica/primeiras-versoes">Primeiras versões</a></li>
+    </ul>
+  </nav>
 
-  <section class="secao-musica" aria-labelledby="titulo-por-tras">
+  <section class="hero-album" id="lancamento" aria-label="Lançamento mais recente" data-hero></section>
+
+  <section class="secao-musica" id="por-tras" aria-labelledby="titulo-por-tras">
     <h2 id="titulo-por-tras" class="secao-musica__titulo">Por trás das músicas</h2>
     <p class="texto-suave">Como cada álbum nasceu: as escolhas de texto, de som e de capa.</p>
     <ul class="grid lista-limpa" data-notas></ul>
@@ -20,24 +33,24 @@
     <ol class="processo" data-processo></ol>
   </section>
 
-  <section class="secao-musica jornada" aria-labelledby="titulo-jornada">
+  <section class="secao-musica jornada" id="jornada" aria-labelledby="titulo-jornada">
     <h2 id="titulo-jornada" class="secao-musica__titulo">A jornada pelos Salmos</h2>
     <div data-jornada></div>
   </section>
 
-  <section class="secao-musica" aria-labelledby="titulo-ouvir">
+  <section class="secao-musica" id="ouvir" aria-labelledby="titulo-ouvir">
     <h2 id="titulo-ouvir" class="secao-musica__titulo">Todas as músicas</h2>
     <p class="texto-suave">O perfil de artista com tudo o que já foi lançado.</p>
     <div class="player" data-player></div>
     <ul class="links-oficiais mt-3" data-perfis></ul>
   </section>
 
-  <section class="secao-musica" aria-labelledby="titulo-discografia">
+  <section class="secao-musica" id="discografia" aria-labelledby="titulo-discografia">
     <h2 id="titulo-discografia" class="secao-musica__titulo">Discografia</h2>
     <ul class="grid lista-limpa discografia" data-lista></ul>
   </section>
 
-  <section class="secao-musica" aria-labelledby="titulo-singles">
+  <section class="secao-musica" id="singles" aria-labelledby="titulo-singles">
     <h2 id="titulo-singles" class="secao-musica__titulo">Singles</h2>
     <p class="texto-suave">Músicas lançadas sozinhas, fora dos álbuns.</p>
     <ul class="singles lista-limpa" data-singles></ul>

@@ -36,7 +36,7 @@ Em qualquer chat, o Franklin manda um assunto e diz "manda pro site". A IA salva
    - Se tem texto próprio, usar `paragrafos` com o conteúdo completo: `"## "` subtítulo, `"- "` item de lista, `"> "` destaque e `{ imagem, alt, legenda }` para uma imagem no meio do texto.
    - Tecnologia: `fontes` e `conferidoEm` são obrigatórios. Nada de número, preço ou versão sem fonte.
    - Não usar o campo `carrossel` (legado).
-5. Conferir: `python -m http.server 8080`, abrir `#/novidades` e a página da novidade em 390px e 1280px. Sem erro no console.
+5. Conferir: `node ferramentas/conferir-dados.mjs` (dados) e `node ferramentas/testar-rotas.mjs` (todas as páginas em 390px e 1280px). Depois `python -m http.server 8080` e olhar `#/novidades` e a página da novidade. Sem navegador no seu ambiente: diga no PR; o GitHub Actions roda os dois scripts.
 6. Commit em português: `feat(novidades): <título curto>`. Abrir o PR para o Franklin aprovar pelo celular.
 7. Na fila do Drive: mudar o cabeçalho para `status: publicado` e `publicado: AAAA-MM-DD`, e mover o arquivo para a subpasta `feitos/`.
 8. Acrescentar uma linha em `docs/registro-de-publicacoes.md`.

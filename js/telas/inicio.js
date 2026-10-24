@@ -1,8 +1,9 @@
 import { linksBio } from '../dados/links.js';
 import { novidades, rotaNovidade } from '../dados/novidades.js';
-import { rotuloTema } from '../modules/templates-novidades.js';
+import { rotuloTema, capaNovidade } from '../modules/templates-novidades.js';
 import { albuns, albumDestaque, salmosCobertos, comoFaco } from '../dados/albuns.js';
 import { perfil } from '../dados/perfil.js';
+import { reflexoes } from '../dados/reflexoes.js';
 import { renderizarLista, botaoBio, cartaoNovidade, escapar } from '../modules/templates.js';
 import { capaAlbum, seloIA } from '../modules/templates-musica.js';
 import { animarCartoes } from '../modules/movimento.js';
@@ -41,6 +42,13 @@ function lancamento(a) {
 
 function frentes() {
   const capas = albuns.filter((a) => a.capa).slice(0, 4);
+  // "Último" de cada frente, tirado dos dados: atualiza sozinho a cada publicação.
+  const tecnologia = novidades.find((n) => n.tema === 'tecnologia');
+  const ultimos = {
+    '#/musica': albumDestaque()?.titulo,
+    '#/ia-sem-labia': tecnologia?.titulo,
+    '#/palavra': reflexoes[0] && `${reflexoes[0].titulo} (${reflexoes[0].referencia})`,
+  };
   return [
     { rota: '#/musica', titulo: 'Música', texto: 'A Bíblia cantada: a série dos Salmos, Hebreus e o Tratado de Romanos, com player em cada álbum.',
       topo: `<div class="frente__mosaico" aria-hidden="true">${capas.map((a) => `<img src="${escapar(a.capa)}-480.webp" alt="" width="240" height="240" loading="lazy" draggable="false">`).join('')}</div>` },
@@ -54,6 +62,7 @@ function frentes() {
         ${f.topo}
         <strong class="frente__titulo">${escapar(f.titulo)}</strong>
         <span class="texto-suave">${escapar(f.texto)}</span>
+        ${ultimos[f.rota] ? `<span class="frente__ultimo">Último: <strong>${escapar(ultimos[f.rota])}</strong></span>` : ''}
         <span class="nota-criacao__mais">Entrar <span aria-hidden="true">→</span></span>
       </a>
     </li>`).join('');
@@ -85,7 +94,7 @@ export function iniciarInicio(app) {
   const ultimas = novidades.slice(0, NOVIDADES_NA_HOME);
   if (ultimas.length) {
     app.querySelector('[data-novidade]').innerHTML = ultimas
-      .map((n) => `<li>${cartaoNovidade(n, rotaNovidade(n), rotuloTema(n.tema))}</li>`).join('');
+      .map((n) => `<li>${cartaoNovidade(n, rotaNovidade(n), rotuloTema(n.tema), capaNovidade(n, 'cartao__imagem', 88, 110))}</li>`).join('');
     app.querySelector('#novidade').hidden = false;
   }
 

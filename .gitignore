@@ -2,3 +2,7 @@
 caixa-de-entrada/**/*.zip
 Thumbs.db
 desktop.ini
+
+# Capturas do teste de rotas (ferramentas/testar-rotas.mjs --capturas)
+ferramentas/capturas/
+node_modules/

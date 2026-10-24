@@ -13,7 +13,7 @@
 
 ## O que estamos construindo
 
-Um site pessoal estático no GitHub Pages, usado como link da bio. Seções: Início, **Novidades** (pilha, a mais nova em cima), **IA sem lábia**, **Música**, **Palavra** (versículos e reflexões), **Sobre**. Leia, nesta ordem: `LEIA-ME-PRIMEIRO.md`, `docs/01` a `docs/06`, depois `caixa-de-entrada/` e `conteudo/`.
+Um site pessoal estático no GitHub Pages, usado como link da bio. Seções: Início, **Novidades** (pilha, a mais nova em cima), **IA sem lábia**, **Música**, **Palavra** (versículos e reflexões), **Sobre**. Leia, nesta ordem: `LEIA-ME-PRIMEIRO.md`, `docs/01` a `docs/10`, depois `caixa-de-entrada/` e `conteudo/`. O `docs/10-sistema-de-publicacao.md` é o jeito de trabalhar: frases de comando, pistas Conteúdo/Produto e as conferências automáticas (`ferramentas/`).
 
 ## Arquitetura obrigatória (padrão do Franklin)
 

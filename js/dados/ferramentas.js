@@ -74,7 +74,7 @@ export const ferramentas = [
         { src: 'imagens/ia/instagram-claude-parceria/card-05.webp', alt: 'Responde TODAS as DMs? Só até 24h depois da última mensagem da pessoa. Regra da Meta. E só em conta Profissional ligada a uma Página do Facebook.' },
         { src: 'imagens/ia/instagram-claude-parceria/card-06.webp', alt: 'Sem risco pra conta? Pela API oficial, não há risco. Mas tutorial que pede seu login e senha do Instagram viola os termos e pode derrubar a conta.' },
         { src: 'imagens/ia/instagram-claude-parceria/card-07.webp', alt: 'O jeito certo: 1. Ative a conta profissional. 2. Escolha um parceiro oficial da Meta. 3. No Claude: Configurações → Conectores. 4. Comece pelo grátis antes de pagar.' },
-        { src: 'imagens/ia/instagram-claude-parceria/card-08.png', alt: 'A ferramenta é boa. A propaganda é que exagera. Saiba mais no link da bio. Comente e compartilhe.' },
+        { src: 'imagens/ia/instagram-claude-parceria/card-08.webp', alt: 'A ferramenta é boa. A propaganda é que exagera. Saiba mais no link da bio. Comente e compartilhe.' },
       ],
     },
   },

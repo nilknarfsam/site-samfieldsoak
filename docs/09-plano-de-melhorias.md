@@ -38,7 +38,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 3. Testar:
    - `python -m http.server 8080` e abrir as rotas citadas em **390 px e 1280 px** (DevTools, modo celular).
    - Console sem erro; um `h1`; sem rolagem horizontal; teclado (Tab) chega em tudo e o foco aparece.
-   - Quando T-12 e T-13 existirem: `node ferramentas/conferir-dados.mjs` e `node ferramentas/testar-rotas.mjs` passando.
+   - `node ferramentas/conferir-dados.mjs` e `node ferramentas/testar-rotas.mjs` passando (o segundo precisa do Playwright; se o seu ambiente não tiver navegador, diga isso no PR: o GitHub Actions roda os dois em todo PR).
 4. Commit em português, Conventional Commits (`feat(...)`, `fix(...)`, `style(...)`, `docs(...)`), terminando com a linha `Feito-por: Codex`.
 5. Abrir o PR com: o que mudou, rotas para conferir, o que foi testado, prints de 390 e 1280 px. **Nunca fazer merge sem o ok do Franklin.**
 6. Marcar a tarefa como feita na tabela abaixo (no mesmo PR): `pendente` → `em PR #N`. Depois do merge, quem estiver trabalhando muda para `feito AAAA-MM-DD`.
@@ -48,37 +48,38 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 
 | Ordem | Tarefa | Código | Tamanho | Situação |
 |---|---|---|---|---|
-| 1 | Palavra em ordem de data | F-01 | pequeno | pendente |
-| 2 | Pular para o topo sem rolagem animada | F-03 | pequeno | pendente |
-| 3 | Singles acessíveis na Jornada dos Salmos | F-09 | pequeno | pendente |
-| 4 | PNG pesada para WebP | D-07 | pequeno | pendente |
-| 5 | Véu atrás dos números da home | D-01 | pequeno | pendente |
-| 6 | Atalhos da bio em grade uniforme | D-02 | médio | pendente |
-| 7 | Ícone do tema nas novidades sem capa | D-03 | pequeno | pendente |
-| 8 | Cartões Tecnologia e Palavra da home | D-04 | pequeno | pendente |
-| 9 | Página da novidade: voltar, tempo de leitura, anterior/próxima | D-06 | médio | pendente |
-| 10 | "Outras pregações" do mesmo livro primeiro | F-02 | pequeno | pendente |
-| 11 | Índice no topo da página Música | D-05 | médio | pendente |
-| 12 | Script que confere os dados | F-07 | médio | pendente |
-| 13 | Script que testa as rotas | F-08 | médio | pendente |
-| 14 | Botão Compartilhar | F-04 | médio | pendente |
-| 15 | Valores soltos viram tokens | D-09 | pequeno | pendente |
-| 16 | Rodapé com Sobre e compromisso | D-10 | pequeno | pendente |
-| 17 | Ícones SVG no lugar dos emojis | D-08 | médio | pendente (pedir ok do Franklin no estilo dos ícones antes) |
-| 18 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
-| 19 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
+| 1 | ~~Palavra em ordem de data~~ | F-01 | — | cancelada: já estava certo (ver docs/08) |
+| 2 | Pular para o topo sem rolagem animada | F-03 | pequeno | feito 2026-10-24 (Claude) |
+| 3 | Singles acessíveis na Jornada dos Salmos | F-09 | pequeno | feito 2026-10-24 (Claude) |
+| 4 | PNG pesada para WebP | D-07 | pequeno | feito 2026-10-24 (Claude): 330 KB → 35 KB; a PNG ficou no repositório |
+| 5 | Véu atrás dos números da home | D-01 | pequeno | feito 2026-10-24 (Claude): véu mais forte + caixa própria nos números |
+| 6 | Atalhos da bio em grade uniforme | D-02 | médio | feito 2026-10-24 (Claude): ficou com 2 colunas no celular (1 coluna deixava a home longa demais) |
+| 7 | Ícone do tema nas novidades sem capa | D-03 | pequeno | feito 2026-10-24 (Claude) |
+| 8 | Cartões Tecnologia e Palavra da home | D-04 | pequeno | feito 2026-10-24 (Claude): opção A, "Último: ..." nos três cartões |
+| 9 | Página da novidade: voltar, tempo de leitura, anterior/próxima | D-06 | médio | feito 2026-10-24 (Claude) |
+| 10 | "Outras pregações" do mesmo livro primeiro | F-02 | pequeno | feito 2026-10-24 (Claude) |
+| 11 | Índice no topo da página Música | D-05 | médio | feito 2026-10-24 (Claude) |
+| 12 | Script que confere os dados | F-07 | médio | feito 2026-10-24 (Claude): `ferramentas/conferir-dados.mjs` |
+| 13 | Script que testa as rotas | F-08 | médio | feito 2026-10-24 (Claude): `ferramentas/testar-rotas.mjs` + GitHub Actions |
+| 14 | Botão Compartilhar | F-04 | médio | feito 2026-10-24 (Claude) |
+| 15 | Valores soltos viram tokens | D-09 | pequeno | feito 2026-10-24 (Claude) |
+| 16 | Rodapé com Sobre e compromisso | D-10 | pequeno | feito 2026-10-24 (Claude) |
+| 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | **pendente: próxima para o ChatGPT** |
+| 18 | Ícones SVG no lugar dos emojis | D-08 | médio | pendente (pedir ok do Franklin no estilo dos ícones antes) |
+| 19 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
+| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 
-Tarefas 1 a 4 podem ir num PR só ("correções pequenas da auditoria"). As outras, uma por PR.
+As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
+
+Atenção: os números das tarefas mudaram em 24/10/2026. A antiga T-17 (ícones) agora é a 18, a T-18 (busca) é a 19 e a T-19 (páginas geradas) é a 20. Os títulos das seções abaixo seguem a numeração nova.
 
 ---
 
 ## Tarefas
 
-### T-01 · Palavra em ordem de data (F-01)
+### T-01 · ~~Palavra em ordem de data~~ (F-01)
 
-- **Arquivos:** `js/dados/reflexoes.js`, `js/telas/palavra-lista.js`, `js/modules/templates-palavra.js`.
-- **Lógica:** copiar a ideia de `js/dados/novidades.js`. Renomear o array atual para uma constante interna (`const lista = [...]`) e exportar `reflexoes` já ordenado: data mais nova primeiro; no mesmo dia, a que está mais abaixo no arquivo vem antes. `buscarReflexao` continua igual. **Não mexer no conteúdo das pregações.**
-- **Pronto quando:** `#/palavra` mostra 15/10/2026 antes de 14/10/2026, e 17/12/2025 antes de 10/12/2025. Páginas de detalhe continuam abrindo.
+Cancelada em 24/10/2026: `js/dados/reflexoes.js` já ordena a lista pela data. Nada a fazer.
 
 ### T-02 · Pular para o topo sem rolagem animada (F-03)
 
@@ -116,14 +117,14 @@ Tarefas 1 a 4 podem ir num PR só ("correções pequenas da auditoria"). As outr
 ### T-07 · Ícone do tema nas novidades sem capa (D-03)
 
 - **Arquivos:** `js/modules/templates.js` (`cartaoNovidade`), `js/modules/templates-novidades.js` (`cartaoNovidadeLista`), `js/dados/novidades.js` (mapa de ícones), `css/componentes.css`.
-- **Lógica:** criar em `novidades.js` um `iconesTema = { tecnologia: '⚡', musica: '♪', palavra: '✝', site: '★' }` (ou SVG, se T-17 já tiver sido feita). Quando não houver `carrossel.capa`, renderizar `<span class="novidade-item__capa novidade-item__capa--icone" aria-hidden="true">ícone</span>` no mesmo tamanho da imagem, fundo `--cor-superficie-alta`, ícone centralizado.
+- **Lógica:** criar em `novidades.js` um `iconesTema = { tecnologia: '⚡', musica: '♪', palavra: '✝', site: '★' }` (ou SVG, se a T-18 já tiver sido feita). Quando não houver `carrossel.capa`, renderizar `<span class="novidade-item__capa novidade-item__capa--icone" aria-hidden="true">ícone</span>` no mesmo tamanho da imagem, fundo `--cor-superficie-alta`, ícone centralizado.
 - **Pronto quando:** na home e em `#/novidades`, todos os cartões têm o quadrinho à esquerda alinhado.
 
 ### T-08 · Cartões Tecnologia e Palavra da home (D-04)
 
 - **Arquivos:** `js/telas/inicio.js` (`frentes`), `css/componentes.css` (`.frente__simbolo`).
 - **Lógica (escolher a opção A; a B só com ok do Franklin):**
-  - A) Reduzir `.frente__simbolo` para a altura das capas do cartão Música e mostrar embaixo do título uma linha "Último: <título>" (Tecnologia: novidade mais nova com tema `tecnologia`; Palavra: primeira de `reflexoes`, já ordenada pela T-01), escapada.
+  - A) Reduzir `.frente__simbolo` para a altura das capas do cartão Música e mostrar embaixo do título uma linha "Último: <título>" (Tecnologia: novidade mais nova com tema `tecnologia`; Palavra: primeira de `reflexoes`, que já vem ordenada pela data), escapada.
   - B) Trocar o quadro por miniaturas reais.
 - **Pronto quando:** os três cartões têm a mesma altura em 1280 px e nenhum tem um quadro vazio.
 
@@ -220,22 +221,31 @@ process.exit(falhas ? 1 : 0);
 - **Lógica:** acrescentar um link interno `<a href="#/sobre">Sobre e compromisso</a>` antes das redes e trocar o texto para "Franklin Carvalho · @samfieldsoak · Manaus/AM. Sem patrocínio, sem coleta de dados." Não acrescentar e-mail, telefone ou endereço.
 - **Pronto quando:** o rodapé leva à página Sobre em todas as rotas.
 
-### T-17 · Ícones SVG no lugar dos emojis (D-08)
+### T-17 · Acentos dos títulos grandes e sobretítulo encostando na faixa (D-11)
+
+- **Arquivos:** `css/variaveis.css` (`--altura-linha-titulo`), `css/base.css` (`h1, h2, h3`), `css/componentes.css` (`.titulo-faixa`, `.sobretitulo`).
+- **O problema (visto em 24/10/2026):**
+  - Nos títulos em Oswald caixa alta, com `--altura-linha-titulo: 1.05`, o acento de uma linha (Ã, Õ, Á: "ANIMAÇÕES", "TRÁS") encosta na linha de cima quando o título quebra em várias linhas. Ver `#/novidades/prompt-motion` em 390 px.
+  - Nas listas (`#/novidades`, `#/palavra`, `#/ia-sem-labia`, `#/musica`), o sobretítulo ("O QUE ENTROU NO SITE") fica quase colado na faixa laranja do `h1` logo abaixo.
+- **Lógica:** subir `--altura-linha-titulo` aos poucos (1.1, depois 1.15) e conferir as telas; se o espaço ficar grande demais nos títulos de uma linha, usar `padding-top` pequeno só no `.titulo-faixa__marca`. Para o sobretítulo, aumentar a margem de baixo do `.sobretitulo` quando ele vem antes de `.titulo-faixa` (`.sobretitulo + .titulo-faixa { margin-top: var(--esp-2); }`). Só CSS e tokens; não mexer em texto nem em HTML.
+- **Pronto quando:** em 390 px e 1280 px, nenhum acento toca a linha de cima em `#/novidades/prompt-motion`, `#/novidades/claude-code-outubro-2026` e `#/ia-sem-labia/verdades-ia-instagram`, e o sobretítulo tem respiro visível acima da faixa. `node ferramentas/testar-rotas.mjs --capturas` passa; anexar no PR as capturas de antes e depois.
+
+### T-18 · Ícones SVG no lugar dos emojis (D-08)
 
 - **Antes de fazer:** mostrar ao Franklin 2 opções de estilo (traço fino / preenchido) com uma captura. Só seguir com o ok.
-- **Lógica:** ícones SVG próprios ou de um conjunto com licença livre (ex.: Lucide, ISC; **baixar** os SVG para `imagens/icones/`, não usar CDN). Usar `currentColor` para herdar a cor. Em `links.js`, trocar `icone: '⚡'` por `icone: 'raio'`, e o template `botaoBio` monta `<svg ...><use href="imagens/icones/sprite.svg#raio"/></svg>` com `aria-hidden="true"`.
+- **Lógica:** ícones SVG próprios ou de um conjunto com licença livre (ex.: Lucide, ISC; **baixar** os SVG para `imagens/icones/`, não usar CDN). Usar `currentColor` para herdar a cor. Em `links.js` (botões da bio) e em `iconesTema` de `js/dados/novidades.js` (miniaturas das novidades sem capa), trocar `icone: '⚡'` por `icone: 'raio'`, e o template `botaoBio` monta `<svg ...><use href="imagens/icones/sprite.svg#raio"/></svg>` com `aria-hidden="true"`.
 - **Pronto quando:** os ícones são iguais em Android, iPhone e Windows, e na mesma cor.
 
-### T-18 · Busca no site (F-05)
+### T-19 · Busca no site (F-05)
 
 - **Antes de fazer:** mostrar o plano ao Franklin (onde fica o campo, o que entra na busca).
 - **Lógica sugerida:** rota nova `#/busca` (view `html/busca.html`, tela `js/telas/busca.js`), um `<input type="search">` com `<label>`, filtrando em memória (sem servidor) títulos, resumos, referências e temas de `novidades`, `ferramentas`, `reflexoes` e `albuns`. Comparar sem acento e sem maiúscula (`normalize('NFD').replace(/\p{Diacritic}/gu, '')`). Resultado em lista com o rótulo da seção. Contagem em `role="status"`. Link "Buscar" no menu. Não guardar o que a pessoa digitou (nem em `localStorage`), e não enviar para o contador.
 - **Pronto quando:** buscar "salmo 73", "claude" e "graça" traz os resultados certos.
 
-### T-19 · Páginas de compartilhamento e sitemap gerados (F-06)
+### T-20 · Páginas de compartilhamento e sitemap gerados (F-06)
 
 - **Antes de fazer:** mostrar o plano ao Franklin. É a maior mudança da lista.
-- **Lógica sugerida:** `ferramentas/gerar-paginas.mjs` (Node, sem dependência) lê `js/dados/` e escreve `p/<secao>/<slug>/index.html` para cada item, cada uma com `<title>`, `meta description`, `og:title`, `og:description`, `og:image` (capa do item ou a imagem padrão de `imagens/compartilhar/`), `link rel="canonical"` e um redirecionamento para `/#/<secao>/<slug>` (meta refresh + link visível, como no `404.html`). O mesmo script reescreve o `sitemap.xml` com essas URLs. Rodar o script vira um passo do `docs/07-novidades.md`. Links do botão Compartilhar (T-14) passam a usar a URL `p/...`.
+- **Lógica sugerida:** `ferramentas/gerar-paginas.mjs` (Node, sem dependência) lê `js/dados/` e escreve `p/<secao>/<slug>/index.html` para cada item, cada uma com `<title>`, `meta description`, `og:title`, `og:description`, `og:image` (capa do item ou a imagem padrão de `imagens/compartilhar/`), `link rel="canonical"` e um redirecionamento para `/#/<secao>/<slug>` (meta refresh + link visível, como no `404.html`). O mesmo script reescreve o `sitemap.xml` com essas URLs. Rodar o script vira um passo do `docs/07-novidades.md`. O botão Compartilhar (`js/modules/compartilhar.js`, feito na T-14) passa a usar a URL `p/...` em vez de `location.href`.
 - **Pronto quando:** colar `https://samfieldsoak.com.br/p/novidades/prompt-motion/` no WhatsApp mostra o título e a imagem daquela novidade, e abrir o link cai na página certa do site.
 
 ---
@@ -244,4 +254,4 @@ process.exit(falhas ? 1 : 0);
 
 - Conferir a tabela "Ordem e situação" atualizada.
 - Acrescentar uma linha em `docs/registro-de-publicacoes.md` por PR aprovado (seção "Site").
-- Se surgir melhoria nova, acrescentar como T-20, T-21... com o mesmo formato (arquivos, lógica, pronto quando), e o código correspondente em `docs/08` (ou numa auditoria nova `docs/08-auditoria-AAAA-MM-DD.md`).
+- Se surgir melhoria nova, acrescentar como T-21, T-22... com o mesmo formato (arquivos, lógica, pronto quando), e o código correspondente em `docs/08` (ou numa auditoria nova `docs/08-auditoria-AAAA-MM-DD.md`).

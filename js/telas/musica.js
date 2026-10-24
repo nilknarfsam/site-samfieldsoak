@@ -19,6 +19,7 @@ export function iniciarMusica(app) {
   const notas = app.querySelector('[data-notas]');
   notas.innerHTML = comNotas.map(cartaoNota).join('');
   notas.closest('section').hidden = comNotas.length === 0;
+  app.querySelector('[data-indice-para="por-tras"]').hidden = comNotas.length === 0;
 
   app.querySelector('[data-jornada]').innerHTML = jornadaSalmos(salmosCobertos());
 

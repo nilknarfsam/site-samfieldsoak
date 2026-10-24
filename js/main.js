@@ -1,5 +1,6 @@
 import { iniciarRoteador } from './modules/roteador.js';
 import { registrarMenu } from './modules/menu.js';
+import { registrarCompartilhar } from './modules/compartilhar.js';
 import { iniciarInicio } from './telas/inicio.js';
 import { iniciarIaLista, registrarEventosIaLista } from './telas/ia-lista.js';
 import { iniciarIaDetalhe } from './telas/ia-detalhe.js';
@@ -21,7 +22,9 @@ const rotas = {
     detalhe: { view: 'html/ia-detalhe.html', iniciar: iniciarIaDetalhe },
   },
   musica: {
-    view: 'html/musica.html', titulo: 'Música', iniciar: iniciarMusica, ancoras: ['como-eu-faco', 'primeiras-versoes'],
+    view: 'html/musica.html', titulo: 'Música', iniciar: iniciarMusica,
+    // Seções da página (índice no topo). Nenhuma pode ter o mesmo nome de um slug de álbum.
+    ancoras: ['lancamento', 'por-tras', 'como-eu-faco', 'jornada', 'ouvir', 'discografia', 'singles', 'primeiras-versoes'],
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarMusicaDetalhe },
   },
   palavra: {
@@ -34,4 +37,5 @@ const rotas = {
 const app = document.getElementById('app');
 registrarMenu();
 registrarEventosIaLista(app);
+registrarCompartilhar(app);
 iniciarRoteador(rotas);

@@ -10,7 +10,7 @@ body {
   background-image:
     linear-gradient(var(--cor-grade) 1px, transparent 1px),
     linear-gradient(90deg, var(--cor-grade) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-size: var(--grade-fundo) var(--grade-fundo);
   color: var(--cor-texto);
   font-family: var(--fonte-texto);
   font-size: var(--texto-base);

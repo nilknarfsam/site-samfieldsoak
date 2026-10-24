@@ -26,8 +26,8 @@
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(18, 18, 18, 0.92);
-  backdrop-filter: blur(8px);
+  background: var(--cor-topo);
+  backdrop-filter: blur(var(--desfoque-topo));
   border-bottom: var(--borda);
 }
 .topo__barra {
@@ -35,7 +35,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--esp-3);
-  min-height: 64px;
+  min-height: var(--altura-topo);
 }
 .topo__marca {
   font-family: var(--fonte-mono);
@@ -66,7 +66,7 @@
 }
 .menu__lista {
   position: absolute;
-  inset: 64px 0 auto 0;
+  inset: var(--altura-topo) 0 auto 0;
   margin: 0;
   padding: var(--esp-3);
   list-style: none;

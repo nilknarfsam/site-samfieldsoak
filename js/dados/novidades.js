@@ -34,6 +34,9 @@ export const temasNovidade = {
   site: 'Site',
 };
 
+// Ícone que aparece no lugar da capa, quando a novidade não tem imagem.
+export const iconesTema = { tecnologia: '⚡', musica: '♪', palavra: '✝', site: '★' };
+
 const lista = [
   {
     slug: 'quatro-pregacoes-novas',
@@ -230,6 +233,12 @@ export const novidades = lista
   .sort((a, b) => (a.data === b.data ? b._ordem - a._ordem : b.data.localeCompare(a.data)));
 
 export const buscarNovidade = (slug) => novidades.find((n) => n.slug === slug);
+
+// Vizinhas na pilha: "anterior" é a mais antiga, "proxima" a mais nova.
+export function vizinhasNovidade(slug) {
+  const i = novidades.findIndex((n) => n.slug === slug);
+  return { anterior: novidades[i + 1] || null, proxima: i > 0 ? novidades[i - 1] : null };
+}
 
 // Para onde o cartão leva: a página que já existe (rota) ou a página própria da novidade.
 export const rotaNovidade = (n) => n.rota || `#/novidades/${encodeURIComponent(n.slug)}`;

@@ -18,6 +18,10 @@ export const rotuloCategoria = (c) => rotulosCategoria[c] || c;
 export const linkExterno = (url, rotulo, classe = '') =>
   `<a${classe ? ` class="${classe}"` : ''} href="${escapar(url)}" target="_blank" rel="noopener">${escapar(rotulo)}<span class="visualmente-oculto"> (abre em nova aba)</span></a>`;
 
+// Botão das páginas de detalhe; o clique é tratado em js/modules/compartilhar.js.
+export const botaoCompartilhar = () => `<p class="compartilhar"><button class="botao botao--contorno" type="button" data-acao="compartilhar">
+  <span aria-hidden="true">↗</span> <span data-rotulo aria-live="polite">Compartilhar</span></button></p>`;
+
 export function telaErro(titulo, mensagem) {
   return `<section class="container--texto">
     <h1>${escapar(titulo)}</h1>
@@ -45,9 +49,10 @@ export const botaoBio = (link) => {
   </a></li>`;
 };
 
-export const cartaoNovidade = (item, rota, rotuloSecao) => `
+// capa: HTML pronto da miniatura (imagem ou ícone), feito por quem chama.
+export const cartaoNovidade = (item, rota, rotuloSecao, capa = '') => `
   <a class="cartao cartao--novidade cartao--link" href="${escapar(rota)}">
-    ${item.carrossel?.capa ? `<img class="cartao__imagem" src="${escapar(item.carrossel.capa)}" alt="" width="88" height="110">` : ''}
+    ${capa}
     <span class="novidade__texto">
       <strong>${escapar(item.titulo || item.nome)}</strong>
       <span>${escapar(rotuloSecao)} · ${escapar(dataBR(item.analisadoEm || item.data))}</span>
@@ -91,6 +96,7 @@ export function detalheFerramenta(f, relacionadas) {
       <h1 class="titulo-faixa">${tituloComFaixa(f)}</h1>
       <p class="lead">${escapar(f.resumo)}</p>
       ${f.status === 'analisado' ? '<p class="nota">Analisado a partir de fontes públicas. Ainda não testado por mim.</p>' : ''}
+      ${botaoCompartilhar()}
     </header>`);
 
   if (f.aviso) partes.push(`<div class="aviso" role="note"><p><strong>${escapar(f.aviso)}</strong></p></div>`);

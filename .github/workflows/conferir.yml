@@ -1,0 +1,68 @@
+# Conferência automática de todo PR (docs/10-sistema-de-publicacao.md).
+# No app do GitHub aparece ✅ ou ❌ no PR. Com ❌, não aprovar.
+name: conferir
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conferir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Pista do PR (conteúdo ou produto)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE: ${{ github.base_ref }}
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          ARQUIVOS=$(git diff --name-only "origin/$BASE...HEAD")
+          PRODUTO=$(echo "$ARQUIVOS" | grep -vE '^(js/dados/|imagens/|docs/|caixa-de-entrada/|conteudo/|README\.md$|AGENTS\.md$|CLAUDE\.md$|LEIA-ME-PRIMEIRO\.md$)' || true)
+          {
+            echo "## Pista do PR"
+            if [ -z "$PRODUTO" ]; then
+              echo "**Conteúdo**: só dados, imagens e documentos."
+            else
+              echo "**Produto**: mexe no molde do site. Precisa de uma tarefa do docs/09 e da revisão do Claude."
+              echo; echo '```'; echo "$PRODUTO"; echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          # Branch de conteúdo não pode mexer no molde (regra de ouro do docs/10).
+          if [ -n "$PRODUTO" ] && echo "$BRANCH" | grep -qE '^(conteudo/|feat/novidades-)'; then
+            echo "::error::Branch de conteúdo ($BRANCH) mexeu em arquivo de produto. Separe num PR de produto."
+            echo "$PRODUTO"
+            exit 1
+          fi
+
+      - name: Conferir os dados
+        run: node ferramentas/conferir-dados.mjs
+
+      - name: Instalar o navegador de teste
+        run: |
+          npm install --no-save --no-package-lock playwright@1.49.1
+          npx playwright install --with-deps chromium
+
+      - name: Testar as páginas (390px e 1280px)
+        run: node ferramentas/testar-rotas.mjs --capturas
+
+      - name: Guardar as capturas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capturas
+          path: ferramentas/capturas/
+          retention-days: 7
+          if-no-files-found: ignore
