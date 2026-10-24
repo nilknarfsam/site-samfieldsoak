@@ -1,6 +1,7 @@
 ---
 tipo: novidade
-status: em-producao
+status: em-pr
+pr: https://github.com/nilknarfsam/site-samfieldsoak/pull/20
 data: 2026-10-24
 tema: tecnologia
 slug: prompt-motion
@@ -49,7 +50,7 @@ O site recomenda Opus 5.5 com esforço máximo para esse modelo. É uma recomend
 
 No teste registrado com o Claude, foi criada uma vinheta vertical de 15 segundos do Tratado de Romanos, usando HTML e renderização para MP4. A entrega foi sem som, para receber depois a trilha da minha música criada com IA.
 
-Esse registro descreve o teste anterior com o Claude. A revisão deste artigo não inclui um novo teste de geração no ChatGPT nem uma comparação de qualidade entre os dois.
+Ainda vou testar o mesmo pedido no ChatGPT e conto aqui o resultado.
 
 ## 💰 O que é gratuito e o que pode custar
 
@@ -91,4 +92,4 @@ Conferido em: 2026-10-24
 
 Conteúdo preparado em branch para PR. Aguardando aprovação e merge; ainda não publicado.
 
-Validação: importação do módulo, slug único, ordenação, template, links, fontes, data e escape de HTML conferidos. Validação visual em 390px/1280px e console no navegador pendentes: Chromium ausente e download falhou neste ambiente. Abrir PR em rascunho até essa conferência.
+Validação de dados e template feita pelo Codex. Validação visual feita pelo Claude em 24/10 (390 e 1280 px), conforme relatório na fila. Sem rolagem lateral ou erro de JavaScript; recurso externo do contador bloqueado na rede de teste. Aguarda aprovação e merge do Franklin.
