@@ -142,7 +142,7 @@ Decidir com número, não com achismo: se a Palavra é a mais visitada, a próxi
 |---|---|---|
 | 1 | Chat → fila no Drive → PR manual, teste no olho | era assim até 24/10/2026 |
 | 2 | Comandos fixos, pistas, moldes para todos os tipos, conferência automática no PR | **implantado em 24/10/2026** |
-| 3 | Página de compartilhamento por conteúdo (prévia certa no WhatsApp) e `sitemap.xml` gerados por script (T-19), busca (T-18) | próximo passo |
+| 3 | Página de compartilhamento por conteúdo (prévia certa no WhatsApp) e `sitemap.xml` gerados por script (T-20), busca (T-19) | próximo passo |
 | 4 | Opcional: fila também pelo GitHub Issues (formulários "Publicar" e "Corrigir" no app do GitHub), para quem não está no chat | só se a fila do Drive começar a apertar |
 
 ## Outros tipos: como publicar

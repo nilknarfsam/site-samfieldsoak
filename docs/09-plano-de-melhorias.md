@@ -16,7 +16,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 
 ## Antes de começar (obrigatório)
 
-1. Ler `AGENTS.md` e `CLAUDE.md` (regras do projeto), `docs/02-arquitetura.md` e `docs/03-design-system.md`.
+1. Ler `AGENTS.md` e `CLAUDE.md` (regras do projeto), `docs/02-arquitetura.md`, `docs/03-design-system.md` e `docs/10-sistema-de-publicacao.md`.
 2. Ler o item da auditoria (`docs/08`) correspondente à tarefa.
 3. Ler os arquivos citados na tarefa **antes** de editar. Copiar o estilo do código que já existe: nomes em português, funções curtas, comentários curtos em português explicando o porquê.
 
@@ -33,7 +33,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 
 ## Passo a passo de cada tarefa
 
-1. `git checkout main && git pull`; criar a branch `feat/<codigo>-<nome-curto>` (ex.: `feat/f01-ordem-palavra`).
+1. `git checkout main && git pull`; criar a branch `feat/<codigo>-<nome-curto>` (ex.: `feat/d11-acentos-titulos`).
 2. Fazer só o que a tarefa pede. Se achar outro problema no caminho, anotar no PR, não consertar junto.
 3. Testar:
    - `python -m http.server 8080` e abrir as rotas citadas em **390 px e 1280 px** (DevTools, modo celular).
