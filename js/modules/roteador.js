@@ -40,7 +40,7 @@ async function renderizar() {
   }
   document.title = NOME_SITE + ' | ' + titulo;
   contarVisita();
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });   // pula direto: o smooth do CSS é só para as âncoras
   animarTela(app);
   const secaoAncora = ancora && document.getElementById(ancora);
   const alvo = secaoAncora || app.querySelector('h1');

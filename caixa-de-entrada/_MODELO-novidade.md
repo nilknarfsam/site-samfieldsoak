@@ -1,11 +1,12 @@
 ---
 tipo: novidade
-status: pendente          # rascunho | pendente | publicado | descartado
+status: pendente          # rascunho | aguardando-ok | pendente | em-pr | publicado | descartado
 data: AAAA-MM-DD          # dia em que a novidade deve aparecer no site
 tema: tecnologia          # tecnologia | musica | palavra | site
 slug: titulo-curto-sem-acento
 origem: Claude | ChatGPT  # quem escreveu
-publicado:                # preenchido por quem publicar
+publicado:                # preenchido por quem publicar, depois do merge
+pr:                       # link do PR, quando abrir
 ---
 
 # Título da novidade

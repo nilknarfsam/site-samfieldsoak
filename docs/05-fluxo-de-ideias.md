@@ -37,6 +37,8 @@ Assim o celular escreve e o PC lê a mesma pasta, sem baixar nada.
 
 ## Status de uma ideia
 
+> Atualizado em 24/10/2026: a tabela que vale para todas as IAs está em `docs/10-sistema-de-publicacao.md` (`rascunho`, `aguardando-ok`, `pendente`, `em-pr`, `publicado`, `descartado`). O `em-producao` abaixo virou `em-pr`.
+
 | Status | Quem muda | Significa |
 |---|---|---|
 | `rascunho` | Claude (celular) | Ainda em debate; o Claude Code ignora. |

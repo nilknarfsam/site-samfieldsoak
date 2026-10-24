@@ -60,10 +60,25 @@
   --borda: 1px solid var(--cor-borda);
   --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
   --toque-minimo: 44px;
+  --borda-marca: 3px;          /* filete colorido à esquerda (notas, selos, citações) */
+  --borda-marca-forte: 4px;    /* filete dos destaques e avisos */
+  --altura-topo: 64px;         /* cabeçalho fixo (o menu do celular abre logo abaixo) */
+  --altura-botao-bio: 64px;
+  --retrato: 96px;
+  --altura-progresso: 4px;
+  --largura-card-galeria: 320px;
+  --cor-topo: rgba(18, 18, 18, 0.92);   /* cabeçalho translúcido sobre o conteúdo */
+  --desfoque-topo: 8px;
+  --desfoque-veu: 4px;
+  --grade-fundo: 48px;         /* quadriculado do fundo */
   --altura-player: 352px;   /* altura padrão do embed do Spotify */
   --altura-player-compacto: 152px; /* embed compacto (singles) */
   --altura-jornada: 2.5rem; /* barra 1–150 dos Salmos */
   --cor-veu: rgba(0, 0, 0, 0.55); /* degradê sobre capas e véus */
+  --cor-veu-forte: rgba(18, 18, 18, 0.85); /* atrás do texto do topo da home */
+  --altura-atalho: 3.25rem;    /* atalhos da bio: mesma altura em toda a grade */
+  --miniatura-novidade: 56px;     /* capa ou ícone dos cartões de novidade (4:5) */
+  --miniatura-novidade-md: 88px;  /* a partir de 768px */
   --opacidade-mosaico: 0.55;  /* capas ao fundo do topo da home */
 
   /* Layout */

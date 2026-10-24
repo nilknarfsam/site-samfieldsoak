@@ -1,6 +1,6 @@
 // HTML da seção Palavra (lista e página de cada pregação). Todo texto de dados passa por escapar().
 
-import { escapar, dataBR, linkExterno } from './templates.js';
+import { escapar, dataBR, linkExterno, botaoCompartilhar } from './templates.js';
 import { reflexoes, nomesVersao, creditoNVI } from '../dados/reflexoes.js';
 
 const tem = (lista) => Array.isArray(lista) && lista.length > 0;
@@ -59,6 +59,7 @@ export function detalheReflexao(r, album) {
       <p class="lead">${escapar(r.resumo)}</p>
       ${r.versiculo ? citacao(r.versiculo, versao, 'citacao--destaque') : ''}
       ${r.fraseTema ? `<p class="frase-tema">${escapar(r.fraseTema)}</p>` : ''}
+      ${botaoCompartilhar()}
     </header>`);
 
   if (tem(r.introducao)) partes.push(`<section class="bloco bloco--texto">${r.introducao.map(paragrafo).join('')}</section>`);
@@ -98,7 +99,9 @@ export function detalheReflexao(r, album) {
       </a></section>`);
   }
 
-  const outras = reflexoes.filter((x) => x.slug !== r.slug).slice(0, 3);
+  // Primeiro as do mesmo livro, depois as demais (as duas já em ordem de data).
+  const demais = reflexoes.filter((x) => x.slug !== r.slug);
+  const outras = [...demais.filter((x) => x.livro === r.livro), ...demais.filter((x) => x.livro !== r.livro)].slice(0, 3);
   if (tem(outras)) {
     partes.push(`<section class="bloco"><h2>Outras pregações</h2><ul class="grid lista-limpa">${outras.map(cartaoReflexao).join('')}</ul></section>`);
   }

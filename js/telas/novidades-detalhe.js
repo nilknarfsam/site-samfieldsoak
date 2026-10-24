@@ -1,4 +1,4 @@
-import { buscarNovidade } from '../dados/novidades.js';
+import { buscarNovidade, vizinhasNovidade } from '../dados/novidades.js';
 import { detalheNovidade } from '../modules/templates-novidades.js';
 import { naoEncontrado } from '../modules/templates.js';
 import { animarCartoes } from '../modules/movimento.js';
@@ -11,7 +11,7 @@ export function iniciarNovidadesDetalhe(app, slug) {
     alvo.innerHTML = naoEncontrado('as novidades', '#/novidades');
     return 'Conteúdo não encontrado';
   }
-  alvo.innerHTML = detalheNovidade(n);
+  alvo.innerHTML = detalheNovidade(n, vizinhasNovidade(n.slug));
   animarCartoes(alvo);
   return n.titulo;
 }
