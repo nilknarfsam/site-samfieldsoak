@@ -2,6 +2,7 @@
 
 | Data | Seção | Página / mudança | Rota | Situação |
 |---|---|---|---|---|
+| 2026-10-24 | Novidades / Tecnologia | Prompt Motion: animações com IA e os prompts por trás delas; conteúdo completo, fontes conferidas em 24/10 e custos esclarecidos | `#/novidades/prompt-motion` | Preparado para PR; aguardando aprovação e merge. Ainda não publicado. |
 | 2026-10-20 | IA sem lábia | Ligar a IA no seu Instagram: as verdades que ninguém conta (marcada como Novidade) | `#/ia-sem-labia/verdades-ia-instagram` | publicado em 21/10/2026. Sem capa: `capa_v02.png` ainda não veio na caixa de entrada. |
 | 2026-10-20 | IA sem lábia | O Instagram se conecta com o Claude? (com os 8 cards do carrossel) | `#/ia-sem-labia/instagram-claude-parceria` | publicado em 21/10/2026. |
 | 2026-10-20 | IA sem lábia | Ootto e instagram-skills (páginas relacionadas) | `#/ia-sem-labia/ootto`, `#/ia-sem-labia/instagram-skills` | publicado em 21/10/2026. |

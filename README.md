@@ -104,6 +104,8 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 
 ## Publicação
 
+- Em preparação para PR (24/10/2026): artigo completo sobre Prompt Motion em `#/novidades/prompt-motion`, com fontes conferidas e distinção entre acesso gratuito aos prompts e custos de produção. Aguarda aprovação e merge.
+
 - No ar desde 21/10/2026 pelo GitHub Pages (branch `main`, raiz): **https://samfieldsoak.com.br** (domínio no Registro.br, arquivo `CNAME` na raiz).
 - DNS no Registro.br (zona DNS, modo avançado): registros A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` e CNAME `www` → `nilknarfsam.github.io`. **Não** mexer em "Alterar servidores DNS".
 - Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
