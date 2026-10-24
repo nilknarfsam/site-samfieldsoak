@@ -35,6 +35,9 @@ Detalhes do fluxo: `docs/05-fluxo-de-ideias.md`. Padrão dos posts: `docs/06-pad
 | `docs/04-roteiro-de-tarefas.md` | Fases e o primeiro pedido para o Claude Code. |
 | `docs/05-fluxo-de-ideias.md` | Como as ideias saem do celular e chegam ao site. |
 | `docs/06-padrao-dos-posts.md` | Padrão do carrossel e da legenda. |
+| `docs/07-novidades.md` | Como publicar uma novidade (Claude e ChatGPT). |
+| `docs/08-auditoria-2026-10-24.md` | Auditoria do site: o que está bom e o que melhorar em design e funções. |
+| `docs/09-plano-de-melhorias.md` | Roteiro de tarefas para o ChatGPT/Codex (ou o Claude) executar as melhorias. |
 | `caixa-de-entrada/` | Ideias prontas para virar conteúdo (uma por arquivo). |
 | `conteudo/` | Material de partida: ferramentas já analisadas e lista de álbuns. |
 

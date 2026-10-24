@@ -109,6 +109,7 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 - Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
 - Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
 - Novidades (Claude e ChatGPT): passo a passo em `docs/07-novidades.md`; regras para qualquer agente em `AGENTS.md`.
+- Melhorias de design e funções: auditoria de 24/10/2026 em `docs/08-auditoria-2026-10-24.md` e o roteiro de tarefas (T-01 a T-19) em `docs/09-plano-de-melhorias.md`.
 
 ## O que falta
 
