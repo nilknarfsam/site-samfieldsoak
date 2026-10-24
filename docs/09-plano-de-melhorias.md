@@ -2,6 +2,18 @@
 
 Criado pelo Claude Code em 24/10/2026, a partir da auditoria `docs/08-auditoria-2026-10-24.md`. Este arquivo é o **roteiro de trabalho**: qualquer IA (ChatGPT/Codex, Claude) pega a próxima tarefa pendente, faz, testa e abre PR. Os códigos (F-01, D-02...) são os mesmos da auditoria.
 
+Há uma cópia na pasta `docs` do projeto no Google Drive. Se as duas forem diferentes, vale esta (do repositório); é aqui que a tabela "Ordem e situação" é atualizada.
+
+## Pedido para colar no ChatGPT (Codex)
+
+```
+No repositório nilknarfsam/site-samfieldsoak, leia AGENTS.md, CLAUDE.md,
+docs/08-auditoria-2026-10-24.md e docs/09-plano-de-melhorias.md.
+Pegue a próxima tarefa "pendente" da tabela "Ordem e situação" do docs/09,
+siga o passo a passo dela, teste em 390px e 1280px e abra um PR.
+Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
+```
+
 ## Antes de começar (obrigatório)
 
 1. Ler `AGENTS.md` e `CLAUDE.md` (regras do projeto), `docs/02-arquitetura.md` e `docs/03-design-system.md`.
