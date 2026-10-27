@@ -1,6 +1,6 @@
 // HTML das Novidades (lista, cartão da home e página de cada novidade). Todo texto de dados passa por escapar().
 
-import { escapar, dataBR, linkExterno, botaoCompartilhar } from './templates.js';
+import { escapar, dataBR, linkExterno, botaoCompartilhar, icone } from './templates.js';
 import { temasNovidade, iconesTema, rotaNovidade } from '../dados/novidades.js';
 
 const tem = (lista) => Array.isArray(lista) && lista.length > 0;
@@ -9,7 +9,7 @@ export const rotuloTema = (t) => temasNovidade[t] || t;
 // Capa da novidade, ou o ícone do tema no mesmo tamanho (os cartões ficam alinhados).
 export const capaNovidade = (n, classe, largura, altura) => (n.carrossel?.capa
   ? `<img class="${classe}" src="${escapar(n.carrossel.capa)}" alt="" width="${largura}" height="${altura}" loading="lazy">`
-  : `<span class="${classe} capa-icone capa-icone--${escapar(n.tema)}" aria-hidden="true">${escapar(iconesTema[n.tema] || '★')}</span>`);
+  : `<span class="${classe} capa-icone capa-icone--${escapar(n.tema)}" aria-hidden="true">${icone(iconesTema[n.tema] || 'brilho')}</span>`);
 
 // Imagem no meio do texto: { imagem, alt, legenda }. Só caminhos do próprio site.
 const figura = (f) => (/^imagens\//.test(f.imagem || '') ? `

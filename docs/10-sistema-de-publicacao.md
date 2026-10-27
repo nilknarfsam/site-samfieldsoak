@@ -147,6 +147,8 @@ Decidir com número, não com achismo: se a Palavra é a mais visitada, a próxi
 
 ## Outros tipos: como publicar
 
+> A versão completa, com receita passo a passo e modelo pronto para cada tipo, está em **`docs/12-metodo-de-publicacao-com-ia.md`**. O resumo abaixo continua valendo.
+
 Mesmo esqueleto do `docs/07` (fila → branch → entrada nos dados → conferir → PR → registro). O que muda:
 
 - **Pregação:** entrada nova no **fim** de `js/dados/reflexoes.js` (o site ordena pela data). A data e a ocasião ficam nos dados, mas **não aparecem no site** (decisão do Franklin, 27/10/2026): o site mostra "Estudo bíblico · N min de leitura". Texto do Franklin sem mudar o sentido; só formatar. Citação bíblica sempre com referência e versão; trechos curtos da NVI. Campos explicados no topo do arquivo. Se ligar a uma música, preencher `musica: { album, numero, faixa, texto }`.

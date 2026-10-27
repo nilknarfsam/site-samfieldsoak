@@ -7,12 +7,12 @@ export function marcarMenuAtivo(nome) {
   });
 }
 
-// Abre ou fecha o painel e troca o rótulo do botão ("☰ Menu" ↔ "✕ Fechar").
+// Abre ou fecha o painel e troca o ícone e o rótulo do botão ("Menu" ↔ "Fechar").
 function definirAberto(menu, aberto) {
   const botao = menu.querySelector('.menu__botao');
   menu.classList.toggle('menu--aberto', aberto);
   botao.setAttribute('aria-expanded', String(aberto));
-  botao.querySelector('[data-menu-icone]').textContent = aberto ? '✕' : '☰';
+  botao.querySelector('[data-menu-icone]').setAttribute('href', `imagens/icones/sprite.svg#${aberto ? 'fechar' : 'menu'}`);
   botao.querySelector('[data-menu-rotulo]').textContent = aberto ? 'Fechar' : 'Menu';
 }
 

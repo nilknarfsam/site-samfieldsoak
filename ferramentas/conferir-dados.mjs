@@ -3,13 +3,13 @@
 // Sem dependências. Sai com código 1 se encontrar erro (o GitHub Actions marca o PR com ❌).
 
 import { existsSync, readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
-import { novidades, temasNovidade } from '../js/dados/novidades.js';
+import { novidades, temasNovidade, iconesTema } from '../js/dados/novidades.js';
 import { ferramentas } from '../js/dados/ferramentas.js';
 import { reflexoes } from '../js/dados/reflexoes.js';
-import { albuns, singles, primeirasVersoes } from '../js/dados/albuns.js';
+import { albuns, singles, primeirasVersoes, series } from '../js/dados/albuns.js';
 import { linksBio } from '../js/dados/links.js';
 import { perfil } from '../js/dados/perfil.js';
 
@@ -115,6 +115,11 @@ const destaques = albuns.filter((a) => a.destaque);
 if (destaques.length !== 1) erro('albuns', `precisa de exatamente 1 álbum com destaque: true (tem ${destaques.length})`);
 [...albuns, ...singles].forEach((a) => {
   const onde = `musica ${a.slug}`;
+  if (!a.titulo) erro(onde, 'sem titulo');
+  if (a.faixasLista?.length && a.faixas && a.faixas !== a.faixasLista.length) erro(onde, `faixas diz ${a.faixas}, mas faixasLista tem ${a.faixasLista.length}`);
+  (a.faixasLista || []).forEach((f, i) => { if (!f.titulo) erro(`${onde}.faixasLista[${i}]`, 'faixa sem titulo'); });
+  if (a.serie && !series[a.serie]) erro(onde, `serie desconhecida: ${a.serie} (cadastre em series, no topo de albuns.js)`);
+  (a.links || []).forEach((l, i) => { if (!/^https:\/\//.test(l.url || '') || !l.rotulo) erro(`${onde}.links[${i}]`, 'link precisa de rotulo e url https://'); });
   if (a.lancamento && !dataValida(a.lancamento, { mesBasta: true })) erro(onde, `lancamento inválido: ${a.lancamento}`);
   if (a.spotifyId && !ID_SPOTIFY.test(a.spotifyId)) erro(onde, `spotifyId precisa ter 22 caracteres: ${a.spotifyId}`);
   if (a.letras && !existsSync(join(RAIZ, `js/dados/letras/${a.letras}.js`))) erro(onde, `arquivo de letras não existe: ${a.letras}`);
@@ -122,6 +127,25 @@ if (destaques.length !== 1) erro('albuns', `precisa de exatamente 1 álbum com d
   conferirTextos(a, onde);
 });
 primeirasVersoes.albuns.forEach((a) => { conferirCapa(a.capa, `primeirasVersoes ${a.slug}`, [480]); conferirTextos(a, `primeirasVersoes ${a.slug}`); });
+
+// Letras: cada álbum com o campo letras precisa de uma letra por faixa, na mesma ordem.
+for (const a of albuns.filter((x) => x.letras && /^[a-z0-9-]+$/.test(x.letras))) {
+  const caminho = join(RAIZ, `js/dados/letras/${a.letras}.js`);
+  if (!existsSync(caminho)) continue;   // já acusado acima
+  const { letras } = await import(pathToFileURL(caminho).href);
+  const doAlbum = letras?.[a.slug];
+  if (!Array.isArray(doAlbum)) { erro(`letras ${a.letras}`, `não tem a chave "${a.slug}" (o slug do álbum)`); continue; }
+  if (a.faixasLista?.length && doAlbum.length > a.faixasLista.length) erro(`letras ${a.slug}`, `${doAlbum.length} letras para ${a.faixasLista.length} faixas`);
+  doAlbum.forEach((linhas, i) => { if (!Array.isArray(linhas) || linhas.some((l) => typeof l !== 'string')) erro(`letras ${a.slug}[${i}]`, 'cada letra é uma lista de linhas de texto'); });
+  conferirTextos(doAlbum, `letras ${a.slug}`);
+}
+
+// Ícones: todo nome usado precisa existir no sprite (imagens/icones/sprite.svg).
+const sprite = readFileSync(join(RAIZ, 'imagens/icones/sprite.svg'), 'utf8');
+const icones = new Set([...sprite.matchAll(/<symbol id="([a-z0-9-]+)"/g)].map((m) => m[1]));
+linksBio.forEach((l, i) => { if (!icones.has(l.icone)) erro(`linksBio[${i}]`, `ícone não existe no sprite: ${l.icone}`); });
+Object.entries(iconesTema).forEach(([tema, nome]) => { if (!icones.has(nome)) erro(`iconesTema.${tema}`, `ícone não existe no sprite: ${nome}`); });
+Object.keys(temasNovidade).forEach((t) => { if (!iconesTema[t]) erro('iconesTema', `tema sem ícone: ${t}`); });
 
 // Âncoras da página Música não podem ter o nome de um álbum (o roteador abriria a seção no lugar do álbum).
 const main = readFileSync(join(RAIZ, 'js/main.js'), 'utf8');

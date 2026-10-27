@@ -287,8 +287,19 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .mov-tela .progresso__barra span { animation: encher var(--duracao-media) var(--curva-saida) both; }
 
+/* Transição entre páginas (View Transitions, docs/11 V-12): o conteúdo sai e entra com fade e um
+   deslocamento curto; o cabeçalho tem nome próprio e fica parado. O fade do .mov-tela sai de cena
+   para não somar dois fades. */
+.topo { view-transition-name: topo; }
+.vt-ativa .mov-tela { animation-name: none; }
+@keyframes sair-tela { to { opacity: 0; } }
+@keyframes entrar-tela-sobe { from { opacity: 0; transform: translateY(var(--deslocamento-entrada)); } }
+::view-transition-old(root) { animation: sair-tela var(--duracao-toque) ease-in both; }
+::view-transition-new(root) { animation: entrar-tela-sobe var(--duracao-media) var(--curva-saida) both; }
+
 @media (prefers-reduced-motion: reduce) {
   .menu__lista { transform: none; }
+  ::view-transition-new(root) { animation-name: entrar-tela; }   /* só opacidade */
   /* Menos movimento: mantém só a troca de opacidade, sem deslocar nada */
   .mov-cartao { animation-name: entrar-tela; animation-delay: 0ms; }
   .mov-tela .progresso__barra span { animation: none; }
@@ -666,3 +677,9 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .sobre__frente { gap: var(--esp-2); text-decoration: none; color: var(--cor-texto); }
 .sobre__frente strong { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); }
 .sobre__frente .nota-criacao__mais { margin-top: auto; }
+
+/* Ícones (docs/11, V-13): sprite do Lucide em imagens/icones/sprite.svg, traço na cor do texto */
+.icone { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.18em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.botao-bio__icone .icone, .capa-icone .icone { width: 1em; height: 1em; }
+.player__icone .icone { width: 45%; height: 45%; fill: currentColor; stroke-width: 1.5; margin-left: 8%; }   /* play cheio, levemente à direita (centro ótico) */
+.single__icone .icone { width: 1em; height: 1em; }

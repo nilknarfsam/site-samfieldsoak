@@ -1,3 +1,5 @@
+import { icone } from './templates.js';
+
 // Player do Spotify com carregamento no toque ("fachada").
 // Nada é pedido ao Spotify até a pessoa tocar em "Ouvir aqui": o site continua
 // leve e sem cookies de terceiros enquanto ninguém quer ouvir (regra "sem coleta de dados").
@@ -10,12 +12,12 @@ export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'O
   if (!TIPOS.includes(tipo) || !ID_VALIDO.test(id)) { container.hidden = true; return; }
   container.innerHTML = compacto
     ? `<button class="player__fachada player__fachada--compacta" type="button" data-acao="carregar-player">
-      <span class="player__icone" aria-hidden="true">▶</span>
+      <span class="player__icone" aria-hidden="true">${icone('play')}</span>
       <span class="player__texto"><strong>${rotulo}</strong></span>
     </button>`
     : `
     <button class="player__fachada" type="button" data-acao="carregar-player">
-      <span class="player__icone" aria-hidden="true">▶</span>
+      <span class="player__icone" aria-hidden="true">${icone('play')}</span>
       <span class="player__texto">
         <strong>${rotulo}</strong>
         <small>Player do Spotify</small>

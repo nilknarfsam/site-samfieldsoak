@@ -1,6 +1,6 @@
 // HTML da seção Música (landing e página de cada álbum). Todo texto de dados passa por escapar().
 
-import { escapar, dataBR, linkExterno, botaoCompartilhar } from './templates.js';
+import { escapar, dataBR, linkExterno, botaoCompartilhar, icone } from './templates.js';
 
 const tem = (lista) => Array.isArray(lista) && lista.length > 0;
 const rotaAlbum = (a) => `#/musica/${encodeURIComponent(a.slug)}`;
@@ -138,7 +138,7 @@ export const cartaoSingle = (s) => `
     <div class="single__topo">
       ${s.capa
         ? `<span class="single__capa" data-protegida><img src="${escapar(s.capa)}-480.webp" alt="" width="64" height="64" loading="lazy" draggable="false"></span>`
-        : '<span class="single__icone" aria-hidden="true">♪</span>'}
+        : `<span class="single__icone" aria-hidden="true">${icone('musica')}</span>`}
       <span class="single__texto"><strong>${escapar(s.titulo)}</strong><small>${escapar([s.base, ano(s.lancamento)].filter(Boolean).join(' · '))}</small></span>
     </div>
     ${s.spotifyId ? `<div class="player" data-player-single="${escapar(s.spotifyId)}" data-titulo="${escapar(s.titulo)}"></div>` : ''}
