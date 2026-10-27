@@ -71,7 +71,9 @@ Regra para os próximos textos: **não escrever o que a tela já mostra** (ordem
 - **V-08 Cabeçalho.** Item ativo do menu com um traço embaixo, além da cor. No celular, o menu abre como painel com transição curta (só `opacity`/`transform`, respeitando "reduzir movimento"). A marca `@samfieldsoak` continua; o logo entra quando o Franklin mandar.
 - **V-09 Rodapé profissional.** Três blocos: marca e frase ("Fé, música e tecnologia"), navegação do site e redes; embaixo, uma linha com "© 2026 Franklin Carvalho · Sem patrocínio, sem coleta de dados pessoais". O ano sai do relógio do navegador (`new Date().getFullYear()`).
 
-### Fase 4 · Home e Sobre (resolve H, J)
+### Fase 4 · Home e Sobre (resolve H, J) · **feita em 27/10/2026 (Claude)**
+
+Resultado: no celular, o topo da home ficou cerca de 30% mais baixo (foto de 5,5 rem, papéis numa linha que rola para o lado com a borda esmaecida, números em três colunas, legenda de 12 px) e o player do lançamento usa a fachada compacta; Sobre com foto e texto lado a lado (no celular, a foto pequena ao lado do nome), compromisso em 5 cartões numerados e "Por onde começar" com as três frentes (frases curtas novas nesses três cartões; o resto do texto não mudou). Conferido: 34 rotas em 390 e 1280 px, mais início e Sobre em 768 px.
 
 - **V-10 Topo da home mais enxuto no celular.** Papéis numa linha que rola para o lado (como o índice da Música), números mais compactos; o player "Ouvir agora" na versão compacta (a fachada compacta que os singles já usam).
 - **V-11 Sobre com cara de página.** No computador, duas colunas: foto (a mesma `imagens/perfil/franklin`) e o texto; o compromisso em cartões pequenos com ícone, em vez de lista; links para as três frentes. **O texto continua o do Franklin**; se precisar de texto novo, ele escreve ou aprova antes.
