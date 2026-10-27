@@ -809,4 +809,8 @@ export const buscarReflexao = (slug) => reflexoes.find((r) => r.slug === slug);
 
 export const nomesVersao = { NVI: 'Nova Versão Internacional (NVI)' };
 
+// Rótulo que aparece nos cartões e no topo de cada pregação, no lugar da ocasião e da data
+// (pedido do Franklin em 27/10/2026: a data não aparece; ela continua aqui só para ordenar a lista).
+export const rotuloPalavra = 'Estudo bíblico';
+
 export const creditoNVI = 'Texto bíblico da Nova Versão Internacional (NVI), © 1993, 2000, 2011 Biblica, Inc. Usado com permissão.';

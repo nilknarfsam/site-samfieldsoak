@@ -1,7 +1,7 @@
 // HTML da seção Palavra (lista e página de cada pregação). Todo texto de dados passa por escapar().
 
-import { escapar, dataBR, linkExterno, botaoCompartilhar } from './templates.js';
-import { reflexoes, nomesVersao, creditoNVI } from '../dados/reflexoes.js';
+import { escapar, linkExterno, botaoCompartilhar } from './templates.js';
+import { reflexoes, nomesVersao, creditoNVI, rotuloPalavra } from '../dados/reflexoes.js';
 
 const tem = (lista) => Array.isArray(lista) && lista.length > 0;
 const rotaReflexao = (r) => `#/palavra/${encodeURIComponent(r.slug)}`;
@@ -12,6 +12,18 @@ function tituloComFaixa(r) {
   const i = r.titulo.indexOf(r.faixa);
   return `${escapar(r.titulo.slice(0, i))}<span class="titulo-faixa__marca">${escapar(r.faixa)}</span>${escapar(r.titulo.slice(i + r.faixa.length))}`;
 }
+
+// Minutos de leitura (200 palavras por minuto), somando todo o texto da pregação.
+function minutosLeitura(r) {
+  const textos = [
+    r.versiculo?.texto, r.fraseTema, r.apelo, ...(r.introducao || []), ...(r.oracao || []),
+    ...(r.secoes || []).flatMap((s) => [s.titulo, s.citacao?.texto, ...(s.paragrafos || []), ...(s.nota?.paragrafos || [])]),
+    ...(r.notas || []).flatMap((n) => n.paragrafos || []),
+  ];
+  const palavras = textos.filter(Boolean).join(' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(palavras / 200));
+}
+const rotuloLeitura = (r) => `${escapar(rotuloPalavra)} <span class="sem-quebra">· ${minutosLeitura(r)} min de leitura</span>`;
 
 // Parágrafo comum ou subtítulo (texto que começa com "## ").
 const paragrafo = (t) => (t.startsWith('## ') ? `<h3>${escapar(t.slice(3))}</h3>` : `<p>${escapar(t)}</p>`);
@@ -38,7 +50,7 @@ export const cartaoReflexao = (r) => `
       <p class="cartao__meta">${escapar(r.referencia)} · ${escapar(r.versao)}</p>
       <h2 class="cartao__titulo"><a class="cartao__link" href="${rotaReflexao(r)}">${escapar(r.titulo)}</a></h2>
       <p class="cartao__resumo">${escapar(r.resumo)}</p>
-      <p class="cartao__rodape"><span>${escapar(r.ocasiao)} <span class="sem-quebra">· <time datetime="${escapar(r.data)}">${escapar(dataBR(r.data))}</time></span></span><span class="cartao__acao" aria-hidden="true">Ler a pregação →</span></p>
+      <p class="cartao__rodape"><span>${rotuloLeitura(r)}</span><span class="cartao__acao" aria-hidden="true">Ler a pregação →</span></p>
     </article>
   </li>`;
 
@@ -53,7 +65,7 @@ export function detalheReflexao(r, album) {
     <header class="mb-5">
       <div class="selos">
         <span class="selo selo--palavra">${escapar(r.referencia)}</span>
-        <span class="selos__texto">${escapar(r.ocasiao)} · <time datetime="${escapar(r.data)}">${escapar(dataBR(r.data))}</time></span>
+        <span class="selos__texto">${rotuloLeitura(r)}</span>
       </div>
       <h1 class="titulo-faixa">${tituloComFaixa(r)}</h1>
       <p class="lead">${escapar(r.resumo)}</p>
@@ -119,7 +131,6 @@ export function blocoPalavraDoAlbum(slugAlbum) {
   if (!tem(ligadas)) return '';
   return `<section class="bloco palavra-do-album">
     <h2>Da Palavra</h2>
-    <p class="texto-suave">Pregações ligadas a estas músicas.</p>
     <ul class="grid lista-limpa">${ligadas.map((r) => `
       <li class="col-md-6" data-animar><a class="cartao cartao--link nota-criacao" href="${rotaReflexao(r)}">
         <span class="album__base">${r.musica.numero ? `Faixa ${escapar(r.musica.numero)}, “${escapar(r.musica.faixa)}” · ` : ''}${escapar(r.referencia)}</span>

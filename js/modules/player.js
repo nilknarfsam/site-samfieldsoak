@@ -18,7 +18,7 @@ export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'O
       <span class="player__icone" aria-hidden="true">▶</span>
       <span class="player__texto">
         <strong>${rotulo}</strong>
-        <small>Player do Spotify. Carrega só quando você tocar.</small>
+        <small>Player do Spotify</small>
       </span>
     </button>`;
   container.querySelector('button').addEventListener('click', () => {

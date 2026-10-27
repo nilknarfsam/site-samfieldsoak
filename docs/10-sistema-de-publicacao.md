@@ -149,7 +149,7 @@ Decidir com número, não com achismo: se a Palavra é a mais visitada, a próxi
 
 Mesmo esqueleto do `docs/07` (fila → branch → entrada nos dados → conferir → PR → registro). O que muda:
 
-- **Pregação:** entrada nova no **fim** de `js/dados/reflexoes.js` (o site ordena pela data). Texto do Franklin sem mudar o sentido; só formatar. Citação bíblica sempre com referência e versão; trechos curtos da NVI. Campos explicados no topo do arquivo. Se ligar a uma música, preencher `musica: { album, numero, faixa, texto }`.
+- **Pregação:** entrada nova no **fim** de `js/dados/reflexoes.js` (o site ordena pela data). A data e a ocasião ficam nos dados, mas **não aparecem no site** (decisão do Franklin, 27/10/2026): o site mostra "Estudo bíblico · N min de leitura". Texto do Franklin sem mudar o sentido; só formatar. Citação bíblica sempre com referência e versão; trechos curtos da NVI. Campos explicados no topo do arquivo. Se ligar a uma música, preencher `musica: { album, numero, faixa, texto }`.
 - **Lançamento:** entrada em `js/dados/albuns.js` (álbum em `albuns`, single em `singles`). Só link oficial; `spotifyId` com 22 caracteres; capa em `imagens/albuns/<slug>-480.webp` e `-960.webp` (só a versão de tela). Se for o mais novo, passar `destaque: true` para ele e tirar do anterior. Texto de como foi feito em primeira pessoa e "criada com IA".
 - **IA sem lábia:** entrada em `js/dados/ferramentas.js`. Status `analisado` se não foi testado. Preços com `conferidoEm` e fonte oficial. Não citar o perfil que motivou a análise.
 

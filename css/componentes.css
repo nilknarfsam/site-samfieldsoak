@@ -19,6 +19,10 @@
   letter-spacing: 0.08em;
   margin-bottom: var(--esp-2);
 }
+/* O codinome escrito no meio do texto, com o "oak" em laranja como no cabeçalho */
+.marca-texto { font-family: var(--fonte-mono); font-weight: 700; white-space: nowrap; }
+.marca-texto span { color: var(--cor-destaque); }
+
 /* Respiro entre o sobretítulo e a faixa do título (docs/11, V-03) */
 .sobretitulo + .titulo-faixa { margin-top: var(--esp-3); }
 /* Título longo das páginas de detalhe: um degrau abaixo do título das listas (V-02) */
@@ -284,6 +288,7 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .mov-tela .progresso__barra span { animation: encher var(--duracao-media) var(--curva-saida) both; }
 
 @media (prefers-reduced-motion: reduce) {
+  .menu__lista { transform: none; }
   /* Menos movimento: mantém só a troca de opacidade, sem deslocar nada */
   .mov-cartao { animation-name: entrar-tela; animation-delay: 0ms; }
   .mov-tela .progresso__barra span { animation: none; }

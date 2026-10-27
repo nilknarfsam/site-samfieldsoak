@@ -7,20 +7,25 @@ export function marcarMenuAtivo(nome) {
   });
 }
 
+// Abre ou fecha o painel e troca o rótulo do botão ("☰ Menu" ↔ "✕ Fechar").
+function definirAberto(menu, aberto) {
+  const botao = menu.querySelector('.menu__botao');
+  menu.classList.toggle('menu--aberto', aberto);
+  botao.setAttribute('aria-expanded', String(aberto));
+  botao.querySelector('[data-menu-icone]').textContent = aberto ? '✕' : '☰';
+  botao.querySelector('[data-menu-rotulo]').textContent = aberto ? 'Fechar' : 'Menu';
+}
+
 export function fecharMenu() {
   const menu = document.querySelector(seletorMenu);
-  if (!menu) return;
-  menu.classList.remove('menu--aberto');
-  menu.querySelector('.menu__botao').setAttribute('aria-expanded', 'false');
+  if (menu) definirAberto(menu, false);
 }
 
 export function registrarMenu() {
   document.addEventListener('click', (e) => {
     const botao = e.target.closest('.menu__botao');
     if (botao) {
-      const aberto = botao.getAttribute('aria-expanded') === 'true';
-      botao.setAttribute('aria-expanded', String(!aberto));
-      botao.closest(seletorMenu).classList.toggle('menu--aberto', !aberto);
+      definirAberto(botao.closest(seletorMenu), botao.getAttribute('aria-expanded') !== 'true');
       return;
     }
     if (!e.target.closest(seletorMenu)) fecharMenu();

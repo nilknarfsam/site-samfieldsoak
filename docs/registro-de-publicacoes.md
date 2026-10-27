@@ -2,6 +2,7 @@
 
 | Data | Seção | Página / mudança | Rota | Situação |
 |---|---|---|---|---|
+| 2026-10-27 | Site inteiro | Plano visual, fase 3 (traço no menu ativo, menu do celular em painel, rodapé em três blocos) e textos: nome `@samfields`+`oak`, codinome explicado no Sobre, frases óbvias removidas, Palavra sem data ("Estudo bíblico · N min de leitura") | todas | PR [#23](https://github.com/nilknarfsam/site-samfieldsoak/pull/23), junto com as fases 1 e 2; 34 rotas conferidas pelo Claude. Aguarda o ok do Franklin. |
 | 2026-10-27 | Site inteiro | Plano visual, fase 2: cartões inteiros clicáveis com a ação na cor da seção, Palavra toda em dourado, rodapé dos cartões preso embaixo, selos do mesmo tamanho | listas e detalhes | PR [#23](https://github.com/nilknarfsam/site-samfieldsoak/pull/23), junto com a fase 1; 34 rotas conferidas pelo Claude. Aguarda o ok do Franklin. |
 | 2026-10-27 | Site inteiro | Plano visual (`docs/11`) e fase 1: tipografia fluida, títulos sem acento encostando, linhas equilibradas, respiro do sobretítulo | todas | branch `claude/quirky-knuth-kaql6c`; 34 rotas em 390 e 1280 px e 8 telas em 768 px conferidas pelo Claude. Aguarda PR e ok do Franklin. |
 | 2026-10-26 | Palavra / Novidades | Estudo completo sobre o bálsamo de Gileade (Jeremias 8), com contexto, aplicações e bibliografia; chamada em Novidades | `#/palavra/balsamo-de-gileade`, `#/novidades` | PR #22; dados e 34 rotas conferidos pelo GitHub Actions em 390 e 1280 px; capturas da página, listas e home revisadas pelo Codex. Aguarda revisão e merge do Franklin. Ainda não publicado. |

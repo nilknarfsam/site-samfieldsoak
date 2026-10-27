@@ -57,7 +57,16 @@ Resultado: cartões da Palavra e da IA sem lábia com o título como link que co
 - **V-06 Estrutura fixa do cartão.** Ordem sempre igual: meta (mono, pequena) → título → resumo → rodapé (data e ação, presos embaixo com `margin-top: auto`). Corrige o `flex: 1` (só o resumo estica). Hover: borda na cor da seção e superfície um tom acima (`--cor-superficie-alta`), sem sombra.
 - **V-07 Selos de um tamanho só.** Mesma altura, mesmo peso, sempre na mesma linha (quebra só se não couber); a data vira texto mono ao lado, não um selo.
 
-### Fase 3 · Moldura do site: cabeçalho e rodapé (resolve I)
+### Fase 3 · Moldura do site: cabeçalho e rodapé (resolve I) · **feita em 27/10/2026 (Claude)**
+
+Resultado: item ativo do menu com um traço embaixo; no celular o menu abre como painel com opacidade e deslocamento curto (sem deslocamento com "reduzir movimento"), e o botão troca para "✕ Fechar"; rodapé em três blocos (marca, Site, Redes; no celular, Site e Redes lado a lado) com a linha "© ano Franklin Carvalho · Sem patrocínio, sem coleta de dados pessoais" (o ano vem do relógio).
+
+Ajustes de texto pedidos pelo Franklin no mesmo dia:
+- **Nome:** o codinome aparece como `@samfields` + `oak` em laranja (antes o laranja caía em "soak"). Sam + fields (campos) + oak (carvalho) = Sam Campos de Carvalho, explicado na página Sobre.
+- **Frases óbvias removidas:** "A mais nova fica sempre em cima" (Novidades), "Músicas lançadas sozinhas, fora dos álbuns" (Singles), "O perfil de artista com tudo o que já foi lançado", "Pregações ligadas a estas músicas" e "Carrega só quando você tocar" (player).
+- **Palavra sem data:** cartões e páginas mostram "Estudo bíblico · N min de leitura" no lugar da ocasião e da data. O rótulo fica em `rotuloPalavra` (`js/dados/reflexoes.js`); a data continua nos dados só para ordenar.
+
+Regra para os próximos textos: **não escrever o que a tela já mostra** (ordem da lista, "clique aqui", "fora dos álbuns" numa seção chamada Singles).
 
 - **V-08 Cabeçalho.** Item ativo do menu com um traço embaixo, além da cor. No celular, o menu abre como painel com transição curta (só `opacity`/`transform`, respeitando "reduzir movimento"). A marca `@samfieldsoak` continua; o logo entra quando o Franklin mandar.
 - **V-09 Rodapé profissional.** Três blocos: marca e frase ("Fé, música e tecnologia"), navegação do site e redes; embaixo, uma linha com "© 2026 Franklin Carvalho · Sem patrocínio, sem coleta de dados pessoais". O ano sai do relógio do navegador (`new Date().getFullYear()`).
