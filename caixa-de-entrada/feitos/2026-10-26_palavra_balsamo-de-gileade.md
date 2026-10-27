@@ -129,3 +129,7 @@ Acrescentar a entrada em reflexoes.js e uma chamada em novidades.js. Preservar o
 ## Planejamento do Instagram
 
 Perfil: @samfieldsoak. Consulta ao Metricool para 27/10/2026, America/Manaus: 10h obteve a maior pontuação (4942), seguido de 18h (4788). São pontuações relativas, não previsão de alcance. Não foi criado agendamento.
+
+## Validação para revisão
+
+Dados e renderização conferidos localmente; todas as rotas passaram no GitHub Actions em 390 e 1280 px. Capturas do estudo, Palavra, Novidades e home revisadas pelo Codex a partir do workflow 40432607722. O Chromium não está disponível no ambiente local; a validação visual usou as capturas da execução remota. O PR está pronto para revisão do Franklin. Não foi feito merge nem agendamento no Instagram.
