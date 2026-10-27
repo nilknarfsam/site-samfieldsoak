@@ -18,6 +18,11 @@
   letter-spacing: 0.08em;
   margin-bottom: var(--esp-2);
 }
+/* Respiro entre o sobretítulo e a faixa do título (docs/11, V-03) */
+.sobretitulo + .titulo-faixa { margin-top: var(--esp-3); }
+/* Título longo das páginas de detalhe: um degrau abaixo do título das listas (V-02) */
+article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
+
 .lead { font-size: var(--texto-md); color: var(--cor-texto-suave); max-width: var(--container-texto); }
 
 /* ---------- Botões ---------- */

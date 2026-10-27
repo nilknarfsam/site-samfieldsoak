@@ -39,7 +39,9 @@ A ideia é **refinar**: o mesmo site, com mais respiro, ritmo e consistência. Q
 
 Cada fase é pequena, tem um PR próprio e capturas de antes/depois em 390, 768 e 1280 px. Se o Franklin não gostar de uma fase, ela não entra e as outras continuam valendo.
 
-### Fase 1 · Tipografia e ritmo (resolve A, B, G)
+### Fase 1 · Tipografia e ritmo (resolve A, B, G) · **feita em 27/10/2026 (Claude)**
+
+Resultado: escala fluida em `css/variaveis.css` (os tamanhos de 16 px para baixo continuam fixos, para a leitura no celular não piorar), `--altura-linha-titulo` 1.12, `text-wrap: balance` nos títulos e `pretty` nos parágrafos, `h1` das páginas de detalhe com o token `--texto-h1-detalhe`, respiro entre sobretítulo e faixa, e "N min de leitura" sem partir no meio. Conferido: 34 rotas em 390 e 1280 px, mais 8 telas em 768 px, sem rolagem lateral.
 
 - **V-01 Escala fluida de texto e espaço.** Em `css/variaveis.css`, trocar os tamanhos fixos (`--texto-*`) e os espaços (`--esp-*`) por versões com `clamp()` entre 360 e 1280 px (método Utopia: razão 1,2 no celular e 1,25 no computador). Os nomes dos tokens continuam os mesmos, então nenhum outro arquivo muda. Conferir zoom de 200%.
 - **V-02 Títulos que respiram.** `--altura-linha-titulo` de 1.05 para ~1.12; `text-wrap: balance` em `h1, h2, h3`; `text-wrap: pretty` em `p, li`. Faixa do título com `padding` vertical pequeno e `line-height` próprio, para não invadir a linha de cima. Tamanho máximo do `h1` das páginas de detalhe um pouco menor que o das listas (título longo não precisa de 3,8 rem).
@@ -68,6 +70,25 @@ Cada fase é pequena, tem um PR próprio e capturas de antes/depois em 390, 768 
 - **V-12 Transição entre páginas.** Usar `document.startViewTransition()` no roteador quando o navegador tiver (com o fade atual como reserva) e transição só de opacidade com "reduzir movimento" ligado.
 - **V-13 Ícones SVG.** É a T-18 do `docs/09`: um conjunto só, mesmo traço, na cor do texto. Pedir ok do estilo antes.
 - **V-14 Favicon e ícone de atalho.** Monograma "FC" em SVG (com a foto continuando no `apple-touch-icon` até o logo chegar) e `theme-color` conferido.
+
+## Fluxo das imagens e ícones (ChatGPT gera, Claude coloca)
+
+Combinado com o Franklin em 27/10/2026: as artes saem do ChatGPT, ficam no Drive, e o Claude (ou o Codex) pega de lá e coloca no site.
+
+1. **Pedido:** a IA que for usar a arte escreve o pedido (o que é, onde entra no site, tamanho, formato, cores do site: grafite `#121212`, laranja `#FF7A1A`, dourado `#E0B04B`).
+2. **Geração:** o ChatGPT gera e salva na pasta do Drive combinada para entregas, com o nome no padrão `AAAA-MM-DD_<onde-entra>_<nome>_v1.png`.
+3. **Aplicação:** o Claude baixa, converte para WebP (ou SVG, no caso de ícone), põe em `imagens/<secao>/`, escreve o `alt` e abre o PR com capturas de antes e depois.
+
+Para cada tipo de arte, o que faz sentido:
+
+| Arte | Quem faz melhor | Formato no site |
+|---|---|---|
+| Fundo (textura, degradê sutil atrás do topo) | ChatGPT (imagem) | WebP, até 1920 px de largura e cerca de 200 KB; escura, para o texto continuar legível |
+| Ilustração de seção, imagem de compartilhamento (1200×630) | ChatGPT (imagem) | WebP / JPG |
+| Ícones dos atalhos e das novidades | **Um conjunto pronto e livre** (ex.: Lucide, licença ISC), baixado para `imagens/icones/` | SVG em `currentColor` |
+| Favicon e monograma "FC" | Claude, desenhado em SVG (ou o logo, quando o Franklin mandar) | SVG |
+
+Ícone gerado por IA costuma sair com traços e tamanhos diferentes entre si, e precisa virar vetor de qualquer jeito. Por isso a recomendação é usar um conjunto pronto, que já vem uniforme, e deixar o ChatGPT para as imagens.
 
 ## Como cada fase é conferida
 

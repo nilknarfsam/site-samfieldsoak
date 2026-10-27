@@ -26,11 +26,13 @@ h1, h2, h3 {
   letter-spacing: 0.01em;
   margin: 0 0 var(--esp-3);
 }
+h1, h2, h3 { text-wrap: balance; }   /* linhas equilibradas; onde não há suporte, nada muda */
 h1 { font-size: var(--texto-h1); }
 h2 { font-size: var(--texto-h2); }
 h3 { font-size: var(--texto-lg); }
 
 p { margin: 0 0 var(--esp-3); }
+p, li { text-wrap: pretty; }      /* evita uma palavra sozinha na última linha */
 ul, ol { margin: 0 0 var(--esp-3); padding-left: var(--esp-4); }
 li + li { margin-top: var(--esp-2); }
 
