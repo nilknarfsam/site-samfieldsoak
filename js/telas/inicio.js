@@ -55,10 +55,10 @@ function frentes() {
     { rota: '#/ia-sem-labia', titulo: 'Tecnologia', texto: 'IA sem lábia: ferramentas explicadas sem exagero, com preço e fonte. E os meus projetos no GitHub.',
       topo: '<div class="frente__simbolo" aria-hidden="true">⚡</div>' },
     { rota: '#/palavra', titulo: 'Palavra', texto: 'Pregações e reflexões, ponto a ponto, com explicação das passagens difíceis.',
-      topo: '<div class="frente__simbolo frente__simbolo--palavra" aria-hidden="true">✝</div>' },
+      topo: '<div class="frente__simbolo" aria-hidden="true">✝</div>', classe: 'frente--palavra' },
   ].map((f) => `
     <li class="col-md-6 col-lg-4" data-animar>
-      <a class="cartao cartao--link frente" href="${f.rota}">
+      <a class="cartao cartao--link frente${f.classe ? ' ' + f.classe : ''}" href="${f.rota}">
         ${f.topo}
         <strong class="frente__titulo">${escapar(f.titulo)}</strong>
         <span class="texto-suave">${escapar(f.texto)}</span>

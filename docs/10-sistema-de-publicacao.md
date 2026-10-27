@@ -66,7 +66,7 @@ Funcionam em qualquer chat (Claude ou ChatGPT), dentro do projeto do site. A IA 
 | **"Corrige no site: <página> – <o quê>"** | Preenche `_MODELO-correcao.md`; quem tem GitHub já abre o PR | um PR de conteúdo pequeno |
 | **"Melhoria no site: <ideia>"** | **Não programa na hora.** Escreve a ideia como tarefa T-xx no `docs/09` (arquivos, lógica, pronto quando) e pergunta se pode | uma linha no plano |
 | **"Faz a próxima melhoria"** | Pega a próxima tarefa `pendente` do `docs/09` e faz | um PR de produto |
-| **"Faz a arte de <x>"** | Segue `docs/06-padrao-dos-posts.md`; a arte vai para o Drive. No site, só entra imagem que explica algo | imagem no Drive |
+| **"Faz a arte de <x>"** | Arte do Instagram: segue `docs/06-padrao-dos-posts.md`. Arte do site: o pedido fica em `imagens-do-site/1 - Pedidos` no Drive, o ChatGPT entrega em `imagens-do-site/2 - Entregas` e o Claude aplica (fluxo no `docs/11`) | imagem no Drive |
 | **"Como está o site?"** | Resumo: fila (pendentes, aguardando ok), PRs abertos, próximas tarefas do `docs/09`, última auditoria | relatório curto |
 | **"Auditoria do mês"** | Claude Code repete a auditoria (docs/08), cria `docs/08-auditoria-AAAA-MM.md` e acrescenta tarefas novas no `docs/09` | auditoria + tarefas |
 

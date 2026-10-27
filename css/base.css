@@ -36,7 +36,7 @@ p, li { text-wrap: pretty; }      /* evita uma palavra sozinha na última linha 
 ul, ol { margin: 0 0 var(--esp-3); padding-left: var(--esp-4); }
 li + li { margin-top: var(--esp-2); }
 
-a { color: var(--cor-destaque); text-underline-offset: 3px; }
+a { color: var(--cor-secao); text-underline-offset: 3px; }
 img { max-width: 100%; height: auto; display: block; }
 code { font-family: var(--fonte-mono); font-size: 0.9em; background: var(--cor-superficie-alta); padding: 0.1em 0.35em; border-radius: var(--raio-pequeno); overflow-wrap: anywhere; }
 

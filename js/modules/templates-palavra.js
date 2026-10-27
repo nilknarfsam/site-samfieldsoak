@@ -31,14 +31,14 @@ const notaEstudo = (n) => `
 
 // ---------- Lista (#/palavra) ----------
 
+// Mesmo padrão do cartaoFerramenta (templates.js): título como link esticado, rodapé preso embaixo.
 export const cartaoReflexao = (r) => `
   <li class="col-md-6 col-lg-4" data-animar>
-    <article class="cartao cartao--palavra">
-      <p class="album__base mb-0">${escapar(r.referencia)} · ${escapar(r.versao)}</p>
-      <h2>${escapar(r.titulo)}</h2>
-      <p>${escapar(r.resumo)}</p>
-      <p class="nota mt-0">${escapar(r.ocasiao)} · ${escapar(dataBR(r.data))}</p>
-      <a class="botao" href="${rotaReflexao(r)}">Ler a pregação<span class="visualmente-oculto">: ${escapar(r.titulo)}</span></a>
+    <article class="cartao cartao--clicavel">
+      <p class="cartao__meta">${escapar(r.referencia)} · ${escapar(r.versao)}</p>
+      <h2 class="cartao__titulo"><a class="cartao__link" href="${rotaReflexao(r)}">${escapar(r.titulo)}</a></h2>
+      <p class="cartao__resumo">${escapar(r.resumo)}</p>
+      <p class="cartao__rodape"><span>${escapar(r.ocasiao)} <span class="sem-quebra">· <time datetime="${escapar(r.data)}">${escapar(dataBR(r.data))}</time></span></span><span class="cartao__acao" aria-hidden="true">Ler a pregação →</span></p>
     </article>
   </li>`;
 
@@ -53,7 +53,7 @@ export function detalheReflexao(r, album) {
     <header class="mb-5">
       <div class="selos">
         <span class="selo selo--palavra">${escapar(r.referencia)}</span>
-        <span class="selo selo--categoria">${escapar(r.ocasiao)} · ${escapar(dataBR(r.data))}</span>
+        <span class="selos__texto">${escapar(r.ocasiao)} · <time datetime="${escapar(r.data)}">${escapar(dataBR(r.data))}</time></span>
       </div>
       <h1 class="titulo-faixa">${tituloComFaixa(r)}</h1>
       <p class="lead">${escapar(r.resumo)}</p>

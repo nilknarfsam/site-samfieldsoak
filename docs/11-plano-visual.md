@@ -48,7 +48,9 @@ Resultado: escala fluida em `css/variaveis.css` (os tamanhos de 16 px para baixo
 - **V-03 Sobretítulo com respiro.** `.sobretitulo + .titulo-faixa` com margem própria.
 - Esta fase **absorve a T-17** do `docs/09`.
 
-### Fase 2 · Cartões e botões (resolve C, D, E, F)
+### Fase 2 · Cartões e botões (resolve C, D, E, F) · **feita em 27/10/2026 (Claude)**
+
+Resultado: cartões da Palavra e da IA sem lábia com o título como link que cobre o cartão inteiro (o leitor de tela anuncia só o título; o toque funciona em qualquer parte), ação como texto na cor da seção e nenhum botão laranja cheio nas listas; `--cor-secao` (laranja, e dourado em `.palavra` e no cartão Palavra da home) usado na faixa, botões, links, setas, marcadores, chips, barra de progresso e linha de cima dos cartões; só o resumo estica, o rodapé fica preso embaixo; hover com superfície um tom acima; selos todos com borda de 1 px (só o carimbo "O post não conta" é diferente) e a data como texto ao lado; dentro das páginas de leitura, cartões em 2 colunas. Contraste medido: o menor é laranja sobre a superfície do hover, 5,95:1. Conferido: 34 rotas em 390 e 1280 px, foco pelo teclado, clique fora do título.
 
 - **V-04 Cartão inteiro clicável.** Nas listas (Palavra, IA, discografia), o cartão todo vira o link (o padrão `.cartao--link` que a home e as novidades já usam), e o botão laranja cheio vira um texto de ação discreto no rodapé do cartão ("Ler a pregação →", na cor da seção). Regra nova: **um só botão laranja cheio por tela**, a ação principal.
 - **V-05 Cor da seção.** Criar `--cor-secao` (laranja por padrão, dourado dentro de `.palavra`) e usar nos links, ações, selos e na faixa. A Palavra fica toda dourada, sem misturar.
@@ -76,7 +78,7 @@ Resultado: escala fluida em `css/variaveis.css` (os tamanhos de 16 px para baixo
 Combinado com o Franklin em 27/10/2026: as artes saem do ChatGPT, ficam no Drive, e o Claude (ou o Codex) pega de lá e coloca no site.
 
 1. **Pedido:** a IA que for usar a arte escreve o pedido (o que é, onde entra no site, tamanho, formato, cores do site: grafite `#121212`, laranja `#FF7A1A`, dourado `#E0B04B`).
-2. **Geração:** o ChatGPT gera e salva na pasta do Drive combinada para entregas, com o nome no padrão `AAAA-MM-DD_<onde-entra>_<nome>_v1.png`.
+2. **Geração:** o ChatGPT gera e salva em **`Site @samfieldsoak (projeto Claude Code)/imagens-do-site/2 - Entregas`** no Drive, com o nome no padrão `AAAA-MM-DD_<onde-entra>_<nome>_v1.png`. Os pedidos ficam em `imagens-do-site/1 - Pedidos` (`AAAA-MM-DD_PED-NNN_<assunto>.md`, com status `pendente`, `entregue`, `aplicado` ou `refazer`). O primeiro é o `PED-001` (6 artes: faixas dos cartões Tecnologia e Palavra da home e 4 fundos de compartilhamento).
 3. **Aplicação:** o Claude baixa, converte para WebP (ou SVG, no caso de ícone), põe em `imagens/<secao>/`, escreve o `alt` e abre o PR com capturas de antes e depois.
 
 Para cada tipo de arte, o que faz sentido:

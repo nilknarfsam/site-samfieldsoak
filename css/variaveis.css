@@ -27,6 +27,7 @@
   --cor-verdade: #2ECC71;
   --cor-alerta: #FF4D4D;
   --cor-palavra: #E0B04B;
+  --cor-secao: var(--cor-destaque);   /* cor da seção (docs/11, V-05); a Palavra troca para o dourado */
   --cor-foco: #FFFFFF;
 
   /* Tipografia fluida (docs/11, V-01): cada tamanho cresce suave de 360px a 1280px de tela,
