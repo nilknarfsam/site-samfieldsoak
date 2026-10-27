@@ -64,8 +64,8 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 14 | Botão Compartilhar | F-04 | médio | feito 2026-10-24 (Claude) |
 | 15 | Valores soltos viram tokens | D-09 | pequeno | feito 2026-10-24 (Claude) |
 | 16 | Rodapé com Sobre e compromisso | D-10 | pequeno | feito 2026-10-24 (Claude) |
-| 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | **pendente: próxima para o ChatGPT** |
-| 18 | Ícones SVG no lugar dos emojis | D-08 | médio | pendente (pedir ok do Franklin no estilo dos ícones antes) |
+| 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | juntou-se ao plano visual (`docs/11`, fase 1, V-02 e V-03) em 27/10/2026: não fazer separado |
+| 18 | Ícones SVG no lugar dos emojis | D-08 | médio | juntou-se ao plano visual (`docs/11`, fase 5, V-13); pedir ok do estilo antes |
 | 19 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 
