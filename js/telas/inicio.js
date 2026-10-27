@@ -88,7 +88,7 @@ export function iniciarInicio(app) {
   app.querySelector('[data-lancamento]').innerHTML = lancamento(destaque);
   if (destaque.spotifyId) {
     prepararPlayerSpotify(app.querySelector('[data-player-album]'), {
-      tipo: 'album', id: destaque.spotifyId, titulo: `${destaque.titulo} no Spotify`, rotulo: 'Ouvir agora',
+      tipo: 'album', id: destaque.spotifyId, titulo: `${destaque.titulo} no Spotify`, rotulo: 'Ouvir agora', compacto: true,
     });
   }
 

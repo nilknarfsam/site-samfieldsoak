@@ -37,6 +37,7 @@
   --fonte-texto: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fonte-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
   --texto-2xs: 0.625rem;   /* só em miniaturas (capa tipográfica) */
+  --texto-legenda: 0.75rem; /* legenda curta embaixo de número (12px, o mínimo legível) */
   --texto-xs: 0.875rem;    /* fixos: abaixo disso a leitura no celular piora */
   --texto-sm: 0.9375rem;
   --texto-base: clamp(1rem, 0.9755rem + 0.1087vw, 1.0625rem);
@@ -69,6 +70,8 @@
   --altura-topo: 64px;         /* cabeçalho fixo (o menu do celular abre logo abaixo) */
   --altura-botao-bio: 64px;
   --retrato: 96px;
+  --retrato-home: 5.5rem;       /* foto do topo da home no celular */
+  --retrato-home-md: 7rem;      /* a partir de 768px */
   --altura-progresso: 4px;
   --largura-card-galeria: 320px;
   --cor-topo: rgba(18, 18, 18, 0.92);   /* cabeçalho translúcido sobre o conteúdo */
