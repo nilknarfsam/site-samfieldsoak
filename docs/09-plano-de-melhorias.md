@@ -65,7 +65,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 15 | Valores soltos viram tokens | D-09 | pequeno | feito 2026-10-24 (Claude) |
 | 16 | Rodapé com Sobre e compromisso | D-10 | pequeno | feito 2026-10-24 (Claude) |
 | 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | feito 2026-10-27 (Claude) dentro da fase 1 do plano visual (`docs/11`, V-02 e V-03) |
-| 18 | Ícones SVG no lugar dos emojis | D-08 | médio | juntou-se ao plano visual (`docs/11`, fase 5, V-13); pedir ok do estilo antes |
+| 18 | Ícones SVG no lugar dos emojis | D-08 | médio | feito 2026-10-27 (Claude) na fase 5 do plano visual (`docs/11`, V-13): ícones Lucide em `imagens/icones/sprite.svg` |
 | 19 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 

@@ -34,8 +34,8 @@ export const temasNovidade = {
   site: 'Site',
 };
 
-// Ícone que aparece no lugar da capa, quando a novidade não tem imagem.
-export const iconesTema = { tecnologia: '⚡', musica: '♪', palavra: '✝', site: '★' };
+// Ícone que aparece no lugar da capa, quando a novidade não tem imagem (nomes de imagens/icones/sprite.svg).
+export const iconesTema = { tecnologia: 'raio', musica: 'musica', palavra: 'livro', site: 'brilho' };
 
 const lista = [
   {

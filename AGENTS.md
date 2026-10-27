@@ -2,6 +2,7 @@
 
 Instruções para qualquer agente de IA neste repositório (ChatGPT/Codex, Claude Code e outros).
 
+- **Para publicar qualquer coisa (novidade, álbum, single, letras, pregação, IA sem lábia, correção), siga `docs/12-metodo-de-publicacao-com-ia.md`**: as 12 regras que não se quebram e uma receita para cada tipo. Um erro de escrita em `js/dados/` deixa o site inteiro em branco: rode a conferência sempre.
 - **Comece por `docs/10-sistema-de-publicacao.md`**: é o "console" do site (frases de comando, pistas Conteúdo e Produto, status da fila, moldes de cada tipo). Diga sempre em qual pista o pedido está.
 - As regras completas do projeto estão no `CLAUDE.md`. Elas valem para todos os agentes, não só para o Claude: leia antes de mexer em qualquer coisa.
 - Para publicar uma novidade (o pedido mais comum), siga `docs/07-novidades.md`. Em resumo: acrescentar uma entrada no fim de `js/dados/novidades.js`, testar em 390px e 1280px, abrir PR. A página da novidade é o **conteúdo completo** para leitura, nunca os cards do carrossel (imagem só quando explicar algo, no meio do texto). Nunca fazer merge sem o ok do Franklin.

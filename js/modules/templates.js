@@ -3,6 +3,12 @@
 export const escapar = (t) => String(t ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
+// Ícone do sprite (imagens/icones/sprite.svg, Lucide). Decorativo: quem está ao lado dá o nome.
+// Nome inválido não quebra a página: devolve vazio.
+export const icone = (nome, classe = 'icone') => (/^[a-z0-9-]+$/.test(nome || '')
+  ? `<svg class="${classe}" aria-hidden="true" focusable="false"><use href="imagens/icones/sprite.svg#${nome}"></use></svg>`
+  : '');
+
 export function renderizarLista(container, itens, template) {
   container.innerHTML = itens.map(template).join('');   // uma única injeção
 }
@@ -20,7 +26,7 @@ export const linkExterno = (url, rotulo, classe = '') =>
 
 // Botão das páginas de detalhe; o clique é tratado em js/modules/compartilhar.js.
 export const botaoCompartilhar = () => `<p class="compartilhar"><button class="botao botao--contorno" type="button" data-acao="compartilhar">
-  <span aria-hidden="true">↗</span> <span data-rotulo aria-live="polite">Compartilhar</span></button></p>`;
+  ${icone('compartilhar')} <span data-rotulo aria-live="polite">Compartilhar</span></button></p>`;
 
 export function telaErro(titulo, mensagem) {
   return `<section class="container--texto">
@@ -43,7 +49,7 @@ export function naoEncontrado(rotuloLista, rotaLista) {
 export const botaoBio = (link) => {
   const externo = /^https?:/.test(link.destino);
   return `<li data-animar><a class="botao-bio${link.destaque ? ' botao-bio--destaque' : ''}" href="${escapar(link.destino)}"${externo ? ' target="_blank" rel="noopener"' : ''}>
-    <span class="botao-bio__icone" aria-hidden="true">${escapar(link.icone)}</span>
+    <span class="botao-bio__icone" aria-hidden="true">${icone(link.icone)}</span>
     <span class="botao-bio__texto">${escapar(link.rotulo)}${link.dica ? `<small>${escapar(link.dica)}</small>` : ''}${externo ? '<span class="visualmente-oculto"> (abre em nova aba)</span>' : ''}</span>
     <span class="botao-bio__seta" aria-hidden="true">→</span>
   </a></li>`;

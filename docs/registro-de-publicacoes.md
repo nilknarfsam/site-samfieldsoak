@@ -2,6 +2,7 @@
 
 | Data | Seção | Página / mudança | Rota | Situação |
 |---|---|---|---|---|
+| 2026-10-27 | Site inteiro | Plano visual, fase 5: transição entre páginas, ícones SVG (Lucide) no lugar dos emojis, favicon FC; método de publicação com IA (`docs/12`), `ferramentas/preparar-imagem.py` e conferência de dados mais rígida | todas | branch `claude/quirky-knuth-kaql6c`; 34 rotas conferidas pelo Claude. Aguarda PR e ok do Franklin. |
 | 2026-10-27 | Início e Sobre | Plano visual, fase 4: topo da home mais enxuto no celular, player compacto no lançamento, Sobre com foto, compromisso em cartões e "Por onde começar" | `#/inicio`, `#/sobre` | branch `claude/quirky-knuth-kaql6c`; 34 rotas conferidas pelo Claude. Aguarda PR e ok do Franklin. |
 | 2026-10-27 | Início | Faixas ilustradas nos cartões Tecnologia e Palavra (artes do PED-001, geradas pelo ChatGPT e aplicadas pelo Claude) no lugar dos quadros com ⚡ e ✝ | `#/inicio` | PR [#23](https://github.com/nilknarfsam/site-samfieldsoak/pull/23). Aguarda o ok do Franklin. |
 | 2026-10-27 | Site inteiro | Plano visual, fase 3 (traço no menu ativo, menu do celular em painel, rodapé em três blocos) e textos: nome `@samfields`+`oak`, codinome explicado no Sobre, frases óbvias removidas, Palavra sem data ("Estudo bíblico · N min de leitura") | todas | PR [#23](https://github.com/nilknarfsam/site-samfieldsoak/pull/23), junto com as fases 1 e 2; 34 rotas conferidas pelo Claude. Aguarda o ok do Franklin. |

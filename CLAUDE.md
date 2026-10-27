@@ -40,7 +40,7 @@ Quando o Franklin pedir "processe a caixa de entrada":
 
 ## Rotina rápida: publicar novidades
 
-Quando o Franklin pedir "verifica a fila e publica" (ou "publica as novidades"): seguir `docs/07-novidades.md`. A fila são os arquivos `*_novidade_*.md` com `status: pendente` na caixa de entrada do Drive. Cada novidade é uma entrada no fim de `js/dados/novidades.js`; a página `#/novidades` e as 3 mais novas da home se atualizam sozinhas. A página da novidade é o conteúdo completo para leitura, sem os cards do carrossel. O ChatGPT (Codex) segue o mesmo passo a passo pelo `AGENTS.md`.
+Quando o Franklin pedir "verifica a fila e publica" (ou "publica as novidades"): seguir `docs/07-novidades.md`. Para qualquer outro tipo (álbum, single, letras, pregação, IA sem lábia, correção), seguir a receita de `docs/12-metodo-de-publicacao-com-ia.md`. A fila são os arquivos `*_novidade_*.md` com `status: pendente` na caixa de entrada do Drive. Cada novidade é uma entrada no fim de `js/dados/novidades.js`; a página `#/novidades` e as 3 mais novas da home se atualizam sozinhas. A página da novidade é o conteúdo completo para leitura, sem os cards do carrossel. O ChatGPT (Codex) segue o mesmo passo a passo pelo `AGENTS.md`.
 
 ## Regras de conteúdo
 

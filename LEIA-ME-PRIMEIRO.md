@@ -36,6 +36,7 @@ Detalhes do fluxo: `docs/05-fluxo-de-ideias.md`. Padrão dos posts: `docs/06-pad
 | `docs/05-fluxo-de-ideias.md` | Como as ideias saem do celular e chegam ao site. |
 | `docs/06-padrao-dos-posts.md` | Padrão do carrossel e da legenda. |
 | `docs/07-novidades.md` | Como publicar uma novidade (Claude e ChatGPT). |
+| `docs/12-metodo-de-publicacao-com-ia.md` | **Como publicar com qualquer IA**: pedido para colar, 12 regras que não se quebram, receita para novidade, álbum, single, letras, pregação, IA sem lábia e correção. |
 | `docs/10-sistema-de-publicacao.md` | O "console" do site: como publicar e corrigir qualquer coisa mantendo o padrão (frases de comando, pistas, moldes, conferência automática). |
 | `docs/11-plano-visual.md` | Plano visual em 5 fases: tipografia, cartões, cabeçalho e rodapé, home e Sobre, acabamento. |
 | `docs/08-auditoria-2026-10-24.md` | Auditoria do site: o que está bom e o que melhorar em design e funções. |

@@ -78,7 +78,9 @@ Resultado: no celular, o topo da home ficou cerca de 30% mais baixo (foto de 5,5
 - **V-10 Topo da home mais enxuto no celular.** Papéis numa linha que rola para o lado (como o índice da Música), números mais compactos; o player "Ouvir agora" na versão compacta (a fachada compacta que os singles já usam).
 - **V-11 Sobre com cara de página.** No computador, duas colunas: foto (a mesma `imagens/perfil/franklin`) e o texto; o compromisso em cartões pequenos com ícone, em vez de lista; links para as três frentes. **O texto continua o do Franklin**; se precisar de texto novo, ele escreve ou aprova antes.
 
-### Fase 5 · Acabamento
+### Fase 5 · Acabamento · **feita em 27/10/2026 (Claude)**
+
+Resultado: transição entre páginas com View Transitions (o conteúdo sai em fade e entra subindo 8 px; o cabeçalho fica parado; com "reduzir movimento", só opacidade; navegador sem suporte continua com o fade de antes), ícones Lucide (licença ISC, `imagens/icones/sprite.svg`, nomes em português) no lugar de todos os emojis de interface (atalhos, novidades sem capa, player, menu, Compartilhar, singles) e favicon com o monograma FC em SVG (`imagens/icones/favicon.svg`; a foto continua como ícone de atalho no iPhone). A conferência de dados passou a acusar ícone inexistente, faixas que não batem e letras fora do lugar. Com isso o plano visual está completo.
 
 - **V-12 Transição entre páginas.** Usar `document.startViewTransition()` no roteador quando o navegador tiver (com o fade atual como reserva) e transição só de opacidade com "reduzir movimento" ligado.
 - **V-13 Ícones SVG.** É a T-18 do `docs/09`: um conjunto só, mesmo traço, na cor do texto. Pedir ok do estilo antes.

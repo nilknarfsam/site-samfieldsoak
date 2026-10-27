@@ -1,6 +1,6 @@
 # 07 – Como publicar uma novidade (Claude e ChatGPT)
 
-Vale para qualquer IA que trabalhe no site: Claude (chat ou Claude Code) e ChatGPT (Codex). Criado em 23/10/2026; regra do conteúdo completo em 23/10/2026, 08h30.
+As regras gerais de publicação (para todos os tipos) estão em `docs/12-metodo-de-publicacao-com-ia.md`; este arquivo detalha só as novidades. Vale para qualquer IA que trabalhe no site: Claude (chat ou Claude Code) e ChatGPT (Codex). Criado em 23/10/2026; regra do conteúdo completo em 23/10/2026, 08h30.
 
 ## Regra principal: a página é o conteúdo completo, não o carrossel
 
