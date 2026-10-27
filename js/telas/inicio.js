@@ -40,6 +40,9 @@ function lancamento(a) {
     </div>`;
 }
 
+// Faixa ilustrada do topo dos cartões (artes do PED-001, em imagens/home/). Decorativa: o título vem logo abaixo.
+const faixaFrente = (nome) => `<div class="frente__faixa" aria-hidden="true"><img src="imagens/home/frente-${nome}-600.webp" srcset="imagens/home/frente-${nome}-600.webp 600w, imagens/home/frente-${nome}-1200.webp 1200w" sizes="(min-width: 992px) 22rem, (min-width: 768px) 45vw, 90vw" alt="" width="600" height="150" loading="lazy" draggable="false"></div>`;
+
 function frentes() {
   const capas = albuns.filter((a) => a.capa).slice(0, 4);
   // "Último" de cada frente, tirado dos dados: atualiza sozinho a cada publicação.
@@ -53,12 +56,12 @@ function frentes() {
     { rota: '#/musica', titulo: 'Música', texto: 'A Bíblia cantada: a série dos Salmos, Hebreus e o Tratado de Romanos, com player em cada álbum.',
       topo: `<div class="frente__mosaico" aria-hidden="true">${capas.map((a) => `<img src="${escapar(a.capa)}-480.webp" alt="" width="240" height="240" loading="lazy" draggable="false">`).join('')}</div>` },
     { rota: '#/ia-sem-labia', titulo: 'Tecnologia', texto: 'IA sem lábia: ferramentas explicadas sem exagero, com preço e fonte. E os meus projetos no GitHub.',
-      topo: '<div class="frente__simbolo" aria-hidden="true">⚡</div>' },
+      topo: faixaFrente('tecnologia') },
     { rota: '#/palavra', titulo: 'Palavra', texto: 'Pregações e reflexões, ponto a ponto, com explicação das passagens difíceis.',
-      topo: '<div class="frente__simbolo frente__simbolo--palavra" aria-hidden="true">✝</div>' },
+      topo: faixaFrente('palavra'), classe: 'frente--palavra' },
   ].map((f) => `
     <li class="col-md-6 col-lg-4" data-animar>
-      <a class="cartao cartao--link frente" href="${f.rota}">
+      <a class="cartao cartao--link frente${f.classe ? ' ' + f.classe : ''}" href="${f.rota}">
         ${f.topo}
         <strong class="frente__titulo">${escapar(f.titulo)}</strong>
         <span class="texto-suave">${escapar(f.texto)}</span>

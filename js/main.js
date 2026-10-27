@@ -35,6 +35,7 @@ const rotas = {
 };
 
 const app = document.getElementById('app');
+document.querySelector('[data-ano]').textContent = String(new Date().getFullYear());   // ano do rodapé
 registrarMenu();
 registrarEventosIaLista(app);
 registrarCompartilhar(app);

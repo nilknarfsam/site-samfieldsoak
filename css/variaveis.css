@@ -27,31 +27,35 @@
   --cor-verdade: #2ECC71;
   --cor-alerta: #FF4D4D;
   --cor-palavra: #E0B04B;
+  --cor-secao: var(--cor-destaque);   /* cor da seção (docs/11, V-05); a Palavra troca para o dourado */
   --cor-foco: #FFFFFF;
 
-  /* Tipografia (escala 1,25 a partir de 16px) */
+  /* Tipografia fluida (docs/11, V-01): cada tamanho cresce suave de 360px a 1280px de tela,
+     sem pular em breakpoint. Valores calculados pelo método Utopia; a razão entre o menor e o
+     maior fica abaixo de 2,5, então o zoom de 200% continua funcionando (WCAG 1.4.4). */
   --fonte-titulo: 'Oswald', 'Arial Narrow', sans-serif;
   --fonte-texto: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --fonte-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
   --texto-2xs: 0.625rem;   /* só em miniaturas (capa tipográfica) */
-  --texto-xs: 0.875rem;
+  --texto-xs: 0.875rem;    /* fixos: abaixo disso a leitura no celular piora */
   --texto-sm: 0.9375rem;
-  --texto-base: 1rem;
-  --texto-md: 1.25rem;
-  --texto-lg: 1.5625rem;
-  --texto-h2: clamp(1.5625rem, 1.2rem + 1.6vw, 2.25rem);
-  --texto-h1: clamp(2.25rem, 1.5rem + 3.6vw, 3.8rem);
+  --texto-base: clamp(1rem, 0.9755rem + 0.1087vw, 1.0625rem);
+  --texto-md: clamp(1.125rem, 1.0761rem + 0.2174vw, 1.25rem);
+  --texto-lg: clamp(1.375rem, 1.3016rem + 0.3261vw, 1.5625rem);
+  --texto-h2: clamp(1.5rem, 1.2065rem + 1.3043vw, 2.25rem);
+  --texto-h1: clamp(2.125rem, 1.5870rem + 2.3913vw, 3.5rem);
+  --texto-h1-detalhe: clamp(1.875rem, 1.4837rem + 1.7391vw, 2.875rem); /* título longo das páginas de detalhe */
   --altura-linha: 1.6;
-  --altura-linha-titulo: 1.05;
+  --altura-linha-titulo: 1.12;   /* 1.05 deixava o acento (Á, Ã, É) encostar na linha de cima */
 
-  /* Espaçamento (escala de 8px) */
+  /* Espaçamento: os pequenos são fixos (dentro de componentes); os grandes, entre seções, são fluidos */
   --esp-1: 0.25rem;
   --esp-2: 0.5rem;
   --esp-3: 1rem;
-  --esp-4: 1.5rem;
-  --esp-5: 2rem;
-  --esp-6: 3rem;
-  --esp-7: 4rem;
+  --esp-4: clamp(1.25rem, 1.1522rem + 0.4348vw, 1.5rem);
+  --esp-5: clamp(1.5rem, 1.3043rem + 0.8696vw, 2rem);
+  --esp-6: clamp(2.25rem, 1.9565rem + 1.3043vw, 3rem);
+  --esp-7: clamp(3rem, 2.6087rem + 1.7391vw, 4rem);
 
   /* Forma */
   --raio: 12px;

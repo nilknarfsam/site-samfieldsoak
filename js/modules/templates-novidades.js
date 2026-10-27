@@ -62,7 +62,7 @@ function minutosLeitura(paragrafos) {
 
 // Página de uma novidade (#/novidades/<slug>). vizinhas: { anterior, proxima } da pilha.
 export function detalheNovidade(n, vizinhas = {}) {
-  const leitura = tem(n.paragrafos) ? ` · ${minutosLeitura(n.paragrafos)} min de leitura` : '';
+  const leitura = tem(n.paragrafos) ? ` · <span class="sem-quebra">${minutosLeitura(n.paragrafos)} min de leitura</span>` : '';
   const partes = [`
     <a class="voltar" href="#/novidades">← Novidades</a>
     <p class="sobretitulo">${escapar(rotuloTema(n.tema))} · <time datetime="${escapar(n.data)}">${escapar(dataBR(n.data))}</time>${leitura}</p>

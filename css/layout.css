@@ -70,11 +70,15 @@
   margin: 0;
   padding: var(--esp-3);
   list-style: none;
-  background: var(--cor-fundo);
+  background: var(--cor-superficie);
   border-bottom: var(--borda);
-  display: none;
+  /* Painel do celular (docs/11, V-08): aparece com opacidade e um deslocamento curto */
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(calc(var(--deslocamento-entrada) * -1));
+  transition: opacity var(--duracao-rapida) var(--curva-saida), transform var(--duracao-rapida) var(--curva-saida), visibility 0s linear var(--duracao-rapida);
 }
-.menu--aberto .menu__lista { display: block; }
+.menu--aberto .menu__lista { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 .menu__lista li + li { margin-top: var(--esp-1); }
 .menu__link {
   display: flex;
@@ -89,11 +93,17 @@
   letter-spacing: 0.04em;
   border-radius: var(--raio-pequeno);
 }
+.menu__link { position: relative; }
 .menu__link[aria-current="page"] { color: var(--cor-destaque); }
+/* Item ativo: além da cor, um traço (quem não distingue cor também vê onde está) */
+.menu__link[aria-current="page"]::after {
+  content: ''; position: absolute; left: var(--esp-3); right: var(--esp-3); bottom: var(--esp-2);
+  height: 2px; border-radius: var(--raio-pilula); background: currentColor;
+}
 
 @media (min-width: 768px) {
   .menu__botao { display: none; }
-  .menu__lista { position: static; display: flex; gap: var(--esp-1); padding: 0; border: 0; background: transparent; }
+  .menu__lista { position: static; display: flex; gap: var(--esp-1); padding: 0; border: 0; background: transparent; visibility: visible; opacity: 1; transform: none; transition: none; }
   .menu__lista li + li { margin-top: 0; }
 }
 
@@ -101,18 +111,28 @@
 .principal { padding-block: var(--esp-5) var(--esp-7); min-height: 70vh; }
 .principal:focus { outline: none; }
 
-/* Rodapé */
+/* Rodapé (docs/11, V-09): marca, navegação e redes; embaixo, a linha do compromisso */
 .rodape {
   border-top: var(--borda);
-  padding-block: var(--esp-5);
+  background: var(--cor-superficie);
   color: var(--cor-texto-suave);
-  font-size: var(--texto-xs);
+  font-size: var(--texto-sm);
 }
-.rodape__linha { display: flex; flex-wrap: wrap; gap: var(--esp-2) var(--esp-4); align-items: center; justify-content: space-between; }
-.rodape a { color: var(--cor-texto); }
-.rodape p { margin: 0; }
-.rodape__redes { display: flex; flex-wrap: wrap; gap: var(--esp-2) var(--esp-4); }
-.rodape__redes li + li { margin-top: 0; }
+.rodape__grade { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-5) var(--esp-4); padding-block: var(--esp-6) var(--esp-5); }
+.rodape__marca { grid-column: 1 / -1; }   /* no celular: marca em cima, "Site" e "Redes" lado a lado */
+.rodape__marca .topo__marca { font-size: var(--texto-md); }
+.rodape__marca p { margin: var(--esp-2) 0 0; }
+.rodape__titulo { font-family: var(--fonte-mono); font-size: var(--texto-xs); font-weight: 700; letter-spacing: 0.08em; color: var(--cor-texto-suave); margin-bottom: var(--esp-3); }
+.rodape a { color: var(--cor-texto); text-decoration: none; }
+.rodape__bloco a { display: inline-flex; align-items: center; min-height: var(--toque-minimo); }
+.rodape__bloco li + li { margin-top: 0; }
+@media (hover: hover) and (pointer: fine) { .rodape__bloco a:hover { color: var(--cor-destaque); } }
+.rodape__base { padding-bottom: var(--esp-4); font-size: var(--texto-xs); }
+.rodape__base p { margin: 0; padding-top: var(--esp-3); border-top: var(--borda); }   /* a linha acompanha o alinhamento do conteúdo */
+@media (min-width: 768px) {
+  .rodape__grade { grid-template-columns: 2fr 1fr 1fr; }
+  .rodape__marca { grid-column: auto; }
+}
 
 /* Pular para o conteúdo */
 .pular {

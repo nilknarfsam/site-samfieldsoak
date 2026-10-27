@@ -38,9 +38,9 @@
 
   <header class="topo">
     <div class="container topo__barra">
-      <a class="topo__marca" href="#/inicio">@samfield<span>soak</span></a>
+      <a class="topo__marca" href="#/inicio" aria-label="@samfieldsoak, ir para o início">@samfields<span>oak</span></a>
       <nav class="menu" aria-label="Seções do site">
-        <button class="menu__botao" type="button" aria-expanded="false" aria-controls="menu-lista">☰ Menu</button>
+        <button class="menu__botao" type="button" aria-expanded="false" aria-controls="menu-lista"><span aria-hidden="true" data-menu-icone>☰</span> <span data-menu-rotulo>Menu</span></button>
         <ul class="menu__lista" id="menu-lista">
           <li><a class="menu__link" href="#/inicio" data-rota="inicio">Início</a></li>
           <li><a class="menu__link" href="#/novidades" data-rota="novidades">Novidades</a></li>
@@ -60,16 +60,34 @@
   </main>
 
   <footer class="rodape">
-    <div class="container rodape__linha">
-      <ul class="rodape__redes lista-limpa">
-        <li><a href="#/sobre">Sobre e compromisso</a></li>
-        <li><a href="https://instagram.com/samfieldsoak" target="_blank" rel="noopener">Instagram<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
-        <li><a href="https://open.spotify.com/artist/3GPXN15BS5UPhtmy94hwsR" target="_blank" rel="noopener">Spotify<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
-        <li><a href="https://music.youtube.com/@franklincarvalho-oficial" target="_blank" rel="noopener">YouTube Music<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
-        <li><a href="https://github.com/nilknarfsam" target="_blank" rel="noopener">GitHub<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
-        <li><a href="https://www.linkedin.com/in/franklin-carvalho-45032a164" target="_blank" rel="noopener">LinkedIn<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
-      </ul>
-      <p>Franklin Carvalho · @samfieldsoak · Manaus/AM. Sem patrocínio, sem coleta de dados pessoais.</p>
+    <div class="container rodape__grade">
+      <div class="rodape__marca">
+        <a class="topo__marca" href="#/inicio" aria-label="@samfieldsoak, ir para o início">@samfields<span>oak</span></a>
+        <p>Fé, música e tecnologia.<br>Franklin Carvalho · Manaus/AM</p>
+      </div>
+      <nav class="rodape__bloco" aria-label="Seções do site, no rodapé">
+        <h2 class="rodape__titulo">Site</h2>
+        <ul class="lista-limpa">
+          <li><a href="#/novidades">Novidades</a></li>
+          <li><a href="#/ia-sem-labia">IA sem lábia</a></li>
+          <li><a href="#/musica">Música</a></li>
+          <li><a href="#/palavra">Palavra</a></li>
+          <li><a href="#/sobre">Sobre e compromisso</a></li>
+        </ul>
+      </nav>
+      <div class="rodape__bloco">
+        <h2 class="rodape__titulo">Redes</h2>
+        <ul class="lista-limpa">
+          <li><a href="https://instagram.com/samfieldsoak" target="_blank" rel="noopener">Instagram<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
+          <li><a href="https://open.spotify.com/artist/3GPXN15BS5UPhtmy94hwsR" target="_blank" rel="noopener">Spotify<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
+          <li><a href="https://music.youtube.com/@franklincarvalho-oficial" target="_blank" rel="noopener">YouTube Music<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
+          <li><a href="https://github.com/nilknarfsam" target="_blank" rel="noopener">GitHub<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
+          <li><a href="https://www.linkedin.com/in/franklin-carvalho-45032a164" target="_blank" rel="noopener">LinkedIn<span class="visualmente-oculto"> (abre em nova aba)</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container rodape__base">
+      <p>© <span data-ano>2026</span> Franklin Carvalho · Sem patrocínio, sem coleta de dados pessoais.</p>
     </div>
   </footer>
 </body>

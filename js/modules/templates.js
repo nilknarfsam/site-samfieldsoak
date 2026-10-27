@@ -60,16 +60,19 @@ export const cartaoNovidade = (item, rota, rotuloSecao, capa = '') => `
     <span class="botao-bio__seta" aria-hidden="true">→</span>
   </a>`;
 
+// Cartão das listas: o link fica no título e se estica sobre o cartão inteiro (.cartao__link::after),
+// então o leitor de tela anuncia só o título, e o toque funciona em qualquer parte do cartão.
+// Estrutura fixa (docs/11, V-06): meta → título → resumo → rodapé.
 export const cartaoFerramenta = (f) => `
   <li class="col-md-6 col-lg-4" data-animar>
-    <article class="cartao">
+    <article class="cartao cartao--clicavel">
       <div class="selos mb-0">
         <span class="selo selo--${escapar(f.status)}">${escapar(rotuloStatus(f.status))}</span>
         <span class="selo selo--categoria">${escapar(rotuloCategoria(f.categoria))}</span>
       </div>
-      <h2>${escapar(f.titulo || f.nome)}</h2>
-      <p>${escapar(f.resumo)}</p>
-      <a class="botao" href="#/ia-sem-labia/${escapar(f.slug)}">Ver a verdade completa<span class="visualmente-oculto">: ${escapar(f.titulo || f.nome)}</span></a>
+      <h2 class="cartao__titulo"><a class="cartao__link" href="#/ia-sem-labia/${escapar(f.slug)}">${escapar(f.titulo || f.nome)}</a></h2>
+      <p class="cartao__resumo">${escapar(f.resumo)}</p>
+      <p class="cartao__rodape" aria-hidden="true"><span class="cartao__acao">Ver a verdade completa →</span></p>
     </article>
   </li>`;
 
@@ -90,8 +93,9 @@ export function detalheFerramenta(f, relacionadas) {
     <div class="progresso" aria-hidden="true"><span>IA SEM LÁBIA</span><span class="progresso__barra"><span></span></span><span>${escapar(rotuloCategoria(f.categoria)).toUpperCase()}</span></div>
     <header class="mb-5">
       <div class="selos">
-        <span class="selo selo--${escapar(f.status)}">${escapar(rotuloStatus(f.status))} em ${escapar(dataBR(f.analisadoEm))}</span>
+        <span class="selo selo--${escapar(f.status)}">${escapar(rotuloStatus(f.status))}</span>
         <span class="selo selo--categoria">${escapar(rotuloCategoria(f.categoria))}</span>
+        <time class="selos__texto" datetime="${escapar(f.analisadoEm)}">${escapar(dataBR(f.analisadoEm))}</time>
       </div>
       <h1 class="titulo-faixa">${tituloComFaixa(f)}</h1>
       <p class="lead">${escapar(f.resumo)}</p>

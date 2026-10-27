@@ -123,6 +123,7 @@ As capturas vão para `ferramentas/capturas/` (fora do Git). Node 22 ou mais nov
 - Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
 - Novidades (Claude e ChatGPT): passo a passo em `docs/07-novidades.md`; regras para qualquer agente em `AGENTS.md`.
 - **Como publicar e corrigir qualquer coisa (o "console" do site):** `docs/10-sistema-de-publicacao.md` (moldes fixos, pistas Conteúdo/Produto, frases de comando, status da fila, garantias automáticas).
+- **Plano visual** (cara mais profissional, sem mudança brusca), em 5 fases: `docs/11-plano-visual.md`.
 - Melhorias de design e funções: auditoria de 24/10/2026 em `docs/08-auditoria-2026-10-24.md` e o roteiro de tarefas (T-01 a T-19) em `docs/09-plano-de-melhorias.md`.
 
 ## O que falta

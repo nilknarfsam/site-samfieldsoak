@@ -66,7 +66,7 @@ Funcionam em qualquer chat (Claude ou ChatGPT), dentro do projeto do site. A IA 
 | **"Corrige no site: <página> – <o quê>"** | Preenche `_MODELO-correcao.md`; quem tem GitHub já abre o PR | um PR de conteúdo pequeno |
 | **"Melhoria no site: <ideia>"** | **Não programa na hora.** Escreve a ideia como tarefa T-xx no `docs/09` (arquivos, lógica, pronto quando) e pergunta se pode | uma linha no plano |
 | **"Faz a próxima melhoria"** | Pega a próxima tarefa `pendente` do `docs/09` e faz | um PR de produto |
-| **"Faz a arte de <x>"** | Segue `docs/06-padrao-dos-posts.md`; a arte vai para o Drive. No site, só entra imagem que explica algo | imagem no Drive |
+| **"Faz a arte de <x>"** | Arte do Instagram: segue `docs/06-padrao-dos-posts.md`. Arte do site: o pedido fica em `imagens-do-site/1 - Pedidos` no Drive, o ChatGPT entrega em `imagens-do-site/2 - Entregas` e o Claude aplica (fluxo no `docs/11`) | imagem no Drive |
 | **"Como está o site?"** | Resumo: fila (pendentes, aguardando ok), PRs abertos, próximas tarefas do `docs/09`, última auditoria | relatório curto |
 | **"Auditoria do mês"** | Claude Code repete a auditoria (docs/08), cria `docs/08-auditoria-AAAA-MM.md` e acrescenta tarefas novas no `docs/09` | auditoria + tarefas |
 
@@ -149,7 +149,7 @@ Decidir com número, não com achismo: se a Palavra é a mais visitada, a próxi
 
 Mesmo esqueleto do `docs/07` (fila → branch → entrada nos dados → conferir → PR → registro). O que muda:
 
-- **Pregação:** entrada nova no **fim** de `js/dados/reflexoes.js` (o site ordena pela data). Texto do Franklin sem mudar o sentido; só formatar. Citação bíblica sempre com referência e versão; trechos curtos da NVI. Campos explicados no topo do arquivo. Se ligar a uma música, preencher `musica: { album, numero, faixa, texto }`.
+- **Pregação:** entrada nova no **fim** de `js/dados/reflexoes.js` (o site ordena pela data). A data e a ocasião ficam nos dados, mas **não aparecem no site** (decisão do Franklin, 27/10/2026): o site mostra "Estudo bíblico · N min de leitura". Texto do Franklin sem mudar o sentido; só formatar. Citação bíblica sempre com referência e versão; trechos curtos da NVI. Campos explicados no topo do arquivo. Se ligar a uma música, preencher `musica: { album, numero, faixa, texto }`.
 - **Lançamento:** entrada em `js/dados/albuns.js` (álbum em `albuns`, single em `singles`). Só link oficial; `spotifyId` com 22 caracteres; capa em `imagens/albuns/<slug>-480.webp` e `-960.webp` (só a versão de tela). Se for o mais novo, passar `destaque: true` para ele e tirar do anterior. Texto de como foi feito em primeira pessoa e "criada com IA".
 - **IA sem lábia:** entrada em `js/dados/ferramentas.js`. Status `analisado` se não foi testado. Preços com `conferidoEm` e fonte oficial. Não citar o perfil que motivou a análise.
 
