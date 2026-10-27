@@ -1,11 +1,11 @@
 ---
 tipo: pregacao
-status: pendente
+status: em-pr
 data: 2026-10-26
 slug: balsamo-de-gileade
 origem: ChatGPT
 publicado:
-pr:
+pr: https://github.com/nilknarfsam/site-samfieldsoak/pull/22
 ---
 
 # Pedido de publicação: estudo bíblico sobre o bálsamo de Gileade
