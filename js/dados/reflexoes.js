@@ -688,6 +688,118 @@ export const reflexoes = [
       texto: 'O álbum O Reino Inabalável canta a carta aos Hebreus, com Cristo acima de tudo, inclusive o seu sacerdócio eterno.',
     },
   },
+  {
+    "slug": "balsamo-de-gileade",
+    "titulo": "Bálsamo de Gileade: por que a ferida continuava aberta?",
+    "faixa": "Gileade",
+    "data": "2026-10-26",
+    "ocasiao": "Estudo bíblico",
+    "livro": "Jeremias",
+    "referencia": "Jeremias 8.4-22",
+    "versao": "NVI",
+    "versiculo": {
+      "texto": "Não há bálsamo em Gileade? Não há médico?",
+      "ref": "Jeremias 8.22 (trecho)"
+    },
+    "resumo": "O contexto de Gileade, a denúncia de Jeremias e o cuidado que reúne verdade e compaixão. Um estudo sobre arrependimento e restauração, com aplicações cristãs e notas de pesquisa.",
+    "leitura": {
+      "ref": "Jeremias 8.4-22",
+      "url": "https://www.biblegateway.com/passage/?search=Jeremias+8%3A4-22&version=NVI-PT"
+    },
+    "introducao": [
+      "Uma região conhecida por seus medicamentos. Um povo profundamente ferido. Um profeta que lamenta a ausência de restauração. A pergunta de Jeremias sobre o bálsamo de Gileade nasce dessa tensão e nos convida a ler a condição de Judá com seriedade e compaixão.",
+      "Compreender essa imagem exige acompanhar três aspectos: o produto medicinal conhecido no mundo antigo, o contexto da denúncia profética e as aplicações que podemos fazer como cristãos. Essas aplicações precisam preservar o sentido da passagem e reconhecer os limites da comparação."
+    ],
+    "secoes": [
+      {
+        "titulo": "O que era Gileade?",
+        "ref": "Gênesis 31.21-49; Números 26.29; Juízes 11.1",
+        "paragrafos": [
+          "Gileade era uma região montanhosa a leste do rio Jordão, em território correspondente à atual Jordânia. A extensão designada pelo nome varia entre as passagens. Em sentido amplo, o termo pode abranger territórios israelitas a leste do Jordão; por isso, não devemos imaginar uma cidade única ou fronteiras idênticas em todas as referências.",
+          "Gileade também aparece como nome de pessoas. Entre elas estão o descendente de Maquir e Manassés, mencionado em Números 26:29, e o pai de Jefté, em Juízes 11:1.",
+          "Gênesis 31 narra o encontro entre Jacó e Labão na região. Em 31:47–48, Galeede recebe a explicação de monte de pedras do testemunho, relacionado ao acordo entre ambos. Os léxicos registram propostas etimológicas diferentes para Gileade. Não é seguro apresentar aquele que se envolve como tradução estabelecida do nome, nem construir a mensagem sobre essa afirmação.",
+          "Jacó e Davi passaram por essa região em episódios de deslocamento e fuga, mas esses acontecimentos não demonstram, por si só, que todo o território tivesse a designação institucional de terra dos refugiados. Devemos distinguir associações narrativas de definições históricas."
+        ]
+      },
+      {
+        "titulo": "O que era o bálsamo?",
+        "ref": "Gênesis 37.25; 43.11; Ezequiel 27.17",
+        "paragrafos": [
+          "O termo hebraico geralmente transliterado como tsori designa, nas passagens relevantes, um produto comercial e medicinal, entendido como uma substância resinosa de origem vegetal. A planta é a fonte do produto; o bálsamo mencionado não deve ser confundido simplesmente com o nome da árvore.",
+          "Em Gênesis 37:25, uma caravana vinda de Gileade transporta bálsamo para o Egito. Em Gênesis 43:11, ele aparece entre os produtos enviados por Jacó como presente. Ezequiel 27:17 também o menciona no comércio. Essas referências mostram seu valor e sua circulação, sem provar que sua planta produtora só existisse em Gileade.",
+          "A identificação botânica exata permanece debatida. Um estudo publicado em Communications Biology em 2024 investigou uma Commiphora germinada de uma semente antiga e propôs uma possível relação com o tsori bíblico. Os pesquisadores apresentam uma hipótese, não uma identificação definitiva. Também não podemos reconstruir com certeza sua preparação medicinal a partir dessas referências.",
+          "Para interpretar Jeremias, basta reconhecer que se tratava de uma imagem de tratamento conhecida por seus ouvintes. A mensagem não depende de identificar uma espécie vegetal ou uma receita."
+        ]
+      },
+      {
+        "titulo": "A ferida de Judá em Jeremias 8",
+        "ref": "Jeremias 8.4-22",
+        "paragrafos": [
+          "O começo da pergunta do versículo 22, na NVI, é: “Não há bálsamo em Gileade? Não há médico?” A sequência lamenta a ausência de recuperação do povo.",
+          "Essa pergunta pertence a um capítulo de denúncia e lamento. Em 8:4–6, o povo persiste em seu desvio e se recusa a voltar. Em 8:8–9, a posse da Lei contrasta com a rejeição à palavra do Senhor. Em 8:10–12, a ganância e a falsidade atingem a liderança religiosa. Em 8:18–22, o sofrimento diante da devastação ocupa o centro da passagem.",
+          "A ferida é uma imagem da condição coletiva de Judá e da calamidade que o alcança. A crise inclui pecado, recusa ao arrependimento, engano e juízo. Reduzir o texto a uma mensagem genérica sobre emoções feridas perde parte importante de sua força.",
+          "A pergunta sobre o bálsamo expressa perplexidade e dor. Ela não apresenta uma fórmula automática para obter cura, nem uma afirmação isolada de que qualquer sofrimento será imediatamente removido.",
+          "Como aplicação, podemos examinar se o acesso à Bíblia e à vida religiosa tem produzido uma resposta obediente a Deus. Conhecer os recursos da fé e responder ao Senhor são realidades que precisam caminhar juntas."
+        ]
+      },
+      {
+        "titulo": "Quando o cuidado se torna superficial",
+        "ref": "Jeremias 8.11",
+        "paragrafos": [
+          "Jeremias 8:11 denuncia líderes que minimizam a ferida e anunciam paz quando a situação permanece grave. O problema não é a existência de consolo, mas a oferta de segurança enganosa diante de uma crise real.",
+          "Uma aplicação pastoral é reconhecer que o cuidado precisa reunir ternura e verdade. Acolher alguém envolve escutar sua dor; quando há pecado, envolve também ajudar essa pessoa a reconhecê-lo e a buscar arrependimento. Uma mensagem agradável pode falhar em tratar aquilo que exige mudança.",
+          "Essa aplicação pede humildade de quem ensina. O profeta lamenta a devastação de seu povo. Seu sofrimento nos impede de transformar o texto em oportunidade para acusar os outros de maneira distante ou arrogante."
+        ]
+      },
+      {
+        "titulo": "Judá e Egito: destinatários diferentes",
+        "ref": "Jeremias 8.22; 46.11",
+        "paragrafos": [
+          "Jeremias 8:22 lamenta a condição do povo de Judá. Jeremias 46:11, por sua vez, dirige-se ao Egito e descreve a insuficiência de seus remédios diante da calamidade anunciada.",
+          "Os dois textos utilizam a linguagem do bálsamo, mas pertencem a contextos diferentes. Não devemos apresentar a fala ao Egito como simples continuação da pergunta sobre Judá. Ler cada unidade preserva tanto a denúncia quanto o destinatário de cada mensagem."
+        ]
+      },
+      {
+        "titulo": "Jesus e a imagem do médico",
+        "ref": "Marcos 2.15-17; 1 Pedro 2.24-25",
+        "paragrafos": [
+          "Na leitura cristã, a imagem do cuidado e da restauração pode nos conduzir a Cristo. Marcos 2:15–17 apresenta Jesus usando a comparação com o médico ao explicar sua missão entre pecadores. Em 1Pedro 2:24–25, sua obra está ligada ao abandono do pecado, à vida justa e ao retorno ao Pastor.",
+          "Chamar Jesus de Bálsamo de Gileade pode funcionar como metáfora cristã de sua graça restauradora. Entretanto, esse não é um título explicitamente atribuído a Jesus em Jeremias 8. A conexão é uma aplicação cristã feita à luz do Novo Testamento; o sentido imediato da passagem continua sendo o lamento pela condição de Judá.",
+          "Essa distinção fortalece o ensino: primeiro ouvimos o que o texto diz em seu contexto; depois explicamos como a fé cristã relaciona o tema à pessoa e à obra de Jesus.",
+          "Também não devemos usar essa imagem para afirmar que toda doença ou sofrimento persistente demonstra falta de fé ou pecado pessoal. Jeremias trata de uma situação específica. Transformá-la em diagnóstico individual de toda pessoa enferma ultrapassa o texto."
+        ]
+      },
+      {
+        "titulo": "Para examinar o coração",
+        "ref": "Jeremias 8.4-22",
+        "paragrafos": [
+          "Ao ler Jeremias 8:4–22, podemos levar estas perguntas à oração:",
+          "Tenho reconhecido diante de Deus aquilo que precisa mudar?",
+          "Há alguma verdade da Palavra que conheço, mas resisto em obedecer?",
+          "Ao cuidar de alguém, ofereço escuta, verdade e compaixão?",
+          "Tenho anunciado esperança com fidelidade ao que a Bíblia realmente ensina?",
+          "O convite é responder ao Senhor com honestidade, arrependimento e confiança. O texto permite reconhecer a gravidade da ferida sem abandonar a compaixão por quem sofre."
+        ]
+      }
+    ],
+    "notas": [
+      {
+        "titulo": "Fontes e leituras para aprofundar",
+        "paragrafos": [
+          "Bíblia, Nova Versão Internacional: Jeremias 8.4-22 e 46.11; Gênesis 31.47-49, 37.25 e 43.11; Números 26.29; Juízes 11.1; Ezequiel 27.17; Marcos 2.15-17; 1 Pedro 2.24-25.",
+          "Strong e Brown–Driver–Briggs, disponíveis no Bible Hub: verbete hebraico 1568 (Gileade) e verbete 6875 (tsori, bálsamo). As propostas etimológicas e botânicas não devem ser tratadas como consenso absoluto.",
+          "Sallon e colaboradores. Characterization and analysis of a Commiphora species germinated from an ancient seed suggests a possible connection to a species mentioned in the Bible. Communications Biology, 7, artigo 1109, 2024. DOI: 10.1038/s42003-024-06721-5.",
+          "Vídeo que motivou o estudo: apresentação sobre Gileade e seu bálsamo, no YouTube, identificador cWM8xvXFFWY. A análise utilizou a transcrição fornecida; as afirmações foram comparadas às passagens bíblicas e às fontes acima. O vídeo não é republicado neste estudo."
+        ]
+      }
+    ],
+    "temas": [
+      "arrependimento",
+      "restauração",
+      "cuidado pastoral",
+      "Jeremias"
+    ]
+  },
 ];
 
 // Mais recente primeiro.

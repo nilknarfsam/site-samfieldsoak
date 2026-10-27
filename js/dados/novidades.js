@@ -225,6 +225,14 @@ const lista = [
     ],
     conferidoEm: '2026-10-24',
   },
+  {
+    "slug": "balsamo-de-gileade",
+    "data": "2026-10-26",
+    "tema": "palavra",
+    "titulo": "Bálsamo de Gileade: um estudo em Jeremias 8",
+    "resumo": "O estudo completo já pode ser lido na seção Palavra: contexto histórico, sentido da passagem, aplicações cristãs e fontes para aprofundar.",
+    "rota": "#/palavra/balsamo-de-gileade"
+  },
 ];
 
 // Mais nova primeiro; no mesmo dia, a que foi acrescentada por último vem antes.
