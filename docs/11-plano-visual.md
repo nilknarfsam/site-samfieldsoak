@@ -87,7 +87,7 @@ Regra para os próximos textos: **não escrever o que a tela já mostra** (ordem
 Combinado com o Franklin em 27/10/2026: as artes saem do ChatGPT, ficam no Drive, e o Claude (ou o Codex) pega de lá e coloca no site.
 
 1. **Pedido:** a IA que for usar a arte escreve o pedido (o que é, onde entra no site, tamanho, formato, cores do site: grafite `#121212`, laranja `#FF7A1A`, dourado `#E0B04B`).
-2. **Geração:** o ChatGPT gera e salva em **`Site @samfieldsoak (projeto Claude Code)/imagens-do-site/2 - Entregas`** no Drive, com o nome no padrão `AAAA-MM-DD_<onde-entra>_<nome>_v1.png`. Os pedidos ficam em `imagens-do-site/1 - Pedidos` (`AAAA-MM-DD_PED-NNN_<assunto>.md`, com status `pendente`, `entregue`, `aplicado` ou `refazer`). O primeiro é o `PED-001` (6 artes: faixas dos cartões Tecnologia e Palavra da home e 4 fundos de compartilhamento).
+2. **Geração:** o ChatGPT gera e salva em **`Site @samfieldsoak (projeto Claude Code)/imagens-do-site/2 - Entregas`** no Drive, com o nome no padrão `AAAA-MM-DD_<onde-entra>_<nome>_v1.png`. Os pedidos ficam em `imagens-do-site/1 - Pedidos` (`AAAA-MM-DD_PED-NNN_<assunto>.md`, com status `pendente`, `entregue`, `aplicado` ou `refazer`). O primeiro é o `PED-001` (6 artes: faixas dos cartões Tecnologia e Palavra da home e 4 fundos de compartilhamento). **Entregue em 27/10/2026**, conferido (tamanhos certos, sem texto nem rosto): as faixas 1 e 2 já estão na home (`imagens/home/frente-<nome>-600.webp` e `-1200.webp`, 8 a 31 KB cada); os fundos 3 a 6 ficam no Drive até a T-20.
 3. **Aplicação:** o Claude baixa, converte para WebP (ou SVG, no caso de ícone), põe em `imagens/<secao>/`, escreve o `alt` e abre o PR com capturas de antes e depois.
 
 Para cada tipo de arte, o que faz sentido:

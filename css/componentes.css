@@ -499,8 +499,9 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .frente { gap: var(--esp-2); text-decoration: none; color: var(--cor-texto); }
 .frente__mosaico { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--esp-1); margin-bottom: var(--esp-2); -webkit-touch-callout: none; user-select: none; }
 .frente__mosaico img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--raio-pequeno); pointer-events: none; }
-.frente__simbolo { display: grid; place-items: center; aspect-ratio: 4 / 1; margin-bottom: var(--esp-2); border-radius: var(--raio-pequeno); background: var(--cor-superficie-alta); color: var(--cor-secao); font-size: var(--texto-h2); }
-.frente--palavra { --cor-secao: var(--cor-palavra); }   /* cartão Palavra da home: todo dourado */
+.frente--palavra { --cor-secao: var(--cor-palavra); }
+.frente__faixa { aspect-ratio: 4 / 1; margin-bottom: var(--esp-2); border-radius: var(--raio-pequeno); overflow: hidden; background: var(--cor-superficie-alta); }
+.frente__faixa img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }   /* cartão Palavra da home: todo dourado */
 .frente__titulo { font-family: var(--fonte-titulo); text-transform: uppercase; font-size: var(--texto-lg); }
 .frente__ultimo { margin-top: auto; padding-top: var(--esp-2); border-top: var(--borda); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
 .frente__ultimo strong { color: var(--cor-texto); font-weight: 600; }
