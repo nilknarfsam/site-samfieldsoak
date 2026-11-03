@@ -300,6 +300,95 @@ const lista = [
     ],
     conferidoEm: '2026-10-30',
   },
+  {
+    "slug": "sete-notas-de-uma-vida-com-jesus",
+    "data": "2026-11-03",
+    "tema": "palavra",
+    "titulo": "7 notas de uma vida com Jesus",
+    "resumo": "Dó, Ré, Mi, Fá, Sol, Lá e Si como lembretes da graça, do perdão e da esperança em Cristo. Uma reflexão com contexto bíblico e a origem da inspiração.",
+    "paragrafos": [
+      "> A caminhada com Jesus começa na graça, é transformada pela graça e aprende a perseverar confiando nele.",
+      "Uma sequência tão conhecida quanto Dó, Ré, Mi, Fá, Sol, Lá e Si pode nos ajudar a guardar verdades importantes da fé. Aqui, cada nota conduz a uma lembrança da vida com Cristo.",
+      "Esta é uma associação poética, não uma passagem bíblica nem uma lista de falas literais de Jesus. As explicações abaixo são aplicações devocionais. As leituras indicadas são da Nova Versão Internacional (NVI), e as referências devem ser lidas em seu contexto.",
+      "## Dó: do mundo para uma nova vida",
+      "Leitura: Colossenses 1.13-14 e Efésios 2.1-5, NVI.",
+      "A primeira nota lembra uma mudança de direção e de pertencimento. Deus nos chama a abandonar o domínio do pecado e a viver sob o senhorio de Cristo. Isso vai além de trocar hábitos visíveis: envolve aprender a desejar, decidir e amar de um modo novo.",
+      "Não se trata de desprezar as pessoas ou fugir da vida cotidiana. Nossa família, o trabalho e os relacionamentos continuam sendo lugares de responsabilidade e amor. O que muda é quem orienta o caminho. O evangelho nos chama a viver no mundo com um coração rendido a Jesus.",
+      "Para refletir: qual escolha de hoje precisa mostrar essa nova direção?",
+      "## Ré: remissão dos pecados",
+      "Leitura: Efésios 1.7, NVI.",
+      "Remissão significa perdão. A culpa diante de Deus não é resolvida fingindo que o pecado não existiu ou acumulando boas ações para compensá-lo. A esperança cristã está na redenção realizada por Jesus.",
+      "O perdão nos leva à confissão e ao arrependimento. Podemos abandonar a tentativa de justificar cada erro e nos aproximar de Deus com sinceridade. O centro da nossa confiança é a obra de Cristo, não uma imagem perfeita de nós mesmos.",
+      "Para refletir: o que você precisa confessar a Deus, em vez de continuar escondendo ou justificando?",
+      "## Mi: misericórdia que nos alcança",
+      "Leitura: Tito 3.3-7, NVI.",
+      "A misericórdia revela o cuidado de Deus diante da nossa condição. Paulo lembra a Tito que a salvação procede da misericórdia divina, e não de uma coleção de atos justos que nos tornaria merecedores.",
+      "Receber misericórdia também muda a maneira como tratamos os outros. Quem foi acolhido pela graça é chamado a abandonar a dureza, ouvir com atenção e agir com compaixão. Isso não elimina a verdade nem a responsabilidade; ensina a tratar o próximo com verdade e amor.",
+      "Para refletir: a quem você pode demonstrar misericórdia de maneira concreta hoje?",
+      "## Fá: faz de nós uma nova criação",
+      "Leitura: 2 Coríntios 5.17-21, NVI.",
+      "Em Cristo, uma nova realidade começa. A reconciliação com Deus alcança a nossa identidade e produz consequências na vida prática. A fé passa a aparecer no modo como falamos, trabalhamos, pedimos perdão e cuidamos das pessoas.",
+      "Essa transformação não significa que todas as dificuldades desaparecem imediatamente. Crescemos em obediência, reconhecemos quedas e dependemos do Espírito Santo. A graça que acolhe não nos abandona à mesma maneira de viver.",
+      "Para refletir: em que área você percebe a necessidade de mudança e precisa responder com obediência?",
+      "## Sol: esperança que ilumina",
+      "Leitura: Malaquias 4.1-3 e João 8.12, NVI.",
+      "A expressão sol da justiça aparece em Malaquias, no anúncio do dia do Senhor. O texto contrasta o juízo sobre o mal com a esperança e a restauração para aqueles que temem o nome de Deus.",
+      "Nesta reflexão, a imagem é aplicada à esperança que encontramos em Cristo. Essa aplicação cristã não substitui o contexto de Malaquias nem transforma o versículo em promessa de ausência de sofrimento. Em João 8.12, Jesus se apresenta como a luz do mundo.",
+      "Quando não sabemos o próximo passo, precisamos de direção, verdade e presença. Seguir a Cristo é aprender a caminhar à luz da sua palavra, mesmo quando ainda não vemos o percurso inteiro.",
+      "Para refletir: que decisão precisa ser orientada pela luz de Cristo, em vez de apenas pelo medo?",
+      "## Lá: estaremos com o Senhor",
+      "Leitura: João 14.1-3 e 1 Tessalonicenses 4.13-18, NVI.",
+      "A esperança cristã ultrapassa a vida presente. Jesus consola seus discípulos apontando para a comunhão com ele. Paulo também oferece consolo diante da morte, lembrando a esperança da ressurreição e do encontro com o Senhor.",
+      "Essa esperança não diminui o valor da vida de hoje. Ela nos ensina a cuidar do presente sem transformá-lo em nossa única segurança. Podemos amar, servir e enfrentar o luto sabendo que nossa esperança está em Cristo.",
+      "Para refletir: como a esperança da eternidade pode mudar a maneira de viver este dia?",
+      "## Si: siga firme até o fim",
+      "Leitura: Hebreus 12.1-3 e Filipenses 1.6, NVI.",
+      "Perseverar faz parte da caminhada da fé. Hebreus nos chama a correr com os olhos em Jesus; Filipenses aponta para a confiança no Deus que realiza sua obra no seu povo.",
+      "A perseverança não é uma moeda com a qual compramos a salvação. Em Efésios 2.8-10, a graça é a origem da salvação e as boas obras fazem parte da vida que nasce dela. Continuamos confiando, obedecendo e buscando ajuda porque dependemos de Cristo.",
+      "Seguir firme também inclui reconhecer o cansaço, pedir oração, receber cuidado e voltar ao caminho quando caímos. A força da esperança está naquele que nos sustenta.",
+      "Para refletir: qual passo de fidelidade você pode dar hoje, confiando na graça de Deus?",
+      "## Da primeira nota à gratidão",
+      "Dó lembra a nova direção. Ré, o perdão. Mi, a misericórdia. Fá, a transformação. Sol, a luz. Lá, a esperança futura. Si, a perseverança. São lembretes que apontam para a mesma pessoa: Jesus.",
+      "A vida cristã não precisa ser encenada como uma apresentação sem erros. Ela pode ser vivida como uma resposta diária de arrependimento, confiança, obediência e gratidão. Que Cristo seja o centro da nossa canção.",
+      "## Como nasceu esta reflexão",
+      "A ideia deste conteúdo nasceu ao assistir a um vídeo identificado com o nome do pastor Lamartine Posella. Nele, uma senhora apresentada como irmã Dilza Garcia associa as sete notas musicais a expressões sobre a caminhada com Jesus.",
+      "A partir dessa inspiração, preparei uma adaptação devocional e um carrossel para o Instagram. O desenvolvimento bíblico desta página e a organização das aplicações foram preparados para esta publicação. As artes do carrossel foram criadas com IA.",
+      "Algumas expressões foram adaptadas para dar clareza ao sentido, especialmente a explicação de remissão e o convite siga firme até o fim. A associação musical não deve ser lida como uma transcrição de palavras de Jesus nem como um ensino de salvação por mérito.",
+      "O crédito registra a referência que motivou este trabalho. Não estabelece quem criou originalmente a associação entre as notas e as frases. O canal de Lamartine Posella está nos links abaixo para quem deseja conhecer seu conteúdo.",
+      "## Para levar à oração",
+      "Senhor Jesus, ensina-nos a viver de acordo com a tua graça. Que o teu perdão nos conduza ao arrependimento, a tua misericórdia transforme nossos relacionamentos e a tua presença sustente nossa perseverança. Que nossa vida te agrade em cada escolha. Amém.",
+      "Qual dessas notas mais falou ao seu coração hoje?"
+    ],
+    "links": [
+      {
+        "rotulo": "Canal de Lamartine Posella no YouTube",
+        "url": "https://www.youtube.com/@LamartinePosella"
+      },
+      {
+        "rotulo": "Site oficial de Lamartine Posella",
+        "url": "https://www.lamartineposella.com/"
+      }
+    ],
+    "fontes": [
+      {
+        "rotulo": "Efésios 2, NVI: graça e nova vida",
+        "url": "https://www.bible.com/pt/bible/129/EPH.2.NVI"
+      },
+      {
+        "rotulo": "Malaquias 4, NVI: o dia do Senhor",
+        "url": "https://www.bible.com/pt/bible/129/MAL.4.NVI"
+      },
+      {
+        "rotulo": "João 14, NVI: esperança e comunhão com Cristo",
+        "url": "https://www.bible.com/pt/bible/129/JHN.14.NVI"
+      },
+      {
+        "rotulo": "Filipenses 1, NVI: confiança na obra de Deus",
+        "url": "https://www.bible.com/pt/bible/129/PHP.1.NVI"
+      }
+    ],
+    "conferidoEm": "2026-11-03"
+  },
 ];
 
 // Mais nova primeiro; no mesmo dia, a que foi acrescentada por último vem antes.
