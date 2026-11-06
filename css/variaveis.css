@@ -80,6 +80,7 @@
   --grade-fundo: 48px;         /* quadriculado do fundo */
   --altura-player: 352px;   /* altura padrão do embed do Spotify */
   --altura-player-compacto: 152px; /* embed compacto (singles) */
+  --altura-player-suno: 240px; /* música individual validada pelo Franklin */
   --altura-jornada: 2.5rem; /* barra 1–150 dos Salmos */
   --cor-veu: rgba(0, 0, 0, 0.55); /* degradê sobre capas e véus */
   --cor-veu-forte: rgba(18, 18, 18, 0.85); /* atrás do texto do topo da home */

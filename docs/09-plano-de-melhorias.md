@@ -68,6 +68,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 18 | Ícones SVG no lugar dos emojis | D-08 | médio | feito 2026-10-27 (Claude) na fase 5 do plano visual (`docs/11`, V-13): ícones Lucide em `imagens/icones/sprite.svg` |
 | 19 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
+| 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | Autorizado por Franklin em 06/11/2026; em preparação na branch `feat/t21-player-suno-por-faixa` |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -247,6 +248,16 @@ process.exit(falhas ? 1 : 0);
 - **Antes de fazer:** mostrar o plano ao Franklin. É a maior mudança da lista.
 - **Lógica sugerida:** `ferramentas/gerar-paginas.mjs` (Node, sem dependência) lê `js/dados/` e escreve `p/<secao>/<slug>/index.html` para cada item, cada uma com `<title>`, `meta description`, `og:title`, `og:description`, `og:image` (capa do item ou a imagem padrão de `imagens/compartilhar/`), `link rel="canonical"` e um redirecionamento para `/#/<secao>/<slug>` (meta refresh + link visível, como no `404.html`). O mesmo script reescreve o `sitemap.xml` com essas URLs. Rodar o script vira um passo do `docs/07-novidades.md`. O botão Compartilhar (`js/modules/compartilhar.js`, feito na T-14) passa a usar a URL `p/...` em vez de `location.href`.
 - **Pronto quando:** colar `https://samfieldsoak.com.br/p/novidades/prompt-motion/` no WhatsApp mostra o título e a imagem daquela novidade, e abrir o link cai na página certa do site.
+
+---
+
+### T-21 · Player individual do Suno e reprodução exclusiva (F-10)
+
+- **Plano aprovado:** Franklin autorizou em 06/11/2026 após confirmar o player por música no teste HTTPS. Especificação e mapa das 12 gravações: `docs/13-player-suno-por-faixa.md`.
+- **Arquivos:** `js/dados/albuns.js`, `js/modules/player.js`, `js/modules/roteador.js`, `js/modules/templates-musica.js`, `js/telas/inicio.js`, `js/telas/musica-detalhe.js`, `css/variaveis.css`, `css/componentes.css`, as duas ferramentas de conferência, README e documentação.
+- **Lógica:** só criar iframe após clique por música. Um único player gerenciado (Suno ou Spotify) aberto; abrir outro remove o anterior e restaura a fachada. Encerrar ao trocar de página. Destaque do Salmo 73 aponta para o mesmo cadastro do Álbum 7. Letras, títulos e ordem preservados.
+- **Pronto quando:** dados aprovados; home e 12 faixas sem iframe inicial; troca primeira/última e Suno/Spotify sem sobreposição; letra independente; encerrar/foco e navegação funcionando em 390/1280px. Testes automatizados com embeds simulados; reprodução real em HTTPS confirmada por Franklin depois do merge. Revisão do Claude e merge só por Franklin.
+- **Depois:** mapear 15 IDs de Trono de Fogo e aprovar expansão às primeiras versões; não incluir gravações presumidas neste PR. Não apagar a página de teste.
 
 ---
 

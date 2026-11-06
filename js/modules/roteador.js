@@ -2,6 +2,7 @@ import { marcarMenuAtivo, fecharMenu } from './menu.js';
 import { telaErro } from './templates.js';
 import { animarTela } from './movimento.js';
 import { contarVisita } from './contador.js';
+import { encerrarPlayerAtivo } from './player.js';
 
 const NOME_SITE = 'Franklin Carvalho';
 let rotas = {}, app, navegacaoAtual = 0, primeiraTela = true;
@@ -31,6 +32,7 @@ async function renderizar() {
   catch (erro) { console.error('[roteador]', erro); ok = false; titulo = 'Página indisponível'; html = telaErro(titulo, navigator.onLine ? 'Conteúdo não encontrado.' : 'Você parece estar sem conexão.'); }
   if (esta !== navegacaoAtual) return;
   const trocarConteudo = () => {
+    encerrarPlayerAtivo();
     const molde = document.createElement('template');
     molde.innerHTML = html;
     app.replaceChildren(molde.content);
@@ -61,6 +63,7 @@ async function renderizar() {
 
 export function iniciarRoteador(mapa) {
   rotas = mapa; app = document.getElementById('app');
+  window.addEventListener('pagehide', encerrarPlayerAtivo);
   window.addEventListener('hashchange', () => {
     if (!location.hash.startsWith('#/')) return;  // âncoras comuns (ex.: #app) não são rotas
     fecharMenu(); renderizar();

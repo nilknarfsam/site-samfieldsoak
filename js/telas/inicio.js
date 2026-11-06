@@ -1,13 +1,13 @@
 import { linksBio } from '../dados/links.js';
 import { novidades, rotaNovidade } from '../dados/novidades.js';
 import { rotuloTema, capaNovidade } from '../modules/templates-novidades.js';
-import { albuns, albumDestaque, salmosCobertos, comoFaco } from '../dados/albuns.js';
+import { albuns, albumDestaque, salmosCobertos, comoFaco, destaqueSuno } from '../dados/albuns.js';
 import { perfil } from '../dados/perfil.js';
 import { reflexoes } from '../dados/reflexoes.js';
 import { renderizarLista, botaoBio, cartaoNovidade, escapar } from '../modules/templates.js';
-import { capaAlbum, seloIA } from '../modules/templates-musica.js';
+import { capaAlbum, seloIA, destaqueFaixaSuno } from '../modules/templates-musica.js';
 import { animarCartoes } from '../modules/movimento.js';
-import { prepararPlayerSpotify } from '../modules/player.js';
+import { prepararPlayerSpotify, prepararPlayerSuno } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
 
 // Quantas novidades aparecem na home (as mais novas de js/dados/novidades.js).
@@ -90,6 +90,14 @@ export function iniciarInicio(app) {
     prepararPlayerSpotify(app.querySelector('[data-player-album]'), {
       tipo: 'album', id: destaque.spotifyId, titulo: `${destaque.titulo} no Spotify`, rotulo: 'Ouvir agora', compacto: true,
     });
+  }
+
+  // Destaque individual: cadastro compartilhado com as faixas do álbum.
+  const albumSuno = albuns.find((a) => a.slug === destaqueSuno?.album);
+  const faixaSuno = albumSuno?.faixasLista?.[destaqueSuno?.faixa - 1];
+  if (faixaSuno?.sunoId) {
+    app.querySelector('.lancamento__texto').insertAdjacentHTML('beforeend', destaqueFaixaSuno(albumSuno, faixaSuno));
+    prepararPlayerSuno(app.querySelector('[data-player-suno]'), { id: faixaSuno.sunoId, titulo: faixaSuno.titulo });
   }
 
   // Atalhos (botões da bio) e Novidade

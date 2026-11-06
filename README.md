@@ -85,6 +85,13 @@ GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A v
 - Google: título e descrição no `index.html`, dados de pessoa (JSON-LD), `robots.txt` e `sitemap.xml`. Falta cadastrar o site no Google Search Console (o Franklin faz, com a conta Google dele).
 - Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies), ligado em 21/10/2026 com o código `samfieldsoak`. Painel: https://samfieldsoak.goatcounter.com (cada rota do hash aparece como uma página). A página Sobre explica a contagem anônima.
 
+## Players individuais do Suno (piloto T-21)
+
+- `#/musica/santuario-do-altissimo`: cada uma das 12 faixas possui “Ouvir no Suno”; a home destaca o Salmo 73 a partir do mesmo cadastro.
+- O iframe só carrega no clique. Abrir outro player do Suno ou Spotify encerra o anterior; navegar para outra página também encerra. Reabrir não preserva a posição.
+- Campo opcional `sunoId` em cada faixa e configuração `destaqueSuno` em `js/dados/albuns.js`. Cadastro, fontes, limitações, testes e expansão: [docs/13-player-suno-por-faixa.md](docs/13-player-suno-por-faixa.md).
+- Reprodução da nova integração em HTTPS ainda depende do aceite manual após o merge pelo Franklin. Primeiras versões entram depois do mapeamento dos IDs.
+
 ## Letras
 
 - Ficam em `js/dados/letras/<arquivo>.js` (slug do álbum → lista de letras na ordem das faixas) e o álbum aponta para o arquivo no campo `letras`. Carregam só na página do álbum.
