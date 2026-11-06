@@ -6,6 +6,23 @@ const tem = (lista) => Array.isArray(lista) && lista.length > 0;
 const rotaAlbum = (a) => `#/musica/${encodeURIComponent(a.slug)}`;
 const ano = (iso) => (iso ? iso.slice(0, 4) : '');
 
+// Só músicas cadastradas recebem botão; o iframe nasce no clique, em player.js.
+export const blocoPlayerSuno = (f) => f.sunoId ? `
+  <div class="faixa-suno">
+    <div class="player" data-player-suno="${escapar(f.sunoId)}" data-titulo="${escapar(f.titulo)}"></div>
+    <p class="nota faixa-suno__alternativa">${linkExterno('https://suno.com/song/' + f.sunoId, 'Abrir música no Suno')}</p>
+  </div>` : '';
+
+export const destaqueFaixaSuno = (a, f) => f?.sunoId ? `
+  <section class="suno-destaque" aria-labelledby="faixa-suno-titulo">
+    <p class="sobretitulo">Uma faixa no Suno</p>
+    <h3 id="faixa-suno-titulo">${escapar(f.titulo)}</h3>
+    <p class="nota">${escapar(f.texto)} · ${escapar(a.titulo)}</p>
+    ${blocoPlayerSuno(f)}
+    <p class="nota">Ao abrir outro player, o anterior será encerrado.</p>
+    <a href="${rotaAlbum(a)}">Ouvir as faixas deste álbum →</a>
+  </section>` : '';
+
 // Capa protegida: só a versão de tela (até 960px), sem arrastar, sem menu de "salvar imagem".
 // Sem arquivo de capa, mostra uma capa tipográfica no estilo do site.
 export function capaAlbum(a, { tamanho = 480, carregamento = 'lazy', classe = '' } = {}) {
@@ -113,7 +130,8 @@ export function detalheAlbum(a, serie, irmaos) {
 
   if (tem(a.faixasLista)) {
     partes.push(`<section class="bloco"><h2>Faixas</h2>
-      <ol class="faixas">${a.faixasLista.map((f, i) => `<li data-faixa="${i}"><span class="faixas__titulo">${escapar(f.titulo)}</span>${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}</li>`).join('')}</ol>
+      ${a.faixasLista.some((f) => f.sunoId) ? '<p class="nota">Escolha uma música e depois toque no play. Ao abrir outro player, o anterior será encerrado.</p>' : ''}
+      <ol class="faixas">${a.faixasLista.map((f, i) => `<li data-faixa="${i}"><span class="faixas__titulo">${escapar(f.titulo)}</span>${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}${blocoPlayerSuno(f)}</li>`).join('')}</ol>
       ${a.notaLetras ? `<p class="nota">${escapar(a.notaLetras)}</p>` : ''}
     </section>`);
   }

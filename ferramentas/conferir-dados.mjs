@@ -9,7 +9,7 @@ import { dirname, join } from 'node:path';
 import { novidades, temasNovidade, iconesTema } from '../js/dados/novidades.js';
 import { ferramentas } from '../js/dados/ferramentas.js';
 import { reflexoes } from '../js/dados/reflexoes.js';
-import { albuns, singles, primeirasVersoes, series } from '../js/dados/albuns.js';
+import { albuns, singles, primeirasVersoes, series, destaqueSuno } from '../js/dados/albuns.js';
 import { linksBio } from '../js/dados/links.js';
 import { perfil } from '../js/dados/perfil.js';
 
@@ -19,6 +19,7 @@ const erro = (onde, msg) => erros.push(`${onde}: ${msg}`);
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const ID_SPOTIFY = /^[A-Za-z0-9]{22}$/;
+const ID_SUNO = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 // Só a novidade de 23/10/2026 pode usar o campo carrossel (legado, docs/07).
 const CARROSSEL_LEGADO = ['claude-code-outubro-2026'];
 
@@ -117,7 +118,15 @@ if (destaques.length !== 1) erro('albuns', `precisa de exatamente 1 álbum com d
   const onde = `musica ${a.slug}`;
   if (!a.titulo) erro(onde, 'sem titulo');
   if (a.faixasLista?.length && a.faixas && a.faixas !== a.faixasLista.length) erro(onde, `faixas diz ${a.faixas}, mas faixasLista tem ${a.faixasLista.length}`);
-  (a.faixasLista || []).forEach((f, i) => { if (!f.titulo) erro(`${onde}.faixasLista[${i}]`, 'faixa sem titulo'); });
+  const sunos = new Set();
+  (a.faixasLista || []).forEach((f, i) => {
+    if (!f.titulo) erro(`${onde}.faixasLista[${i}]`, 'faixa sem titulo');
+    if (f.sunoId !== undefined) {
+      if (typeof f.sunoId !== 'string' || !ID_SUNO.test(f.sunoId)) erro(`${onde}.faixasLista[${i}]`, 'sunoId precisa ser o UUID da música, não um link de álbum/playlist');
+      if (sunos.has(f.sunoId)) erro(`${onde}.faixasLista[${i}]`, 'sunoId repetido neste álbum');
+      sunos.add(f.sunoId);
+    }
+  });
   if (a.serie && !series[a.serie]) erro(onde, `serie desconhecida: ${a.serie} (cadastre em series, no topo de albuns.js)`);
   (a.links || []).forEach((l, i) => { if (!/^https:\/\//.test(l.url || '') || !l.rotulo) erro(`${onde}.links[${i}]`, 'link precisa de rotulo e url https://'); });
   if (a.lancamento && !dataValida(a.lancamento, { mesBasta: true })) erro(onde, `lancamento inválido: ${a.lancamento}`);
@@ -127,6 +136,13 @@ if (destaques.length !== 1) erro('albuns', `precisa de exatamente 1 álbum com d
   conferirTextos(a, onde);
 });
 primeirasVersoes.albuns.forEach((a) => { conferirCapa(a.capa, `primeirasVersoes ${a.slug}`, [480]); conferirTextos(a, `primeirasVersoes ${a.slug}`); });
+
+if (destaqueSuno) {
+  const album = albuns.find((a) => a.slug === destaqueSuno.album);
+  if (!Number.isInteger(destaqueSuno.faixa) || destaqueSuno.faixa < 1 || !ID_SUNO.test(album?.faixasLista?.[destaqueSuno.faixa - 1]?.sunoId || '')) {
+    erro('destaqueSuno', 'precisa apontar para um álbum e uma faixa com sunoId válido (numeração começa em 1)');
+  }
+}
 
 // Letras: cada álbum com o campo letras precisa de uma letra por faixa, na mesma ordem.
 for (const a of albuns.filter((x) => x.letras && /^[a-z0-9-]+$/.test(x.letras))) {

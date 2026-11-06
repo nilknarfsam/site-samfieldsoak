@@ -445,6 +445,12 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .player__fachada--compacta .player__icone { width: 2.5rem; height: 2.5rem; font-size: var(--texto-base); }
 .player__fachada--compacta .player__texto strong { font-size: var(--texto-md); }
 .player__quadro--compacto { height: var(--altura-player-compacto); }
+.player__quadro--suno { height: var(--altura-player-suno); }
+.player__encerrar { margin-top: var(--esp-2); }
+.faixa-suno { flex-basis: 100%; min-width: 0; }
+.faixa-suno__alternativa { margin: var(--esp-2) 0 0; }
+.suno-destaque { margin-top: var(--esp-4); padding: var(--esp-4); border: var(--borda); border-radius: var(--raio); }
+.suno-destaque h3 { font-size: var(--texto-lg); }
 
 /* =========================================================
    Home (Início): Fé, música e tecnologia

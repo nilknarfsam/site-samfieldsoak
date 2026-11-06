@@ -2,7 +2,7 @@ import { albuns, artista, buscarAlbum, series, comoFaco } from '../dados/albuns.
 import { detalheAlbum, botoesPerfis, seloIA, blocoLetra } from '../modules/templates-musica.js';
 import { naoEncontrado } from '../modules/templates.js';
 import { animarCartoes } from '../modules/movimento.js';
-import { prepararPlayerSpotify } from '../modules/player.js';
+import { prepararPlayerSpotify, prepararPlayerSuno } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
 import { blocoPalavraDoAlbum } from '../modules/templates-palavra.js';
 
@@ -30,6 +30,9 @@ export function iniciarMusicaDetalhe(app, slug) {
     });
   }
   alvo.querySelector('[data-perfis]').innerHTML = botoesPerfis(artista);
+  alvo.querySelectorAll('[data-player-suno]').forEach((el) => prepararPlayerSuno(el, {
+    id: el.dataset.playerSuno, titulo: el.dataset.titulo,
+  }));
   // Pregações ligadas a este álbum, logo depois das faixas.
   const palavra = blocoPalavraDoAlbum(a.slug);
   const faixas = alvo.querySelector('.faixas');
