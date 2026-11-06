@@ -14,7 +14,7 @@ import { strict as assert } from 'node:assert';
 import { novidades } from '../js/dados/novidades.js';
 import { ferramentas } from '../js/dados/ferramentas.js';
 import { reflexoes } from '../js/dados/reflexoes.js';
-import { albuns } from '../js/dados/albuns.js';
+import { albuns, destaqueSuno } from '../js/dados/albuns.js';
 
 const require = createRequire(import.meta.url);   // require acha o Playwright instalado globalmente
 const { chromium } = require('playwright');
@@ -30,12 +30,19 @@ const EXTERNOS = /gc\.zgo\.at|goatcounter\.com|open\.spotify\.com|scdn\.co|https
 // O HTML neutro só substitui o conteúdo remoto; nossos botões e iframes são reais.
 async function conferirPlayers(pagina, rota) {
   const containers = pagina.locator('[data-player-suno]');
+  if (rota === 'inicio' && !destaqueSuno) {
+    assert.equal(await containers.count(), 0);
+    return;
+  }
   assert.equal(await containers.count(), rota === 'inicio' ? 1 : 12);
   assert.equal(await pagina.locator('#app iframe').count(), 0, 'player carregou antes do clique');
   const primeira = containers.first();
   const ultima = containers.last();
   await primeira.locator('button').click();
-  assert.equal(await primeira.locator('iframe').getAttribute('src'), 'https://suno.com/embed/b570fd08-038b-4149-95dd-4f1c1591c05d');
+  const idInicial = rota === 'inicio'
+    ? albuns.find((a) => a.slug === destaqueSuno.album).faixasLista[destaqueSuno.faixa - 1].sunoId
+    : 'b570fd08-038b-4149-95dd-4f1c1591c05d';
+  assert.equal(await primeira.locator('iframe').getAttribute('src'), `https://suno.com/embed/${idInicial}`);
   assert.equal(await primeira.locator('iframe').getAttribute('height'), '240');
   assert.equal(await primeira.locator('iframe').getAttribute('loading'), 'lazy');
   assert.equal(await primeira.locator('iframe').getAttribute('allow'), 'autoplay; encrypted-media; fullscreen');
@@ -61,6 +68,9 @@ async function conferirPlayers(pagina, rota) {
   await pagina.locator('a[href="#/sobre"]').last().click();
   await pagina.waitForFunction(() => location.hash === '#/sobre' && document.querySelector('h1')?.textContent.includes('Sobre'));
   assert.equal(await pagina.locator('#app iframe').count(), 0, 'player não encerrou ao trocar de página');
+  // A próxima rota não deve abortar a foto iniciada pela navegação deste teste
+  // e atribuir essa requisição antiga à nova página (net::ERR_ABORTED).
+  await pagina.locator('.sobre__foto img').evaluate((img) => img.decode());
 }
 
 const tipos = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.json': 'application/json', '.xml': 'application/xml', '.txt': 'text/plain' };
