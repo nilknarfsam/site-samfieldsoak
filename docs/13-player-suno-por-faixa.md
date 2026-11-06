@@ -1,5 +1,8 @@
 # 13 — Player do Suno por faixa (T-21)
 
+PR: https://github.com/nilknarfsam/site-samfieldsoak/pull/30
+Branch: `feat/t21-player-suno-por-faixa`. Situação: em revisão; nenhum merge pelo Codex.
+
 ## Decisão e escopo autorizado
 
 Em 06/11/2026 Franklin confirmou que o embed individual toca na página de teste HTTPS, mas o embed de álbum redireciona para o Suno. Aprovou o plano para usar botões por música e encerrar o player anterior ao abrir outro.
