@@ -63,9 +63,9 @@
         quadro.title = botao.dataset.title;
         quadro.width = '100%';
         quadro.height = botao.dataset.height;
-        quadro.allow = 'autoplay; encrypted-media; fullscreen';
+        quadro.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
         quadro.setAttribute('allowfullscreen', '');
-        quadro.loading = 'lazy';
+        quadro.setAttribute('loading', 'lazy');
         botao.parentElement.replaceChildren(quadro);
         quadro.focus();
       }, { once: true });
