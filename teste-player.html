@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Teste temporário de players | Samfield</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #121212; color: #f5f5f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.6; }
+    main { width: min(100% - 2rem, 56rem); margin: 2rem auto; }
+    h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); line-height: 1.25; }
+    h2 { margin: 0 0 1rem; font-size: 1.15rem; line-height: 1.5; }
+    p { color: #c7c7c7; }
+    section { margin-top: 1.5rem; padding: 1.25rem; border: 1px solid #555; border-radius: .75rem; background: #1c1c1c; }
+    button { min-height: 48px; padding: .75rem 1.25rem; border: 0; border-radius: .5rem; background: #ff9a4d; color: #121212; font: inherit; font-weight: 700; cursor: pointer; }
+    button:focus-visible, iframe:focus-visible, .pular:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+    iframe { display: block; width: 100%; border: 0; border-radius: .5rem; }
+    .pular { position: absolute; left: 1rem; top: -10rem; padding: .5rem 1rem; background: #fff; color: #121212; }
+    .pular:focus { top: 1rem; }
+  </style>
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <main id="conteudo">
+    <h1>Teste temporário de players</h1>
+    <p>Página de teste. Aperte 'Carregar player' e depois o play. Anote quais tocaram aqui mesmo.</p>
+
+    <section aria-labelledby="teste-1">
+      <h2 id="teste-1">1. Suno — Salmo 73: Até que Entre no Santuário</h2>
+      <div class="player">
+        <button type="button" aria-describedby="teste-1" data-src="https://suno.com/embed/b570fd08-038b-4149-95dd-4f1c1591c05d" data-height="240" data-title="Player do Suno: Salmo 73 — Até que Entre no Santuário">Carregar player</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="teste-2">
+      <h2 id="teste-2">2. Suno — Música avulsa de Trono de Fogo</h2>
+      <div class="player">
+        <button type="button" aria-describedby="teste-2" data-src="https://suno.com/embed/a2933bdd-45c5-4470-8231-1ebbac7a57f9" data-height="240" data-title="Player do Suno: música avulsa do álbum Trono de Fogo">Carregar player</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="teste-3">
+      <h2 id="teste-3">3. Suno — Álbum Trono de Fogo</h2>
+      <div class="player">
+        <button type="button" aria-describedby="teste-3" data-src="https://suno.com/embed/album/1baec13a-2a5f-4bd0-a1e2-bd9ed735eb3f" data-height="480" data-title="Player do Suno: álbum Trono de Fogo">Carregar player</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="teste-4">
+      <h2 id="teste-4">4. Spotify (controle) — O Rei dos Povos</h2>
+      <div class="player">
+        <button type="button" aria-describedby="teste-4" data-src="https://open.spotify.com/embed/album/6lLIScGkvmEHiqRMlTgEOP?theme=0" data-height="352" data-title="Player do Spotify: álbum O Rei dos Povos (controle)">Carregar player</button>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('.player button').forEach((botao) => {
+      botao.addEventListener('click', () => {
+        const quadro = document.createElement('iframe');
+        quadro.src = botao.dataset.src;
+        quadro.title = botao.dataset.title;
+        quadro.width = '100%';
+        quadro.height = botao.dataset.height;
+        quadro.setAttribute('allow', 'autoplay; encrypted-media; fullscreen');
+        quadro.setAttribute('allowfullscreen', '');
+        quadro.setAttribute('loading', 'lazy');
+        botao.parentElement.replaceChildren(quadro);
+        quadro.focus();
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>
