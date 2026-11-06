@@ -102,20 +102,21 @@ const falhas = [];
 if (CAPTURAS) await mkdir(join(RAIZ, 'ferramentas/capturas'), { recursive: true });
 
 for (const largura of LARGURAS) {
-  const pagina = await navegador.newPage({ viewport: { width: largura, height: 900 } });
-  let pedidosPlayer = 0;
-  for (const url of ['https://suno.com/embed/**', 'https://open.spotify.com/embed/**']) {
-    await pagina.route(url, (r) => {
-      pedidosPlayer++;
-      return r.fulfill({ contentType: 'text/html', body: '<!doctype html><html lang="pt-BR"><title>Player simulado para teste</title><body>Player simulado: teste da integração, sem áudio.</body></html>' });
-    });
-  }
-  let errosDaRota = [];
-  pagina.on('pageerror', (e) => errosDaRota.push(`erro de JavaScript: ${e.message}`));
-  pagina.on('response', (r) => { if (r.status() >= 400 && r.url().startsWith(BASE)) errosDaRota.push(`arquivo faltando (${r.status()}): ${r.url().slice(BASE.length)}`); });
-  pagina.on('requestfailed', (r) => { if (!EXTERNOS.test(r.url())) errosDaRota.push(`falhou: ${r.url()}`); });
-
   for (const rota of rotas) {
+    // Uma página por rota: requisições canceladas na anterior não contaminam a próxima.
+    const pagina = await navegador.newPage({ viewport: { width: largura, height: 900 } });
+    let pedidosPlayer = 0;
+    for (const url of ['https://suno.com/embed/**', 'https://open.spotify.com/embed/**']) {
+      await pagina.route(url, (r) => {
+        pedidosPlayer++;
+        return r.fulfill({ contentType: 'text/html', body: '<!doctype html><html lang="pt-BR"><title>Player simulado para teste</title><body>Player simulado: teste da integração, sem áudio.</body></html>' });
+      });
+    }
+    let errosDaRota = [];
+    pagina.on('pageerror', (e) => errosDaRota.push(`erro de JavaScript: ${e.message}`));
+    pagina.on('response', (r) => { if (r.status() >= 400 && r.url().startsWith(BASE)) errosDaRota.push(`arquivo faltando (${r.status()}): ${r.url().slice(BASE.length)}`); });
+    pagina.on('requestfailed', (r) => { if (!EXTERNOS.test(r.url())) errosDaRota.push(`falhou: ${r.url()} (${r.failure()?.errorText || 'sem detalhe'})`); });
+
     errosDaRota = [];
     const pedidosAntes = pedidosPlayer;
     await pagina.goto(`${BASE}/#/${rota}`);
@@ -135,11 +136,15 @@ for (const largura of LARGURAS) {
     problemas.forEach((p) => falhas.push(`${largura}px #/${rota}: ${p}`));
     if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/\//g, '_')}.png`), fullPage: true });
     if (rota === 'inicio' || rota === 'musica/santuario-do-altissimo') {
-      try { await conferirPlayers(pagina, rota); }
+      try {
+        await conferirPlayers(pagina, rota);
+        const novosErros = errosDaRota.filter((e) => !problemas.includes(e));
+        assert.equal(novosErros.length, 0, novosErros.join('; '));
+      }
       catch (e) { falhas.push(`${largura}px #/${rota}: players: ${e.message}`); }
     }
+    await pagina.close();
   }
-  await pagina.close();
 }
 
 await navegador.close();
