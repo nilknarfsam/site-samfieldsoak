@@ -172,7 +172,7 @@ export const ferramentas = [
     links: [{ rotulo: 'Repositório no GitHub', url: 'https://github.com/sergebulaev/instagram-skills' }],
     relacionadas: ['verdades-ia-instagram', 'ootto'],
     carrossel: { capa: '', post: '', cards: [] },
-  },,
+  },
 {
   "slug": "otimizadores-de-pc",
   "titulo": "Otimizadores de PC: o que é marketing e o que funciona",
