@@ -7,7 +7,7 @@ situacao: analisado
 slug: otimizadores-de-pc
 origem: ChatGPT/Codex
 publicado:
-pr: a preencher após abertura
+pr: https://github.com/nilknarfsam/site-samfieldsoak/pull/31
 ---
 
 # Otimizadores de PC: o que é marketing e o que funciona

@@ -7,7 +7,7 @@ situacao: analisado
 slug: precisa-pagar-antivirus
 origem: ChatGPT/Codex
 publicado:
-pr: a preencher após abertura
+pr: https://github.com/nilknarfsam/site-samfieldsoak/pull/31
 ---
 
 # Você precisa pagar antivírus?
