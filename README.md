@@ -104,14 +104,17 @@ O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px 
 
 ## Conferência automática
 
-Rodar antes de abrir qualquer PR (o GitHub Actions roda os dois em todo PR, em `.github/workflows/conferir.yml`, e mostra se o PR é da pista Conteúdo ou Produto):
+Rodar antes de abrir qualquer PR (o GitHub Actions roda as três conferências em todo PR, em `.github/workflows/conferir.yml`, e mostra se o PR é da pista Conteúdo ou Produto):
 
 ```bash
-node ferramentas/conferir-dados.mjs              # slugs, datas, imagens, fontes, HTML dentro de dado
+node ferramentas/conferir-dados.mjs              # estrutura, campos, fontes, datas, imagens e destinos internos
+node --test ferramentas/testar-validacao-dados.mjs # regressões em cópias temporárias, sem alterar os dados
 node ferramentas/testar-rotas.mjs --capturas     # todas as rotas em 390 e 1280 px (precisa do Playwright)
 ```
 
 As capturas vão para `ferramentas/capturas/` (fora do Git). Node 22 ou mais novo.
+
+O validador rejeita posições vazias, entradas nulas e tipos inválidos antes de percorrer o cadastro. Em IA sem lábia exige título/nome, resumo, categoria conhecida, fontes ou links oficiais e data de conferência válida; os Links oficiais dos cadastros antigos continuam aceitos como fontes. Rotas internas cadastradas são comparadas com o mapa de seções/âncoras e os slugs existentes (não é uma conferência de disponibilidade dos sites externos). Os testes negativos executam o comando real em cópias temporárias e verificam saída 1 com diagnóstico, preservando o cadastro do projeto.
 
 ## Testes feitos (20/10/2026, navegador do Claude)
 

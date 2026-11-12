@@ -6,12 +6,21 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
-import { novidades, temasNovidade, iconesTema } from '../js/dados/novidades.js';
-import { ferramentas } from '../js/dados/ferramentas.js';
-import { reflexoes } from '../js/dados/reflexoes.js';
-import { albuns, singles, primeirasVersoes, series, destaqueSuno } from '../js/dados/albuns.js';
-import { linksBio } from '../js/dados/links.js';
-import { perfil } from '../js/dados/perfil.js';
+// Erros em dados que são ordenados ao importar também precisam de diagnóstico e saída 1.
+async function importarDados(caminho) {
+  try { return await import(caminho); }
+  catch (e) {
+    console.error(`❌ Não foi possível ler ${caminho}: ${e.message}`);
+    process.exit(1);
+  }
+}
+
+const { novidades, temasNovidade, iconesTema } = await importarDados('../js/dados/novidades.js');
+const { ferramentas } = await importarDados('../js/dados/ferramentas.js');
+const { reflexoes } = await importarDados('../js/dados/reflexoes.js');
+const { albuns, singles, primeirasVersoes, series, destaqueSuno } = await importarDados('../js/dados/albuns.js');
+const { linksBio } = await importarDados('../js/dados/links.js');
+const { perfil } = await importarDados('../js/dados/perfil.js');
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
 const erros = [];
@@ -40,12 +49,79 @@ function conferirSlugs(lista, nome) {
   });
 }
 
+// forEach pula buracos de arrays; percorrer os índices impede um falso positivo.
+function conferirEstrutura(valor, onde, tipoItem) {
+  const antes = erros.length;
+  if (tipoItem && !Array.isArray(valor)) { erro(onde, 'precisa ser uma lista'); return false; }
+  if (Array.isArray(valor)) {
+    for (let i = 0; i < valor.length; i++) {
+      const caminho = `${onde}[${i}]`;
+      if (!Object.hasOwn(valor, i)) { erro(caminho, 'posição vazia na lista'); continue; }
+      const item = valor[i];
+      if (item === null || item === undefined) { erro(caminho, 'entrada nula ou indefinida'); continue; }
+      if (tipoItem === 'objeto' && (typeof item !== 'object' || Array.isArray(item))) {
+        erro(caminho, 'entrada precisa ser um objeto'); continue;
+      }
+      if (tipoItem === 'lista' && !Array.isArray(item)) { erro(caminho, 'entrada precisa ser uma lista'); continue; }
+      if (tipoItem === 'texto' && (typeof item !== 'string' || !item.trim())) {
+        erro(caminho, 'entrada precisa ser texto não vazio'); continue;
+      }
+      conferirEstrutura(item, caminho);
+    }
+  } else if (valor && typeof valor === 'object') {
+    Object.entries(valor).forEach(([k, v]) => conferirEstrutura(v, `${onde}.${k}`));
+  }
+  return erros.length === antes;
+}
+
+function encerrarSeErros() {
+  if (!erros.length) return;
+  console.log(`❌ ${erros.length} problema(s) nos dados:\n`);
+  erros.forEach((e) => console.log(' - ' + e));
+  process.exit(1);
+}
+
+// Primeiro protege os percursos abaixo contra entradas que fariam map/forEach quebrar.
+for (const [nome, lista] of Object.entries({ novidades, ferramentas, reflexoes, albuns, singles,
+  primeirasVersoes: primeirasVersoes?.albuns, linksBio })) {
+  conferirEstrutura(lista, nome, 'objeto');
+}
+for (const [nome, valor] of Object.entries({ perfil, temasNovidade, iconesTema, series, primeirasVersoes })) {
+  if (!valor || typeof valor !== 'object' || Array.isArray(valor)) erro(nome, 'precisa ser um objeto');
+  else conferirEstrutura(valor, nome);
+}
+encerrarSeErros();
+
+const camposTextoIa = ['promete', 'verdade', 'requisitos', 'naoConta', 'paraQuem',
+  'naoServePara', 'caminhoGratis', 'comoComecar', 'perguntas', 'relacionadas'];
+const camposObjetoIa = ['quemFaz', 'custos', 'links', 'fontes'];
+ferramentas.forEach((f, i) => {
+  for (const [tipo, campos] of [['texto', camposTextoIa], ['objeto', camposObjetoIa]]) {
+    campos.forEach((campo) => {
+      if (Object.hasOwn(f, campo)) conferirEstrutura(f[campo], `ferramentas[${i}].${campo}`, tipo);
+    });
+  }
+});
+encerrarSeErros();
+
+// As seções e âncoras vêm do mapa do roteador; os detalhes vêm do cadastro real.
+const main = readFileSync(join(RAIZ, 'js/main.js'), 'utf8');
+const ancoras = (main.match(/ancoras:\s*\[([^\]]*)\]/) || [, ''])[1].match(/'[^']+'/g) || [];
+const rotasConhecidas = new Set([...main.matchAll(/^  (?:'([^']+)'|([a-z][a-z-]*)):\s*\{/gm)]
+  .map((m) => `#/${m[1] || m[2]}`));
+for (const [secao, lista] of [['novidades', novidades], ['ia-sem-labia', ferramentas],
+  ['palavra', reflexoes], ['musica', albuns]]) {
+  lista.forEach((item) => rotasConhecidas.add(`#/${secao}/${item.slug}`));
+}
+ancoras.forEach((a) => rotasConhecidas.add(`#/musica/${a.slice(1, -1)}`));
+
 // Percorre todos os textos de um objeto: imagens, links e HTML escondido.
 function conferirTextos(valor, onde) {
   if (typeof valor === 'string') {
     if (/^imagens\//.test(valor) && /\.(webp|png|jpe?g|svg|gif)$/i.test(valor) && !existsSync(join(RAIZ, valor))) {
       erro(onde, `imagem não existe: ${valor}`);
     }
+    if (valor.startsWith('#/') && !rotasConhecidas.has(valor)) erro(onde, `destino interno não existe: ${valor}`);
     if (/^http:\/\//i.test(valor)) erro(onde, `link sem https: ${valor}`);
     if (/<\/?[a-z][\s\S]*?>/i.test(valor)) erro(onde, 'tem HTML dentro do texto (proibido: os templates escapam tudo)');
     return;
@@ -91,7 +167,22 @@ ferramentas.forEach((f) => {
   const onde = `ferramentas ${f.slug}`;
   if (!['analisado', 'testado', 'em-uso'].includes(f.status)) erro(onde, `status inválido: ${f.status}`);
   if (!dataValida(f.analisadoEm)) erro(onde, `analisadoEm inválido: ${f.analisadoEm}`);
-  if (f.custos?.length && !dataValida(f.conferidoEm)) erro(onde, 'tem custos mas não tem conferidoEm');
+  const texto = (v) => typeof v === 'string' && v.trim().length > 0;
+  if (!texto(f.titulo) && !texto(f.nome)) erro(onde, 'precisa de titulo ou nome não vazio');
+  if (!texto(f.resumo)) erro(onde, 'resumo precisa ser texto não vazio');
+  if (!['instagram', 'video', 'voz', 'whatsapp', 'dev', 'design', 'outros'].includes(f.categoria)) {
+    erro(onde, `categoria desconhecida: ${f.categoria}`);
+  }
+  if (!dataValida(f.conferidoEm)) erro(onde, 'fontes sem conferidoEm válido (AAAA-MM-DD)');
+  // Os cadastros antigos usam Links oficiais como fontes; preservar esse formato válido.
+  if (!f.fontes?.length && !f.links?.length) erro(onde, 'precisa de fontes ou links oficiais');
+  for (const campo of ['fontes', 'links']) {
+    (f[campo] || []).forEach((l, i) => {
+      if (!texto(l.rotulo) || typeof l.url !== 'string' || !/^https:\/\/[^\s]+$/.test(l.url)) {
+        erro(`${onde}.${campo}[${i}]`, 'fonte/link precisa de rotulo e url https://');
+      }
+    });
+  }
   (f.relacionadas || []).forEach((r) => { if (!slugsFerramentas.has(r)) erro(onde, `relacionada não existe: ${r}`); });
   conferirTextos(f, onde);
 });
@@ -148,9 +239,10 @@ if (destaqueSuno) {
 for (const a of albuns.filter((x) => x.letras && /^[a-z0-9-]+$/.test(x.letras))) {
   const caminho = join(RAIZ, `js/dados/letras/${a.letras}.js`);
   if (!existsSync(caminho)) continue;   // já acusado acima
-  const { letras } = await import(pathToFileURL(caminho).href);
+  const { letras } = await importarDados(pathToFileURL(caminho).href);
   const doAlbum = letras?.[a.slug];
   if (!Array.isArray(doAlbum)) { erro(`letras ${a.letras}`, `não tem a chave "${a.slug}" (o slug do álbum)`); continue; }
+  if (!conferirEstrutura(doAlbum, `letras ${a.slug}`, 'lista')) continue;
   if (a.faixasLista?.length && doAlbum.length > a.faixasLista.length) erro(`letras ${a.slug}`, `${doAlbum.length} letras para ${a.faixasLista.length} faixas`);
   doAlbum.forEach((linhas, i) => { if (!Array.isArray(linhas) || linhas.some((l) => typeof l !== 'string')) erro(`letras ${a.slug}[${i}]`, 'cada letra é uma lista de linhas de texto'); });
   conferirTextos(doAlbum, `letras ${a.slug}`);
@@ -163,24 +255,19 @@ linksBio.forEach((l, i) => { if (!icones.has(l.icone)) erro(`linksBio[${i}]`, `�
 Object.entries(iconesTema).forEach(([tema, nome]) => { if (!icones.has(nome)) erro(`iconesTema.${tema}`, `ícone não existe no sprite: ${nome}`); });
 Object.keys(temasNovidade).forEach((t) => { if (!iconesTema[t]) erro('iconesTema', `tema sem ícone: ${t}`); });
 
-// Âncoras da página Música não podem ter o nome de um álbum (o roteador abriria a seção no lugar do álbum).
-const main = readFileSync(join(RAIZ, 'js/main.js'), 'utf8');
-const ancoras = (main.match(/ancoras:\s*\[([^\]]*)\]/) || [, ''])[1].match(/'[^']+'/g) || [];
+// Âncoras da página Música não podem ter o nome de um álbum.
 ancoras.map((a) => a.slice(1, -1)).forEach((a) => { if (slugsAlbuns.has(a)) erro('js/main.js', `âncora da Música igual a slug de álbum: ${a}`); });
 
 // ---------- Início ----------
 linksBio.forEach((l, i) => {
   if (!l.rotulo || !l.destino) erro(`linksBio[${i}]`, 'precisa de rotulo e destino');
   if (!/^(#\/|https:\/\/)/.test(l.destino || '')) erro(`linksBio[${i}]`, `destino deve começar com #/ ou https://: ${l.destino}`);
+  conferirTextos(l, `linksBio[${i}]`);
 });
 const outrosAtalhos = linksBio.filter((l) => !l.destaque).length;
 if (outrosAtalhos % 4 !== 0) erro('linksBio', `${outrosAtalhos} atalhos sem destaque: use múltiplo de 4 para a grade fechar (docs/09, T-06)`);
 conferirCapa(perfil.foto, 'perfil.foto', [240, 480]);
 
 // ---------- Resultado ----------
-if (erros.length) {
-  console.log(`❌ ${erros.length} problema(s) nos dados:\n`);
-  erros.forEach((e) => console.log(' - ' + e));
-  process.exit(1);
-}
+encerrarSeErros();
 console.log(`✅ Dados conferidos: ${novidades.length} novidades, ${ferramentas.length} páginas de IA, ${reflexoes.length} pregações, ${albuns.length} álbuns, ${singles.length} singles.`);
