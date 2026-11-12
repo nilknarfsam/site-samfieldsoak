@@ -26,7 +26,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, as 3 Novidades mais novas e as três frentes | pronto, com foto |
 | `#/novidades` | Pilha de novidades (a mais nova em cima, ordenada pela data), filtro por tema | pronto |
 | `#/novidades/<slug>` | Página da novidade: texto completo, tempo de leitura, links, fontes, anterior/próxima e Compartilhar (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/ia-sem-labia` | Lista com filtro por categoria e status | pronto |
+| `#/ia-sem-labia` | Mais recentes primeiro, com filtro por categoria e status; empate de data favorece o último cadastro | pronto |
 | `#/ia-sem-labia/<slug>` | Página completa (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing com índice "Nesta página" (`#/musica/discografia`, `#/musica/singles`...): lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
 | `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |

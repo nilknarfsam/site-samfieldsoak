@@ -69,6 +69,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 19 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | em PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30); autorizado por Franklin em 06/11/2026 |
+| 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | em execução na branch `feat/t22-ordem-ia`; aprovado por Franklin em 12/11/2026 |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -266,3 +267,12 @@ process.exit(falhas ? 1 : 0);
 - Conferir a tabela "Ordem e situação" atualizada.
 - Acrescentar uma linha em `docs/registro-de-publicacoes.md` por PR aprovado (seção "Site").
 - Se surgir melhoria nova, acrescentar como T-21, T-22... com o mesmo formato (arquivos, lógica, pronto quando), e o código correspondente em `docs/08` (ou numa auditoria nova `docs/08-auditoria-AAAA-MM-DD.md`).
+
+
+### T-22 · IA sem lábia: mais recentes no topo (F-11)
+
+- **Plano aprovado:** Franklin autorizou em 12/11/2026 seguir a primeira melhoria da revisão de 11/11. Esta tarefa vem antes das pendências maiores T-19/T-20 por sua escolha. Evidência: `docs/08-auditoria-2026-11-12.md`.
+- **Arquivos:** `js/telas/ia-lista.js`, `ferramentas/testar-rotas.mjs`, README, esta tabela e registro.
+- **Lógica:** ordenar cópias dos itens pela data `analisadoEm`, decrescente; no mesmo dia, o último cadastro vem primeiro, como em Novidades. Filtrar essa lista ordenada por categoria e status. Não usar `conferidoEm` para promover artigo antigo; não alterar a ordem original de `ferramentas` nem seus objetos. Publicações continuam sendo acrescentadas ao fim do cadastro.
+- **Pronto quando:** recentes no topo na lista inicial, em todas as combinações de filtros disponíveis e ao voltar a Todas; nenhum artigo perdido/duplicado, contagem correta. Conferir em 390/1280 px; dados e rotas aprovados; links e detalhes preservados.
+- **Fora do escopo:** datas nos cards, novos filtros, categorias, busca, índice de leitura, persistência dos filtros ao navegar e reforço do validador. Cada melhoria aprovada terá sua própria tarefa/PR. Revisão do Claude e merge pelo Franklin.

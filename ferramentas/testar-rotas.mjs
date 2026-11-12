@@ -97,6 +97,42 @@ const rotas = [
   ...albuns.map((a) => `musica/${a.slug}`),
 ];
 
+// Exercita a lista e os filtros sem depender de títulos ou quantidade fixa de publicações.
+async function conferirOrdemIa(pagina) {
+  const originais = ferramentas.map((f) => f.slug);
+  const conferir = async (categoria, status) => {
+    const slugs = await pagina.locator('[data-lista] .cartao__link').evaluateAll((links) =>
+      links.map((link) => link.getAttribute('href').split('/').pop()));
+    const elegiveis = ferramentas.filter((f) =>
+      (categoria === 'todas' || f.categoria === categoria) && (status === 'todas' || f.status === status));
+    assert.equal(slugs.length, elegiveis.length, 'contagem de cards após filtrar');
+    assert.equal(new Set(slugs).size, slugs.length, 'cards duplicados');
+    assert.deepEqual([...slugs].sort(), elegiveis.map((f) => f.slug).sort(), 'filtro perdeu ou incluiu um artigo indevido');
+    for (let i = 1; i < slugs.length; i++) {
+      const anterior = ferramentas.find((f) => f.slug === slugs[i - 1]);
+      const atual = ferramentas.find((f) => f.slug === slugs[i]);
+      assert.ok(anterior.analisadoEm >= atual.analisadoEm, 'artigo antigo apareceu antes de um recente');
+      if (anterior.analisadoEm === atual.analisadoEm) {
+        assert.ok(originais.indexOf(anterior.slug) > originais.indexOf(atual.slug), 'empate não favoreceu o último cadastro');
+      }
+    }
+    assert.equal((await pagina.locator('[data-contagem]').textContent()).trim(),
+      elegiveis.length === 1 ? '1 página' : `${elegiveis.length} páginas`);
+  };
+  await conferir('todas', 'todas');
+  for (const categoria of ['todas', ...new Set(ferramentas.map((f) => f.categoria))]) {
+    await pagina.locator(`input[name="categoria"][value="${categoria}"]`).press('Space');
+    for (const status of ['todas', ...new Set(ferramentas.map((f) => f.status))]) {
+      await pagina.locator(`input[name="status"][value="${status}"]`).press('Space');
+      await conferir(categoria, status);
+    }
+  }
+  // Voltar a Todas deve restaurar a lista completa, ainda na ordem correta.
+  await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
+  await pagina.locator('input[name="status"][value="todas"]').press('Space');
+  await conferir('todas', 'todas');
+}
+
 const navegador = await chromium.launch();
 const falhas = [];
 if (CAPTURAS) await mkdir(join(RAIZ, 'ferramentas/capturas'), { recursive: true });
@@ -134,6 +170,10 @@ for (const largura of LARGURAS) {
     if (!r.titulo.includes('|')) problemas.push(`título da aba estranho: ${r.titulo}`);
     if (pedidosPlayer !== pedidosAntes) problemas.push('requisição de player antes do clique');
     problemas.forEach((p) => falhas.push(`${largura}px #/${rota}: ${p}`));
+    if (rota === 'ia-sem-labia') {
+      try { await conferirOrdemIa(pagina); }
+      catch (e) { falhas.push(`${largura}px #/${rota}: ordem e filtros: ${e.message}`); }
+    }
     if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/\//g, '_')}.png`), fullPage: true });
     if (rota === 'inicio' || rota === 'musica/santuario-do-altissimo') {
       try {

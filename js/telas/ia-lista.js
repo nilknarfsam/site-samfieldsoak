@@ -4,6 +4,13 @@ import { animarCartoes } from '../modules/movimento.js';
 
 const TODAS = 'todas';
 
+// Mais recente primeiro; no mesmo dia, o último cadastro vem antes (igual a Novidades).
+// Ordena cópias para não mudar os dados usados pelas outras telas.
+const ferramentasRecentes = ferramentas
+  .map((f, i) => ({ ...f, _ordem: i }))
+  .sort((a, b) => (a.analisadoEm === b.analisadoEm
+    ? b._ordem - a._ordem : b.analisadoEm.localeCompare(a.analisadoEm)));
+
 // Só mostra as opções de filtro que têm conteúdo.
 const valoresUnicos = (campo) => [...new Set(ferramentas.map((f) => f[campo]))];
 
@@ -17,7 +24,7 @@ function aplicarFiltro(app) {
   const form = app.querySelector('[data-filtros]');
   const categoria = form.elements.categoria.value;
   const status = form.elements.status.value;
-  const lista = ferramentas.filter((f) =>
+  const lista = ferramentasRecentes.filter((f) =>
     (categoria === TODAS || f.categoria === categoria) && (status === TODAS || f.status === status));
   renderizarLista(app.querySelector('[data-lista]'), lista, cartaoFerramenta);
   app.querySelector('[data-contagem]').textContent =
