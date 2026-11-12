@@ -136,6 +136,55 @@ async function conferirOrdemIa(pagina) {
     Promise.all(lista.getAnimations({ subtree: true }).map((animacao) => animacao.finished)));
 }
 
+async function conferirRetornoFiltrosIa(pagina) {
+  const ultima = ferramentas.at(-1);
+  if (!ultima) return;
+  const lerLista = () => pagina.locator('[data-filtros]').evaluate((form) => ({
+    categoria: form.elements.categoria.value,
+    status: form.elements.status.value,
+    contagem: document.querySelector('[data-contagem]').textContent,
+    links: [...document.querySelectorAll('[data-lista] .cartao__link')].map((a) => a.getAttribute('href')),
+  }));
+  const selecionar = async () => {
+    await pagina.locator(`input[name="categoria"][value="${ultima.categoria}"]`).press('Space');
+    await pagina.locator(`input[name="status"][value="${ultima.status}"]`).press('Space');
+  };
+  const abrirArtigo = async () => {
+    await pagina.locator('[data-lista] .cartao__link').first().click();
+    await pagina.locator('[data-detalhe] h1').waitFor({ state: 'visible' });
+    await pagina.locator('#app img').evaluateAll((imagens) => Promise.all(imagens.map((img) => img.decode())));
+  };
+  await selecionar();
+  const antes = await lerLista();
+  await abrirArtigo();
+  await pagina.goBack();
+  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  assert.deepEqual(await lerLista(), antes, 'Voltar do navegador perdeu filtros, contagem ou ordem');
+  if (CAPTURAS) {
+    await pagina.locator('[data-lista]').evaluate((lista) =>
+      Promise.all(lista.getAnimations({ subtree: true }).map((a) => a.finished)));
+    await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${pagina.viewportSize().width}-ia-sem-labia-retorno.png`), fullPage: true });
+  }
+  await abrirArtigo();
+  await pagina.getByRole('link', { name: '← IA sem lábia', exact: true }).click();
+  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  assert.deepEqual(await lerLista(), antes, 'link de retorno perdeu os filtros');
+  await pagina.locator('.rodape a[href="#/novidades"]').click();
+  await pagina.locator('[data-filtro-tema]').waitFor({ state: 'visible' });
+  await pagina.locator('#app img').evaluateAll((imagens) => Promise.all(imagens.map((img) => img.decode())));
+  await pagina.locator('.rodape a[href="#/ia-sem-labia"]').click();
+  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  assert.deepEqual(await lerLista(), antes, 'trocar de seção perdeu os filtros da aba');
+  await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
+  await pagina.locator('input[name="status"][value="todas"]').press('Space');
+  const todas = await lerLista();
+  assert.equal(todas.links.length, ferramentas.length, 'Todas não limpou os filtros');
+  await selecionar();
+  await pagina.reload();
+  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  assert.deepEqual(await lerLista(), todas, 'recarregar não começou com Todas');
+}
+
 async function conferirDatasIa(pagina, rota) {
   const dataBR = (iso) => new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' })
     .format(new Date(`${iso}T12:00:00Z`));
@@ -210,7 +259,12 @@ for (const largura of LARGURAS) {
       catch (e) { falhas.push(`${largura}px #/${rota}: datas: ${e.message}`); }
     }
     if (rota === 'ia-sem-labia') {
-      try { await conferirOrdemIa(pagina); }
+      try {
+        await conferirRetornoFiltrosIa(pagina);
+        await conferirOrdemIa(pagina);
+        const novosErros = errosDaRota.filter((e) => !problemas.includes(e));
+        assert.equal(novosErros.length, 0, novosErros.join('; '));
+      }
       catch (e) { falhas.push(`${largura}px #/${rota}: ordem e filtros: ${e.message}`); }
     }
     if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/\//g, '_')}.png`), fullPage: true });

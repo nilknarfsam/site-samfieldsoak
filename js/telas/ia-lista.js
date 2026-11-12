@@ -3,6 +3,8 @@ import { renderizarLista, cartaoFerramenta, escapar, rotuloCategoria, rotuloStat
 import { animarCartoes } from '../modules/movimento.js';
 
 const TODAS = 'todas';
+// Só nesta aba enquanto a página estiver aberta; recarregar começa em Todas.
+let filtrosAtuais = { categoria: TODAS, status: TODAS };
 
 // Mais recente primeiro; no mesmo dia, o último cadastro vem antes (igual a Novidades).
 // Ordena cópias para não mudar os dados usados pelas outras telas.
@@ -24,6 +26,7 @@ function aplicarFiltro(app) {
   const form = app.querySelector('[data-filtros]');
   const categoria = form.elements.categoria.value;
   const status = form.elements.status.value;
+  filtrosAtuais = { categoria, status };
   const lista = ferramentasRecentes.filter((f) =>
     (categoria === TODAS || f.categoria === categoria) && (status === TODAS || f.status === status));
   renderizarLista(app.querySelector('[data-lista]'), lista, cartaoFerramenta);
@@ -35,6 +38,11 @@ function aplicarFiltro(app) {
 export function iniciarIaLista(app) {
   app.querySelector('[data-opcoes="categoria"]').innerHTML = opcoes('categoria', rotuloCategoria);
   app.querySelector('[data-opcoes="status"]').innerHTML = opcoes('status', rotuloStatus);
+  const form = app.querySelector('[data-filtros]');
+  for (const campo of ['categoria', 'status']) {
+    const valor = filtrosAtuais[campo];
+    form.elements[campo].value = [TODAS, ...valoresUnicos(campo)].includes(valor) ? valor : TODAS;
+  }
   aplicarFiltro(app);
 }
 
