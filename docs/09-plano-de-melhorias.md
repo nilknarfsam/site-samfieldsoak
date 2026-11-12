@@ -72,7 +72,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
 | 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin |
-| 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | em execução na branch `feat/t25-retorno-filtros`; autorizado por Franklin em 12/11/2026 |
+| 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | em PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35); autorizado por Franklin em 12/11/2026 |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
