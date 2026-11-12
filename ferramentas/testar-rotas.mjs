@@ -131,6 +131,9 @@ async function conferirOrdemIa(pagina) {
   await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
   await pagina.locator('input[name="status"][value="todas"]').press('Space');
   await conferir('todas', 'todas');
+  // Os filtros reiniciam a entrada dos cards; a captura deve mostrar a lista já visível.
+  await pagina.locator('[data-lista]').evaluate((lista) =>
+    Promise.all(lista.getAnimations({ subtree: true }).map((animacao) => animacao.finished)));
 }
 
 const navegador = await chromium.launch();
