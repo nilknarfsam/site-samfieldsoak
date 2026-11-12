@@ -136,6 +136,38 @@ async function conferirOrdemIa(pagina) {
     Promise.all(lista.getAnimations({ subtree: true }).map((animacao) => animacao.finished)));
 }
 
+async function conferirDatasIa(pagina, rota) {
+  const dataBR = (iso) => new Intl.DateTimeFormat('pt-BR', { timeZone: 'UTC' })
+    .format(new Date(`${iso}T12:00:00Z`));
+  const conferir = (registro, f) => {
+    assert.ok(f, 'card com slug de IA desconhecido');
+    assert.ok(registro.texto.includes('Análise:'), 'data da análise sem rótulo');
+    assert.ok(registro.texto.includes('Fontes conferidas em'), 'conferência das fontes sem rótulo');
+    assert.deepEqual(registro.datas, [f.analisadoEm, f.conferidoEm], 'datas não correspondem ao cadastro');
+    assert.deepEqual(registro.textos, [dataBR(f.analisadoEm), dataBR(f.conferidoEm)], 'datas fora do formato brasileiro');
+    assert.equal(registro.ocultas, false, 'datas ocultas do leitor de tela');
+  };
+  const cards = await pagina.locator('.cartao:has(.cartao__link[href^="#/ia-sem-labia/"])').evaluateAll((itens) =>
+    itens.map((card) => ({
+      slug: card.querySelector('.cartao__link').getAttribute('href').split('/').pop(),
+      texto: card.querySelector('.cartao__meta')?.textContent || '',
+      datas: [...card.querySelectorAll('.cartao__meta time')].map((t) => t.getAttribute('datetime')),
+      textos: [...card.querySelectorAll('.cartao__meta time')].map((t) => t.textContent),
+      ocultas: !!card.querySelector('.cartao__meta')?.closest('[aria-hidden="true"]'),
+    })));
+  cards.forEach((card) => conferir(card, ferramentas.find((f) => f.slug === card.slug)));
+  if (rota === 'ia-sem-labia') assert.equal(cards.length, ferramentas.length);
+  else {
+    const cabecalho = await pagina.locator('[data-detalhe] header').evaluate((el) => ({
+      texto: el.textContent,
+      datas: [...el.querySelectorAll('time')].map((t) => t.getAttribute('datetime')),
+      textos: [...el.querySelectorAll('time')].map((t) => t.textContent),
+      ocultas: [...el.querySelectorAll('time')].some((t) => !!t.closest('[aria-hidden="true"]')),
+    }));
+    conferir(cabecalho, ferramentas.find((f) => f.slug === rota.split('/')[1]));
+  }
+}
+
 const navegador = await chromium.launch();
 const falhas = [];
 if (CAPTURAS) await mkdir(join(RAIZ, 'ferramentas/capturas'), { recursive: true });
@@ -173,6 +205,10 @@ for (const largura of LARGURAS) {
     if (!r.titulo.includes('|')) problemas.push(`título da aba estranho: ${r.titulo}`);
     if (pedidosPlayer !== pedidosAntes) problemas.push('requisição de player antes do clique');
     problemas.forEach((p) => falhas.push(`${largura}px #/${rota}: ${p}`));
+    if (rota === 'ia-sem-labia' || rota.startsWith('ia-sem-labia/')) {
+      try { await conferirDatasIa(pagina, rota); }
+      catch (e) { falhas.push(`${largura}px #/${rota}: datas: ${e.message}`); }
+    }
     if (rota === 'ia-sem-labia') {
       try { await conferirOrdemIa(pagina); }
       catch (e) { falhas.push(`${largura}px #/${rota}: ordem e filtros: ${e.message}`); }

@@ -70,7 +70,8 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | em PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30); autorizado por Franklin em 06/11/2026 |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
-| 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | em PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33); aprovado por Franklin em 12/11/2026 |
+| 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
+| 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | em execução na branch `feat/t24-datas-ia`; aprovado por Franklin em 12/11/2026 |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -286,3 +287,12 @@ process.exit(falhas ? 1 : 0);
 - **Lógica:** identificar buracos, null/undefined e tipo incorreto de entrada antes dos percursos. Validar título/nome, resumo, categoria, fontes/links e data de conferência em IA sem lábia. Aceitar Links oficiais como fonte dos cadastros antigos. Verificar se destinos internos cadastrados existem entre seções, âncoras e detalhes; não inventar páginas de singles que o roteador não atende. Erro de importação deve informar o arquivo e sair com código 1.
 - **Pronto quando:** cadastro atual aprovado; exemplos inválidos isolados falham com código 1 e diagnóstico, sem falso verde; exemplos válidos de formatos antigos e âncoras continuam aceitos. Suíte negativa integrada ao CI; dados e 38 rotas em 390/1280px aprovados. Nenhuma alteração de conteúdo ou de interface.
 - **Escopo:** validação do cadastro e regressões. Não auditar disponibilidade de todos os sites externos, migrar arquitetura ou implementar o aviso de filtros vazios nesta tarefa. Revisão do Claude e merge pelo Franklin.
+
+
+### T-24 · Datas da análise e das fontes identificadas (D-12)
+
+- **Plano aprovado:** próxima melhoria da revisão de 11/11, autorizada pelo Franklin em 12/11 após o merge da T-23. Datas cadastradas preservadas; não é uma nova pesquisa das fontes.
+- **Arquivos:** `js/modules/templates.js`, `ferramentas/testar-rotas.mjs`, README, auditoria, plano e registro. Reutilizar os estilos existentes; nenhum CSS novo necessário.
+- **Lógica:** nos cards, mostrar “Análise: DD/MM/AAAA” e “Fontes conferidas em DD/MM/AAAA”, com elementos `time` e `datetime` ISO. No detalhe, identificar a data antes sem rótulo e mostrar a conferência das fontes no cabeçalho, inclusive sem custos. Se a data de conferência não estiver cadastrada, omitir essa linha. Não inventar publicação/atualização, alterar os dados ou promover artigos antigos na ordem da lista.
+- **Pronto quando:** ambas as datas correspondem a seus próprios campos; rótulos acessíveis ao leitor de tela; cards alinhados e legíveis em 390px/1280px; conferir detalhes antigos/novos e relacionados. Templates testados com datas diferentes e conferência ausente; dados, regressões e rotas aprovados.
+- **Fora do escopo:** filtros persistentes, categorias, busca e ajustes de manutenção sugeridos pelo Claude na T-23. Revisão do Claude e merge pelo Franklin.

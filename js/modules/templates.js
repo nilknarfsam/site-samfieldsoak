@@ -76,6 +76,7 @@ export const cartaoFerramenta = (f) => `
         <span class="selo selo--${escapar(f.status)}">${escapar(rotuloStatus(f.status))}</span>
         <span class="selo selo--categoria">${escapar(rotuloCategoria(f.categoria))}</span>
       </div>
+      <p class="cartao__meta">Análise: <time datetime="${escapar(f.analisadoEm)}">${escapar(dataBR(f.analisadoEm))}</time>${f.conferidoEm ? `<br>Fontes conferidas em <time datetime="${escapar(f.conferidoEm)}">${escapar(dataBR(f.conferidoEm))}</time>.` : ''}</p>
       <h2 class="cartao__titulo"><a class="cartao__link" href="#/ia-sem-labia/${escapar(f.slug)}">${escapar(f.titulo || f.nome)}</a></h2>
       <p class="cartao__resumo">${escapar(f.resumo)}</p>
       <p class="cartao__rodape" aria-hidden="true"><span class="cartao__acao">Ver a verdade completa →</span></p>
@@ -101,10 +102,11 @@ export function detalheFerramenta(f, relacionadas) {
       <div class="selos">
         <span class="selo selo--${escapar(f.status)}">${escapar(rotuloStatus(f.status))}</span>
         <span class="selo selo--categoria">${escapar(rotuloCategoria(f.categoria))}</span>
-        <time class="selos__texto" datetime="${escapar(f.analisadoEm)}">${escapar(dataBR(f.analisadoEm))}</time>
+        <span class="selos__texto">Análise: <time datetime="${escapar(f.analisadoEm)}">${escapar(dataBR(f.analisadoEm))}</time></span>
       </div>
       <h1 class="titulo-faixa">${tituloComFaixa(f)}</h1>
       <p class="lead">${escapar(f.resumo)}</p>
+      ${f.conferidoEm ? `<p class="nota">Fontes conferidas em <time datetime="${escapar(f.conferidoEm)}">${escapar(dataBR(f.conferidoEm))}</time>.</p>` : ''}
       ${f.status === 'analisado' ? '<p class="nota">Analisado a partir de fontes públicas. Ainda não testado por mim.</p>' : ''}
       ${botaoCompartilhar()}
     </header>`);
