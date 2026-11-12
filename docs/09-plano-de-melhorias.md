@@ -71,7 +71,8 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | em PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30); autorizado por Franklin em 06/11/2026 |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
-| 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | em PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34); aprovado por Franklin em 12/11/2026 |
+| 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin |
+| 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | em execução na branch `feat/t25-retorno-filtros`; autorizado por Franklin em 12/11/2026 |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -296,3 +297,12 @@ process.exit(falhas ? 1 : 0);
 - **Lógica:** nos cards, mostrar “Análise: DD/MM/AAAA” e “Fontes conferidas em DD/MM/AAAA”, com elementos `time` e `datetime` ISO. No detalhe, identificar a data antes sem rótulo e mostrar a conferência das fontes no cabeçalho, inclusive sem custos. Se a data de conferência não estiver cadastrada, omitir essa linha. Não inventar publicação/atualização, alterar os dados ou promover artigos antigos na ordem da lista.
 - **Pronto quando:** ambas as datas correspondem a seus próprios campos; rótulos acessíveis ao leitor de tela; cards alinhados e legíveis em 390px/1280px; conferir detalhes antigos/novos e relacionados. Templates testados com datas diferentes e conferência ausente; dados, regressões e rotas aprovados.
 - **Fora do escopo:** filtros persistentes, categorias, busca e ajustes de manutenção sugeridos pelo Claude na T-23. Revisão do Claude e merge pelo Franklin.
+
+
+### T-25 · Preservar os filtros ao voltar do artigo (F-13)
+
+- **Plano aprovado:** sequência da revisão de 11/11, autorizada pelo Franklin em 12/11 após o merge da T-24. Evidência e escopo em `docs/08-auditoria-2026-11-12.md`.
+- **Arquivos:** `js/telas/ia-lista.js`, `ferramentas/testar-rotas.mjs`, README, auditoria, plano e registro. Não é necessário alterar o roteador.
+- **Lógica:** guardar categoria/status somente na memória do módulo, enquanto a página estiver aberta na aba. Restaurar seleções válidas antes de filtrar ao reconstruir a lista. Usar Todas como reserva se uma opção não existir mais. Voltar pelo navegador, pelo link da seção ou circular por outra seção preserva a seleção; Todas limpa cada grupo. Recarregar ou abrir outra aba começa em Todas. Sem localStorage, cookies, servidor ou parâmetros novos na URL.
+- **Pronto quando:** filtros, contagem e ordem preservados nos dois retornos e ao trocar de seção; limpeza e recarga previsíveis; dados, 31 regressões e rotas em 390/1280px aprovados. Capturas do retorno filtrado para revisão.
+- **Fora do escopo:** persistência entre recargas/abas, mudança de Novidades, recuperação da posição de rolagem, mensagem de lista vazia e outras observações de manutenção. Uma tarefa por PR; revisão do Claude e merge pelo Franklin.
