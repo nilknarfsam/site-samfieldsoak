@@ -136,7 +136,7 @@ async function conferirOrdemIa(pagina) {
     Promise.all(lista.getAnimations({ subtree: true }).map((animacao) => animacao.finished)));
 }
 
-async function conferirRetornoFiltrosIa(pagina) {
+async function conferirRetornoFiltrosIa(pagina, navegar) {
   const ultima = ferramentas.at(-1);
   if (!ultima) return;
   const lerLista = () => pagina.locator('[data-filtros]').evaluate((form) => ({
@@ -149,16 +149,18 @@ async function conferirRetornoFiltrosIa(pagina) {
     await pagina.locator(`input[name="categoria"][value="${ultima.categoria}"]`).press('Space');
     await pagina.locator(`input[name="status"][value="${ultima.status}"]`).press('Space');
   };
-  const abrirArtigo = async () => {
+  // Este fluxo verifica estado e navegação; imagens lazy fora da tela não precisam carregar.
+  const abrirArtigo = () => navegar(async () => {
     await pagina.locator('[data-lista] .cartao__link').first().click();
     await pagina.locator('[data-detalhe] h1').waitFor({ state: 'visible' });
-    await pagina.locator('#app img').evaluateAll((imagens) => Promise.all(imagens.map((img) => img.decode())));
-  };
+  });
   await selecionar();
   const antes = await lerLista();
   await abrirArtigo();
-  await pagina.goBack();
-  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  await navegar(async () => {
+    await pagina.goBack();
+    await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  });
   assert.deepEqual(await lerLista(), antes, 'Voltar do navegador perdeu filtros, contagem ou ordem');
   if (CAPTURAS) {
     await pagina.locator('[data-lista]').evaluate((lista) =>
@@ -166,22 +168,29 @@ async function conferirRetornoFiltrosIa(pagina) {
     await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${pagina.viewportSize().width}-ia-sem-labia-retorno.png`), fullPage: true });
   }
   await abrirArtigo();
-  await pagina.getByRole('link', { name: '← IA sem lábia', exact: true }).click();
-  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  await navegar(async () => {
+    await pagina.getByRole('link', { name: '← IA sem lábia', exact: true }).click();
+    await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  });
   assert.deepEqual(await lerLista(), antes, 'link de retorno perdeu os filtros');
-  await pagina.locator('.rodape a[href="#/novidades"]').click();
-  await pagina.locator('[data-filtro-tema]').waitFor({ state: 'visible' });
-  await pagina.locator('#app img').evaluateAll((imagens) => Promise.all(imagens.map((img) => img.decode())));
-  await pagina.locator('.rodape a[href="#/ia-sem-labia"]').click();
-  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  await navegar(async () => {
+    await pagina.locator('.rodape a[href="#/novidades"]').click();
+    await pagina.locator('[data-filtro-tema]').waitFor({ state: 'visible' });
+  });
+  await navegar(async () => {
+    await pagina.locator('.rodape a[href="#/ia-sem-labia"]').click();
+    await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  });
   assert.deepEqual(await lerLista(), antes, 'trocar de seção perdeu os filtros da aba');
   await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
   await pagina.locator('input[name="status"][value="todas"]').press('Space');
   const todas = await lerLista();
   assert.equal(todas.links.length, ferramentas.length, 'Todas não limpou os filtros');
   await selecionar();
-  await pagina.reload();
-  await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  await navegar(async () => {
+    await pagina.reload();
+    await pagina.locator('[data-filtros]').waitFor({ state: 'visible' });
+  });
   assert.deepEqual(await lerLista(), todas, 'recarregar não começou com Todas');
 }
 
@@ -217,6 +226,31 @@ async function conferirDatasIa(pagina, rota) {
   }
 }
 
+// Só desconsidera cancelamentos de requisições ligadas às navegações deste teste.
+// O WeakSet mantém a atribuição quando o evento de cancelamento chega após a ação.
+function acompanharNavegacao(pagina, registrarErro) {
+  const ativos = new Set();
+  const ligadosANavegacao = new WeakSet();
+  let navegando = false;
+  pagina.on('request', (r) => {
+    ativos.add(r);
+    if (navegando) ligadosANavegacao.add(r);
+  });
+  pagina.on('requestfinished', (r) => ativos.delete(r));
+  pagina.on('requestfailed', (r) => {
+    ativos.delete(r);
+    const erro = r.failure()?.errorText || 'sem detalhe';
+    if (erro === 'net::ERR_ABORTED' && ligadosANavegacao.has(r)) return;
+    if (!EXTERNOS.test(r.url())) registrarErro(`falhou: ${r.url()} (${erro})`);
+  });
+  return async (acao) => {
+    ativos.forEach((r) => ligadosANavegacao.add(r));
+    navegando = true;
+    try { await acao(); }
+    finally { navegando = false; }
+  };
+}
+
 const navegador = await chromium.launch();
 const falhas = [];
 if (CAPTURAS) await mkdir(join(RAIZ, 'ferramentas/capturas'), { recursive: true });
@@ -235,7 +269,7 @@ for (const largura of LARGURAS) {
     let errosDaRota = [];
     pagina.on('pageerror', (e) => errosDaRota.push(`erro de JavaScript: ${e.message}`));
     pagina.on('response', (r) => { if (r.status() >= 400 && r.url().startsWith(BASE)) errosDaRota.push(`arquivo faltando (${r.status()}): ${r.url().slice(BASE.length)}`); });
-    pagina.on('requestfailed', (r) => { if (!EXTERNOS.test(r.url())) errosDaRota.push(`falhou: ${r.url()} (${r.failure()?.errorText || 'sem detalhe'})`); });
+    const navegar = acompanharNavegacao(pagina, (erro) => errosDaRota.push(erro));
 
     errosDaRota = [];
     const pedidosAntes = pedidosPlayer;
@@ -260,7 +294,7 @@ for (const largura of LARGURAS) {
     }
     if (rota === 'ia-sem-labia') {
       try {
-        await conferirRetornoFiltrosIa(pagina);
+        await conferirRetornoFiltrosIa(pagina, navegar);
         await conferirOrdemIa(pagina);
         const novosErros = errosDaRota.filter((e) => !problemas.includes(e));
         assert.equal(novosErros.length, 0, novosErros.join('; '));
