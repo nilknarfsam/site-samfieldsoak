@@ -70,7 +70,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | em PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30); autorizado por Franklin em 06/11/2026 |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
-| 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | em execução na branch `feat/t23-validacao-dados`; aprovado por Franklin em 12/11/2026 |
+| 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | em PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33); aprovado por Franklin em 12/11/2026 |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
