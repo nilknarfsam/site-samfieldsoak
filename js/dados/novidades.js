@@ -388,7 +388,79 @@ const lista = [
       }
     ],
     "conferidoEm": "2026-11-03"
-  },
+  },,
+{
+  "slug": "otimizadores-de-pc",
+  "data": "2026-11-11",
+  "tema": "tecnologia",
+  "titulo": "Otimizadores de PC: o que é marketing e o que funciona",
+  "resumo": "Seu computador está lento. Antes de comprar um botão turbo, descubra o que está pesando: armazenamento, memória, programas na inicialização ou algum defeito. Limpeza e diagnóstico têm funções diferentes.",
+  "rota": "#/ia-sem-labia/otimizadores-de-pc",
+  "paragrafos": [],
+  "conferidoEm": "2026-11-11",
+  "fontes": [
+    {
+      "rotulo": "Microsoft — dicas para melhorar o desempenho do PC",
+      "url": "https://support.microsoft.com/en-us/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows"
+    },
+    {
+      "rotulo": "Microsoft — ferramentas de configuração e cuidados com o Registro",
+      "url": "https://support.microsoft.com/en-au/windows/experience/system-configuration-tools-in-windows"
+    },
+    {
+      "rotulo": "Microsoft — atualizar drivers pelo Gerenciador de Dispositivos",
+      "url": "https://support.microsoft.com/en-us/windows/hardware/drivers/update-drivers-through-device-manager-in-windows"
+    },
+    {
+      "rotulo": "Microsoft — otimização de HDDs e SSDs",
+      "url": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/defragment-optimize-your-data-drives-in-windows"
+    },
+    {
+      "rotulo": "Microsoft Learn — memória e conjunto de trabalho dos processos",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/working-set"
+    }
+  ]
+},
+{
+  "slug": "precisa-pagar-antivirus",
+  "data": "2026-11-11",
+  "tema": "tecnologia",
+  "titulo": "Você precisa pagar antivírus?",
+  "resumo": "O Windows já inclui antivírus. Uma assinatura pode acrescentar recursos úteis, mas a decisão deve considerar sua necessidade, a proteção ativa e o custo de renovação — não apenas o medo de ficar desprotegido.",
+  "rota": "#/ia-sem-labia/precisa-pagar-antivirus",
+  "paragrafos": [],
+  "conferidoEm": "2026-11-11",
+  "fontes": [
+    {
+      "rotulo": "Microsoft — perguntas frequentes sobre antivírus e antimalware",
+      "url": "https://support.microsoft.com/pt-br/defender/antivirus-and-antimalware-software-faq"
+    },
+    {
+      "rotulo": "Microsoft — aplicativo Segurança do Windows",
+      "url": "https://support.microsoft.com/pt-br/windows/security/windows-security/stay-protected-with-the-windows-security-app"
+    },
+    {
+      "rotulo": "Microsoft — Defender para assinantes Microsoft 365",
+      "url": "https://www.microsoft.com/pt-br/microsoft-365/microsoft-defender-subscribers"
+    },
+    {
+      "rotulo": "Microsoft Learn — compatibilidade e modos do Defender Antivirus",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-antivirus-compatibility"
+    },
+    {
+      "rotulo": "Microsoft — fim do suporte geral do Windows 10",
+      "url": "https://support.microsoft.com/en-us/windows/deployment/updates-lifecycle/windows-10-support-has-ended-on-october-14-2025"
+    },
+    {
+      "rotulo": "Microsoft — proteção contra ransomware e cópias de segurança",
+      "url": "https://support.microsoft.com/pt-br/windows/security/protect-your-pc-from-ransomware"
+    },
+    {
+      "rotulo": "Microsoft — verificação em duas etapas",
+      "url": "https://support.microsoft.com/pt-br/accounts-billing/security/how-to-use-two-step-verification-with-your-microsoft-account"
+    }
+  ]
+}
 ];
 
 // Mais nova primeiro; no mesmo dia, a que foi acrescentada por último vem antes.
