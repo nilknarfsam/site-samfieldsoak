@@ -72,7 +72,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
 | 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin |
-| 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | em PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35); autorizado por Franklin em 12/11/2026 |
+| 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | feito no PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35), merge em 12/11/2026; correção do teste em revisão |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -283,9 +283,7 @@ process.exit(falhas ? 1 : 0);
 
 ### T-23 · Fortalecer a validação dos dados (F-12)
 
-- **Plano aprovado:** próxima tarefa da revisão de 11/11, autorizada pelo Franklin em 12/11 após o merge da T-22. O recado do Claude de 12/11 aprovou a T-22 e deixou a mensagem de lista vazia como melhoria futura, fora deste PR.
-- **Arquivos:** `ferramentas/conferir-dados.mjs`, `ferramentas/testar-validacao-dados.mjs`, `.github/workflows/conferir.yml`, README, auditoria e registro.
-- **Lógica:** identificar buracos, null/undefined e tipo incorreto de entrada antes dos percursos. Validar título/nome, resumo, categoria, fontes/links e data de conferência em IA sem lábia. Aceitar Links oficiais como fonte dos cadastros antigos. Verificar se destinos internos cadastrados existem entre seções, âncoras e detalhes; não inventar páginas de singles que o roteador não atende. Erro de importação deve informar o arquivo e sair com código 1.
+- **Plano aprovado:** próxima tarefa da revisão de 11/11, autorizada pelo Franklin em 12/11 após o merge da T-22. O recado do Claude de 12/11 aprovou a T-…179 tokens truncated…mar o arquivo e sair com código 1.
 - **Pronto quando:** cadastro atual aprovado; exemplos inválidos isolados falham com código 1 e diagnóstico, sem falso verde; exemplos válidos de formatos antigos e âncoras continuam aceitos. Suíte negativa integrada ao CI; dados e 38 rotas em 390/1280px aprovados. Nenhuma alteração de conteúdo ou de interface.
 - **Escopo:** validação do cadastro e regressões. Não auditar disponibilidade de todos os sites externos, migrar arquitetura ou implementar o aviso de filtros vazios nesta tarefa. Revisão do Claude e merge pelo Franklin.
 
@@ -306,3 +304,9 @@ process.exit(falhas ? 1 : 0);
 - **Lógica:** guardar categoria/status somente na memória do módulo, enquanto a página estiver aberta na aba. Restaurar seleções válidas antes de filtrar ao reconstruir a lista. Usar Todas como reserva se uma opção não existir mais. Voltar pelo navegador, pelo link da seção ou circular por outra seção preserva a seleção; Todas limpa cada grupo. Recarregar ou abrir outra aba começa em Todas. Sem localStorage, cookies, servidor ou parâmetros novos na URL.
 - **Pronto quando:** filtros, contagem e ordem preservados nos dois retornos e ao trocar de seção; limpeza e recarga previsíveis; dados, 31 regressões e rotas em 390/1280px aprovados. Capturas do retorno filtrado para revisão.
 - **Fora do escopo:** persistência entre recargas/abas, mudança de Novidades, recuperação da posição de rolagem, mensagem de lista vazia e outras observações de manutenção. Uma tarefa por PR; revisão do Claude e merge pelo Franklin.
+
+### Correção dos testes da T-25 · revisão do Claude em 12/11
+
+- Corrigir somente a conferência: remover a espera por decodificação de todas as imagens nos desvios entre seções (as lazy fora da tela podem nunca carregar).
+- Desconsiderar apenas `net::ERR_ABORTED` de requisições associadas às navegações controladas do teste, inclusive eventos atrasados. Manter erros de JavaScript, HTTP 404 e outras falhas de rede.
+- Validar os dados, as 31 regressões e todas as rotas em 390/1280px; PR separado, revisão do Claude e merge pelo Franklin. Não iniciar T-26 neste PR.

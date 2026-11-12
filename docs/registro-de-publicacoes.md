@@ -2,7 +2,8 @@
 
 | Data | Seção | Página / mudança | Rota | Situação |
 |---|---|---|---|---|
-| 2026-11-12 | Produto / IA sem lábia (T-25) | Categoria e status preservados ao voltar do artigo na mesma aba; Todas limpa e recarregar reinicia a seleção | `#/ia-sem-labia` | PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35). Conferências no PR; aguarda revisão do Claude e merge pelo Franklin. |
+| 2026-11-12 | Produto / Testes da T-25 | Remove espera por imagens lazy fora da tela e distingue cancelamentos da navegação de falhas reais | conferência de rotas | Correção em revisão; merge somente pelo Franklin. |
+| 2026-11-12 | Produto / IA sem lábia (T-25) | Categoria e status preservados ao voltar do artigo na mesma aba; Todas limpa e recarregar reinicia a seleção | `#/ia-sem-labia` | PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35). Merge pelo Franklin em 12/11/2026; revisão posterior do Claude pediu correção do teste, sem mudança na função de filtros. |
 | 2026-11-12 | Produto / IA sem lábia (T-24) | Datas identificadas da análise e da conferência das fontes nos cards e nos detalhes, inclusive sem custos | `#/ia-sem-labia`, `#/ia-sem-labia/<slug>` | Publicado após revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin em 12/11/2026. |
 | 2026-11-12 | Produto / Validação (T-23) | Estrutura das listas, campos essenciais IA e destinos internos; regressões isoladas no CI | conferência do cadastro | Concluído após revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin em 12/11/2026. |
 | 2026-11-12 | Produto / IA sem lábia (T-22) | Mais recentes no topo por data da análise; último cadastro primeiro no mesmo dia; ordem mantida nos filtros | `#/ia-sem-labia` | Publicado após revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin em 12/11/2026. |
