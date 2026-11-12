@@ -173,6 +173,208 @@ export const ferramentas = [
     relacionadas: ['verdades-ia-instagram', 'ootto'],
     carrossel: { capa: '', post: '', cards: [] },
   },
+{
+  "slug": "otimizadores-de-pc",
+  "titulo": "Otimizadores de PC: o que é marketing e o que funciona",
+  "faixa": "Otimizadores de PC",
+  "categoria": "outros",
+  "status": "analisado",
+  "analisadoEm": "2026-11-11",
+  "conferidoEm": "2026-11-11",
+  "resumo": "Seu computador está lento. Antes de comprar um botão turbo, descubra o que está pesando: armazenamento, memória, programas na inicialização ou algum defeito. Limpeza e diagnóstico têm funções diferentes.",
+  "aviso": "Guia para Windows 11, baseado em documentação pública. Não houve teste comparativo de marcas nem medição de ganho de desempenho.",
+  "promete": [
+    "Um clique para acelerar o computador, liberar RAM, corrigir o Registro e atualizar todos os drivers. O anúncio reúne tarefas diferentes como se fossem uma solução única para qualquer lentidão.",
+    "Alguns programas cobram pela conveniência de reunir ferramentas e automatizar tarefas. Isso pode ter valor, mas uma tela cheia de alertas não demonstra que o computador ficou mais rápido."
+  ],
+  "verdade": [
+    "Armazenamento é onde ficam os arquivos; RAM é a memória usada pelos programas em execução; processador executa as tarefas. Apagar um arquivo libera espaço no disco, mas não acrescenta RAM nem aumenta a capacidade do processador.",
+    "Pouco espaço disponível, aplicativos iniciando junto com o Windows e tarefas em segundo plano podem afetar o desempenho. Corrigir a causa pode ajudar; a melhora depende do problema e do equipamento.",
+    "O Windows já oferece Gerenciador de Tarefas, configurações de armazenamento e ferramentas de otimização de unidades. Conhecer essas opções ajuda a avaliar o que uma assinatura realmente acrescenta."
+  ],
+  "quemFaz": [
+    {
+      "tarefa": "Descobrir o que está consumindo recursos",
+      "servicos": "Gerenciador de Tarefas",
+      "obs": "Observe CPU, memória e disco durante a atividade que fica lenta. Uma leitura isolada não fecha diagnóstico."
+    },
+    {
+      "tarefa": "Revisar espaço ocupado",
+      "servicos": "Armazenamento e arquivos temporários",
+      "obs": "Confira as categorias e os arquivos antes de excluir. Limpar não deve significar perder documentos."
+    },
+    {
+      "tarefa": "Cuidar das unidades",
+      "servicos": "Desfragmentar e Otimizar Unidades",
+      "obs": "O Windows aplica operações conforme o tipo de unidade: HDD e SSD não recebem exatamente o mesmo tratamento."
+    }
+  ],
+  "tituloNaoConta": "O que um botão turbo não resolve",
+  "naoConta": [
+    "RAM livre não é um troféu. O sistema usa memória para programas e cache. Reduzir artificialmente a memória de um processo pode obrigá-lo a recuperar páginas depois, inclusive do disco. Um número menor no painel não comprova uma experiência melhor.",
+    "O Registro armazena configurações importantes. Não trate alterações automáticas como faxina obrigatória: uma mudança incorreta pode causar falhas. Ter muitas entradas não basta para concluir que elas explicam a lentidão.",
+    "Driver mais recente não significa driver correto para qualquer equipamento. Prefira Windows Update e, quando necessário, o fabricante do dispositivo ou do computador, verificando o modelo e a compatibilidade.",
+    "Um SSD usa operações como TRIM; um HD pode ser desfragmentado. A ferramenta do Windows reconhece o tipo de unidade. Não é necessário desligar a otimização do sistema só porque o computador tem SSD.",
+    "Apenas apagar temporários não corrige superaquecimento, falha de armazenamento nem falta de capacidade para o trabalho. Travamentos recorrentes, ruídos ou erros exigem diagnóstico antes de insistir em limpezas."
+  ],
+  "paraQuem": [
+    "Quem quer investigar a lentidão antes de instalar mais um programa ou contratar uma assinatura.",
+    "Quem precisa distinguir falta de espaço, excesso de tarefas e limites do equipamento."
+  ],
+  "naoServePara": [
+    "Escolher uma marca por ranking: este artigo não fez comparação de produtos.",
+    "Aplicar mudanças em computador de empresa sem seguir a orientação da equipe de TI."
+  ],
+  "caminhoGratis": [
+    "Comece pelas ferramentas do Windows e registre o sintoma. Troque apenas uma coisa de cada vez para perceber o efeito.",
+    "Se o objetivo for aprender, avalie se o curso ensina diagnóstico e explica riscos. Comprar aulas ou um aplicativo não garante que todo computador ficará mais rápido."
+  ],
+  "tituloComoComecar": "Checklist: descubra o problema antes de limpar",
+  "comoComecar": [
+    "Defina o sintoma: demora para ligar, abrir um aplicativo, navegar ou copiar arquivos? Anote quando começou e o que mudou. Lentidão da internet também pode envolver a conexão, não apenas o computador.",
+    "Pressione `Ctrl + Shift + Esc` e observe o Gerenciador de Tarefas durante a atividade problemática. Veja quais aplicativos estão usando CPU, memória e disco; não encerre processos desconhecidos só pelo consumo.",
+    "Em Configurações > Sistema > Armazenamento, revise os arquivos temporários e as recomendações de limpeza. Leia cada categoria, confira Downloads e mantenha cópia dos arquivos importantes antes de excluir.",
+    "Revise os Aplicativos de Inicialização e desative somente os que você conhece e não precisa abrir ao ligar. Preserve proteção, drivers e ferramentas exigidas pela sua organização.",
+    "Instale as atualizações adequadas pelo Windows Update e reinicie quando solicitado. Se precisar de um driver específico, use o canal oficial do fabricante correspondente ao modelo.",
+    "Repita a mesma atividade e compare o resultado. Se persistir, investigue saúde do disco, temperatura e requisitos dos aplicativos com assistência técnica. A necessidade de SSD ou mais RAM deve sair do diagnóstico, não do anúncio."
+  ],
+  "perguntas": [
+    "Qual problema concreto esse programa encontrou e como ele demonstrará a melhora?",
+    "Posso revisar e desfazer as mudanças? Existe cópia de segurança antes de alterações importantes?",
+    "O pagamento oferece algo de que preciso além das ferramentas disponíveis no Windows? Qual é o valor de renovação e como cancelo?"
+  ],
+  "fontes": [
+    {
+      "rotulo": "Microsoft — dicas para melhorar o desempenho do PC",
+      "url": "https://support.microsoft.com/en-us/windows/experience/performance-optimization/tips-to-improve-pc-performance-in-windows"
+    },
+    {
+      "rotulo": "Microsoft — ferramentas de configuração e cuidados com o Registro",
+      "url": "https://support.microsoft.com/en-au/windows/experience/system-configuration-tools-in-windows"
+    },
+    {
+      "rotulo": "Microsoft — atualizar drivers pelo Gerenciador de Dispositivos",
+      "url": "https://support.microsoft.com/en-us/windows/hardware/drivers/update-drivers-through-device-manager-in-windows"
+    },
+    {
+      "rotulo": "Microsoft — otimização de HDDs e SSDs",
+      "url": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/defragment-optimize-your-data-drives-in-windows"
+    },
+    {
+      "rotulo": "Microsoft Learn — memória e conjunto de trabalho dos processos",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/working-set"
+    }
+  ],
+  "relacionadas": [
+    "precisa-pagar-antivirus"
+  ]
+},
+{
+  "slug": "precisa-pagar-antivirus",
+  "titulo": "Você precisa pagar antivírus?",
+  "faixa": "pagar antivírus",
+  "categoria": "outros",
+  "status": "analisado",
+  "analisadoEm": "2026-11-11",
+  "conferidoEm": "2026-11-11",
+  "resumo": "O Windows já inclui antivírus. Uma assinatura pode acrescentar recursos úteis, mas a decisão deve considerar sua necessidade, a proteção ativa e o custo de renovação — não apenas o medo de ficar desprotegido.",
+  "aviso": "Análise documental para usuários do Windows. Não é ranking de antivírus, teste de detecção ou garantia de proteção total.",
+  "promete": [
+    "Proteção completa para o computador e a família, navegação segura, privacidade e outros recursos no mesmo pacote. A oferta varia conforme a marca e o plano; não presuma que tudo está incluído.",
+    "Campanhas podem sugerir que sem uma assinatura o Windows fica sem antivírus. Antes de aceitar essa conclusão, confira qual proteção está ativa no seu computador."
+  ],
+  "verdade": [
+    "O Microsoft Defender Antivirus vem integrado ao Windows 11 e ao Windows 10. Para usar essa proteção integrada, não é preciso contratar Microsoft 365. Ela precisa estar funcionando e atualizada, dentro de um sistema que ainda receba as atualizações aplicáveis.",
+    "Segurança do Windows é o aplicativo que reúne áreas como proteção contra vírus, firewall e segurança do dispositivo. Microsoft Defender Antivirus é o mecanismo antivírus integrado. Já o aplicativo Microsoft Defender para assinantes do Microsoft 365 é outra oferta: os nomes parecidos não tornam a assinatura obrigatória para o antivírus do Windows.",
+    "Um produto pago pode fazer sentido por suporte, administração familiar ou funções adicionais que você realmente usará. Compare o plano específico: VPN, monitoramento de identidade e cobertura de vários dispositivos não estão presentes em toda oferta.",
+    "Nenhum antivírus garante proteção contra tudo. Atualizações, cuidado com arquivos e links, senhas exclusivas, verificação em duas etapas e cópias de segurança continuam necessários."
+  ],
+  "quemFaz": [
+    {
+      "tarefa": "Proteção antivírus integrada",
+      "servicos": "Microsoft Defender Antivirus",
+      "obs": "Parte do Windows; verifique o estado e as atualizações em Segurança do Windows."
+    },
+    {
+      "tarefa": "Painel de segurança do computador",
+      "servicos": "Segurança do Windows",
+      "obs": "Reúne antivírus, firewall e outras áreas. Nem todas as funções são o próprio antivírus."
+    },
+    {
+      "tarefa": "Recursos extras de uma assinatura",
+      "servicos": "Dependem do produto e do plano",
+      "obs": "Leia a cobertura real, os limites, a renovação e as condições de cancelamento."
+    }
+  ],
+  "tituloNaoConta": "O que conferir antes de contratar ou renovar",
+  "naoConta": [
+    "Dois antivírus com proteção em tempo real não significam proteção dobrada. Eles podem disputar recursos e causar problemas. Ao instalar um antivírus compatível, o Windows normalmente ajusta o estado do Defender; esse comportamento varia em ambientes gerenciados. Não tente forçar os dois a trabalhar juntos.",
+    "Uma verificação pontual com uma ferramenta apropriada é diferente de manter dois motores atuando o tempo todo. Siga as instruções oficiais e a orientação de TI em equipamentos corporativos.",
+    "O suporte geral do Windows 10 terminou em 14 de outubro de 2025. Existem condições específicas para atualizações estendidas e edições com ciclos próprios. Confira a sua edição e sua participação no programa aplicável: instalar antivírus não substitui atualizações do sistema.",
+    "O valor promocional pode valer apenas para o primeiro período. Confira a renovação, quantos aparelhos estão cobertos, cobrança recorrente e se você já recebe funções semelhantes por outro serviço.",
+    "Alertas insistentes de upgrade não são, sozinhos, prova de infecção. Abra o painel oficial do produto e confira o aviso. Não ligue para números nem instale programas indicados por uma página assustadora que apareceu de repente."
+  ],
+  "paraQuem": [
+    "Quem quer saber o que o Windows já oferece antes de comprar proteção adicional.",
+    "Quem usa recursos extras e consegue justificar a assinatura pela utilidade real."
+  ],
+  "naoServePara": [
+    "Declarar que todo antivírus pago é golpe ou que uma opção sempre vence todas as outras.",
+    "Desativar a proteção de uma empresa ou trocar ferramentas sem seguir a política de TI."
+  ],
+  "caminhoGratis": [
+    "Confira se o Microsoft Defender Antivirus está ativo e atualizado quando ele for o provedor escolhido. Se outro antivírus estiver ativo, revise a situação antes de mudar: não desative proteção sem garantir uma substituição funcionando.",
+    "Use os recursos de segurança disponíveis no sistema e nas suas contas. Mantenha cópia separada dos arquivos importantes; uma cópia externa desconectada após o backup reduz a exposição dessa cópia a um ataque no computador."
+  ],
+  "tituloComoComecar": "Checklist: confira sua proteção hoje",
+  "comoComecar": [
+    "Abra Segurança do Windows pelo menu Iniciar e entre em Proteção contra vírus e ameaças. Confira o provedor ativo, os avisos e as atualizações de proteção. Se o dispositivo for gerenciado, procure a equipe de TI para resolver restrições.",
+    "No Windows Update, verifique as atualizações aplicáveis. Atualize também navegador e aplicativos pelos canais oficiais. Se o sistema deixou de receber suporte, planeje uma alternativa que receba atualizações.",
+    "Execute uma verificação pelas opções do antivírus ativo quando houver suspeita ou recomendação do próprio produto. Não ignore uma detecção e não baixe um suposto removedor de uma propaganda.",
+    "Use senhas diferentes para contas importantes e ative a verificação em duas etapas onde estiver disponível. Confira o endereço de páginas e remetentes antes de informar credenciais ou abrir anexos.",
+    "Faça backup e teste se consegue recuperar um arquivo. Evite manter a única cópia de segurança permanentemente acessível pelo mesmo computador; sincronização, sozinha, pode também propagar exclusões ou alterações.",
+    "Antes de renovar, liste os recursos extras que usou, confira o preço do próximo período e compare as condições. Se decidir trocar o produto, siga as instruções de remoção e confirme que a nova proteção ficou ativa e atualizada."
+  ],
+  "perguntas": [
+    "Qual recurso preciso e qual plano realmente o inclui?",
+    "Minha proteção atual está funcionando e meu sistema ainda recebe atualizações?",
+    "Quanto pagarei na renovação e como funciona o cancelamento?",
+    "Existe uma necessidade de suporte ou gestão de dispositivos que justifique o pacote?"
+  ],
+  "fontes": [
+    {
+      "rotulo": "Microsoft — perguntas frequentes sobre antivírus e antimalware",
+      "url": "https://support.microsoft.com/pt-br/defender/antivirus-and-antimalware-software-faq"
+    },
+    {
+      "rotulo": "Microsoft — aplicativo Segurança do Windows",
+      "url": "https://support.microsoft.com/pt-br/windows/security/windows-security/stay-protected-with-the-windows-security-app"
+    },
+    {
+      "rotulo": "Microsoft — Defender para assinantes Microsoft 365",
+      "url": "https://www.microsoft.com/pt-br/microsoft-365/microsoft-defender-subscribers"
+    },
+    {
+      "rotulo": "Microsoft Learn — compatibilidade e modos do Defender Antivirus",
+      "url": "https://learn.microsoft.com/en-us/defender-endpoint/microsoft-defender-antivirus-compatibility"
+    },
+    {
+      "rotulo": "Microsoft — fim do suporte geral do Windows 10",
+      "url": "https://support.microsoft.com/en-us/windows/deployment/updates-lifecycle/windows-10-support-has-ended-on-october-14-2025"
+    },
+    {
+      "rotulo": "Microsoft — proteção contra ransomware e cópias de segurança",
+      "url": "https://support.microsoft.com/pt-br/windows/security/protect-your-pc-from-ransomware"
+    },
+    {
+      "rotulo": "Microsoft — verificação em duas etapas",
+      "url": "https://support.microsoft.com/pt-br/accounts-billing/security/how-to-use-two-step-verification-with-your-microsoft-account"
+    }
+  ],
+  "relacionadas": [
+    "otimizadores-de-pc"
+  ]
+}
 ];
 
 export const buscarFerramenta = (slug) => ferramentas.find((f) => f.slug === slug);
