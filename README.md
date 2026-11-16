@@ -32,6 +32,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
 | `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 7 pregações (Romanos, Salmos 73, 74 e 94, Hebreus 7) |
 | `#/palavra/<slug>` | Pregação ponto a ponto: referência e versão, citações curtas da NVI, notas "Para entender melhor" (passagens difíceis ou debatidas), oração, link para a faixa (slug inválido mostra "Conteúdo não encontrado") | pronto |
+| `#/busca` | Busca local em Novidades, IA sem lábia, Palavra e álbuns; normaliza acentos/caixa, combina termos e elimina destinos duplicados, sem guardar/enviar a consulta | pronto |
 | `#/sobre` | Quem é e o compromisso | pronto |
 
 Rota inválida volta para `#/inicio`; `404.html` redireciona para o início.
@@ -150,3 +151,10 @@ O validador rejeita posições vazias, entradas nulas e tipos inválidos antes d
 
 Construído com o Claude Code a partir dos pedidos do Franklin na caixa de entrada.
 
+
+
+### Busca (T-19)
+
+`js/modules/busca.js` cria o índice só com metadados (título, resumo, referência, tema/categoria e títulos/referências das faixas). Não indexa letras nem corpo de artigos. Uma novidade que aponta para uma página existente acrescenta termos ao destino, sem criar resultado duplicado. Palavras da consulta precisam aparecer; títulos têm prioridade, com desempate alfabético. `js/telas/busca.js` não muda URL ou armazenamento e reinicia a consulta ao reconstruir a tela. Nenhum termo é enviado ao contador. Singles/primeiras versões não têm páginas individuais e ficam fora deste escopo.
+
+O link Buscar está no menu e rodapé. O menu usa o painel até 991px para acomodar o novo link nas telas intermediárias. Testes: `node --test ferramentas/testar-busca.mjs`, além das conferências existentes; a suíte de rotas cobre busca e menu também em 768/992px.

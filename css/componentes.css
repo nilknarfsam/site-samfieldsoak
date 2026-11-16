@@ -156,6 +156,15 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .novidade__texto span { color: var(--cor-texto-suave); font-size: var(--texto-xs); }
 
 /* ---------- Filtros ---------- */
+/* Busca: campo e ação na mesma linha, inclusive no celular. */
+.busca__form { display: grid; gap: var(--esp-2); margin-bottom: var(--esp-5); }
+.busca__rotulo { font-weight: 700; }
+.busca__form .nota { margin-bottom: 0; }
+.busca__controles { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--esp-2); }
+.busca__campo { width: 100%; min-width: 0; min-height: var(--toque-minimo); padding: var(--esp-2) var(--esp-3); border: var(--borda); border-radius: var(--raio-pequeno); background: var(--cor-superficie); color: var(--cor-texto); font: inherit; }
+.busca__form > button { justify-self: start; }
+.busca__resultados { display: grid; gap: var(--esp-3); }
+.busca__resultados > li + li { margin-top: 0; }
 .filtros { display: flex; flex-wrap: wrap; gap: var(--esp-3) var(--esp-5); margin-bottom: var(--esp-5); border: 0; padding: 0; }
 .filtro { border: 0; padding: 0; margin: 0; min-width: 0; }
 .filtro legend { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--esp-2); padding: 0; }

@@ -1,0 +1,19 @@
+<section class="busca container--texto">
+  <header class="mb-5">
+    <p class="sobretitulo">Fé, música e tecnologia</p>
+    <h1 class="titulo-faixa"><span class="titulo-faixa__marca">Buscar</span> no site</h1>
+    <p class="lead">Encontre artigos, estudos bíblicos e álbuns.</p>
+  </header>
+  <form class="busca__form" data-busca role="search" aria-label="Buscar no site" autocomplete="off">
+    <label class="busca__rotulo" for="busca-termo">O que você procura?</label>
+    <p class="nota" id="busca-dica">Experimente: Salmo 73, Claude ou graça.</p>
+    <div class="busca__controles">
+      <input class="busca__campo" id="busca-termo" name="termo" type="search" maxlength="120" autocomplete="off" spellcheck="false" aria-describedby="busca-dica" enterkeyhint="search">
+      <button class="botao" type="submit">Buscar</button>
+    </div>
+    <button class="botao botao--contorno" type="reset">Limpar busca</button>
+  </form>
+  <p class="contagem" role="status" aria-atomic="true" data-contagem-busca></p>
+  <p class="vazio" data-vazio-busca hidden>Nenhum resultado. Tente outro assunto ou uma referência mais curta.</p>
+  <ul class="busca__resultados lista-limpa" data-resultados-busca></ul>
+</section>

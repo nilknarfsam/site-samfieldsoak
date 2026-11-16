@@ -66,7 +66,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 16 | Rodapé com Sobre e compromisso | D-10 | pequeno | feito 2026-10-24 (Claude) |
 | 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | feito 2026-10-27 (Claude) dentro da fase 1 do plano visual (`docs/11`, V-02 e V-03) |
 | 18 | Ícones SVG no lugar dos emojis | D-08 | médio | feito 2026-10-27 (Claude) na fase 5 do plano visual (`docs/11`, V-13): ícones Lucide em `imagens/icones/sprite.svg` |
-| 19 | Busca no site | F-05 | grande | pendente (mostrar plano ao Franklin antes) |
+| 19 | Busca no site | F-05 | grande | em PR [#39](https://github.com/nilknarfsam/site-samfieldsoak/pull/39); escopo aprovado em 16/11/2026 |
 | 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | em PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30); autorizado por Franklin em 06/11/2026 |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
@@ -74,7 +74,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin |
 | 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | feito no PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35), merge em 12/11/2026; correção do teste em PR [#36](https://github.com/nilknarfsam/site-samfieldsoak/pull/36) |
 | 26 | Índice de seções e tempo de leitura na IA sem lábia | D-13 | médio | feito 2026-11-16; revisão do Claude e merge do PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37) pelo Franklin |
-| 27 | Apresentação e categorias da IA sem lábia | D-14 | pequeno/médio | em PR [#38](https://github.com/nilknarfsam/site-samfieldsoak/pull/38); continuidade autorizada em 16/11/2026 |
+| 27 | Apresentação e categorias da IA sem lábia | D-14 | pequeno/médio | feito 2026-11-16; revisão do Claude e merge do PR [#38](https://github.com/nilknarfsam/site-samfieldsoak/pull/38) pelo Franklin |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -245,7 +245,11 @@ process.exit(falhas ? 1 : 0);
 
 ### T-19 · Busca no site (F-05)
 
-- **Antes de fazer:** mostrar o plano ao Franklin (onde fica o campo, o que entra na busca).
+- **Plano aprovado em 16/11/2026:** Franklin autorizou o escopo apresentado após o merge #38 (e03570b): Buscar no menu, busca local nos metadados das quatro seções, normalização, rótulos e deduplicação. Um PR de Produto, revisão do Claude e merge pelo Franklin.
+- **Implementação:** índice calculado em memória por rota; destinos canônicos entram antes das chamadas de Novidades. A chamada acrescenta termos ao destino, preservando título/resumo canônicos. Combinar palavras, priorizar correspondência no título e desempatar alfabeticamente. Metadados incluem títulos/referências das faixas; não incluem letras, corpo de artigos, singles ou primeiras versões sem páginas próprias.
+- **Interface:** página #/busca, label visível, input de busca, resultados ao digitar, botão Buscar, Limpar busca e contagem acessível. Campo vazio mostra orientação; zero resultados mostra ajuda. Limpar retorna foco ao campo; reabrir a tela começa vazio. Sem query string, histórico de consultas, armazenamento, rede ou contador ao digitar. Menu em painel até 991px para acomodar o novo link; conferir 768/992px além de 390/1280px.
+- **Arquivos:** html/busca.html, js/telas/busca.js, js/modules/busca.js, templates-busca.js, main.js, index.html, CSS, testes e documentação.
+- **Testes:** sete casos Node do índice/escape integrados ao CI; suíte de 39 rotas, consultas Salmo 73/Claude/graça, ausência de resultado, deduplicação, Enter/Tab/Limpar, navegação e retorno, URL/histórico/storage e ausência de novas requisições ao digitar. Capturas de resultados e menu.
 - **Lógica sugerida:** rota nova `#/busca` (view `html/busca.html`, tela `js/telas/busca.js`), um `<input type="search">` com `<label>`, filtrando em memória (sem servidor) títulos, resumos, referências e temas de `novidades`, `ferramentas`, `reflexoes` e `albuns`. Comparar sem acento e sem maiúscula (`normalize('NFD').replace(/\p{Diacritic}/gu, '')`). Resultado em lista com o rótulo da seção. Contagem em `role="status"`. Link "Buscar" no menu. Não guardar o que a pessoa digitou (nem em `localStorage`), e não enviar para o contador.
 - **Pronto quando:** buscar "salmo 73", "claude" e "graça" traz os resultados certos.
 
