@@ -120,16 +120,19 @@ async function conferirOrdemIa(pagina) {
       elegiveis.length === 1 ? '1 página' : `${elegiveis.length} páginas`);
   };
   await conferir('todas', 'todas');
+  const variosStatus = new Set(ferramentas.map((f) => f.status)).size > 1;
   for (const categoria of ['todas', ...new Set(ferramentas.map((f) => f.categoria))]) {
     await pagina.locator(`input[name="categoria"][value="${categoria}"]`).press('Space');
-    for (const status of ['todas', ...new Set(ferramentas.map((f) => f.status))]) {
-      await pagina.locator(`input[name="status"][value="${status}"]`).press('Space');
+    for (const status of variosStatus ? ['todas', ...new Set(ferramentas.map((f) => f.status))] : ['todas']) {
+      if (variosStatus) await pagina.locator(`input[name="status"][value="${status}"]`).press('Space');
       await conferir(categoria, status);
     }
   }
   // Voltar a Todas deve restaurar a lista completa, ainda na ordem correta.
   await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
-  await pagina.locator('input[name="status"][value="todas"]').press('Space');
+  if (await pagina.locator('[data-filtro-status]').isVisible()) {
+    await pagina.locator('input[name="status"][value="todas"]').press('Space');
+  }
   await conferir('todas', 'todas');
   // Os filtros reiniciam a entrada dos cards; a captura deve mostrar a lista já visível.
   await pagina.locator('[data-lista]').evaluate((lista) =>
@@ -147,7 +150,9 @@ async function conferirRetornoFiltrosIa(pagina, navegar) {
   }));
   const selecionar = async () => {
     await pagina.locator(`input[name="categoria"][value="${ultima.categoria}"]`).press('Space');
-    await pagina.locator(`input[name="status"][value="${ultima.status}"]`).press('Space');
+    if (await pagina.locator('[data-filtro-status]').isVisible()) {
+      await pagina.locator(`input[name="status"][value="${ultima.status}"]`).press('Space');
+    }
   };
   // Este fluxo verifica estado e navegação; imagens lazy fora da tela não precisam carregar.
   const abrirArtigo = () => navegar(async () => {
@@ -183,7 +188,9 @@ async function conferirRetornoFiltrosIa(pagina, navegar) {
   });
   assert.deepEqual(await lerLista(), antes, 'trocar de seção perdeu os filtros da aba');
   await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
-  await pagina.locator('input[name="status"][value="todas"]').press('Space');
+  if (await pagina.locator('[data-filtro-status]').isVisible()) {
+    await pagina.locator('input[name="status"][value="todas"]').press('Space');
+  }
   const todas = await lerLista();
   assert.equal(todas.links.length, ferramentas.length, 'Todas não limpou os filtros');
   await selecionar();
@@ -224,6 +231,62 @@ async function conferirDatasIa(pagina, rota) {
     }));
     conferir(cabecalho, ferramentas.find((f) => f.slug === rota.split('/')[1]));
   }
+}
+
+// T-27: apresentação ampla, categoria útil e status sem filtro redundante.
+async function conferirApresentacaoIa(pagina) {
+  assert.ok((await pagina.locator('.sobretitulo').textContent()).includes('IA e tecnologia prática'));
+  const categorias = await pagina.locator('[data-opcoes="categoria"] .chip span').allTextContents();
+  assert.ok(categorias.includes('Windows e segurança'));
+  assert.ok(!categorias.includes('Outros'), 'categoria antiga ainda aparece sem artigos');
+  const variosStatus = new Set(ferramentas.map((f) => f.status)).size > 1;
+  assert.equal(await pagina.locator('[data-filtro-status]').isVisible(), variosStatus);
+  assert.equal(await pagina.locator('[data-filtro-status]').evaluate((el) => el.disabled), !variosStatus, 'fieldset de status não corresponde à variedade');
+  assert.equal(await pagina.locator('[data-opcoes="status"] input').first().isDisabled(), !variosStatus, 'radios de status não herdaram a desabilitação');
+  assert.equal(await pagina.locator('[data-status-unico]').isVisible(), !variosStatus);
+  if (!variosStatus) {
+    assert.equal(await pagina.locator('[data-filtros]').evaluate((form) => form.elements.status.value), 'todas');
+    assert.ok((await pagina.locator('[data-status-unico]').textContent()).includes('Analisado'));
+  }
+  await pagina.locator('input[name="categoria"][value="windows"]').press('Space');
+  const guias = await pagina.locator('[data-lista] .cartao__link').evaluateAll((links) => links.map((el) => el.getAttribute('href').split('/').pop()));
+  assert.deepEqual(guias.sort(), ['otimizadores-de-pc', 'precisa-pagar-antivirus']);
+  const selos = await pagina.locator('[data-lista] .selo--categoria').allTextContents();
+  assert.ok(selos.every((texto) => texto === 'Windows e segurança'));
+  await pagina.locator('input[name="categoria"][value="todas"]').press('Space');
+
+  // Simula uma base com status diferentes sem gravar ou alterar o cadastro servido.
+  const resultado = await pagina.evaluate(async () => {
+    const { ferramentas } = await import('/js/dados/ferramentas.js');
+    const original = ferramentas[0].status;
+    const amostra = document.createElement('div');
+    amostra.innerHTML = document.querySelector('#app').innerHTML;
+    document.body.append(amostra);
+    try {
+      ferramentas[0].status = 'testado';
+      const modulo = await import('/js/telas/ia-lista.js?amostra-t27');
+      modulo.registrarEventosIaLista(amostra);
+      modulo.iniciarIaLista(amostra);
+      const grupo = amostra.querySelector('[data-filtro-status]');
+      const teste = amostra.querySelector('input[name="status"][value="testado"]');
+      teste.click();
+      const soTestado = amostra.querySelectorAll('[data-lista] .cartao__link').length;
+      const categoria = amostra.querySelector('input[name="categoria"][value="instagram"]');
+      categoria.click();
+      modulo.iniciarIaLista(amostra);
+      const salvo = amostra.querySelector('[data-filtros]').elements.status.value;
+      const salvoCategoria = amostra.querySelector('[data-filtros]').elements.categoria.value;
+      amostra.querySelector('input[name="status"][value="todas"]').click();
+      const todosDaCategoria = amostra.querySelectorAll('[data-lista] .cartao__link').length;
+      return { visivel: !grupo.hidden && !grupo.disabled, avisoOculto: amostra.querySelector('[data-status-unico]').hidden,
+        soTestado, salvo, salvoCategoria, todosDaCategoria };
+    } finally {
+      ferramentas[0].status = original;
+      amostra.remove();
+    }
+  });
+  assert.deepEqual(resultado, { visivel: true, avisoOculto: true, soTestado: 1, salvo: 'testado', salvoCategoria: 'instagram',
+    todosDaCategoria: ferramentas.filter((f) => f.categoria === 'instagram').length });
 }
 
 // T-26: atalhos por teclado preservam a rota e levam o foco para seções reais.
@@ -343,11 +406,17 @@ for (const largura of LARGURAS) {
       catch (e) { falhas.push(`${largura}px #/${rota}: datas: ${e.message}`); }
     }
     if (rota.startsWith('ia-sem-labia/')) {
-      try { await conferirLeituraIa(pagina); }
+      try {
+        if (['otimizadores-de-pc', 'precisa-pagar-antivirus'].includes(rota.split('/')[1])) {
+          assert.equal(await pagina.locator('[data-detalhe] header .selo--categoria').textContent(), 'Windows e segurança');
+        }
+        await conferirLeituraIa(pagina);
+      }
       catch (e) { falhas.push(`${largura}px #/${rota}: leitura: ${e.message}`); }
     }
     if (rota === 'ia-sem-labia') {
       try {
+        await conferirApresentacaoIa(pagina);
         await conferirRetornoFiltrosIa(pagina, navegar);
         await conferirOrdemIa(pagina);
         const novosErros = errosDaRota.filter((e) => !problemas.includes(e));
