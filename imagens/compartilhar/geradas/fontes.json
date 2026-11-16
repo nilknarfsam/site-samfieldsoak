@@ -1,0 +1,69 @@
+{
+  "versao": 1,
+  "fundo": "#121212",
+  "largura": 1200,
+  "altura": 630,
+  "ajuste": "conter-centralizado",
+  "imagens": [
+    {
+      "fonte": "imagens/ia/instagram-claude-parceria/card-01.webp",
+      "destino": "imagens/compartilhar/geradas/ia-sem-labia-instagram-claude-parceria-1200x630.jpg",
+      "sha256": "1c749e874b2d7ea8bec1bbc86c370934029e61f6b5dda4c23ac208fd16e5dc0b"
+    },
+    {
+      "fonte": "imagens/albuns/a-forca-da-promessa-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-a-forca-da-promessa-1200x630.jpg",
+      "sha256": "51b6c37882fc01b6c1d840e1320e5d2216b93cd1f965b1c9daf3632039cba167"
+    },
+    {
+      "fonte": "imagens/albuns/ecos-de-adoracao-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-ecos-de-adoracao-1200x630.jpg",
+      "sha256": "2899d50816cddd52577870fa5a226166b1d65fbbada153a438557ef565070826"
+    },
+    {
+      "fonte": "imagens/albuns/o-despertar-do-justo-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-o-despertar-do-justo-1200x630.jpg",
+      "sha256": "37371281158498617671af5a705d03870bcaca3a11b6f98bd79c695f2f502aa7"
+    },
+    {
+      "fonte": "imagens/albuns/o-rei-dos-povos-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-o-rei-dos-povos-1200x630.jpg",
+      "sha256": "1435732812ad0de16f7d2e7ea154e3d5d69a013b0243a8604ff4c7a9d07eee55"
+    },
+    {
+      "fonte": "imagens/albuns/o-reino-inabalavel-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-o-reino-inabalavel-1200x630.jpg",
+      "sha256": "07a7099e0d5f8571ebd26c656739e0e11a2f32067d9ecf6dacb7ad768a124481"
+    },
+    {
+      "fonte": "imagens/albuns/o-trono-intocavel-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-o-trono-intocavel-1200x630.jpg",
+      "sha256": "8b1eb3900cd7a52cb556dbdcebdb335baf29b26f916330fec1de82c986171a4e"
+    },
+    {
+      "fonte": "imagens/albuns/refugio-inabalavel-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-refugio-inabalavel-1200x630.jpg",
+      "sha256": "5217193b8b04258d055ba0af359d1ae428ddee367c7540c17e57c35842ce31d1"
+    },
+    {
+      "fonte": "imagens/albuns/tratado-de-romanos-vol-2-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-reinara-a-graca-1200x630.jpg",
+      "sha256": "08f5128ed6917f408221ad76f464f9097b317d85b558ad6c536629eca3d98d83"
+    },
+    {
+      "fonte": "imagens/albuns/santuario-do-altissimo-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-santuario-do-altissimo-1200x630.jpg",
+      "sha256": "22ca405468568afce55ee82a24ef63944a744665ab8a510d648660b60f1d5440"
+    },
+    {
+      "fonte": "imagens/albuns/tratado-de-romanos-vol-1-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-toda-boca-se-cale-1200x630.jpg",
+      "sha256": "6168a7259871eb5f29433504472ecf51803554eca0b4362531562439e800c0b9"
+    },
+    {
+      "fonte": "imagens/novidades/claude-code-outubro-2026/card-01.webp",
+      "destino": "imagens/compartilhar/geradas/novidades-claude-code-outubro-2026-1200x630.jpg",
+      "sha256": "6030ce1332e8ebf1d04e52d51d668a1f7f17649952e1d7a892bcdb89051ccb10"
+    }
+  ]
+}

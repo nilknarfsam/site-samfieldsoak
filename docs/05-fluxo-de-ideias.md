@@ -1,5 +1,7 @@
 # 05 – Fluxo de ideias: do celular para o site
 
+> Fluxo vigente: seguir as verificações do README e a receita do docs/12, incluindo a geração de páginas permanentes. As artes de redes sociais e a escuta dos players têm validação própria.
+
 ## Visão geral
 
 ```

@@ -1,5 +1,7 @@
 # 11 – Plano visual: cara mais profissional, sem mudança brusca
 
+> Registro histórico do planejamento. Para o estado atual, consultar README e docs/09; para publicar, seguir docs/12.
+
 Criado pelo Claude Code em 27/10/2026, a pedido do Franklin ("deixar o site com uma cara mais profissional, responsiva e bonita, sem alterações bruscas"). É pista de **Produto** (`docs/10`): cada fase vira um PR, com capturas de antes e depois, e só começa com o ok do Franklin.
 
 ## O que NÃO muda (a identidade fica)

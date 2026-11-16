@@ -1,5 +1,7 @@
 # 04 – Roteiro de tarefas (v2)
 
+> Registro histórico do planejamento. Para o estado atual, consultar README e docs/09; para publicar, seguir docs/12.
+
 ## Primeiro pedido para colar no Claude Code
 
 ```

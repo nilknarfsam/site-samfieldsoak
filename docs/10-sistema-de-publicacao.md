@@ -9,7 +9,7 @@ Criado pelo Claude Code em 24/10/2026, a pedido do Franklin: "um console onde eu
 Por que não um painel:
 
 - O site é estático (GitHub Pages). Um painel precisaria de login e servidor: custo, senha para proteger, manutenção e risco de segurança.
-- Quebraria a regra "sem formulário e sem coleta de dados".
+- Exigiria rever as regras de ausência de cadastro e coleta de dados pessoais; a busca local não envia formulário.
 - Envelhece rápido. Toda mudança no site exigiria mudar o painel também.
 - O que você já tem é melhor: você fala com a IA, a IA escreve no padrão, a máquina confere e você aprova com um toque.
 
@@ -33,7 +33,7 @@ Todo pedido cai numa de duas pistas. A IA diz em qual pista está antes de come�
 | | Pista de **Conteúdo** | Pista de **Produto** |
 |---|---|---|
 | O que é | publicar, corrigir texto, link, preço, data, imagem | mudar design, criar função, criar um tipo novo de bloco ou de página |
-| Arquivos que pode mexer | `js/dados/`, `imagens/`, `docs/registro-de-publicacoes.md`, `caixa-de-entrada/feitos/` | todo o resto (`html/`, `css/`, `js/modules/`, `js/telas/`, `js/main.js`, `index.html`, `ferramentas/`) |
+| Arquivos que pode mexer | `js/dados/`, `imagens/`, registro e fila; `p/` e `sitemap.xml` somente como saídas do gerador | todo o resto (`html/`, `css/`, `js/modules/`, `js/telas/`, `js/main.js`, `index.html`, `ferramentas/`); não inclui as saídas geradas de conteúdo |
 | Quem pode fazer | qualquer IA, direto | qualquer IA, mas só tarefa que está no `docs/09` (ou que o Franklin pediu com plano aprovado) |
 | Precisa de plano antes? | não | sim: a tarefa no `docs/09` é o plano |
 | Branch | `conteudo/AAAA-MM-DD-<assunto>` (ou `feat/novidades-AAAA-MM-DD`, que já é usada) | `feat/<codigo>-<assunto>` ou `fix/<assunto>` |
@@ -87,7 +87,7 @@ Funcionam em qualquer chat (Claude ou ChatGPT), dentro do projeto do site. A IA 
 
 1. **`node ferramentas/conferir-dados.mjs`**: confere os dados (slug repetido, data errada, imagem que não existe, tecnologia sem fonte, HTML dentro do texto, link sem https).
 2. **`node ferramentas/testar-rotas.mjs`**: abre todas as páginas em 390 px e 1280 px e confere um `h1`, sem rolagem lateral, imagens com `alt` e sem erro de JavaScript. Tira as capturas.
-3. **GitHub Actions** (`.github/workflows/conferir.yml`): roda os dois em todo PR. No app do GitHub aparece ✅ ou ❌; com ❌, ninguém aprova.
+3. **GitHub Actions** (`.github/workflows/conferir.yml`): confere dados, páginas permanentes, imagens prontas e três suítes Node, além das rotas em navegador. `node ferramentas/gerar-paginas.mjs --check` falha com saídas desatualizadas sem gravar correções. Rodar o gerador local e versionar saídas é parte da publicação (docs/12 e docs/14). No app do GitHub aparece ✅ ou ❌; com ❌, ninguém aprova.
 4. **Modelo de PR** (`.github/pull_request_template.md`): pista, rotas para conferir, o que foi testado.
 5. **Merge só pelo Franklin.** Recomendado: proteger a `main` no GitHub (Settings → Branches → Add rule → `main` → "Require a pull request before merging" e "Require status checks to pass" → marcar `conferir`). Assim nem por engano alguém publica sem PR e sem a conferência.
 
@@ -120,7 +120,7 @@ Reconheça as frases de comando do docs/10 ("Manda pro site", "Verifica a fila e
 "Corrige no site", "Melhoria no site", "Faz a próxima melhoria", "Faz a arte de",
 "Como está o site?") e siga o roteiro de cada uma.
 Diga sempre em qual pista o pedido está (Conteúdo ou Produto).
-Conteúdo: só js/dados/, imagens/ e o registro. Produto: só tarefas do docs/09.
+Conteúdo: dados, imagens, registro e fila, mais p/ e sitemap exclusivamente gerados e conferidos. Produto: tarefas do docs/09.
 Nunca crie layout numa publicação. Nunca faça merge. Português do Brasil, direto e simples.
 ```
 
@@ -142,7 +142,7 @@ Decidir com número, não com achismo: se a Palavra é a mais visitada, a próxi
 |---|---|---|
 | 1 | Chat → fila no Drive → PR manual, teste no olho | era assim até 24/10/2026 |
 | 2 | Comandos fixos, pistas, moldes para todos os tipos, conferência automática no PR | **implantado em 24/10/2026** |
-| 3 | Página de compartilhamento por conteúdo (prévia certa no WhatsApp) e `sitemap.xml` gerados por script (T-20), busca (T-19) | próximo passo |
+| 3 | Busca local (T-19) e páginas permanentes/sitemap gerados (T-20) | T-19 publicada; T-20 nesta entrega, com prévia real pendente após publicação |
 | 4 | Opcional: fila também pelo GitHub Issues (formulários "Publicar" e "Corrigir" no app do GitHub), para quem não está no chat | só se a fila do Drive começar a apertar |
 
 ## Outros tipos: como publicar

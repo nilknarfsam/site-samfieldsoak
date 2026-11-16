@@ -1,160 +1,105 @@
-<!-- organizacao-github:inicio -->
-> [!NOTE]
-> **📌 Organização do GitHub (22/10/2026): ✅ MANTER (vitrine)**
->
-> Site pessoal, ativo. Fixar no perfil.
->
-> _Nota temporária do Claude. Some quando a organização terminar._
-<!-- organizacao-github:fim -->
-
 # Site do @samfieldsoak
 
-Site pessoal estático (link da bio do Instagram): **IA sem lábia**, **Música**, **Palavra** e **Sobre**. HTML, CSS e JavaScript puro, SPA com roteador por hash, no padrão da skill `base-site-spa-franklin`.
+Site pessoal de Franklin Carvalho: fé, música criada com IA e tecnologia explicada com clareza. Publicação estática no GitHub Pages, em [samfieldsoak.com.br](https://samfieldsoak.com.br).
 
-## Como rodar
+HTML, CSS e JavaScript com ES Modules, sem framework ou etapa de build para executar o site. As telas usam rotas por hash; páginas estáticas próprias fornecem metadados de compartilhamento.
+
+## Começar
+
+Leia [AGENTS.md](AGENTS.md) e [CLAUDE.md](CLAUDE.md) antes de alterar o projeto. Para publicar conteúdo, siga [docs/12](docs/12-metodo-de-publicacao-com-ia.md). Para mudar funções ou apresentação, consulte o [plano de melhorias](docs/09-plano-de-melhorias.md).
 
 ```bash
 python -m http.server 8080
 ```
 
-Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fetch`).
+Abra `http://127.0.0.1:8080/`. Módulos e views precisam de HTTP; abrir `index.html` por `file://` não funciona.
 
-## Rotas
+## Seções e endereços
 
-| Rota | Tela | Situação |
-|---|---|---|
-| `#/inicio` | Home "Fé, música e tecnologia": topo com mosaico de capas, papéis e números (calculados dos dados), último lançamento com player, atalhos da bio, as 3 Novidades mais novas e as três frentes | pronto, com foto |
-| `#/novidades` | Pilha de novidades (a mais nova em cima, ordenada pela data), filtro por tema | pronto |
-| `#/novidades/<slug>` | Página da novidade: texto completo, tempo de leitura, links, fontes, anterior/próxima e Compartilhar (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/ia-sem-labia` | IA e tecnologia prática, categoria Windows e segurança, datas da análise/fontes e filtros preservados ao voltar; status só filtra quando há variedade; recarregar começa em Todas | pronto |
-| `#/ia-sem-labia/<slug>` | Página completa, com índice de seções por teclado, tempo estimado de leitura e datas identificadas da análise e da conferência das fontes (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/musica` | Landing com índice "Nesta página" (`#/musica/discografia`, `#/musica/singles`...): lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
-| `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
-| `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 7 pregações (Romanos, Salmos 73, 74 e 94, Hebreus 7) |
-| `#/palavra/<slug>` | Pregação ponto a ponto: referência e versão, citações curtas da NVI, notas "Para entender melhor" (passagens difíceis ou debatidas), oração, link para a faixa (slug inválido mostra "Conteúdo não encontrado") | pronto |
-| `#/busca` | Busca local em Novidades, IA sem lábia, Palavra e álbuns; normaliza acentos/caixa, combina termos e elimina destinos duplicados, sem guardar/enviar a consulta | pronto |
-| `#/sobre` | Quem é e o compromisso | pronto |
-
-Rota inválida volta para `#/inicio`; `404.html` redireciona para o início.
-
-## Estrutura
-
-```
-index.html  404.html
-html/            views (um fragmento por tela)
-css/             variaveis → base → layout → componentes → utilitarios
-fontes/          Oswald, Inter, JetBrains Mono (OFL, servidas localmente)
-imagens/ia/<slug>/
-js/main.js       rotas
-js/dados/        ferramentas.js, albuns.js, reflexoes.js (Palavra), links.js
-js/modules/      roteador, templates (escapar), menu, movimento
-js/telas/        uma por tela
-docs/  conteudo/  caixa-de-entrada/feitos/
-.claude/skills/animate   skill de animação (Emil Kowalski, MIT)
-```
-
-## Design System
-
-Tokens em `css/variaveis.css` (docs/03). Contraste medido com a fórmula WCAG:
-
-| Par | Contraste |
+| Endereço | Conteúdo |
 |---|---|
-| texto `#FFF` / fundo `#121212` | 18,73:1 |
-| texto suave `#B3B3B3` / fundo | 8,93:1 (8,13:1 sobre cartão) |
-| laranja `#FF7A1A` / fundo | 7,18:1 |
-| texto `#121212` / laranja (botões) | 7,18:1 |
-| verde `#2ECC71` / fundo | 8,91:1 |
-| branco / laranja | 2,61:1 (**não usado**) |
+| `#/inicio` | Destaques, lançamento, links da bio e publicações recentes |
+| `#/novidades` | Novidades em ordem de data e filtro por tema |
+| `#/ia-sem-labia` | Análises e guias de tecnologia; categorias, datas e filtros preservados na aba |
+| `#/musica` | Discografia, singles, primeiras versões e jornada dos Salmos |
+| `#/palavra` | Estudos bíblicos e pregações |
+| `#/busca` | Pesquisa local por títulos, resumos, temas e referências |
+| `#/sobre` | Apresentação, processo criativo e compromissos |
+| `#/<secao>/<slug>` | Página de um artigo, estudo ou álbum |
+| `/p/<secao>/<slug>/` | Link permanente para compartilhar esse conteúdo |
 
-## Animações
+Seções com páginas permanentes: `novidades`, `ia-sem-labia`, `palavra` e `musica`. Chamadas de Novidades que apontam para outro conteúdo usam o destino existente. Singles e primeiras versões sem detalhe próprio não ganham passagem.
 
-Seguem a skill `animate`: só `transform` e `opacity`, curva `cubic-bezier(0.23, 1, 0.32, 1)`, tudo abaixo de 300 ms.
+## Organização
 
-- Troca de rota: fade de 180 ms.
-- Cartões das listas: sobem 8 px com cascata de 50 ms (no máximo 8 posições).
-- Botões: `scale(0.97)` no toque; hover só em mouse (`hover: hover`).
-- Barra de progresso do detalhe enche uma vez.
-- `prefers-reduced-motion`: só opacidade, sem deslocamento, sem cascata.
+| Caminho | Responsabilidade |
+|---|---|
+| `index.html`, `html/` | Estrutura principal e fragmentos das telas |
+| `css/`, `fontes/` | Design System, estilos e fontes locais |
+| `js/dados/` | Conteúdo em texto e objetos, sem HTML |
+| `js/modules/` | Roteador, templates, busca, players e compartilhamento |
+| `js/telas/` | Inicialização e eventos de cada tela |
+| `imagens/` | Imagens publicadas em resolução de tela |
+| `p/` | HTML de compartilhamento gerado e versionado |
+| `ferramentas/` | Geradores, preparação de imagens e testes |
+| `docs/` | Regras, receitas, arquitetura, decisões e registros |
+| `caixa-de-entrada/` | Pedidos de conteúdo e histórico de processamento |
 
-GSAP não foi instalado (só se a página de álbum com rolagem for pedida). A vinheta Lottie do logo espera o arquivo do logo.
+## Publicar conteúdo
 
-## Compartilhamento, Google e contador
-
-- Botão **Compartilhar** nas páginas de detalhe (`js/modules/compartilhar.js`): no celular abre o compartilhar do sistema, no computador copia o link. Sem SDK de rede social.
-
-- Prévia ao compartilhar (WhatsApp, Instagram, Facebook): `imagens/compartilhar/samfieldsoak-1200x630.jpg` e as tags `og:` no `index.html`. Como o site usa rotas por hash, a prévia é a mesma para todas as páginas.
-- Google: título e descrição no `index.html`, dados de pessoa (JSON-LD), `robots.txt` e `sitemap.xml`. Falta cadastrar o site no Google Search Console (o Franklin faz, com a conta Google dele).
-- Contador de visitas: `js/modules/contador.js` (GoatCounter, sem cookies), ligado em 21/10/2026 com o código `samfieldsoak`. Painel: https://samfieldsoak.goatcounter.com (cada rota do hash aparece como uma página). A página Sobre explica a contagem anônima.
-
-## Players individuais do Suno (piloto T-21)
-
-- `#/musica/santuario-do-altissimo`: cada uma das 12 faixas possui “Ouvir no Suno”; a home destaca o Salmo 73 a partir do mesmo cadastro.
-- O iframe só carrega no clique. Abrir outro player do Suno ou Spotify encerra o anterior; navegar para outra página também encerra. Reabrir não preserva a posição.
-- Campo opcional `sunoId` em cada faixa e configuração `destaqueSuno` em `js/dados/albuns.js`. Cadastro, fontes, limitações, testes e expansão: [docs/13-player-suno-por-faixa.md](docs/13-player-suno-por-faixa.md).
-- Reprodução da nova integração em HTTPS ainda depende do aceite manual após o merge pelo Franklin. Primeiras versões entram depois do mapeamento dos IDs.
-
-## Letras
-
-- Ficam em `js/dados/letras/<arquivo>.js` (slug do álbum → lista de letras na ordem das faixas) e o álbum aponta para o arquivo no campo `letras`. Carregam só na página do álbum.
-- Prontas: Tratado de Romanos (Vol. I e II).
-- Proteção leve: as letras não deixam selecionar nem copiar (`data-protegida` + `js/modules/protecao.js`). Print continua possível. As fontes de cada álbum estão no "Mapa das letras" (Drive, pasta docs do projeto do site).
-
-## Capas dos álbuns
-
-O site publica só a versão de tela (480 e 960 px, WebP); o arquivo de 3000 px fica no Drive. Proteção leve em `js/modules/protecao.js` e na classe `.capa[data-protegida]`: sem menu "salvar imagem" (clique direito e toque longo), sem arrastar. Não existe proteção total na web: print sempre funciona.
-
-## Conferência automática
-
-Rodar antes de abrir qualquer PR (o GitHub Actions roda as três conferências em todo PR, em `.github/workflows/conferir.yml`, e mostra se o PR é da pista Conteúdo ou Produto):
+1. Partir da `main` atualizada e criar uma branch de conteúdo.
+2. Seguir a receita em `docs/12`. Preservar layout, texto do Franklin e slugs publicados.
+3. Preparar imagens e rodar o gerador abaixo.
+4. Conferir dados, arquivos gerados e testes; revisar as páginas em 390px e 1280px.
+5. Registrar a entrega e abrir PR. Marcar como publicado somente após confirmar merge e publicação.
 
 ```bash
-node ferramentas/conferir-dados.mjs              # estrutura, campos, fontes, datas, imagens e destinos internos
-node --test ferramentas/testar-validacao-dados.mjs # regressões em cópias temporárias, sem alterar os dados
-node ferramentas/testar-rotas.mjs --capturas     # todas as rotas em 390 e 1280 px (precisa do Playwright)
+node ferramentas/gerar-paginas.mjs
+node ferramentas/gerar-paginas.mjs --check
 ```
 
-As capturas vão para `ferramentas/capturas/` (fora do Git). Node 22 ou mais novo.
+O gerador grava os HTMLs, o sitemap e o manifesto de capas. Para capas novas ou alteradas, chama `ferramentas/preparar-compartilhamento.py`, com Python 3 e Pillow (`python -m pip install Pillow`). Se necessário, selecione o executável pela variável `PYTHON`. Nenhuma dependência npm foi acrescentada.
 
-O validador rejeita posições vazias, entradas nulas e tipos inválidos antes de percorrer o cadastro. Em IA sem lábia exige título/nome, resumo, categoria conhecida, fontes ou links oficiais e data de conferência válida; os Links oficiais dos cadastros antigos continuam aceitos como fontes. Rotas internas cadastradas são comparadas com o mapa de seções/âncoras e os slugs existentes (não é uma conferência de disponibilidade dos sites externos). Os testes negativos executam o comando real em cópias temporárias e verificam saída 1 com diagnóstico, preservando o cadastro do projeto.
+Inclua no commit as saídas em `p/`, `sitemap.xml` e `imagens/compartilhar/geradas/`. Nunca edite os HTMLs gerados à mão. Uma publicação de conteúdo pode incluir essas saídas; alterar o gerador continua sendo pista Produto.
 
-## Testes feitos (20/10/2026, navegador do Claude)
+## Compartilhamento e imagens
 
-- Todas as rotas, slug inválido, rota inválida: ok.
-- 375 px e 1280 px sem rolagem horizontal; um `h1` por tela.
-- Menu do celular abre e fecha; Esc fecha.
-- Cartões terminam todos visíveis (opacidade 1) depois da cascata.
-- Console sem erros.
-- **Não testado ainda:** "reduzir movimento" ligado no sistema (só conferido no código), validador W3C, leitor de tela, F5 no GitHub Pages.
+- Compartilhar usa a URL permanente: abre o compartilhamento do sistema ou copia o endereço.
+- A passagem contém título, resumo, canonical, Open Graph e Twitter Card, além do link **Abrir página**. `location.replace()` abre a rota existente sem acrescentar a passagem ao caminho de retorno.
+- A passagem não carrega GoatCounter. Somente o destino registra a visita normal.
+- Capas centralizadas em fundo escuro, sem corte ou distorção: JPEG 1200 × 630, menos de 300.000 bytes. Sem capa, usa-se a imagem padrão em `imagens/compartilhar/`.
+- O CI não adapta imagens e não precisa de Pillow: confere dimensões/peso e a atualização dos arquivos e do manifesto de fontes.
+- O sitemap contém a raiz e as URLs permanentes, sem fragmentos `#` ou datas presumidas.
 
-## Publicação
+Especificação: [docs/14 – Compartilhamento](docs/14-compartilhamento-e-paginas-permanentes.md). A prévia real no WhatsApp depende de conferência após a publicação; os testes verificam metadados e navegação.
 
-- No ar desde 21/10/2026 pelo GitHub Pages (branch `main`, raiz): **https://samfieldsoak.com.br** (domínio no Registro.br, arquivo `CNAME` na raiz).
-- DNS no Registro.br (zona DNS, modo avançado): registros A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` e CNAME `www` → `nilknarfsam.github.io`. **Não** mexer em "Alterar servidores DNS".
-- Endereço reserva: https://nilknarfsam.github.io/site-samfieldsoak/
-- Para citar uma página: `https://samfieldsoak.com.br/#/ia-sem-labia/<slug>`.
-- Novidades (Claude e ChatGPT): passo a passo em `docs/07-novidades.md`; regras para qualquer agente em `AGENTS.md`.
-- **Método de publicação com IA** (qualquer IA, receita por tipo: novidade, álbum, single, letras, pregação, IA sem lábia, correção): `docs/12-metodo-de-publicacao-com-ia.md`. Imagens no tamanho certo: `python ferramentas/preparar-imagem.py`.
-- **Como publicar e corrigir qualquer coisa (o "console" do site):** `docs/10-sistema-de-publicacao.md` (moldes fixos, pistas Conteúdo/Produto, frases de comando, status da fila, garantias automáticas).
-- **Plano visual** (cara mais profissional, sem mudança brusca), em 5 fases: `docs/11-plano-visual.md`.
-- Melhorias de design e funções: auditoria de 24/10/2026 em `docs/08-auditoria-2026-10-24.md` e o roteiro de tarefas (T-01 a T-19) em `docs/09-plano-de-melhorias.md`.
+## Verificações
 
-## O que falta
+Node 22 ou superior. Para testes de navegador, use o Playwright da versão configurada em `.github/workflows/conferir.yml` e seu Chromium. O GitHub Actions instala essas ferramentas; não são dependências do site publicado.
 
-- Música: notas "Por trás do álbum" dos álbuns além de Romanos; referências bíblicas das faixas de O Reino Inabalável. Capas em `imagens/albuns/<slug>-480.webp` e `-960.webp`.
-- A discografia mostra só os lançamentos oficiais no Spotify (21/10/2026); os álbuns que estão só no Suno saíram do site.
-- Primeira reflexão da Palavra, tela de detalhe e ligação reflexão ↔ música.
-- Logo no Início (hoje um "S" provisório) e vinheta Lottie.
-- Capa do guia `verdades-ia-instagram`.
-- Testes mínimos de `docs/02-arquitetura.md`; conferir "reduzir movimento", validador W3C, leitor de tela e F5 no site publicado.
+```bash
+node ferramentas/conferir-dados.mjs
+node ferramentas/gerar-paginas.mjs --check
+node --test ferramentas/testar-validacao-dados.mjs ferramentas/testar-busca.mjs ferramentas/testar-paginas-publicas.mjs
+node ferramentas/testar-rotas.mjs --capturas
+git diff --check
+```
 
-## Uso de IA
+`--check` falha se houver página ausente, HTML/sitemap desatualizado, fonte de capa alterada sem regenerar ou imagem fora dos limites. Não corrige nem grava arquivos no CI.
 
-Construído com o Claude Code a partir dos pedidos do Franklin na caixa de entrada.
+As capturas ficam em `ferramentas/capturas/` (fora do Git) e no artefato `capturas` do Actions por sete dias. A suíte verifica rotas em 390px/1280px, o menu da busca em 768px/992px e passagens representativas com e sem JavaScript. Não substitui leitor de tela real, escuta dos players ou conferência da prévia em outro aplicativo.
 
+## Comportamentos e privacidade
 
+- **Busca:** local, sem guardar ou enviar termos. Consulta metadados, sem letras nem corpo dos artigos. Reabrir a tela reinicia o campo.
+- **IA sem lábia:** análise mais recente primeiro, datas identificadas, filtros preservados na aba e status como filtro somente quando há variedade. Índice e tempo estimado ajudam na leitura.
+- **Menu:** painel recolhido até 991px; navegação aberta a partir de 992px.
+- **Players:** embeds só carregam após clique. Um Suno/Spotify gerenciado por vez; mudar de página encerra a reprodução. Abas externas não são controladas. [Cadastro e limites do piloto](docs/13-player-suno-por-faixa.md).
+- **Letras:** carregadas sob demanda de `js/dados/letras/`. A proteção contra cópia é leve; não impede captura de tela.
+- **Métricas:** GoatCounter conta rotas sem cookies. Não recebe termos da busca nem conta a passagem de compartilhamento.
 
-### Busca (T-19)
+## Manutenção e revisão
 
-`js/modules/busca.js` cria o índice só com metadados (título, resumo, referência, tema/categoria e títulos/referências das faixas). Não indexa letras nem corpo de artigos. Uma novidade que aponta para uma página existente acrescenta termos ao destino, sem criar resultado duplicado. Palavras da consulta precisam aparecer; títulos têm prioridade, com desempate alfabético. `js/telas/busca.js` não muda URL ou armazenamento e reinicia a consulta ao reconstruir a tela. Nenhum termo é enviado ao contador. Singles/primeiras versões não têm páginas individuais e ficam fora deste escopo.
+O repositório é a referência atual. Cópias no Drive podem estar antigas. O [plano](docs/09-plano-de-melhorias.md) guarda situação e próximas tarefas; o [registro](docs/registro-de-publicacoes.md) preserva as entregas. Auditorias e roteiros datados documentam o estado daquela época.
 
-O link Buscar está no menu e rodapé. O menu usa o painel até 991px para acomodar o novo link nas telas intermediárias. Testes: `node --test ferramentas/testar-busca.mjs`, além das conferências existentes; a suíte de rotas cobre busca e menu também em 768/992px.
+Pendências: aceite real dos players, conferência de prévias após publicar a T-20 e observações de manutenção registradas nas revisões. Não marcar teste manual ou publicação como concluídos sem evidência. Revisão do Claude e merge pelo Franklin, salvo autorização explícita em contrário.

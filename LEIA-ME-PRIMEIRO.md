@@ -1,60 +1,30 @@
-# Site do @samfieldsoak – projeto para o Claude Code (v2)
+# Comece por aqui
 
-Criado em 20/10/2026 (v1 às 11h17, v2 às 11h30) em conversa com o Claude no celular. Esta pasta é a **única** que o Claude Code do PC de casa precisa ler para construir e alimentar o site.
+Este é o projeto do site **samfieldsoak.com.br**, repositório `nilknarfsam/site-samfieldsoak`. Reúne Novidades, IA sem lábia, Música, Palavra, Busca e Sobre, com HTML, CSS e JavaScript publicados no GitHub Pages.
 
-## A ideia
+O repositório contém as regras atuais. Cópias no Drive podem estar antigas. Não use o roteiro inicial para reiniciar um trabalho concluído.
 
-Um site pessoal, organizado, com tudo o que o Franklin gosta de publicar e de fazer com o Claude, ligado no link da bio do Instagram. Seções:
+## Referências
 
-| Seção | O que tem |
+| Necessidade | Documento |
 |---|---|
-| **Início** | Página estilo "link na bio": foto, frase, botões grandes para cada seção e o destaque mais recente. |
-| **IA sem lábia** | Uma página por ferramenta ou tema de IA visto no Instagram: o que funciona, o que o post não conta, custo real, caminho grátis. Cada carrossel do Instagram tem a sua página. |
-| **Música** | Lançamentos e álbuns, com capa e links das plataformas. |
-| **Palavra** | Versículos, pensamentos sobre versículos e reflexões. |
-| **Sobre** | Quem é o Franklin e o compromisso do site. |
-| Depois | Projetos (apps), e outras seções que surgirem. |
+| Regras e limites para agentes | [AGENTS.md](AGENTS.md) e [CLAUDE.md](CLAUDE.md) |
+| Executar, testar e entender o estado atual | [README.md](README.md) |
+| Publicar ou corrigir conteúdo | [Método de publicação](docs/12-metodo-de-publicacao-com-ia.md) |
+| Publicar uma novidade | [Receita de Novidades](docs/07-novidades.md) |
+| Pistas, comandos e estados da fila | [Sistema de publicação](docs/10-sistema-de-publicacao.md) |
+| Arquitetura e Design System | [docs/02](docs/02-arquitetura.md) e [docs/03](docs/03-design-system.md) |
+| Próxima melhoria autorizada | [Plano](docs/09-plano-de-melhorias.md) |
+| Links permanentes, imagens e sitemap | [Compartilhamento](docs/14-compartilhamento-e-paginas-permanentes.md) |
+| Cadastro dos players | [Player Suno](docs/13-player-suno-por-faixa.md) |
+| Entregas e histórico | [Registro](docs/registro-de-publicacoes.md) |
 
-## Como o celular e o PC conversam
+## Fluxo de trabalho
 
-1. **No celular (Claude):** o Franklin debate uma ideia. Quando ela serve para o site, o Claude cria um arquivo em `caixa-de-entrada/` com o texto pronto, a seção e o pedido para o Claude Code.
-2. **No PC (Claude Code):** lê só a `caixa-de-entrada/`, transforma cada ideia pendente em conteúdo do site, mostra rodando e, com o ok do Franklin, publica.
-3. **No Instagram:** o carrossel termina com "Saiba mais no link da bio" e "Comente e compartilhe". O link da bio leva ao site.
+1. Identificar Conteúdo ou Produto e conferir a `main`, o plano e PRs existentes.
+2. Trabalhar em branch; preservar arquivos, slugs, fontes e texto autoral.
+3. Após mudar conteúdo/capas, rodar `node ferramentas/gerar-paginas.mjs` e versionar as saídas.
+4. Executar as conferências do README, revisar capturas e abrir PR com rotas e limites da validação.
+5. Confirmar merge/deploy antes de registrar como publicado. Não fazer merge sem autorização explícita do Franklin.
 
-Detalhes do fluxo: `docs/05-fluxo-de-ideias.md`. Padrão dos posts: `docs/06-padrao-dos-posts.md`.
-
-## O que tem nesta pasta
-
-| Caminho | Para quê |
-|---|---|
-| `LEIA-ME-PRIMEIRO.md` | Este arquivo. |
-| `CLAUDE.md` | Instruções que o Claude Code lê ao abrir a pasta. |
-| `docs/01-visao-e-escopo.md` | Seções, telas e o que entra na versão 1. |
-| `docs/02-arquitetura.md` | Pastas, rotas, modelos de dados e publicação. |
-| `docs/03-design-system.md` | Cores, fontes e componentes (escuro tech, igual ao carrossel). |
-| `docs/04-roteiro-de-tarefas.md` | Fases e o primeiro pedido para o Claude Code. |
-| `docs/05-fluxo-de-ideias.md` | Como as ideias saem do celular e chegam ao site. |
-| `docs/06-padrao-dos-posts.md` | Padrão do carrossel e da legenda. |
-| `docs/07-novidades.md` | Como publicar uma novidade (Claude e ChatGPT). |
-| `docs/12-metodo-de-publicacao-com-ia.md` | **Como publicar com qualquer IA**: pedido para colar, 12 regras que não se quebram, receita para novidade, álbum, single, letras, pregação, IA sem lábia e correção. |
-| `docs/10-sistema-de-publicacao.md` | O "console" do site: como publicar e corrigir qualquer coisa mantendo o padrão (frases de comando, pistas, moldes, conferência automática). |
-| `docs/11-plano-visual.md` | Plano visual em 5 fases: tipografia, cartões, cabeçalho e rodapé, home e Sobre, acabamento. |
-| `docs/08-auditoria-2026-10-24.md` | Auditoria do site: o que está bom e o que melhorar em design e funções. |
-| `docs/09-plano-de-melhorias.md` | Roteiro de tarefas para o ChatGPT/Codex (ou o Claude) executar as melhorias. |
-| `caixa-de-entrada/` | Ideias prontas para virar conteúdo (uma por arquivo). |
-| `conteudo/` | Material de partida: ferramentas já analisadas e lista de álbuns. |
-
-## Como começar em casa
-
-1. Baixar esta pasta do Drive (botão direito → Fazer download; sai um .zip) e descompactar em `C:\Projetos\site-samfieldsoak`.
-2. Abrir o terminal na pasta, rodar `claude` e colar o primeiro pedido de `docs/04-roteiro-de-tarefas.md`.
-3. Para as próximas ideias, ver as duas opções em `docs/05-fluxo-de-ideias.md` (baixar só a caixa de entrada, ou ligar o Google Drive para computador).
-
-## Decisões tomadas
-
-- Nome do site: **Samfield** (título das abas: "Samfield | ...").
-- Repositório: `nilknarfsam/site-samfieldsoak`, publicado em **https://samfieldsoak.com.br** (no ar desde 21/10/2026).
-
-## Decisões em aberto
-
-- Cor de destaque de cada seção (sugestão em `docs/03-design-system.md`).
+O roteiro `docs/04` e as auditorias datadas são históricos. A sequência de melhorias vigente fica em `docs/09`.

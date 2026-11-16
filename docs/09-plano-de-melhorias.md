@@ -38,7 +38,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 3. Testar:
    - `python -m http.server 8080` e abrir as rotas citadas em **390 px e 1280 px** (DevTools, modo celular).
    - Console sem erro; um `h1`; sem rolagem horizontal; teclado (Tab) chega em tudo e o foco aparece.
-   - `node ferramentas/conferir-dados.mjs` e `node ferramentas/testar-rotas.mjs` passando (o segundo precisa do Playwright; se o seu ambiente não tiver navegador, diga isso no PR: o GitHub Actions roda os dois em todo PR).
+   - Executar a sequência do README: conferir dados, gerar quando necessário, `--check`, três suítes Node e rotas com capturas. Sem navegador local, registrar a limitação e acompanhar o CI; entregar somente com a conferência aprovada no commit do PR.
 4. Commit em português, Conventional Commits (`feat(...)`, `fix(...)`, `style(...)`, `docs(...)`), terminando com a linha `Feito-por: Codex`.
 5. Abrir o PR com: o que mudou, rotas para conferir, o que foi testado, prints de 390 e 1280 px. **Nunca fazer merge sem o ok do Franklin.**
 6. Marcar a tarefa como feita na tabela abaixo (no mesmo PR): `pendente` → `em PR #N`. Depois do merge, quem estiver trabalhando muda para `feito AAAA-MM-DD`.
@@ -66,9 +66,9 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 16 | Rodapé com Sobre e compromisso | D-10 | pequeno | feito 2026-10-24 (Claude) |
 | 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | feito 2026-10-27 (Claude) dentro da fase 1 do plano visual (`docs/11`, V-02 e V-03) |
 | 18 | Ícones SVG no lugar dos emojis | D-08 | médio | feito 2026-10-27 (Claude) na fase 5 do plano visual (`docs/11`, V-13): ícones Lucide em `imagens/icones/sprite.svg` |
-| 19 | Busca no site | F-05 | grande | em PR [#39](https://github.com/nilknarfsam/site-samfieldsoak/pull/39); escopo aprovado em 16/11/2026 |
-| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | pendente (mostrar plano ao Franklin antes) |
-| 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | em PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30); autorizado por Franklin em 06/11/2026 |
+| 19 | Busca no site | F-05 | grande | feito 2026-11-16; revisão do Claude e merge do PR [#39](https://github.com/nilknarfsam/site-samfieldsoak/pull/39), commit 35c0f2e |
+| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | em PR [#40](https://github.com/nilknarfsam/site-samfieldsoak/pull/40); plano e detalhes aprovados em 16/11/2026 |
+| 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | piloto integrado no PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30), merge confirmado em 06/11/2026; aceite real da integração continua separado |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
 | 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin |
@@ -76,7 +76,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 26 | Índice de seções e tempo de leitura na IA sem lábia | D-13 | médio | feito 2026-11-16; revisão do Claude e merge do PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37) pelo Franklin |
 | 27 | Apresentação e categorias da IA sem lábia | D-14 | pequeno/médio | feito 2026-11-16; revisão do Claude e merge do PR [#38](https://github.com/nilknarfsam/site-samfieldsoak/pull/38) pelo Franklin |
 
-As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
+As tarefas iniciais e fases visuais foram incorporadas nas rodadas anteriores. A tabela acima representa a situação atual; os itens e auditorias abaixo preservam a especificação e o histórico. Uma tarefa por PR, com escopo aprovado antes de alterar Produto.
 
 Atenção: os números das tarefas mudaram em 24/10/2026. A antiga T-17 (ícones) agora é a 18, a T-18 (busca) é a 19 e a T-19 (páginas geradas) é a 20. Os títulos das seções abaixo seguem a numeração nova.
 
@@ -255,9 +255,13 @@ process.exit(falhas ? 1 : 0);
 
 ### T-20 · Páginas de compartilhamento e sitemap gerados (F-06)
 
-- **Antes de fazer:** mostrar o plano ao Franklin. É a maior mudança da lista.
-- **Lógica sugerida:** `ferramentas/gerar-paginas.mjs` (Node, sem dependência) lê `js/dados/` e escreve `p/<secao>/<slug>/index.html` para cada item, cada uma com `<title>`, `meta description`, `og:title`, `og:description`, `og:image` (capa do item ou a imagem padrão de `imagens/compartilhar/`), `link rel="canonical"` e um redirecionamento para `/#/<secao>/<slug>` (meta refresh + link visível, como no `404.html`). O mesmo script reescreve o `sitemap.xml` com essas URLs. Rodar o script vira um passo do `docs/07-novidades.md`. O botão Compartilhar (`js/modules/compartilhar.js`, feito na T-14) passa a usar a URL `p/...` em vez de `location.href`.
-- **Pronto quando:** colar `https://samfieldsoak.com.br/p/novidades/prompt-motion/` no WhatsApp mostra o título e a imagem daquela novidade, e abrir o link cai na página certa do site.
+- **Plano aprovado:** Franklin aprovou o escopo e os seis pontos técnicos em 16/11/2026; depois autorizou implementar com Pillow, capas centralizadas sem corte, escape HTML, Twitter Card/og:url e fallback com título/resumo/link. Pediu também revisão completa da documentação operacional e README.
+- **Arquivos:** catálogo em paginas-publicas.js, compartilhar.js, gerador Node, auxiliar Pillow, biblioteca/testes, HTMLs em p/, JPGs e manifesto, sitemap, CI e documentos.
+- **Contrato:** `/p/<secao>/<slug>/` permanente; catálogo de 29 detalhes iniciais, sem duplicar chamadas ou inventar páginas de singles. `location.replace()` abre `/#/...` sem degrau extra no Voltar. Passagem sem GoatCounter; destino mantém contagem normal. HTML contém texto escapado, canonical, og:url e Twitter Card; Abrir página funciona como alternativa.
+- **Imagens:** Pillow local, JPEG 1200 × 630, <300.000 bytes, capa inteira centralizada sobre fundo escuro. Sem capa, imagem padrão. Imagens prontas versionadas; sem dependência npm nova. CI confere dimensões/peso e assinaturas de fonte/saídas; não processa pixels.
+- **Publicação:** gerador obrigatório em docs/12 e AGENTS; saídas p/ e sitemap permitidas em Conteúdo apenas se corresponderem ao gerador. `--check` somente lê e falha com arquivos ausentes/desatualizados. Sitemap lista raiz e URLs permanentes, sem hash ou data inventada.
+- **Pronto quando:** conferir dados, testes Node, regressões de rotas, quatro passagens com/sem JS em 390/1280px, voltar/contador/compartilhar/copiar, imagens e capturas. Revisão do Claude e merge pelo Franklin. Prévia real no WhatsApp somente depois do deploy.
+- **Referência:** docs/14-compartilhamento-e-paginas-permanentes.md. Nenhuma afirmação de indexação ou aparência de aplicativo externo baseada apenas no CI.
 
 ---
 
@@ -342,3 +346,15 @@ process.exit(falhas ? 1 : 0);
 - Claude aprovou o commit f436969; PR #37 mesclado em d450518. O recado anterior sobre img.decode/ERR_ABORTED já foi resolvido no PR #36, merge bf4b6ee, com CI aprovado; não refazer a correção.
 - Planejar melhoria própria para mover o aviso de escopo dos artigos para antes do índice. Hoje ele é contado como parte do corpo; ao mover, definir explicitamente se continua na estimativa de leitura.
 - Parágrafo da estimativa vazio se a inicialização falhar: observação sem bloqueio; nenhuma alteração necessária nesta tarefa.
+
+
+## Manutenção proposta após esta rodada
+
+Estas observações estão registradas, sem implementação nesta T-20:
+
+- Subir o aviso de escopo dos artigos IA para antes do índice; definir se o texto continua na estimativa de leitura.
+- Usar rotaNovidade no índice da busca para unificar a construção dos links.
+- Avaliar pausa de aproximadamente 300 ms apenas no anúncio da contagem da busca, para evitar mensagens a cada tecla no leitor de tela.
+- Conferir capturas quando o primeiro artigo com outro status fizer reaparecer o filtro.
+
+As duas observações da revisão #39 não eram bloqueantes. A busca foi aprovada e publicada; não reabrir a tarefa como falha funcional.

@@ -1,5 +1,7 @@
 # 06 – Padrão dos posts (Instagram ↔ site)
 
+> Fluxo vigente: seguir as verificações do README e a receita do docs/12, incluindo a geração de páginas permanentes. As artes de redes sociais e a escuta dos players têm validação própria.
+
 Definido pelo Franklin em 20/10/2026.
 
 ## Carrossel
