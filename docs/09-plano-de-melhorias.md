@@ -73,8 +73,8 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
 | 24 | Datas da análise e das fontes identificadas na IA sem lábia | D-12 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin |
 | 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | feito no PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35), merge em 12/11/2026; correção do teste em PR [#36](https://github.com/nilknarfsam/site-samfieldsoak/pull/36) |
-
-| 26 | Índice de seções e tempo de leitura na IA sem lábia | D-13 | médio | em PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37); autorizado por Franklin em 16/11/2026 |
+| 26 | Índice de seções e tempo de leitura na IA sem lábia | D-13 | médio | feito 2026-11-16; revisão do Claude e merge do PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37) pelo Franklin |
+| 27 | Apresentação e categorias da IA sem lábia | D-14 | pequeno/médio | em implementação, continuidade autorizada em 16/11/2026 |
 
 As tarefas 2 a 16 foram feitas pelo Claude Code em 24/10/2026, num PR só (branch `claude/quirky-knuth-kaql6c`). **Para o ChatGPT/Codex ficam as tarefas 17 a 20**, nesta ordem, uma por PR. As tarefas 18 a 20 começam com uma proposta para o Franklin aprovar, antes de qualquer código.
 
@@ -323,3 +323,18 @@ process.exit(falhas ? 1 : 0);
 - **Lógica:** índice derivado dos h2 das seções realmente renderizadas, com títulos personalizados e sem repetir selos. Botões nativos levam o foco ao h2 e rolam sem animação, com margem para o cabeçalho. Não alteram hash, histórico ou URL de Compartilhar; não exigem novo segmento no roteador. Relacionados ficam fora do índice. Tempo estimado a 200 palavras/minuto, mínimo 1 minuto, contando título, resumo e texto das seções; exclui galeria de imagens, avisos de nova aba, metadados, índice e relacionados.
 - **Pronto quando:** dados e regressões aprovados; índice e tempo nas seis páginas em 390/1280px; Enter/Espaço, foco, toque mínimo, títulos visíveis, URL e histórico preservados. Capturas revisadas. Revisão independente do Claude e merge pelo Franklin.
 - **Fora do escopo:** categorias/T-27, busca/T-19, compartilhamento/T-20, índices em Palavra/Novidades e reconciliação geral de registros antigos.
+
+
+### T-27 · Apresentação e categorias da IA sem lábia (D-14)
+
+- **Autorização:** Franklin pediu ler a nota do Claude e seguir, em 16/11/2026. A nota aprova T-26; merge #37 confirmado em d450518. Escolha editorial adotada nesta implementação: manter IA sem lábia, ampliar a apresentação para IA e tecnologia prática e reunir os guias de PC na categoria `windows`, rótulo “Windows e segurança”. Evita duas categorias com um artigo cada; slugs, títulos, textos, status e datas preservados.
+- **Arquivos:** html/ia-lista.html, js/telas/ia-lista.js, rótulos em templates.js, somente categoria dos dois guias em ferramentas.js, validador, suíte de rotas e documentação.
+- **Lógica:** mostrar status como filtro somente se houver mais de um valor no cadastro. Com um único status, exibir nota informativa com o valor, ocultar/desabilitar o fieldset e normalizar a seleção para Todas. O filtro reaparece automaticamente com diversidade, preservando o retorno na aba. Categorias continuam calculadas pelos artigos presentes.
+- **Pronto quando:** categoria seleciona exatamente os dois guias, rótulos iguais na lista/detalhe, status único sem controle redundante nem exclusão de resultados. Testar também base simulada com dois status: seleção, limpeza e retorno. Conferir dados, 31 regressões e 38 rotas em 390/1280px, capturas, revisão do Claude e merge pelo Franklin.
+- **Fora do escopo:** busca, sitemap, mudanças no texto dos artigos e avisos da T-26. A observação do Claude sobre subir o aviso de escopo antes do índice fica registrada abaixo para tarefa separada.
+
+### Observações da revisão T-26 · 16/11/2026
+
+- Claude aprovou o commit f436969; PR #37 mesclado em d450518. O recado anterior sobre img.decode/ERR_ABORTED já foi resolvido no PR #36, merge bf4b6ee, com CI aprovado; não refazer a correção.
+- Planejar melhoria própria para mover o aviso de escopo dos artigos para antes do índice. Hoje ele é contado como parte do corpo; ao mover, definir explicitamente se continua na estimativa de leitura.
+- Parágrafo da estimativa vazio se a inicialização falhar: observação sem bloqueio; nenhuma alteração necessária nesta tarefa.

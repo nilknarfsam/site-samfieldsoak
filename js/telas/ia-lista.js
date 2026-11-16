@@ -39,6 +39,16 @@ export function iniciarIaLista(app) {
   app.querySelector('[data-opcoes="categoria"]').innerHTML = opcoes('categoria', rotuloCategoria);
   app.querySelector('[data-opcoes="status"]').innerHTML = opcoes('status', rotuloStatus);
   const form = app.querySelector('[data-filtros]');
+  const status = valoresUnicos('status');
+  const filtroStatus = app.querySelector('[data-filtro-status]');
+  filtroStatus.hidden = status.length < 2;
+  filtroStatus.disabled = filtroStatus.hidden;
+  const avisoStatus = app.querySelector('[data-status-unico]');
+  avisoStatus.hidden = status.length !== 1;
+  avisoStatus.textContent = status.length === 1
+    ? `Todos os artigos têm o status “${rotuloStatus(status[0])}”. Consulte o status e as datas em cada artigo.` : '';
+  // Um único status não restringe a lista; o filtro reaparece quando houver variedade.
+  if (filtroStatus.hidden) filtrosAtuais.status = TODAS;
   for (const campo of ['categoria', 'status']) {
     const valor = filtrosAtuais[campo];
     form.elements[campo].value = [TODAS, ...valoresUnicos(campo)].includes(valor) ? valor : TODAS;

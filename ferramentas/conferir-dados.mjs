@@ -170,7 +170,7 @@ ferramentas.forEach((f) => {
   const texto = (v) => typeof v === 'string' && v.trim().length > 0;
   if (!texto(f.titulo) && !texto(f.nome)) erro(onde, 'precisa de titulo ou nome não vazio');
   if (!texto(f.resumo)) erro(onde, 'resumo precisa ser texto não vazio');
-  if (!['instagram', 'video', 'voz', 'whatsapp', 'dev', 'design', 'outros'].includes(f.categoria)) {
+  if (!['instagram', 'video', 'voz', 'whatsapp', 'dev', 'design', 'windows', 'outros'].includes(f.categoria)) {
     erro(onde, `categoria desconhecida: ${f.categoria}`);
   }
   if (!dataValida(f.conferidoEm)) erro(onde, 'fontes sem conferidoEm válido (AAAA-MM-DD)');

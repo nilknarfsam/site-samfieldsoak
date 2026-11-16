@@ -38,7 +38,7 @@ Roteador: quando a rota tiver segundo segmento (`#/ia-sem-labia/ootto`) e ele fo
 
 ```js
 export const ferramentas = [{
-  slug: 'ootto', nome: '...', categoria: 'instagram',   // instagram | video | voz | whatsapp | dev | design | outros
+  slug: 'ootto', nome: '...', categoria: 'instagram',   // instagram | video | voz | whatsapp | dev | design | windows | outros
   status: 'analisado', analisadoEm: '2026-10-20', conferidoEm: '2026-10-20',
   resumo: '...', promete: [], verdade: [], naoConta: [],
   custos: [{ plano: '', preco: '', periodo: '' }],

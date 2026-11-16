@@ -17,7 +17,7 @@ export function renderizarLista(container, itens, template) {
 export const dataBR = (iso) => (iso ? iso.split('-').reverse().join('/') : '');
 
 const rotulosStatus = { analisado: 'Analisado', testado: 'Testado', 'em-uso': 'Em uso' };
-const rotulosCategoria = { instagram: 'Instagram', video: 'Vídeo', voz: 'Voz', whatsapp: 'WhatsApp', dev: 'Dev', design: 'Design', outros: 'Outros' };
+const rotulosCategoria = { instagram: 'Instagram', video: 'Vídeo', voz: 'Voz', whatsapp: 'WhatsApp', dev: 'Dev', design: 'Design', windows: 'Windows e segurança', outros: 'Outros' };
 export const rotuloStatus = (s) => rotulosStatus[s] || s;
 export const rotuloCategoria = (c) => rotulosCategoria[c] || c;
 
