@@ -15,6 +15,7 @@ import { novidades } from '../js/dados/novidades.js';
 import { ferramentas } from '../js/dados/ferramentas.js';
 import { reflexoes } from '../js/dados/reflexoes.js';
 import { albuns, destaqueSuno } from '../js/dados/albuns.js';
+import { listarPaginasPublicas } from '../js/modules/paginas-publicas.js';
 
 const require = createRequire(import.meta.url);   // require acha o Playwright instalado globalmente
 const { chromium } = require('playwright');
@@ -540,6 +541,81 @@ for (const largura of LARGURAS) {
   }
 }
 
+// T-20: metadados acessíveis sem JS, fallback e replace sem degrau no Voltar.
+const casosPassagem = listarPaginasPublicas().filter((p) => [
+  'prompt-motion', 'precisa-pagar-antivirus', 'quando-a-visao-engana', 'santuario-do-altissimo',
+].includes(p.slug));
+for (const largura of LARGURAS) {
+  for (const p of casosPassagem) {
+    const contextoSemJs = await navegador.newContext({ javaScriptEnabled: false, viewport: { width: largura, height: 900 } });
+    const estatica = await contextoSemJs.newPage();
+    const pedidos = [];
+    estatica.on('request', (r) => pedidos.push(r.url()));
+    try {
+      const resposta = await estatica.goto(BASE + p.caminho);
+      assert.equal(resposta.status(), 200);
+      assert.equal(await estatica.locator('h1').textContent(), p.titulo);
+      assert.equal(await estatica.locator('.lead').textContent(), p.resumo);
+      assert.equal(await estatica.getByRole('link', { name: 'Abrir página', exact: true }).getAttribute('href'), '/' + p.rota);
+      for (const [seletor, valor] of [
+        ['meta[property="og:url"]', p.url],
+        ['meta[property="og:title"]', p.titulo],
+        ['meta[property="og:description"]', p.resumo],
+        ['meta[name="twitter:card"]', 'summary_large_image'],
+      ]) assert.equal(await estatica.locator(seletor).getAttribute('content'), valor);
+      assert.equal(await estatica.locator('link[rel="canonical"]').getAttribute('href'), p.url);
+      assert.ok(!pedidos.some((url) => /goatcounter|gc\.zgo\.at/.test(url)), 'passagem carregou contador');
+      assert.equal(await estatica.locator('script[src]').count(), 0, 'passagem importou script externo');
+      assert.ok(await estatica.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+      await estatica.evaluate(() => document.fonts.ready);
+      if (CAPTURAS) await estatica.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-passagem-${p.slug}.png`), fullPage: true });
+    } catch (e) { falhas.push(`${largura}px ${p.caminho} sem JS: ${e.message}`); }
+    await contextoSemJs.close();
+
+    const pagina = await navegador.newPage({ viewport: { width: largura, height: 900 } });
+    const erros = [];
+    let sdk = 0;
+    pagina.on('pageerror', (e) => erros.push(e.message));
+    await pagina.route('https://gc.zgo.at/count.js', (r) => {
+      sdk++;
+      return r.fulfill({ contentType: 'text/javascript', body: 'window.__visitasPassagem = []; window.goatcounter.count = (d) => window.__visitasPassagem.push(d);' });
+    });
+    try {
+      await pagina.goto(BASE + '/#/sobre');
+      await pagina.waitForFunction(() => window.__visitasPassagem?.length === 1);
+      const sdkAntes = sdk;
+      await pagina.evaluate((caminho) => {
+        const link = document.createElement('a');
+        link.href = caminho; link.dataset.testePassagem = ''; link.textContent = 'Abrir link de teste';
+        document.body.append(link);
+      }, p.caminho);
+      await pagina.locator('[data-teste-passagem]').click();
+      await pagina.waitForURL(BASE + '/' + p.rota);
+      await pagina.waitForFunction(() => window.__visitasPassagem?.length === 1);
+      assert.deepEqual(await pagina.evaluate(() => window.__visitasPassagem.map((v) => v.path)), [p.rota.slice(1)]);
+      assert.equal(sdk - sdkAntes, 1, 'contador deveria carregar apenas no destino');
+      assert.equal(await pagina.locator('h1').count(), 1);
+      await pagina.evaluate(() => Object.defineProperty(navigator, 'share', {
+        configurable: true, value: async (d) => { window.__compartilhado = d; },
+      }));
+      await pagina.locator('[data-acao="compartilhar"]').click();
+      assert.equal(await pagina.evaluate(() => window.__compartilhado.url), p.url);
+      await pagina.evaluate(() => {
+        Object.defineProperty(navigator, 'share', { configurable: true, value: undefined });
+        Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async (t) => { window.__copiado = t; } } });
+      });
+      await pagina.locator('[data-acao="compartilhar"]').click();
+      assert.equal(await pagina.evaluate(() => window.__copiado), p.url);
+      await pagina.goBack();
+      await pagina.waitForURL(BASE + '/#/sobre');
+      await pagina.locator('.sobre__foto').waitFor({ state: 'visible' });
+      assert.ok(!pagina.url().includes('/p/'), 'Voltar parou na passagem');
+      assert.deepEqual(erros, []);
+    } catch (e) { falhas.push(`${largura}px ${p.caminho} redirect/compartilhar: ${e.message}`); }
+    await pagina.close();
+  }
+}
+
 await navegador.close();
 servidor.close();
 
@@ -548,4 +624,4 @@ if (falhas.length) {
   falhas.forEach((f) => console.log(' - ' + f));
   process.exit(1);
 }
-console.log(`✅ ${rotas.length} rotas em ${LARGURAS.join(' e ')}px: um h1, sem rolagem lateral, imagens com alt, sem erro.${CAPTURAS ? ' Capturas em ferramentas/capturas/.' : ''}`);
+console.log(`✅ ${rotas.length} rotas e ${casosPassagem.length} passagens (com/sem JS) em ${LARGURAS.join(' e ')}px: um h1, sem rolagem lateral, imagens com alt, sem erro.${CAPTURAS ? ' Capturas em ferramentas/capturas/.' : ''}`);

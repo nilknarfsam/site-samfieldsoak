@@ -1,5 +1,7 @@
 # 13 — Player do Suno por faixa (T-21)
 
+> Fluxo vigente: seguir as verificações do README e a receita do docs/12, incluindo a geração de páginas permanentes. As artes de redes sociais e a escuta dos players têm validação própria.
+
 PR: https://github.com/nilknarfsam/site-samfieldsoak/pull/30
 Branch: `feat/t21-player-suno-por-faixa`. Situação: em revisão; nenhum merge pelo Codex.
 

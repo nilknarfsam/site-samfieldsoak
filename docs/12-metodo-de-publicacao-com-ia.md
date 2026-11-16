@@ -1,6 +1,6 @@
 # 12 – Método de publicação com IA (qualquer IA)
 
-Criado pelo Claude Code em 27/10/2026, a pedido do Franklin: um jeito **simples, rápido e à prova de erro** de publicar no samfieldsoak.com.br com qualquer IA (ChatGPT/Codex, Claude, Gemini, Copilot...). Vale junto com o `docs/10-sistema-de-publicacao.md` (o "console": pistas e comandos). Se este arquivo e o `CLAUDE.md` discordarem, vale o `CLAUDE.md`.
+Criado pelo Claude Code em 27/10/2026, a pedido do Franklin: um processo padronizado e verificável de publicar no samfieldsoak.com.br com qualquer IA (ChatGPT/Codex, Claude, Gemini, Copilot...). Vale junto com o `docs/10-sistema-de-publicacao.md` (o "console": pistas e comandos). Se este arquivo e o `CLAUDE.md` discordarem, vale o `CLAUDE.md`.
 
 ---
 
@@ -11,7 +11,7 @@ Você vai publicar no site samfieldsoak.com.br (repositório GitHub nilknarfsam/
 Antes de tudo, leia no repositório: AGENTS.md, CLAUDE.md e docs/12-metodo-de-publicacao-com-ia.md.
 Siga a receita do docs/12 para o tipo do pedido abaixo, sem pular nenhum passo e sem
 mexer em nenhum arquivo fora dos que a receita manda.
-Rode os dois comandos de conferência e só abra o PR se os dois mostrarem ✅.
+Depois de alterar dados/capas, rode o gerador e as conferências da seção 5. Versione as saídas geradas; acompanhe o CI antes de entregar o PR.
 Nunca faça merge. No fim, me mande: o link do PR, as rotas para eu conferir e o que ficou pendente.
 
 Pedido: <descreva aqui: "nova novidade sobre X", "novo álbum Y", "corrigir o link Z"...>
@@ -33,7 +33,7 @@ Pedido: <...>
 
 ## 2. As 12 regras que não se quebram
 
-1. **Publicar = mexer só em dados.** Uma publicação só pode alterar `js/dados/`, `imagens/`, `docs/registro-de-publicacoes.md` e `caixa-de-entrada/`. HTML, CSS, `js/modules/`, `js/telas/` e `js/main.js` são o molde do site: **não se mexe para publicar**. O GitHub barra um PR de conteúdo que toque no molde.
+1. **Publicar = mexer só em dados.** Uma publicação altera `js/dados/`, `imagens/`, `docs/registro-de-publicacoes.md` e `caixa-de-entrada/`. Inclui também `p/` e `sitemap.xml`, exclusivamente como saídas de `node ferramentas/gerar-paginas.mjs`, verificadas pelo CI. HTML, CSS, `js/modules/`, `js/telas/` e `js/main.js` são o molde do site: **não se mexe para publicar**. O GitHub barra um PR de conteúdo que toque no molde.
 2. **Nunca criar layout.** Se o conteúdo pede um formato que não existe, pare e avise: isso é uma melhoria (pista Produto, `docs/09`), não uma publicação.
 3. **Nada de HTML dentro dos dados.** Texto puro. O site formata sozinho. (`<b>`, `<br>`, `<a>` dentro de um texto = erro na conferência.)
 4. **Aspas: use aspas simples por fora e aspas tipográficas por dentro.** `'Ele disse “sim”.'` está certo. Um apóstrofo reto dentro do texto (`'d'água'`) **quebra o arquivo inteiro**; use `’` (`'d’água'`) ou aspas duplas por fora (`"d'água"`).
@@ -43,9 +43,9 @@ Pedido: <...>
 6. **Slug:** minúsculas, sem acento, palavras com hífen, único no arquivo (`o-trono-intocavel`). Nunca mude o slug de algo já publicado: o link compartilhado quebraria.
 7. **Datas sempre `AAAA-MM-DD`** (`'2026-10-27'`).
 8. **Links sempre `https://`**, oficiais, sem rastreio (`?si=`, `utm_`).
-9. **Imagens em WebP**, no tamanho certo (seção 4.8), com `alt` que diz o que a imagem mostra. Capa só a versão de tela (480 e 960 px), nunca o arquivo de 3000 px.
+9. **Imagens do conteúdo em WebP** (compartilhamento é exceção: JPG 1200 × 630, menos de 300.000 bytes; docs/14), no tamanho certo (seção 4.8), com `alt` que diz o que a imagem mostra. Capa só a versão de tela (480 e 960 px), nunca o arquivo de 3000 px.
 10. **Texto do Franklin não muda** (pregação, letra, `comoFaco`, opinião). A IA só formata. Mudou uma vírgula? Diga no PR.
-11. **Conferência antes do PR**: `node ferramentas/conferir-dados.mjs` e `node ferramentas/testar-rotas.mjs` com ✅. Sem ✅, sem PR. (Sem navegador no ambiente? Diga no PR: o GitHub roda os dois.)
+11. **Conferência antes da entrega**: executar a seção 5, revisar os resultados e as capturas. Sem navegador local, informar a limitação no PR e acompanhar o GitHub Actions. O CI deve estar aprovado no commit entregue.
 12. **Nunca:** merge, `push --force`, `reset --hard`, apagar arquivo, apagar branch, mudar `CNAME`/DNS/GoatCounter, pôr cookie, formulário ou rastreador.
 
 Regras de conteúdo (do `CLAUDE.md`, valem sempre): português do Brasil com acentos; nunca "músico" nem "engenheiro" para o Franklin; música sempre "criada com IA", em primeira pessoa; tecnologia com fonte e data; Palavra com referência e versão, trechos curtos da NVI; nada pessoal (telefone, e-mail, endereço, família, igreja, confeitaria); não escrever o que a tela já mostra.
@@ -164,20 +164,27 @@ Depois: uma novidade apontando para o álbum (receita 4.1, `rota: '#/musica/<slu
 |---|---|---|---|
 | Capa de álbum ou single | `python ferramentas/preparar-imagem.py capa <original> <slug>` | `imagens/albuns/<slug>-480.webp` e `-960.webp` | `capa: 'imagens/albuns/<slug>'` |
 | Imagem no meio de uma novidade | `python ferramentas/preparar-imagem.py texto <original> novidades/<slug> <nome>` | `imagens/novidades/<slug>/<nome>.webp` | `{ imagem: 'imagens/novidades/<slug>/<nome>.webp', alt: '...', legenda: '...' }` em `paragrafos` |
+| Capa de compartilhamento | `node ferramentas/gerar-paginas.mjs` (Pillow quando necessário) | `imagens/compartilhar/geradas/`, JPG 1200 × 630, <300.000 bytes | derivada da capa; padrão se ausente |
 | Arte nova pedida ao ChatGPT | pedido em `imagens-do-site/1 - Pedidos` no Drive; entrega em `2 - Entregas` | ver `docs/11` | — |
 
-Sem Python? Converter em https://squoosh.app (WebP, qualidade 80, largura certa) e salvar com o nome exato da tabela.
+Para gerar capas de compartilhamento, instalar Pillow (`python -m pip install Pillow`). O gerador chama `python3`; a variável `PYTHON` permite selecionar outro executável. As capas ficam centralizadas em fundo escuro, sem corte ou distorção. `--check` dispensa Python e confere as imagens prontas. Detalhes em `docs/14`.
+
+Para as imagens WebP do conteúdo, sem Python: converter em https://squoosh.app (WebP, qualidade 80, largura certa) e salvar com o nome exato da tabela.
 
 ---
 
 ## 5. Conferência (obrigatória)
 
 ```bash
-node ferramentas/conferir-dados.mjs           # os dados: slugs, datas, campos, imagens, ícones, letras, links
-node ferramentas/testar-rotas.mjs --capturas  # todas as páginas em 390 e 1280 px (precisa do Playwright)
+node ferramentas/conferir-dados.mjs
+node ferramentas/gerar-paginas.mjs
+node ferramentas/gerar-paginas.mjs --check
+node --test ferramentas/testar-validacao-dados.mjs ferramentas/testar-busca.mjs ferramentas/testar-paginas-publicas.mjs
+node ferramentas/testar-rotas.mjs --capturas
+git diff --check
 ```
 
-- **✅ nos dois** = pode abrir o PR.
+- **Conferências aprovadas**: entregar o PR com evidências e limites da validação. `--check` nunca grava saídas no CI.
 - **❌** = a mensagem diz o arquivo, a entrada e o problema. Corrija e rode de novo.
 - **O script nem roda e aparece `SyntaxError`** = erro de escrita no arquivo de dados: quase sempre falta de vírgula, aspas abertas ou um apóstrofo reto dentro do texto (regras 4 e 5). A mensagem mostra a linha.
 - Depois, olhar com os próprios olhos as rotas da receita em 390 px e 1280 px (`python -m http.server 8080` e o modo celular do navegador). As capturas ficam em `ferramentas/capturas/`.
@@ -188,7 +195,7 @@ node ferramentas/testar-rotas.mjs --capturas  # todas as páginas em 390 e 1280 
 
 1. Commit em português: `feat(conteudo): <o que entrou>` ou `fix(conteudo): <o que corrigiu>`. Codex termina com `Feito-por: Codex`.
 2. PR para `main`, preenchendo o modelo (`.github/pull_request_template.md`): pista **Conteúdo**, rotas, como testou.
-3. Uma linha em `docs/registro-de-publicacoes.md` (no topo da tabela).
+3. Incluir as saídas geradas e uma linha em `docs/registro-de-publicacoes.md` (no topo da tabela). Não editar HTML de `p/` à mão.
 4. Arquivo da fila no Drive: `status: em-pr` e `pr: <link>`; depois do merge, `publicado` e mover para `feitos/`.
 5. **Merge só o Franklin.** O site atualiza sozinho alguns minutos depois do merge.
 
@@ -199,6 +206,7 @@ node ferramentas/testar-rotas.mjs --capturas  # todas as páginas em 390 e 1280 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
 | **O site inteiro fica em branco** (só o cabeçalho e o rodapé) | erro de escrita num arquivo de `js/dados/` (vírgula, aspas, apóstrofo) | `node ferramentas/conferir-dados.mjs` mostra o arquivo e a linha (`SyntaxError ... novidades.js:61`); corrigir e conferir de novo |
+| CI acusa saída ausente/desatualizada | dados/capas mudaram sem regenerar | rodar o gerador, revisar e incluir `p/`, sitemap e imagens/manifesto no commit |
 | "Conteúdo não encontrado" na página nova | slug diferente entre o dado e o link | conferir o `slug` e a `rota` |
 | Capa não aparece (quadrado vazio) | falta o `-480.webp`/`-960.webp`, ou `capa` com extensão | rodar `preparar-imagem.py capa`; `capa` sem `-480` e sem `.webp` |
 | Álbum novo não está em "Último lançamento" | `destaque: true` ficou no álbum antigo | passar o `destaque` para o novo |
@@ -209,6 +217,8 @@ node ferramentas/testar-rotas.mjs --capturas  # todas as páginas em 390 e 1280 
 ---
 
 ## 8. Onde cada coisa aparece (para conferir)
+
+Todos os detalhes também têm uma passagem em `/p/<secao>/<slug>/`. O botão Compartilhar usa esse endereço. Conferir o link permanente afetado; prévia real no WhatsApp só depois do merge/deploy. A passagem não conta visita; o destino conta normalmente. O sitemap lista a raiz e as passagens, sem hashes.
 
 | Mudou | Aparece em |
 |---|---|

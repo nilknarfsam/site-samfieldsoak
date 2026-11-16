@@ -32,10 +32,10 @@ Seguir a skill **base-site-spa-franklin** se estiver instalada. Resumo:
 Quando o Franklin pedir "processe a caixa de entrada":
 
 1. Listar os arquivos de `caixa-de-entrada/` com `status: pendente` no cabeçalho (ignorar `_MODELO-de-ideia.md` e a subpasta `processadas/`).
-2. Para cada um, mostrar um resumo de uma linha e perguntar se pode fazer todos ou só alguns.
+2. Mostrar um resumo de uma linha por pedido; executar o conjunto autorizado pelo Franklin, sem pedir autorização novamente.
 3. Seguir o "Pedido para o Claude Code" escrito no próprio arquivo: criar a entrada em `js/dados/<secao>.js`, imagens em `imagens/`, conferir links e preços no dia quando o arquivo pedir.
-4. Rodar o site local e mostrar a página nova (rota exata).
-5. Com o ok do Franklin: commit (`feat(conteudo): ...`), mudar o cabeçalho para `status: publicado` com a data, mover o arquivo para `caixa-de-entrada/processadas/` e registrar uma linha em `docs/registro-de-publicacoes.md` (criar se não existir).
+4. Rodar o gerador de páginas/compartilhamento, versionar as saídas, executar as conferências do README e mostrar a rota exata e o link permanente.
+5. Fazer commit (`feat(conteudo): ...`), abrir PR e registrar `status: em-pr` com o link. Somente após confirmar merge e deploy, marcar `publicado` com a data e mover o pedido para `feitos/`, preservando o histórico.
 6. Lembrar o Franklin de avisar o Claude do celular o que foi publicado, para ele marcar no Drive.
 
 ## Rotina rápida: publicar novidades
@@ -48,7 +48,7 @@ Quando o Franklin pedir "verifica a fila e publica" (ou "publica as novidades"):
 2. **Palavra:** citar sempre a referência bíblica e a versão. Citações longas de versões com direitos autorais (como a NVI) precisam respeitar as regras de citação da editora; preferir trechos curtos e o texto próprio do Franklin. Não alterar a reflexão dele sem pedir.
 3. **Música:** só links oficiais das plataformas; capas só dos lançamentos dele. Sempre deixar claro que a música é criada com IA (vozes e instrumentos no Suno, letras com ajuda de IA revisadas pelo Franklin, masterização automática no LANDR), em primeira pessoa; o texto fica em `comoFaco` (`js/dados/albuns.js`).
 4. **Nada pessoal:** sem telefone, e-mail pessoal, endereço, ou anotações da família, da confeitaria e da igreja que não foram pensadas para publicar.
-5. **Sem coleta de dados pessoais.** Só o contador anônimo do GoatCounter (sem cookies), ligado em 21/10/2026; nada de formulário, cadastro ou outro rastreador.
+5. **Sem coleta de dados pessoais.** Só o contador anônimo do GoatCounter (sem cookies), ligado em 21/10/2026; nada de formulário que envie dados pessoais, cadastro ou outro rastreador. Busca e filtros locais não enviam dados.
 6. Português correto, com acentos.
 
 ## Fluxo de trabalho
@@ -57,6 +57,7 @@ Quando o Franklin pedir "verifica a fila e publica" (ou "publica as novidades"):
 - Branch `feat/...`, commits em português (Conventional Commits).
 - Ao fim de cada fase: testar em 390px e 1280px e dizer o que está pronto, o que foi testado e o que falta.
 - Manter o `README.md` atualizado.
+- Publicações incluem as saídas de `node ferramentas/gerar-paginas.mjs`: `p/`, `sitemap.xml` e imagens de compartilhamento. O CI verifica correspondência com o gerador; não editar HTML gerado à mão. Receitas e comandos completos em docs/12 e docs/14. Preparação das capas: Pillow local, sem dependência npm nova; CI só confere as imagens prontas.
 
 ## Configuração deste PC
 

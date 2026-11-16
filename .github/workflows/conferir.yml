@@ -30,7 +30,8 @@ jobs:
           BRANCH: ${{ github.head_ref }}
         run: |
           ARQUIVOS=$(git diff --name-only "origin/$BASE...HEAD")
-          PRODUTO=$(echo "$ARQUIVOS" | grep -vE '^(js/dados/|imagens/|docs/|caixa-de-entrada/|conteudo/|README\.md$|AGENTS\.md$|CLAUDE\.md$|LEIA-ME-PRIMEIRO\.md$)' || true)
+          # p/ e sitemap são saídas verificadas pelo gerador, nunca HTML editado à mão.
+          PRODUTO=$(echo "$ARQUIVOS" | grep -vE '^(js/dados/|imagens/|docs/|caixa-de-entrada/|conteudo/|p/|sitemap\.xml$|README\.md$|AGENTS\.md$|CLAUDE\.md$|LEIA-ME-PRIMEIRO\.md$)' || true)
           {
             echo "## Pista do PR"
             if [ -z "$PRODUTO" ]; then
@@ -55,6 +56,12 @@ jobs:
 
       - name: Testar a busca
         run: node --test ferramentas/testar-busca.mjs
+
+      - name: Conferir páginas e imagens prontas de compartilhamento
+        run: node ferramentas/gerar-paginas.mjs --check
+
+      - name: Testar páginas de compartilhamento
+        run: node --test ferramentas/testar-paginas-publicas.mjs
 
       - name: Instalar o navegador de teste
         run: |
