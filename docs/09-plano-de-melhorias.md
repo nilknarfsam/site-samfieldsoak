@@ -67,7 +67,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | feito 2026-10-27 (Claude) dentro da fase 1 do plano visual (`docs/11`, V-02 e V-03) |
 | 18 | Ícones SVG no lugar dos emojis | D-08 | médio | feito 2026-10-27 (Claude) na fase 5 do plano visual (`docs/11`, V-13): ícones Lucide em `imagens/icones/sprite.svg` |
 | 19 | Busca no site | F-05 | grande | feito 2026-11-16; revisão do Claude e merge do PR [#39](https://github.com/nilknarfsam/site-samfieldsoak/pull/39), commit 35c0f2e |
-| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | em implementação; plano e detalhes aprovados em 16/11/2026 |
+| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | em PR [#40](https://github.com/nilknarfsam/site-samfieldsoak/pull/40); plano e detalhes aprovados em 16/11/2026 |
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | piloto integrado no PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30), merge confirmado em 06/11/2026; aceite real da integração continua separado |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |

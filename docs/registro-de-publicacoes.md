@@ -2,7 +2,7 @@
 
 | Data | Seção | Página / mudança | Rota | Situação |
 |---|---|---|---|---|
-| 2026-11-16 | Produto / T-20 e documentação | Links permanentes, metadados, capas Pillow, sitemap e CI de geração; revisão do README e guias operacionais | `/p/<secao>/<slug>/` | Em implementação; validação e PR nesta etapa. Revisão do Claude e merge pelo Franklin; prévia real após deploy. |
+| 2026-11-16 | Produto / T-20 e documentação | Links permanentes, metadados, capas Pillow, sitemap e CI de geração; revisão do README e guias operacionais | `/p/<secao>/<slug>/` | PR [#40](https://github.com/nilknarfsam/site-samfieldsoak/pull/40); 47 testes Node aprovados localmente, passagens/capturas pelo CI. Revisão do Claude e merge pelo Franklin; prévia real após deploy. |
 | 2026-11-16 | Produto / T-19 | Busca local nas quatro seções, sem duplicar destinos ou guardar consultas | `#/busca` | Publicado: revisão do Claude e merge do PR [#39](https://github.com/nilknarfsam/site-samfieldsoak/pull/39) confirmados em 16/11/2026 (35c0f2e); CI e Pages aprovados. |
 | 2026-11-16 | Produto / T-27 | Apresentação para IA e tecnologia prática, categoria Windows e segurança e filtro de status condicional | `#/ia-sem-labia` e detalhes IA | Publicado: aprovado pelo Claude e mesclado por Franklin em 16/11/2026, PR [#38](https://github.com/nilknarfsam/site-samfieldsoak/pull/38) (e03570b); CI e publicação Pages aprovados. |
 | 2026-11-16 | Produto / T-26 | Índice das seções e tempo estimado de leitura nos artigos IA; foco por teclado e rota preservada | `#/ia-sem-labia/<slug>` | Publicado: PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37), aprovado pelo Claude e mesclado pelo Franklin em 16/11/2026 (d450518). Dados, 31 regressões e 38 rotas aprovados no CI. |

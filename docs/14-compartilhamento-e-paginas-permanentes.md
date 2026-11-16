@@ -1,6 +1,6 @@
 # 14 – Compartilhamento e páginas permanentes
 
-Especificação da T-20, aprovada por Franklin em 16/11/2026. Disponível no domínio após merge e deploy do PR correspondente.
+Especificação da T-20, aprovada por Franklin em 16/11/2026. Implementação no PR [#40](https://github.com/nilknarfsam/site-samfieldsoak/pull/40); disponível no domínio após merge e deploy.
 
 ## Contrato de endereços
 
