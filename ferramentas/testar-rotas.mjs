@@ -241,7 +241,8 @@ async function conferirApresentacaoIa(pagina) {
   assert.ok(!categorias.includes('Outros'), 'categoria antiga ainda aparece sem artigos');
   const variosStatus = new Set(ferramentas.map((f) => f.status)).size > 1;
   assert.equal(await pagina.locator('[data-filtro-status]').isVisible(), variosStatus);
-  assert.equal(await pagina.locator('[data-filtro-status]').isDisabled(), !variosStatus);
+  assert.equal(await pagina.locator('[data-filtro-status]').evaluate((el) => el.disabled), !variosStatus, 'fieldset de status não corresponde à variedade');
+  assert.equal(await pagina.locator('[data-opcoes="status"] input').first().isDisabled(), !variosStatus, 'radios de status não herdaram a desabilitação');
   assert.equal(await pagina.locator('[data-status-unico]').isVisible(), !variosStatus);
   if (!variosStatus) {
     assert.equal(await pagina.locator('[data-filtros]').evaluate((form) => form.elements.status.value), 'todas');
