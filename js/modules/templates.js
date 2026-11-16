@@ -106,10 +106,13 @@ export function detalheFerramenta(f, relacionadas) {
       </div>
       <h1 class="titulo-faixa">${tituloComFaixa(f)}</h1>
       <p class="lead">${escapar(f.resumo)}</p>
+      <p class="nota" data-tempo-leitura></p>
       ${f.conferidoEm ? `<p class="nota">Fontes conferidas em <time datetime="${escapar(f.conferidoEm)}">${escapar(dataBR(f.conferidoEm))}</time>.</p>` : ''}
       ${f.status === 'analisado' ? '<p class="nota">Analisado a partir de fontes públicas. Ainda não testado por mim.</p>' : ''}
       ${botaoCompartilhar()}
-    </header>`);
+    </header>
+    <nav class="indice-artigo" aria-label="Nesta página" data-indice-artigo hidden></nav>
+    <div data-corpo-ia>`);
 
   if (f.aviso) partes.push(`<div class="aviso" role="note"><p><strong>${escapar(f.aviso)}</strong></p></div>`);
   if (tem(f.promete)) partes.push(bloco('O que promete', `<ul class="lista-marcada">${itens(f.promete)}</ul>`));
@@ -140,6 +143,7 @@ export function detalheFerramenta(f, relacionadas) {
       </ul>
       ${f.carrossel.post ? `<p>${linkExterno(f.carrossel.post, 'Ver o post no Instagram')}</p>` : ''}`));
   }
+  partes.push('</div>');
   if (tem(relacionadas)) {
     partes.push(bloco('Páginas relacionadas', `<ul class="grid lista-limpa">${relacionadas.map(cartaoFerramenta).join('')}</ul>`));
   }

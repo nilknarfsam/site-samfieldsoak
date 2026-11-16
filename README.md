@@ -27,7 +27,7 @@ Abra http://127.0.0.1:8080/#/inicio (`file://` não funciona com módulos e `fet
 | `#/novidades` | Pilha de novidades (a mais nova em cima, ordenada pela data), filtro por tema | pronto |
 | `#/novidades/<slug>` | Página da novidade: texto completo, tempo de leitura, links, fontes, anterior/próxima e Compartilhar (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/ia-sem-labia` | Mais recentes primeiro, datas da análise/fontes e filtros por categoria/status, preservados ao voltar na mesma aba; recarregar começa em Todas | pronto |
-| `#/ia-sem-labia/<slug>` | Página completa, com datas identificadas da análise e da conferência das fontes (slug inválido mostra "Conteúdo não encontrado") | pronto |
+| `#/ia-sem-labia/<slug>` | Página completa, com índice de seções por teclado, tempo estimado de leitura e datas identificadas da análise e da conferência das fontes (slug inválido mostra "Conteúdo não encontrado") | pronto |
 | `#/musica` | Landing com índice "Nesta página" (`#/musica/discografia`, `#/musica/singles`...): lançamento em destaque com player do álbum, "Por trás das músicas", jornada pelos Salmos (1–150), player do perfil e discografia com capas | pronto |
 | `#/musica/<slug>` | Página do álbum: capa, player, "Por trás do álbum", faixas com referências, outros volumes da série (slug inválido mostra "Conteúdo não encontrado") | pronto; completo no Tratado de Romanos; O Reino Inabalável com faixas; série dos Salmos com capas parciais |
 | `#/palavra` | Lista das pregações e reflexões (mais recente primeiro) | pronto: 7 pregações (Romanos, Salmos 73, 74 e 94, Hebreus 7) |
