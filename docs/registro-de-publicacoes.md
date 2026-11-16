@@ -2,7 +2,7 @@
 
 | Data | Seção | Página / mudança | Rota | Situação |
 |---|---|---|---|---|
-| 2026-11-16 | Produto / T-26 | Índice das seções e tempo estimado de leitura nos artigos IA; foco por teclado e rota preservada | `#/ia-sem-labia/<slug>` | Em implementação; conferências e PR nesta etapa. Revisão do Claude e merge pelo Franklin. |
+| 2026-11-16 | Produto / T-26 | Índice das seções e tempo estimado de leitura nos artigos IA; foco por teclado e rota preservada | `#/ia-sem-labia/<slug>` | PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37); dados e 31 regressões aprovados localmente. Rotas/capturas no GitHub Actions; revisão do Claude e merge pelo Franklin. |
 | 2026-11-12 | Produto / Testes da T-25 | Remove espera por imagens lazy fora da tela e distingue cancelamentos da navegação de falhas reais | conferência de rotas | PR [#36](https://github.com/nilknarfsam/site-samfieldsoak/pull/36); aguarda revisão do Claude e merge pelo Franklin. |
 | 2026-11-12 | Produto / IA sem lábia (T-25) | Categoria e status preservados ao voltar do artigo na mesma aba; Todas limpa e recarregar reinicia a seleção | `#/ia-sem-labia` | PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35). Merge pelo Franklin em 12/11/2026; revisão posterior do Claude pediu correção do teste, sem mudança na função de filtros. |
 | 2026-11-12 | Produto / IA sem lábia (T-24) | Datas identificadas da análise e da conferência das fontes nos cards e nos detalhes, inclusive sem custos | `#/ia-sem-labia`, `#/ia-sem-labia/<slug>` | Publicado após revisão do Claude e merge do PR [#34](https://github.com/nilknarfsam/site-samfieldsoak/pull/34) pelo Franklin em 12/11/2026. |
