@@ -425,9 +425,14 @@ async function conferirBusca(pagina, navegar) {
     if (await pagina.locator('.menu__botao').isVisible()) await pagina.keyboard.press('Escape');
   }
   await pagina.setViewportSize({ width: largura, height: 900 });
-  // O menu volta do layout de desktop ao painel com uma transição; capturar só ao terminar.
-  await pagina.locator('.menu').evaluate((menu) =>
-    Promise.all(menu.getAnimations({ subtree: true }).map((a) => a.finished)));
+  // Transições podem ser canceladas ao redimensionar. Esperar o estado final evita AbortError
+  // de animation.finished e não ignora falhas de rede nem erros de JavaScript.
+  await pagina.waitForFunction(() => {
+    const menu = document.querySelector('.menu');
+    const estilo = getComputedStyle(menu.querySelector('.menu__lista'));
+    const aberto = innerWidth >= 992 || menu.classList.contains('menu--aberto');
+    return estilo.visibility === (aberto ? 'visible' : 'hidden') && Number(estilo.opacity) === (aberto ? 1 : 0);
+  });
 }
 
 // Só desconsidera cancelamentos de requisições ligadas às navegações deste teste.
