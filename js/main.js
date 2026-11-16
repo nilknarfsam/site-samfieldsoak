@@ -10,6 +10,7 @@ import { iniciarPalavraLista } from './telas/palavra-lista.js';
 import { iniciarPalavraDetalhe } from './telas/palavra-detalhe.js';
 import { iniciarNovidadesLista } from './telas/novidades-lista.js';
 import { iniciarNovidadesDetalhe } from './telas/novidades-detalhe.js';
+import { iniciarBusca } from './telas/busca.js';
 
 const rotas = {
   inicio: { view: 'html/inicio.html', titulo: 'Início', iniciar: iniciarInicio },
@@ -32,6 +33,7 @@ const rotas = {
     detalhe: { view: 'html/palavra-detalhe.html', iniciar: iniciarPalavraDetalhe },
   },
   sobre: { view: 'html/sobre.html', titulo: 'Sobre' },
+  busca: { view: 'html/busca.html', titulo: 'Buscar no site', iniciar: iniciarBusca },
 };
 
 const app = document.getElementById('app');

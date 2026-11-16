@@ -89,7 +89,7 @@ const servidor = createServer(async (req, res) => {
 await new Promise((ok) => servidor.listen(PORTA, '127.0.0.1', ok));
 
 const rotas = [
-  'inicio', 'novidades', 'ia-sem-labia', 'musica', 'palavra', 'sobre',
+  'inicio', 'novidades', 'ia-sem-labia', 'musica', 'palavra', 'sobre', 'busca',
   'musica/discografia', 'novidades/nao-existe', 'rota-que-nao-existe',
   ...novidades.filter((n) => !n.rota).map((n) => `novidades/${n.slug}`),
   ...ferramentas.map((f) => `ia-sem-labia/${f.slug}`),
@@ -339,6 +339,92 @@ async function conferirLeituraIa(pagina) {
   await pagina.locator('[data-detalhe] h1').focus();
 }
 
+// T-19: busca, links reais, teclado e privacidade do termo.
+async function conferirBusca(pagina, navegar) {
+  const campo = pagina.getByRole('searchbox', { name: 'O que você procura?' });
+  const resultados = pagina.locator('[data-resultados-busca] .cartao__link');
+  const contagem = pagina.locator('[data-contagem-busca]');
+  const lerLinks = () => resultados.evaluateAll((links) => links.map((a) => a.getAttribute('href')));
+  const conferirUnicos = async () => {
+    const links = await lerLinks();
+    assert.equal(new Set(links).size, links.length, 'busca repetiu um destino');
+    assert.ok(links.every((link) => link.startsWith('#/')), 'busca produziu destino fora do site');
+  };
+  assert.equal(await campo.inputValue(), '');
+  assert.equal(await resultados.count(), 0, 'busca vazia despejou o catálogo');
+  assert.equal(await contagem.getAttribute('role'), 'status');
+  await pagina.evaluate(() => document.fonts.ready);
+  const antes = await pagina.evaluate(() => ({ url: location.href, historico: history.length, visitas: window.__visitasBuscaTeste,
+    local: Object.entries(localStorage), sessao: Object.entries(sessionStorage) }));
+  const requisicoes = [];
+  const registrar = (r) => requisicoes.push(r.url());
+  pagina.on('request', registrar);
+  // Só digitar e confirmar não deve criar tráfego ou mudar o endereço.
+  await campo.fill('salmo 73');
+  await campo.press('Enter');
+  const salmo = await lerLinks();
+  assert.ok(salmo.includes('#/palavra/quando-a-visao-engana'));
+  assert.ok(salmo.includes('#/musica/santuario-do-altissimo'));
+  await conferirUnicos();
+  if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${pagina.viewportSize().width}-busca-salmo-73.png`), fullPage: true });
+  await campo.fill('CLAUDE');
+  const claude = await lerLinks();
+  assert.ok(claude.includes('#/ia-sem-labia/ootto'));
+  assert.ok(claude.includes('#/novidades/claude-code-outubro-2026'));
+  await conferirUnicos();
+  await campo.fill('graça');
+  const graca = await lerLinks();
+  assert.ok(graca.includes('#/musica/reinara-a-graca'));
+  await campo.fill('  GRACA  ');
+  assert.deepEqual(await lerLinks(), graca, 'acentos, maiúsculas ou espaços alteraram resultados');
+  await campo.fill('otimizadores');
+  assert.deepEqual(await lerLinks(), ['#/ia-sem-labia/otimizadores-de-pc'], 'chamada e artigo duplicados');
+  assert.equal(await contagem.textContent(), '1 resultado');
+  await campo.fill('zzzz-sem-resultados-92837');
+  assert.equal(await resultados.count(), 0);
+  assert.equal(await pagina.locator('[data-vazio-busca]').isVisible(), true);
+  assert.equal(await contagem.textContent(), '0 resultados');
+  await campo.fill('<img src=x onerror=alert(1)>');
+  assert.equal(await pagina.locator('[data-resultados-busca] img').count(), 0, 'termo virou HTML');
+  await pagina.getByRole('button', { name: 'Limpar busca' }).click();
+  assert.equal(await campo.inputValue(), '');
+  assert.ok(await campo.evaluate((el) => el === document.activeElement), 'limpar perdeu foco');
+  assert.equal(await pagina.locator('[data-vazio-busca]').isVisible(), false);
+  const depois = await pagina.evaluate(() => ({ url: location.href, historico: history.length, visitas: window.__visitasBuscaTeste,
+    local: Object.entries(localStorage), sessao: Object.entries(sessionStorage) }));
+  assert.deepEqual(depois, antes, 'termo foi colocado no endereço/histórico/armazenamento');
+  assert.equal(requisicoes.length, 0, `digitar gerou tráfego: ${requisicoes.join(', ')}`);
+  pagina.off('request', registrar);
+  // O resultado deve ser alcançável por Tab e levar à página real.
+  await campo.fill('otimizadores');
+  await pagina.getByRole('button', { name: 'Limpar busca' }).focus();
+  await pagina.keyboard.press('Tab');
+  assert.ok(await resultados.first().evaluate((el) => el === document.activeElement));
+  await navegar(async () => {
+    await resultados.first().press('Enter');
+    await pagina.locator('[data-detalhe] h1').waitFor({ state: 'visible' });
+  });
+  assert.ok(pagina.url().endsWith('#/ia-sem-labia/otimizadores-de-pc'));
+  await navegar(async () => {
+    await pagina.goBack();
+    await campo.waitFor({ state: 'visible' });
+  });
+  assert.equal(await campo.inputValue(), '', 'retorno guardou o termo');
+  await campo.fill('claude');
+  // O sétimo link do menu também precisa caber nas larguras intermediárias.
+  const largura = pagina.viewportSize().width;
+  for (const width of [768, 992]) {
+    await pagina.setViewportSize({ width, height: 900 });
+    await pagina.evaluate(() => document.fonts.ready);
+    if (await pagina.locator('.menu__botao').isVisible()) await pagina.locator('.menu__botao').click();
+    assert.ok(await pagina.locator('.menu a[href="#/busca"]').isVisible(), 'Buscar inacessível no menu');
+    assert.ok(await pagina.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'menu com busca causou rolagem lateral');
+    if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${width}-busca-menu.png`), fullPage: true });
+    if (await pagina.locator('.menu__botao').isVisible()) await pagina.keyboard.press('Escape');
+  }
+  await pagina.setViewportSize({ width: largura, height: 900 });
+}
+
 // Só desconsidera cancelamentos de requisições ligadas às navegações deste teste.
 // O WeakSet mantém a atribuição quando o evento de cancelamento chega após a ação.
 function acompanharNavegacao(pagina, registrarErro) {
@@ -378,6 +464,13 @@ for (const largura of LARGURAS) {
         pedidosPlayer++;
         return r.fulfill({ contentType: 'text/html', body: '<!doctype html><html lang="pt-BR"><title>Player simulado para teste</title><body>Player simulado: teste da integração, sem áudio.</body></html>' });
       });
+    }
+    if (rota === 'busca') {
+      // Isola o contador remoto para detectar chamadas feitas durante a digitação.
+      await pagina.route('https://gc.zgo.at/count.js', (r) => r.fulfill({
+        contentType: 'text/javascript',
+        body: 'window.__visitasBuscaTeste = []; window.goatcounter.count = (dados) => window.__visitasBuscaTeste.push(dados);',
+      }));
     }
     let errosDaRota = [];
     pagina.on('pageerror', (e) => errosDaRota.push(`erro de JavaScript: ${e.message}`));
@@ -423,6 +516,12 @@ for (const largura of LARGURAS) {
         assert.equal(novosErros.length, 0, novosErros.join('; '));
       }
       catch (e) { falhas.push(`${largura}px #/${rota}: ordem e filtros: ${e.message}`); }
+    }
+    if (rota === 'busca') {
+      try {
+        await conferirBusca(pagina, navegar);
+        assert.equal(errosDaRota.length, 0, errosDaRota.join('; '));
+      } catch (e) { falhas.push(`${largura}px #/${rota}: busca: ${e.message}`); }
     }
     if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/\//g, '_')}.png`), fullPage: true });
     if (rota === 'inicio' || rota === 'musica/santuario-do-altissimo') {

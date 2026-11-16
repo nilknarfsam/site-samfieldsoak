@@ -101,7 +101,7 @@
   height: 2px; border-radius: var(--raio-pilula); background: currentColor;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .menu__botao { display: none; }
   .menu__lista { position: static; display: flex; gap: var(--esp-1); padding: 0; border: 0; background: transparent; visibility: visible; opacity: 1; transform: none; transition: none; }
   .menu__lista li + li { margin-top: 0; }

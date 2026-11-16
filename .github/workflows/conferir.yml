@@ -53,6 +53,9 @@ jobs:
       - name: Testar a validação dos dados
         run: node --test ferramentas/testar-validacao-dados.mjs
 
+      - name: Testar a busca
+        run: node --test ferramentas/testar-busca.mjs
+
       - name: Instalar o navegador de teste
         run: |
           npm install --no-save --no-package-lock playwright@1.49.1
