@@ -354,6 +354,7 @@ async function conferirBusca(pagina, navegar) {
   assert.equal(await resultados.count(), 0, 'busca vazia despejou o catálogo');
   assert.equal(await contagem.getAttribute('role'), 'status');
   await pagina.evaluate(() => document.fonts.ready);
+  if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${pagina.viewportSize().width}-busca-vazia.png`), fullPage: true });
   const antes = await pagina.evaluate(() => ({ url: location.href, historico: history.length, visitas: window.__visitasBuscaTeste,
     local: Object.entries(localStorage), sessao: Object.entries(sessionStorage) }));
   const requisicoes = [];
@@ -423,6 +424,9 @@ async function conferirBusca(pagina, navegar) {
     if (await pagina.locator('.menu__botao').isVisible()) await pagina.keyboard.press('Escape');
   }
   await pagina.setViewportSize({ width: largura, height: 900 });
+  // O menu volta do layout de desktop ao painel com uma transição; capturar só ao terminar.
+  await pagina.locator('.menu').evaluate((menu) =>
+    Promise.all(menu.getAnimations({ subtree: true }).map((a) => a.finished)));
 }
 
 // Só desconsidera cancelamentos de requisições ligadas às navegações deste teste.
