@@ -38,7 +38,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 3. Testar:
    - `python -m http.server 8080` e abrir as rotas citadas em **390 px e 1280 px** (DevTools, modo celular).
    - Console sem erro; um `h1`; sem rolagem horizontal; teclado (Tab) chega em tudo e o foco aparece.
-   - `node ferramentas/conferir-dados.mjs` e `node ferramentas/testar-rotas.mjs` passando (o segundo precisa do Playwright; se o seu ambiente não tiver navegador, diga isso no PR: o GitHub Actions roda os dois em todo PR).
+   - Executar a sequência do README: conferir dados, gerar quando necessário, `--check`, três suítes Node e rotas com capturas. Sem navegador local, registrar a limitação e acompanhar o CI; entregar somente com a conferência aprovada no commit do PR.
 4. Commit em português, Conventional Commits (`feat(...)`, `fix(...)`, `style(...)`, `docs(...)`), terminando com a linha `Feito-por: Codex`.
 5. Abrir o PR com: o que mudou, rotas para conferir, o que foi testado, prints de 390 e 1280 px. **Nunca fazer merge sem o ok do Franklin.**
 6. Marcar a tarefa como feita na tabela abaixo (no mesmo PR): `pendente` → `em PR #N`. Depois do merge, quem estiver trabalhando muda para `feito AAAA-MM-DD`.
