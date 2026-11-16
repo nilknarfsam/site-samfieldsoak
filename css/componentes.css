@@ -187,6 +187,14 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .bloco h2 { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-3); }
 .bloco--verdade h2 .selo { color: var(--cor-verdade); }
 .bloco--nao-conta { }
+.indice-artigo { margin-bottom: var(--esp-5); padding: var(--esp-3); background: var(--cor-superficie); border: var(--borda); border-radius: var(--raio); }
+.indice-artigo__titulo { font-weight: 700; margin-bottom: var(--esp-2); }
+.indice-artigo__lista { display: grid; gap: var(--esp-1); }
+.indice-artigo__lista li + li { margin-top: 0; }
+.indice-artigo__botao { display: block; width: 100%; min-height: var(--toque-minimo); padding: var(--esp-2); border: none; border-radius: var(--raio-pequeno); background: transparent; color: var(--cor-texto); font: inherit; font-size: var(--texto-sm); text-align: left; cursor: pointer; }
+.indice-artigo__botao:hover { background: var(--cor-superficie-alta); }
+[data-corpo-ia] > section > h2 { scroll-margin-top: calc(var(--altura-topo) + var(--esp-5)); }
+@media (min-width: 576px) { .indice-artigo__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .lista-marcada { list-style: none; padding: 0; }
 .lista-marcada li { position: relative; padding-left: var(--esp-4); }
 .lista-marcada li::before { content: '→'; position: absolute; left: 0; color: var(--cor-secao); font-family: var(--fonte-mono); }

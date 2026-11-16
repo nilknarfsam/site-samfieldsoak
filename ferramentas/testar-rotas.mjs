@@ -226,6 +226,56 @@ async function conferirDatasIa(pagina, rota) {
   }
 }
 
+// T-26: atalhos por teclado preservam a rota e levam o foco para seções reais.
+async function conferirLeituraIa(pagina) {
+  await pagina.evaluate(() => document.fonts.ready);
+  const indice = pagina.getByRole('navigation', { name: 'Nesta página', exact: true });
+  const botoes = indice.getByRole('button');
+  const titulos = pagina.locator('[data-corpo-ia] > section > h2');
+  assert.equal(await botoes.count(), await titulos.count(), 'índice omitiu ou inventou uma seção');
+  assert.ok(await botoes.count() > 0);
+  const rota = pagina.url();
+  const tamanhoHistorico = await pagina.evaluate(() => history.length);
+  for (let i = 0; i < await botoes.count(); i++) {
+    const botao = botoes.nth(i);
+    const titulo = titulos.nth(i);
+    const nome = await titulo.evaluate((el) => [...el.childNodes]
+      .filter((no) => no.nodeType === Node.TEXT_NODE).map((no) => no.textContent).join('').trim());
+    assert.equal(await botao.textContent(), nome, 'índice não usa o título atual ou repetiu selo');
+    assert.equal(await botao.getAttribute('aria-controls'), await titulo.getAttribute('id'));
+    await botao.focus();
+    assert.equal(await botao.evaluate((el) => getComputedStyle(el).outlineStyle), 'solid', 'foco invisível no índice');
+    await botao.press(i % 2 ? 'Space' : 'Enter');
+    assert.ok(await titulo.evaluate((el) => el === document.activeElement), 'atalho não levou foco à seção');
+    assert.ok(await titulo.evaluate((el) => el.getBoundingClientRect().top >= document.querySelector('.topo').getBoundingClientRect().bottom), 'título coberto pelo cabeçalho');
+    assert.ok(await botao.evaluate((el) => el.getBoundingClientRect().height >= 44), 'alvo de toque pequeno');
+    assert.equal(pagina.url(), rota, 'índice alterou o endereço do artigo');
+  }
+  assert.equal(await pagina.evaluate(() => history.length), tamanhoHistorico, 'índice criou entradas no histórico');
+  assert.equal(await pagina.locator('[data-acao="compartilhar"]').count(), 1);
+  assert.match(await pagina.locator('[data-tempo-leitura]').textContent(), /^Leitura estimada: [1-9]\d* min$/);
+  // Regressão com texto controlado: 401 palavras, sem contar relacionados/galeria.
+  const amostra = await pagina.evaluate(async () => {
+    const { iniciarLeituraIa } = await import('/js/modules/leitura-ia.js');
+    const alvo = document.createElement('div');
+    alvo.innerHTML = '<h1>Título</h1><p class="lead">Resumo</p><p data-tempo-leitura></p><nav data-indice-artigo></nav><div data-corpo-ia></div><section><h2>Relacionadas</h2></section>';
+    const corpo = alvo.querySelector('[data-corpo-ia]');
+    const p = document.createElement('p');
+    p.textContent = Array(399).fill('palavra').join(' ');
+    corpo.append(p);
+    const galeria = document.createElement('ul');
+    galeria.className = 'galeria';
+    galeria.textContent = Array(500).fill('imagem').join(' ');
+    corpo.append(galeria);
+    iniciarLeituraIa(alvo);
+    return { tempo: alvo.querySelector('[data-tempo-leitura]').textContent, vazio: alvo.querySelector('[data-indice-artigo]').hidden };
+  });
+  assert.deepEqual(amostra, { tempo: 'Leitura estimada: 3 min', vazio: true });
+  // A captura mostra o início e o índice, depois dos saltos por teclado.
+  await pagina.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await pagina.locator('[data-detalhe] h1').focus();
+}
+
 // Só desconsidera cancelamentos de requisições ligadas às navegações deste teste.
 // O WeakSet mantém a atribuição quando o evento de cancelamento chega após a ação.
 function acompanharNavegacao(pagina, registrarErro) {
@@ -291,6 +341,10 @@ for (const largura of LARGURAS) {
     if (rota === 'ia-sem-labia' || rota.startsWith('ia-sem-labia/')) {
       try { await conferirDatasIa(pagina, rota); }
       catch (e) { falhas.push(`${largura}px #/${rota}: datas: ${e.message}`); }
+    }
+    if (rota.startsWith('ia-sem-labia/')) {
+      try { await conferirLeituraIa(pagina); }
+      catch (e) { falhas.push(`${largura}px #/${rota}: leitura: ${e.message}`); }
     }
     if (rota === 'ia-sem-labia') {
       try {

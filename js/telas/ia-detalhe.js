@@ -1,6 +1,7 @@
 import { buscarFerramenta } from '../dados/ferramentas.js';
 import { detalheFerramenta, naoEncontrado } from '../modules/templates.js';
 import { animarCartoes } from '../modules/movimento.js';
+import { iniciarLeituraIa } from '../modules/leitura-ia.js';
 
 // Devolve o título da aba.
 export function iniciarIaDetalhe(app, slug) {
@@ -12,6 +13,7 @@ export function iniciarIaDetalhe(app, slug) {
   }
   const relacionadas = (f.relacionadas || []).map(buscarFerramenta).filter(Boolean);
   alvo.innerHTML = detalheFerramenta(f, relacionadas);
+  iniciarLeituraIa(alvo);
   animarCartoes(alvo);
   return f.titulo || f.nome;
 }
