@@ -460,7 +460,15 @@ const lista = [
       "url": "https://support.microsoft.com/pt-br/accounts-billing/security/how-to-use-two-step-verification-with-your-microsoft-account"
     }
   ]
-}
+},
+  {
+    slug: 'tratado-de-romanos-vol-3',
+    data: '2026-11-19',
+    tema: 'musica',
+    titulo: 'Tratado de Romanos, Vol. III — Não Falhou a Palavra',
+    resumo: 'A palavra de Deus falhou? Ouça nove faixas criadas com IA a partir de Romanos 9 a 11, do lamento de Paulo à adoração de “Ó Profundidade”.',
+    rota: '#/musica/nao-falhou-a-palavra',
+  },
 ];
 
 // Mais nova primeiro; no mesmo dia, a que foi acrescentada por último vem antes.
