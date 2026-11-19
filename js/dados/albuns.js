@@ -23,7 +23,7 @@ export const series = {
     titulo: 'Tratado de Romanos',
     resumo: 'A carta aos Romanos inteira em quatro volumes, um por ato, cantada na tradução Almeida (domínio público).',
     planejado: 'Quatro volumes e 34 faixas. Cada volume termina onde o próprio texto fecha um ato: 4.25, 8.39, 11.36 e 16.25-27, que reencontra as palavras do começo da carta (1.1-5).',
-    aCaminho: 'Vol. III (Romanos 9–11) e Vol. IV (Romanos 12–16) estão a caminho.',
+    aCaminho: 'Vol. IV (Romanos 12–16) está a caminho.',
   },
   salmos: {
     titulo: 'A série dos Salmos',
@@ -56,6 +56,30 @@ export const singles = [
 
 export const albuns = [
   {
+    slug: 'nao-falhou-a-palavra',
+    serie: 'tratado-de-romanos', volume: 'III',
+    titulo: 'Não Falhou a Palavra', subtitulo: 'Tratado de Romanos, Vol. III',
+    base: 'Romanos 9–11', estilo: 'Rock e metal alternativo', faixas: 9,
+    lancamento: '2026-11-18', spotifyId: '7uzHbg3Z6N5Y2koxOpB3B5',
+    capa: 'imagens/albuns/tratado-de-romanos-vol-3', destaque: true,
+    frase: 'A palavra de Deus falhou?',
+    resumo: 'De “Grande Tristeza” a “Ó Profundidade”, nove faixas sobre a fidelidade de Deus em Romanos 9 a 11.',
+    faixasLista: [
+      { titulo: 'Grande Tristeza', texto: 'Romanos 9.1-5' },
+      { titulo: 'Terei Misericórdia', texto: 'Romanos 9.6-18' },
+      { titulo: 'O Oleiro', texto: 'Romanos 9.19-29' },
+      { titulo: 'Pedra de Tropeço', texto: 'Romanos 9.30–10.4' },
+      { titulo: 'Perto de Ti', texto: 'Romanos 10.5-13' },
+      { titulo: 'Como Ouvirão', texto: 'Romanos 10.14-21' },
+      { titulo: 'Sete Mil', texto: 'Romanos 11.1-10' },
+      { titulo: 'A Oliveira', texto: 'Romanos 11.11-32' },
+      { titulo: 'Ó Profundidade', texto: 'Romanos 11.33-36' },
+    ],
+    notas: [
+      { titulo: 'Do lamento à adoração', texto: 'Criei este volume com IA a partir de Romanos 9 a 11. Começo pela dor de Paulo por seu povo, passo pelo oleiro, pela pedra de tropeço e pela oliveira, e encerro com a adoração de “Ó Profundidade”.' },
+    ],
+  },
+  {
     slug: 'reinara-a-graca',
     serie: 'tratado-de-romanos', volume: 'II',
     titulo: 'Reinará a Graça', subtitulo: 'Tratado de Romanos, Vol. II',
@@ -63,7 +87,7 @@ export const albuns = [
     lancamento: '2026-10-03', spotifyId: '0gFuqI5kLJjNuafW25r81d',
     notaLetras: 'Letras baseadas na tradução Almeida, em domínio público.',
     letras: 'romanos',
-    capa: 'imagens/albuns/tratado-de-romanos-vol-2', destaque: true,
+    capa: 'imagens/albuns/tratado-de-romanos-vol-2',
     frase: 'De “quem me livrará” a “quem nos separará”.',
     resumo: 'Da paz com Deus ao “nada nos separará”: Romanos 5 a 8 em nove faixas.',
     faixasLista: [

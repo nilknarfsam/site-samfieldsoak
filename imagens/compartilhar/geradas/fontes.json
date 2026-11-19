@@ -21,6 +21,11 @@
       "sha256": "2899d50816cddd52577870fa5a226166b1d65fbbada153a438557ef565070826"
     },
     {
+      "fonte": "imagens/albuns/tratado-de-romanos-vol-3-960.webp",
+      "destino": "imagens/compartilhar/geradas/musica-nao-falhou-a-palavra-1200x630.jpg",
+      "sha256": "d32697cf5cbdb994ebf042dbf81f5e0c6062b1d2c42bb3c6ea352d28c3f73557"
+    },
+    {
       "fonte": "imagens/albuns/o-despertar-do-justo-960.webp",
       "destino": "imagens/compartilhar/geradas/musica-o-despertar-do-justo-1200x630.jpg",
       "sha256": "37371281158498617671af5a705d03870bcaca3a11b6f98bd79c695f2f502aa7"
