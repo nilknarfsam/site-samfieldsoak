@@ -11,6 +11,7 @@ let audio, barra, fila = [], atual = -1;
 let contado = { play: false, ouviu30: false };   // métricas da faixa atual (T-29), uma vez por faixa
 const idFaixa = (f) => `${f.albumSlug}/${f.arquivo || ''}`.replace(/\.mp3$/, '');
 const ouvintes = new Set();
+const ouvintesTempo = new Set();
 
 export const formatarTempo = (s) => {
   if (!Number.isFinite(s) || s < 0) return '0:00';
@@ -21,6 +22,12 @@ export const formatarTempo = (s) => {
 // A tela pode acompanhar o player (faixa atual destacada, botão tocar/pausar).
 export function aoMudar(fn) { ouvintes.add(fn); return () => ouvintes.delete(fn); }
 export const estado = () => ({ faixa: fila[atual] || null, tocando: Boolean(audio && !audio.paused) });
+// Tela "Tocando agora" (T-30): fila, tempo e pular para um ponto da música.
+export const filaAtual = () => ({ fila: [...fila], atual });
+export const tempo = () => ({ agora: audio?.currentTime || 0, total: Number.isFinite(audio?.duration) ? audio.duration : (fila[atual]?.duracao || 0) });
+export function aoTempo(fn) { ouvintesTempo.add(fn); return () => ouvintesTempo.delete(fn); }
+export function irPara(segundos) { if (audio && atual >= 0 && Number.isFinite(segundos)) audio.currentTime = Math.max(0, segundos); }
+export function tocarNaFila(i) { if (fila[i]) tocarIndice(i); }
 const avisar = () => { const e = estado(); ouvintes.forEach((fn) => { try { fn(e); } catch (erro) { console.error('[tocador]', erro); } }); };
 
 function montar() {
@@ -32,13 +39,14 @@ function montar() {
   barra.hidden = true;
   barra.setAttribute('aria-label', 'Player das primeiras versões');
   barra.innerHTML = `
-    <div class="tocador__faixa">
+    <button class="tocador__faixa" type="button" data-tocador="abrir" aria-haspopup="dialog">
       <span class="tocador__capa" data-tocador-capa></span>
       <span class="tocador__textos">
-        <a class="tocador__titulo" data-tocador-titulo href="#/primeiras-versoes"></a>
+        <span class="tocador__titulo" data-tocador-titulo></span>
         <span class="tocador__album" data-tocador-album></span>
       </span>
-    </div>
+      <span class="tocador__abrir">${icone('subir')}<span class="visualmente-oculto">Abrir a tela Tocando agora, com a fila e a letra</span></span>
+    </button>
     <div class="tocador__controles">
       <button class="tocador__botao" type="button" data-tocador="anterior" aria-label="Faixa anterior">${icone('anterior')}</button>
       <button class="tocador__botao tocador__botao--principal" type="button" data-tocador="alternar" aria-label="Tocar">${icone('play')}</button>
@@ -63,6 +71,7 @@ function montar() {
     else if (acao === 'anterior') anterior();
     else if (acao === 'proxima') proxima();
     else if (acao === 'fechar') fechar();
+    else if (acao === 'abrir') document.dispatchEvent(new Event('abrir-tocando'));
   });
   const posicao = barra.querySelector('[data-tocador-posicao]');
   posicao.addEventListener('input', () => { audio.currentTime = Number(posicao.value); });
@@ -70,10 +79,12 @@ function montar() {
 
   audio.addEventListener('timeupdate', () => {
     atualizarTempo();
+    avisarTempo();
     const f = fila[atual];
     if (f && !contado.ouviu30 && audio.currentTime >= 30) { contado.ouviu30 = true; contarEvento(`ouviu30/${idFaixa(f)}`, f.titulo); }
   });
-  audio.addEventListener('loadedmetadata', atualizarTempo);
+  audio.addEventListener('loadedmetadata', () => { atualizarTempo(); avisarTempo(); });
+  audio.addEventListener('seeked', avisarTempo);
   audio.addEventListener('play', () => {
     encerrarPlayerAtivo(); atualizarBotao(); avisar();
     const f = fila[atual];
@@ -102,6 +113,11 @@ function montar() {
       seekto: (d) => { if (Number.isFinite(d.seekTime)) audio.currentTime = d.seekTime; } };
     for (const [acao, fn] of Object.entries(acoes)) { try { navigator.mediaSession.setActionHandler(acao, fn); } catch { /* ação sem suporte */ } }
   }
+}
+
+function avisarTempo() {
+  const t = tempo();
+  ouvintesTempo.forEach((fn) => { try { fn(t); } catch (erro) { console.error('[tocador]', erro); } });
 }
 
 function anunciar(texto) {
@@ -133,9 +149,7 @@ function atualizarBotao() {
 function mostrarFaixa(f) {
   barra.hidden = false;
   document.body.classList.add('com-tocador');
-  const titulo = barra.querySelector('[data-tocador-titulo]');
-  titulo.textContent = f.titulo;
-  titulo.href = `#/primeiras-versoes/${encodeURIComponent(f.albumSlug)}`;
+  barra.querySelector('[data-tocador-titulo]').textContent = f.titulo;
   barra.querySelector('[data-tocador-album]').textContent = [f.texto, f.albumTitulo].filter(Boolean).join(' · ');
   barra.querySelector('[data-tocador-capa]').innerHTML = f.capa
     ? `<img src="${escapar(f.capa)}-480.webp" alt="" width="48" height="48" draggable="false">` : '';
@@ -155,6 +169,7 @@ function tocarIndice(i) {
   mostrarFaixa(f);
   audio.src = f.src;
   atualizarTempo();
+  avisar();   // a tela Tocando agora troca de faixa já, sem esperar o áudio carregar
   tocar();
 }
 

@@ -101,8 +101,8 @@ const rotas = [
   ...ferramentas.map((f) => `ia-sem-labia/${f.slug}`),
   ...reflexoes.map((r) => `palavra/${r.slug}`),
   ...albuns.map((a) => `musica/${a.slug}`),
-  'primeiras-versoes', 'primeiras-versoes/nao-existe', 'playlist', 'playlist?f=trono-de-fogo.01,nao-existe.99',
-  ...Object.keys(faixasPrimeiras).map((slug) => `primeiras-versoes/${slug}`),
+  'ouvir', 'ouvir/nao-existe', 'primeiras-versoes', 'playlist', 'playlist?f=trono-de-fogo.01,nao-existe.99',
+  ...Object.keys(faixasPrimeiras).map((slug) => `ouvir/${slug}`),
 ];
 
 // T-28: player próprio. O áudio é substituído por uma resposta vazia (sem rede e sem som);
@@ -122,6 +122,24 @@ async function conferirTocador(pagina, slug) {
   await pagina.locator('[data-tocar="1"]').click();
   assert.equal(await pagina.locator('.tocador audio').getAttribute('src'), `${AUDIO_BASE}/${slug}/${dados.faixas[1].arquivo}`);
   assert.equal(await pagina.locator('.faixas li').nth(1).getAttribute('aria-current'), 'true');
+  // T-30: a barra abre a tela "Tocando agora", com a fila e a letra; Voltar fecha a tela e fica na página.
+  const tela = pagina.locator('dialog.tocando');
+  const hashAntes = await pagina.evaluate(() => location.hash);
+  await pagina.locator('[data-tocador="abrir"]').click();
+  await tela.waitFor({ state: 'visible' });
+  assert.equal((await tela.locator('#tocando-titulo').textContent()).trim(), dados.faixas[1].titulo);
+  assert.equal(await tela.locator('[data-tocando-fila]').count(), dados.faixas.length, 'fila da tela cheia');
+  assert.equal(await pagina.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true, 'rolagem lateral na tela cheia');
+  if (dados.letras) {
+    await tela.locator('[data-tocando-aba="letra"]').click();
+    await tela.locator('.tocando__linha').first().waitFor();
+  }
+  await tela.locator('[data-tocando-aba="fila"]').click();
+  await tela.locator('[data-tocando-fila="0"]').click();
+  assert.equal((await tela.locator('#tocando-titulo').textContent()).trim(), dados.faixas[0].titulo);
+  await pagina.goBack();
+  await tela.waitFor({ state: 'hidden' });
+  assert.equal(await pagina.evaluate(() => location.hash), hashAntes, 'Voltar saiu da página em vez de fechar a tela');
   // T-29: "+" guarda a faixa na Minha playlist (navegador), e a página da playlist toca a lista.
   await pagina.evaluate(() => localStorage.removeItem('samfieldsoak-playlist'));
   await pagina.locator('[data-playlist="0"]').click();
@@ -576,7 +594,7 @@ for (const largura of LARGURAS) {
       } catch (e) { falhas.push(`${largura}px #/${rota}: busca: ${e.message}`); }
     }
     if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/[/?=,.]/g, '_')}.png`), fullPage: true });
-    if (rota.startsWith('primeiras-versoes/') && faixasPrimeiras[rota.split('/')[1]]) {
+    if (rota.startsWith('ouvir/') && faixasPrimeiras[rota.split('/')[1]]) {
       try {
         await conferirTocador(pagina, rota.split('/')[1]);
         const novosErros = errosDaRota.filter((e) => !problemas.includes(e));

@@ -30,10 +30,22 @@ Depois: acrescentar o álbum em `faixasPrimeiras` (título, referência, arquivo
 
 | Rota | Conteúdo |
 |---|---|
-| `#/primeiras-versoes` | Os 7 álbuns. Os que têm áudio no site mostram "Ouvir aqui"; os outros, "Ouvir no Suno". |
-| `#/primeiras-versoes/<slug>` | Capa, aviso de primeira versão, "Tocar o álbum", faixas com tocar/pausar, duração e letra. |
+| `#/ouvir` | Página **Ouvir** (item próprio no menu, T-30): só os álbuns que tocam aqui no site. Abas Álbuns · Minha playlist. |
+| `#/ouvir/<slug>` | Capa, aviso de primeira versão, "Tocar o álbum", faixas numeradas (a que toca mostra barrinhas), duração, "+" e letra. |
+| `#/primeiras-versoes[/<slug>]` | Endereço antigo: o roteador troca para `#/ouvir[/<slug>]` (`redirecionar` no mapa, com `replaceState`). |
 
-A seção "As primeiras versões" de `#/musica` usa o mesmo cartão e leva para a página nova. A rota acende "Música" no menu (`menu: 'musica'` no mapa do roteador).
+A página Música não lista mais as primeiras versões nem tem abas: a seção `#/musica/primeiras-versoes` virou um convite "Ouvir aqui no site" com botão para `#/ouvir`. A Início tem o link "Ouvir todos os álbuns aqui no site" no bloco da faixa da semana.
+
+## Tela "Tocando agora" (T-30, `js/modules/tela-tocando.js`)
+
+No jeito do YouTube Music, a pedido do Franklin (21/11/2026, com prints do app):
+
+- Tocar na barra do rodapé (capa e título) abre um `<dialog>` em tela cheia: capa grande com o fundo desfocado da própria capa, título, "Salvar" (põe/tira da Minha playlist), "Compartilhar" (link do álbum), barra de tempo, anterior/tocar/próxima.
+- Duas abas: **A seguir** (a fila; tocar num item pula para ele) e **Letra** (a letra da faixa atual, carregada só quando a aba abre).
+- Celular: uma coluna. A partir de 1024px: capa à esquerda e fila/letra à direita.
+- Fecha pela setinha, por Esc e pelo **Voltar** do celular (a tela põe um degrau no histórico com `pushState`, no mesmo endereço; o roteador não percebe). "Ver o álbum" fecha e vai para a página do álbum.
+- No celular a barra do rodapé fica enxuta (tocar e próxima); anterior fica na tela cheia.
+- Métricas: `tocando/abrir`, `tocando/compartilhar` e `letra/<álbum>/<NN-faixa>` (a mesma da página do álbum).
 
 ## O player (`js/modules/tocador.js`)
 
@@ -47,7 +59,7 @@ A seção "As primeiras versões" de `#/musica` usa o mesmo cartão e leva para 
 
 - **Minha playlist** (`#/playlist`, `js/modules/playlist.js`, `js/telas/playlist.js`): o "+" de cada faixa guarda a faixa no navegador da pessoa (`localStorage`, chave `samfieldsoak-playlist`, até 200 faixas). Sem cadastro e sem servidor. A página explica que a lista não vai junto para outro celular.
 - **Compartilhar:** `#/playlist?f=trono-de-fogo.01,altar-da-contricao.05` (álbum + número da faixa). Quem abre ouve a lista e pode juntá-la à sua. Ids inválidos ou de faixas que não existem mais são ignorados. O roteador ignora a consulta (`?f=`) na hora de escolher a rota.
-- **Abas da seção Música:** Lançamentos (`#/musica`) · Primeiras versões · Playlist, com a aba ativa marcada (`aria-current`) e rolagem lateral no celular. As três rotas acendem "Música" no menu.
+- **Abas:** desde a T-30 ficam na página Ouvir (Álbuns · Minha playlist); as duas rotas acendem "Ouvir" no menu.
 - **Faixa da semana** (Início): uma faixa das primeiras versões, trocada toda segunda-feira, percorrendo todas em ordem; toca no player do site.
 - Playlists prontas, montadas pelo Franklin, ficam para quando ele escolher as faixas (não inventar curadoria).
 
@@ -70,12 +82,12 @@ O painel do próprio GoatCounter mostra quantas vezes, de onde (Instagram, Googl
 
 `js/dados/letras/trono-de-fogo.js` saiu do documento do Drive "Letras Album - Trono de Fogo → Salmos 36–50" (lido em 21/11/2026), sem os rótulos de seção. A linha em branco separa as seções. **Conferir com a gravação**: o documento é de agosto de 2025 e o álbum saiu no Suno em outubro de 2026.
 
-A letra sincronizada (linha destacada acompanhando a música) é o próximo passo: precisa dos tempos de cada linha, feitos com a mesma ferramenta dos lyric videos de Romanos (`tempos_letra.json`). Até lá, a letra aparece inteira e parada.
+A letra sincronizada (linha destacada acompanhando a música, na aba Letra da tela Tocando agora) é o próximo passo: precisa dos tempos de cada linha, feitos com a mesma ferramenta dos lyric videos de Romanos (`tempos_letra.json`). Até lá, a letra aparece inteira e parada.
 
 ## Conferências
 
 - `conferir-dados.mjs`: `AUDIO_BASE` em https; álbum existe em `primeirasVersoes`; arquivo `NN-slug.mp3` na ordem, sem repetir; duração inteira; uma letra por faixa.
-- `testar-rotas.mjs`: as duas rotas em 390/1280px; nenhum pedido de áudio antes do clique; tocar o álbum, trocar de faixa, faixa atual marcada, player continua ao ir para Sobre, fechar. O áudio é substituído por uma resposta vazia: o teste não prova o som, que precisa do aceite do Franklin no celular e no PC.
+- `testar-rotas.mjs`: `#/ouvir`, cada álbum e o endereço antigo em 390/1280px; tela Tocando agora (abre pela barra, fila, letra, Voltar fecha sem sair da página); nenhum pedido de áudio antes do clique; tocar o álbum, trocar de faixa, faixa atual marcada, player continua ao ir para Sobre, fechar. O áudio é substituído por uma resposta vazia: o teste não prova o som, que precisa do aceite do Franklin no celular e no PC.
 
 ## Próximos passos
 

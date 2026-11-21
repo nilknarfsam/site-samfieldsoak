@@ -84,6 +84,13 @@
   --altura-tocador: 7.5rem;    /* barra do player próprio no celular (duas linhas); espaço reservado no fim da página */
   --altura-tocador-md: 5rem;   /* a partir de 768px, uma linha só */
   --capa-tocador: 48px;        /* miniatura da capa na barra */
+  --capa-tocando: min(76vw, 40vh, 22rem);   /* capa grande da tela Tocando agora (T-30) */
+  --capa-tocando-lg: min(38vw, 60vh, 32rem);
+  --largura-tocando-lado: 30rem;           /* coluna da fila e da letra no computador */
+  --desfoque-tocando: 60px;                /* fundo da tela: a capa bem desfocada */
+  --opacidade-fundo-tocando: 0.35;
+  --barrinhas-altura: 0.875rem;            /* barrinhas animadas da faixa que está tocando */
+  --barrinhas-duracao: 900ms;
   --largura-volume: 6rem;
   --largura-faixa-tocador: 16rem; /* título e álbum na barra, a partir de 768px */
   --capa-faixa-semana: 7rem;     /* capa da Faixa da semana (Início) */

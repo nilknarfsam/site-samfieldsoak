@@ -1,16 +1,20 @@
-// HTML das primeiras versões com player próprio (#/primeiras-versoes e #/primeiras-versoes/<slug>).
+// HTML das primeiras versões com player próprio (#/ouvir e #/ouvir/<slug>).
 // Todo texto de dados passa por escapar().
 
 import { escapar, icone, linkExterno, botaoCompartilhar } from './templates.js';
 import { capaAlbum } from './templates-musica.js';
 import { formatarTempo } from './tocador.js';
 
-export const rotaPrimeira = (slug) => `#/primeiras-versoes/${encodeURIComponent(slug)}`;
+// Número da faixa; na que está tocando, barrinhas animadas (como nos apps de música).
+export const barrinhas = (tocando) => `<span class="barrinhas${tocando ? ' barrinhas--tocando' : ''}" aria-hidden="true"><span></span><span></span><span></span></span>`;
+export const conteudoBotaoFaixa = (i, atual, tocando) => (atual ? barrinhas(tocando) : `<span class="faixa-tocar__numero" aria-hidden="true">${i + 1}</span>`);
+
+export const rotaPrimeira = (slug) => `#/ouvir/${encodeURIComponent(slug)}`;
 
 export function detalhePrimeira(a, dados) {
   const total = dados.faixas.reduce((s, f) => s + f.duracao, 0);
   return `
-    <a class="voltar" href="#/primeiras-versoes">← Primeiras versões</a>
+    <a class="voltar" href="#/ouvir">← Ouvir</a>
     <header class="album-topo">
       <div class="album-topo__capa">${capaAlbum({ ...a, subtitulo: 'Primeira versão' }, { tamanho: 960, carregamento: 'eager', classe: 'capa--antiga' })}</div>
       <div>
@@ -26,14 +30,14 @@ export function detalhePrimeira(a, dados) {
       <h2 id="titulo-faixas">Faixas</h2>
       <ol class="faixas faixas--tocaveis">${dados.faixas.map((f, i) => `
         <li data-faixa="${i}">
-          <button class="faixa-tocar" type="button" data-tocar="${i}" aria-label="${escapar(`Tocar: ${f.titulo}`)}">${icone('play')}</button>
+          <button class="faixa-tocar" type="button" data-tocar="${i}" aria-label="${escapar(`Tocar: ${f.titulo}`)}">${conteudoBotaoFaixa(i, false, false)}</button>
           <span class="faixas__titulo">${escapar(f.titulo)}</span>
           ${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}
           <span class="faixas__duracao">${formatarTempo(f.duracao)}</span>
           ${botaoPlaylist(i, f.titulo)}
         </li>`).join('')}
       </ol>
-      <p class="nota">O player fica no rodapé e continua tocando enquanto você navega pelo site.</p>
+      <p class="nota">O player fica no rodapé e continua tocando enquanto você navega pelo site. Toque nele para abrir a tela cheia, com a fila e a letra.</p>
       <p class="nota">Também no Suno: ${linkExterno(a.suno, 'ouvir a página do álbum no Suno')}</p>
     </section>`;
 }
@@ -65,7 +69,7 @@ export function marcarBotaoPlaylist(botao, naLista) {
 // Linha da página Minha playlist (#/playlist). Com remover = false, a lista é só para ouvir (link compartilhado).
 export const linhaPlaylist = (f, i, remover) => `
   <li data-faixa="${i}">
-    <button class="faixa-tocar" type="button" data-tocar="${i}" aria-label="${escapar(`Tocar: ${f.titulo}`)}">${icone('play')}</button>
+    <button class="faixa-tocar" type="button" data-tocar="${i}" aria-label="${escapar(`Tocar: ${f.titulo}`)}">${conteudoBotaoFaixa(i, false, false)}</button>
     <span class="faixas__titulo">${escapar(f.titulo)}</span>
     <span class="faixas__texto">${escapar([f.texto, f.albumTitulo].filter(Boolean).join(' · '))}</span>
     <span class="faixas__duracao">${formatarTempo(f.duracao)}</span>

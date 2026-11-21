@@ -114,7 +114,10 @@ for (const [secao, lista] of [['novidades', novidades], ['ia-sem-labia', ferrame
   ['palavra', reflexoes], ['musica', albuns]]) {
   lista.forEach((item) => rotasConhecidas.add(`#/${secao}/${item.slug}`));
 }
-Object.keys(faixasPrimeiras || {}).forEach((slug) => rotasConhecidas.add(`#/primeiras-versoes/${slug}`));
+Object.keys(faixasPrimeiras || {}).forEach((slug) => {
+  rotasConhecidas.add(`#/ouvir/${slug}`);
+  rotasConhecidas.add(`#/primeiras-versoes/${slug}`);   // endereço antigo, redireciona para #/ouvir
+});
 ancoras.forEach((a) => rotasConhecidas.add(`#/musica/${a.slice(1, -1)}`));
 
 // Percorre todos os textos de um objeto: imagens, links e HTML escondido.
