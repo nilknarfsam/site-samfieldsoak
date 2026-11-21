@@ -1,6 +1,6 @@
 # Site do @samfieldsoak
 
-Site pessoal de Franklin Carvalho: fé, música criada com IA e tecnologia explicada com clareza. Publicação estática no GitHub Pages, em [samfieldsoak.com.br](https://samfieldsoak.com.br).
+Site pessoal de Franklin Carvalho: fé, música criada com IA e tecnologia explicada com clareza. Publicação estática no Cloudflare Pages (desde 21/11/2026; antes, GitHub Pages), em [samfieldsoak.com.br](https://samfieldsoak.com.br).
 
 HTML, CSS e JavaScript com ES Modules, sem framework ou etapa de build para executar o site. As telas usam rotas por hash; páginas estáticas próprias fornecem metadados de compartilhamento.
 

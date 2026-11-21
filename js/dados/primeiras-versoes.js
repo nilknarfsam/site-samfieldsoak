@@ -3,12 +3,12 @@
 //
 // O áudio fica no Cloudflare R2 (bucket samfieldsoak-musicas), fora do GitHub:
 //   <AUDIO_BASE>/<slug-do-album>/<NN>-<slug-da-faixa>.mp3   (MP3 320 kbps, a masterização do LANDR sem recompressão)
-// Para trocar de endereço (ex.: audio.samfieldsoak.com.br), mudar só AUDIO_BASE.
+// Para trocar de endereço, mudar só AUDIO_BASE.
 //
 // Campos de uma faixa: titulo, texto (referência bíblica; opcional, '' quando o álbum não segue capítulos), arquivo, duracao (segundos, do próprio MP3).
 // letras: nome do arquivo em js/dados/letras/ (mesma ordem das faixas).
 
-export const AUDIO_BASE = 'https://pub-878c1d4e680145ccb7325b27f82f547a.r2.dev/primeiras-versoes';
+export const AUDIO_BASE = 'https://audio.samfieldsoak.com.br/primeiras-versoes';
 
 export const faixasPrimeiras = {
   'rugido-dos-justos': {
