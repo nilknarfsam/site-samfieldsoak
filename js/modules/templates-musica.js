@@ -171,22 +171,6 @@ export const passosProcesso = (c) => c.passos.map((p) => `
   <li class="processo__passo" data-animar><strong>${escapar(p.titulo)}</strong><span>${escapar(p.texto)}</span></li>`).join('');
 
 // As primeiras versões (Suno): capa só de texto, botão para a página do álbum no Suno.
-export const cartaoPrimeiraVersao = (a) => `
-  <li data-animar>
-    <article class="cartao primeira-versao">
-      ${a.capa
-        ? capaAlbum({ ...a, subtitulo: 'Primeira versão' }, { classe: 'cartao-album__capa capa--antiga' })
-        : `<div class="capa capa--texto capa--antiga" role="img" aria-label="${escapar(`Primeira versão: ${a.titulo}`)}">
-        <span class="capa__volume">Primeira versão</span>
-        <span class="capa__titulo">${escapar(a.titulo)}</span>
-      </div>`}
-      <span class="album__base">${escapar(a.base)}</span>
-      <strong class="cartao-album__titulo">${escapar(a.titulo)}</strong>
-      ${a.estilo ? `<span class="cartao-album__meta">${escapar(a.estilo)}</span>` : ''}
-      ${linkExterno(a.suno, 'Ouvir no Suno', 'botao botao--contorno')}
-    </article>
-  </li>`;
-
 // Letra de uma faixa, recolhida (abre no toque). Linhas passam por escapar().
 export const blocoLetra = (titulo, linhas) => `
   <details class="letra">

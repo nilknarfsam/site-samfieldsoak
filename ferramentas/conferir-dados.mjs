@@ -20,6 +20,7 @@ const { ferramentas } = await importarDados('../js/dados/ferramentas.js');
 const { reflexoes } = await importarDados('../js/dados/reflexoes.js');
 const { albuns, singles, primeirasVersoes, series, destaqueSuno } = await importarDados('../js/dados/albuns.js');
 const { linksBio } = await importarDados('../js/dados/links.js');
+const { AUDIO_BASE, faixasPrimeiras } = await importarDados('../js/dados/primeiras-versoes.js');
 const { perfil } = await importarDados('../js/dados/perfil.js');
 
 const RAIZ = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -113,6 +114,7 @@ for (const [secao, lista] of [['novidades', novidades], ['ia-sem-labia', ferrame
   ['palavra', reflexoes], ['musica', albuns]]) {
   lista.forEach((item) => rotasConhecidas.add(`#/${secao}/${item.slug}`));
 }
+Object.keys(faixasPrimeiras || {}).forEach((slug) => rotasConhecidas.add(`#/primeiras-versoes/${slug}`));
 ancoras.forEach((a) => rotasConhecidas.add(`#/musica/${a.slice(1, -1)}`));
 
 // Percorre todos os textos de um objeto: imagens, links e HTML escondido.
@@ -248,6 +250,38 @@ for (const a of albuns.filter((x) => x.letras && /^[a-z0-9-]+$/.test(x.letras)))
   conferirTextos(doAlbum, `letras ${a.slug}`);
 }
 
+// Primeiras versões com player próprio (T-28, docs/15): áudio em https, um arquivo por faixa, letra por faixa.
+if (!/^https:\/\/[^\s]+[^/]$/.test(AUDIO_BASE || '')) erro('primeiras-versoes AUDIO_BASE', `precisa ser https e sem barra no fim: ${AUDIO_BASE}`);
+const ARQUIVO_AUDIO = /^\d{2}-[a-z0-9]+(-[a-z0-9]+)*\.mp3$/;
+for (const [slug, dados] of Object.entries(faixasPrimeiras || {})) {
+  const onde = `primeiras-versoes ${slug}`;
+  if (!primeirasVersoes.albuns.some((a) => a.slug === slug)) erro(onde, 'slug não existe em primeirasVersoes.albuns (albuns.js)');
+  if (!Array.isArray(dados?.faixas) || !dados.faixas.length) { erro(onde, 'faixas precisa ser uma lista com pelo menos uma faixa'); continue; }
+  const arquivos = new Set();
+  dados.faixas.forEach((f, i) => {
+    const ondeF = `${onde}.faixas[${i}]`;
+    if (!f?.titulo || !f?.texto) erro(ondeF, 'precisa de titulo e texto');
+    if (!ARQUIVO_AUDIO.test(f?.arquivo || '')) erro(ondeF, `arquivo no formato NN-slug.mp3: ${f?.arquivo}`);
+    else if (Number(f.arquivo.slice(0, 2)) !== i + 1) erro(ondeF, `numeração do arquivo fora da ordem: ${f.arquivo}`);
+    if (arquivos.has(f?.arquivo)) erro(ondeF, `arquivo repetido: ${f.arquivo}`);
+    arquivos.add(f?.arquivo);
+    if (!Number.isInteger(f?.duracao) || f.duracao <= 0) erro(ondeF, 'duracao em segundos inteiros, maior que zero');
+    conferirTextos(f, ondeF);
+  });
+  if (dados.letras) {
+    const caminho = join(RAIZ, `js/dados/letras/${dados.letras}.js`);
+    if (!/^[a-z0-9-]+$/.test(dados.letras) || !existsSync(caminho)) { erro(onde, `arquivo de letras não existe: ${dados.letras}`); continue; }
+    const { letras } = await importarDados(pathToFileURL(caminho).href);
+    const doAlbum = letras?.[slug];
+    if (!Array.isArray(doAlbum)) erro(`letras ${dados.letras}`, `não tem a chave "${slug}"`);
+    else {
+      if (doAlbum.length !== dados.faixas.length) erro(`letras ${slug}`, `${doAlbum.length} letras para ${dados.faixas.length} faixas`);
+      doAlbum.forEach((linhas, i) => { if (!Array.isArray(linhas) || linhas.some((l) => typeof l !== 'string')) erro(`letras ${slug}[${i}]`, 'cada letra é uma lista de linhas de texto'); });
+      conferirTextos(doAlbum, `letras ${slug}`);
+    }
+  }
+}
+
 // Ícones: todo nome usado precisa existir no sprite (imagens/icones/sprite.svg).
 const sprite = readFileSync(join(RAIZ, 'imagens/icones/sprite.svg'), 'utf8');
 const icones = new Set([...sprite.matchAll(/<symbol id="([a-z0-9-]+)"/g)].map((m) => m[1]));
@@ -270,4 +304,4 @@ conferirCapa(perfil.foto, 'perfil.foto', [240, 480]);
 
 // ---------- Resultado ----------
 encerrarSeErros();
-console.log(`✅ Dados conferidos: ${novidades.length} novidades, ${ferramentas.length} páginas de IA, ${reflexoes.length} pregações, ${albuns.length} álbuns, ${singles.length} singles.`);
+console.log(`✅ Dados conferidos: ${novidades.length} novidades, ${ferramentas.length} páginas de IA, ${reflexoes.length} pregações, ${albuns.length} álbuns, ${singles.length} singles, ${Object.keys(faixasPrimeiras).length} primeira(s) versão(ões) com player.`);

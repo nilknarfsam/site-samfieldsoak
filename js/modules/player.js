@@ -13,6 +13,7 @@ export function encerrarPlayerAtivo() {
 
 function carregarExclusivo(container, criarQuadro, restaurar, { encerrar = false } = {}) {
   encerrarPlayerAtivo();
+  document.dispatchEvent(new Event('player-externo'));   // o player próprio (tocador.js) pausa: um som por vez
   const quadro = criarQuadro();
   container.replaceChildren(quadro);
   restaurarPlayerAtivo = restaurar;

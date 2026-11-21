@@ -11,6 +11,7 @@ import { iniciarPalavraDetalhe } from './telas/palavra-detalhe.js';
 import { iniciarNovidadesLista } from './telas/novidades-lista.js';
 import { iniciarNovidadesDetalhe } from './telas/novidades-detalhe.js';
 import { iniciarBusca } from './telas/busca.js';
+import { iniciarPrimeirasLista, iniciarPrimeirasAlbum } from './telas/primeiras-versoes.js';
 
 const rotas = {
   inicio: { view: 'html/inicio.html', titulo: 'Início', iniciar: iniciarInicio },
@@ -27,6 +28,10 @@ const rotas = {
     // Seções da página (índice no topo). Nenhuma pode ter o mesmo nome de um slug de álbum.
     ancoras: ['lancamento', 'por-tras', 'como-eu-faco', 'jornada', 'ouvir', 'discografia', 'singles', 'primeiras-versoes'],
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarMusicaDetalhe },
+  },
+  'primeiras-versoes': {
+    view: 'html/primeiras-versoes.html', titulo: 'Primeiras versões', iniciar: iniciarPrimeirasLista, menu: 'musica',
+    detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarPrimeirasAlbum },
   },
   palavra: {
     view: 'html/palavra-lista.html', titulo: 'Palavra', iniciar: iniciarPalavraLista,
