@@ -40,10 +40,10 @@ A página Música não lista mais as primeiras versões nem tem abas: a seção 
 
 No jeito do YouTube Music, a pedido do Franklin (21/11/2026, com prints do app):
 
-- Tocar na barra do rodapé (capa e título) abre um `<dialog>` em tela cheia: capa grande com o fundo desfocado da própria capa, título, "Salvar" (põe/tira da Minha playlist), "Compartilhar" (link do álbum), barra de tempo, anterior/tocar/próxima.
-- Duas abas: **A seguir** (a fila; tocar num item pula para ele) e **Letra** (a letra da faixa atual, carregada só quando a aba abre).
-- Celular: uma coluna. A partir de 1024px: capa à esquerda e fila/letra à direita.
-- Fecha pela setinha, por Esc e pelo **Voltar** do celular (a tela põe um degrau no histórico com `pushState`, no mesmo endereço; o roteador não percebe). "Ver o álbum" fecha e vai para a página do álbum.
+- Tocar na barra do rodapé (capa e título) abre um `<dialog>` em tela cheia: capa grande com o fundo desfocado da própria capa, título, pílulas **Letra**, **Salvar** (põe/tira da Minha playlist) e **Compartilhar** (link do álbum), barra de tempo, anterior/tocar/próxima.
+- **Gaveta** com duas abas: **A seguir** (a fila; tocar num item pula para ele) e **Letra** (a letra da faixa atual, em letras grandes, carregada só quando a aba abre).
+- Celular: a gaveta fica presa embaixo (alça + abas). Puxar para cima, tocar na alça, numa aba ou na pílula Letra abre a gaveta na tela toda, com um mini player no topo (capa, título, tocar/pausar). Puxar para baixo, tocar na alça ou o Voltar recolhe. A partir de 1024px: capa à esquerda e a gaveta sempre aberta à direita.
+- Fecha pela setinha, por Esc e pelo **Voltar** do celular. A tela e a gaveta põem degraus no histórico com `pushState` (no mesmo endereço; o roteador não percebe): o primeiro Voltar recolhe a gaveta, o segundo fecha a tela. "Ver o álbum" fecha e vai para a página do álbum.
 - No celular a barra do rodapé fica enxuta (tocar e próxima); anterior fica na tela cheia.
 - Métricas: `tocando/abrir`, `tocando/compartilhar` e `letra/<álbum>/<NN-faixa>` (a mesma da página do álbum).
 
