@@ -11,7 +11,7 @@ O embed do Suno não informa ao site em que segundo a música está. Sem isso n�
 - Cloudflare R2, bucket `samfieldsoak-musicas`, fora do GitHub (≈150 MB por álbum em 320 kbps; 10 GB grátis no R2, sem cobrança por download).
 - Caminho: `primeiras-versoes/<slug-do-album>/<NN>-<slug-da-faixa>.mp3`, com `Content-Type: audio/mpeg` e `Cache-Control: public, max-age=31536000, immutable`.
 - CORS do bucket: GET/HEAD para `samfieldsoak.com.br`, `www`, `site-samfieldsoak.pages.dev` (e prévias) e `127.0.0.1:8080`/`localhost:8080`.
-- Endereço em `AUDIO_BASE` (`js/dados/primeiras-versoes.js`). Hoje é o endereço público de teste do R2 (`pub-….r2.dev`), que tem limite de uso e não é para produção. Quando o domínio estiver no Cloudflare, trocar para `https://audio.samfieldsoak.com.br/primeiras-versoes` (só essa linha).
+- Endereço em `AUDIO_BASE` (`js/dados/primeiras-versoes.js`): `https://audio.samfieldsoak.com.br/primeiras-versoes`, domínio próprio ligado ao bucket (com cache do Cloudflare). O endereço público de teste do R2 (`pub-….r2.dev`) continua ligado só para testes.
 - Arquivos de origem: `Música\01 - Lançamentos e Autorais\Salmos - Primeiros Lançamentos\<álbum>\MP3` no PC do Franklin. A cópia com nomes padronizados fica em `C:\PROJETOS\audio-primeiras-versoes\`.
 
 ### Subir um álbum novo
@@ -58,5 +58,4 @@ A letra sincronizada (linha destacada acompanhando a música) é o próximo pass
 
 1. Franklin ouve o piloto (celular e PC, tela bloqueada) e confere as letras.
 2. Tempos da letra do Trono de Fogo → letra sincronizada.
-3. Trocar `AUDIO_BASE` para `audio.samfieldsoak.com.br` quando o DNS estiver no Cloudflare.
 4. Os outros 6 álbuns (só dados), métricas (Fase 5), playlists (Fase 4), painel (Fase 6) e visual da Música (Fase 7).

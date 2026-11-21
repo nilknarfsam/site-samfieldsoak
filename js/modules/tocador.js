@@ -125,7 +125,7 @@ function mostrarFaixa(f) {
   const titulo = barra.querySelector('[data-tocador-titulo]');
   titulo.textContent = f.titulo;
   titulo.href = `#/primeiras-versoes/${encodeURIComponent(f.albumSlug)}`;
-  barra.querySelector('[data-tocador-album]').textContent = `${f.texto} · ${f.albumTitulo}`;
+  barra.querySelector('[data-tocador-album]').textContent = [f.texto, f.albumTitulo].filter(Boolean).join(' · ');
   barra.querySelector('[data-tocador-capa]').innerHTML = f.capa
     ? `<img src="${escapar(f.capa)}-480.webp" alt="" width="48" height="48" draggable="false">` : '';
   if ('mediaSession' in navigator && 'MediaMetadata' in window) {

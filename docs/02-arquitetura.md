@@ -42,6 +42,6 @@ Tokens em `css/variaveis.css`, layout mobile first, foco visível, um h1 por tel
 
 ## Publicação e testes
 
-GitHub Pages a partir da raiz da `main`, no domínio de `CNAME`: samfieldsoak.com.br. `p/` e os assets absolutos são destinados à raiz desse domínio. Dados e saídas geradas entram no mesmo PR de conteúdo; mudanças dos modelos ou ferramentas pertencem a Produto.
+Cloudflare Pages (projeto `site-samfieldsoak`) a partir da raiz da `main`, sem etapa de build, no domínio samfieldsoak.com.br e em `www` (desde 21/11/2026; antes, GitHub Pages). Cada merge na `main` publica sozinho e cada PR ganha uma prévia em `https://<branch>.site-samfieldsoak.pages.dev`. O DNS do domínio fica no Cloudflare (servidores trocados no Registro.br em 21/11/2026). O arquivo `CNAME` é do GitHub Pages e não é usado pelo Cloudflare. `p/` e os assets absolutos são destinados à raiz desse domínio. O áudio das primeiras versões fica no Cloudflare R2, em `audio.samfieldsoak.com.br` (docs/15).
 
 A sequência de geração e testes é mantida no README e no docs/12. O Actions bloqueia dados inválidos e saídas desatualizadas, executa suítes Node e testes em navegador, e guarda capturas por sete dias. Conferência manual de prévia/áudio acontece após a publicação quando depender do serviço externo.

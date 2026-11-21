@@ -260,7 +260,8 @@ for (const [slug, dados] of Object.entries(faixasPrimeiras || {})) {
   const arquivos = new Set();
   dados.faixas.forEach((f, i) => {
     const ondeF = `${onde}.faixas[${i}]`;
-    if (!f?.titulo || !f?.texto) erro(ondeF, 'precisa de titulo e texto');
+    if (!f?.titulo) erro(ondeF, 'precisa de titulo');
+    if (f?.texto !== undefined && typeof f.texto !== 'string') erro(ondeF, 'texto (referência bíblica) é opcional, mas precisa ser texto');
     if (!ARQUIVO_AUDIO.test(f?.arquivo || '')) erro(ondeF, `arquivo no formato NN-slug.mp3: ${f?.arquivo}`);
     else if (Number(f.arquivo.slice(0, 2)) !== i + 1) erro(ondeF, `numeração do arquivo fora da ordem: ${f.arquivo}`);
     if (arquivos.has(f?.arquivo)) erro(ondeF, `arquivo repetido: ${f.arquivo}`);
