@@ -767,3 +767,34 @@ body.com-tocador { padding-bottom: var(--altura-tocador); }
 .faixa--atual .faixas__titulo { color: var(--cor-destaque); }
 .faixa--atual .faixa-tocar { background: var(--cor-destaque); border-color: var(--cor-destaque); color: var(--cor-sobre-destaque); }
 @media (hover: hover) { .faixa-tocar:hover { border-color: var(--cor-texto); } }
+
+/* Abas da seção Música (T-29): Lançamentos · Primeiras versões · Minha playlist */
+.abas { margin: 0 calc(var(--esp-3) * -1) var(--esp-4); border-bottom: var(--borda); }
+.abas__lista { display: flex; gap: var(--esp-1); overflow-x: auto; padding: 0 var(--esp-3); scrollbar-width: none; }
+.abas__lista::-webkit-scrollbar { display: none; }
+.abas__lista li + li { margin-top: 0; }
+.abas__link {
+  display: inline-flex; align-items: center; min-height: var(--toque-minimo); padding: 0 var(--esp-2); white-space: nowrap;
+  color: var(--cor-texto-suave); text-decoration: none; font-weight: 600; font-size: var(--texto-sm);
+  border-bottom: var(--borda-marca) solid transparent; margin-bottom: -1px;
+}
+.abas__link[aria-current="page"] { color: var(--cor-texto); border-bottom-color: var(--cor-destaque); }
+@media (hover: hover) { .abas__link:not([aria-current="page"]):hover { color: var(--cor-texto); } }
+
+/* Minha playlist (T-29) */
+.faixa-mais {
+  display: inline-grid; place-items: center; flex: none; width: var(--toque-minimo); height: var(--toque-minimo);
+  border: 0; border-radius: var(--raio-pilula); background: transparent; color: var(--cor-texto-suave); cursor: pointer;
+}
+.faixa-mais .icone { width: 1.1rem; height: 1.1rem; }
+.faixa-mais[aria-pressed="true"] { color: var(--cor-destaque); }
+@media (hover: hover) { .faixa-mais:hover { background: var(--cor-superficie-alta); color: var(--cor-texto); } }
+.faixas .playlist-vazia { display: block; color: var(--cor-texto-suave); }
+.faixas .playlist-vazia::before { display: none; }
+
+/* Faixa da semana (Início) */
+.faixa-semana { display: grid; grid-template-columns: var(--capa-faixa-semana) minmax(0, 1fr); gap: var(--esp-3); align-items: center;
+  padding: var(--esp-3); background: var(--cor-superficie); border: var(--borda); border-radius: var(--raio); }
+.faixa-semana h3 { margin: var(--esp-1) 0; }
+.faixa-semana .primeira-acoes { margin-top: var(--esp-2); }
+@media (min-width: 768px) { .faixa-semana { grid-template-columns: var(--capa-faixa-semana-md) minmax(0, 1fr); } }

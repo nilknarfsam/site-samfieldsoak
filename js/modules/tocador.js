@@ -5,8 +5,11 @@
 
 import { escapar, icone } from './templates.js';
 import { encerrarPlayerAtivo } from './player.js';
+import { contarEvento } from './contador.js';
 
 let audio, barra, fila = [], atual = -1;
+let contado = { play: false, ouviu30: false };   // métricas da faixa atual (T-29), uma vez por faixa
+const idFaixa = (f) => `${f.albumSlug}/${f.arquivo || ''}`.replace(/\.mp3$/, '');
 const ouvintes = new Set();
 
 export const formatarTempo = (s) => {
@@ -65,11 +68,19 @@ function montar() {
   posicao.addEventListener('input', () => { audio.currentTime = Number(posicao.value); });
   barra.querySelector('[data-tocador-volume]').addEventListener('input', (e) => { audio.volume = Number(e.target.value); });
 
-  audio.addEventListener('timeupdate', atualizarTempo);
+  audio.addEventListener('timeupdate', () => {
+    atualizarTempo();
+    const f = fila[atual];
+    if (f && !contado.ouviu30 && audio.currentTime >= 30) { contado.ouviu30 = true; contarEvento(`ouviu30/${idFaixa(f)}`, f.titulo); }
+  });
   audio.addEventListener('loadedmetadata', atualizarTempo);
-  audio.addEventListener('play', () => { encerrarPlayerAtivo(); atualizarBotao(); avisar(); });
+  audio.addEventListener('play', () => {
+    encerrarPlayerAtivo(); atualizarBotao(); avisar();
+    const f = fila[atual];
+    if (f && !contado.play) { contado.play = true; contarEvento(`play/${idFaixa(f)}`, f.titulo); }
+  });
   audio.addEventListener('pause', () => { atualizarBotao(); avisar(); });
-  audio.addEventListener('ended', () => { if (atual < fila.length - 1) tocarIndice(atual + 1); else { audio.currentTime = 0; atualizarBotao(); avisar(); } });
+  audio.addEventListener('ended', () => { const f = fila[atual]; if (f) contarEvento(`fim/${idFaixa(f)}`, f.titulo); if (atual < fila.length - 1) tocarIndice(atual + 1); else { audio.currentTime = 0; atualizarBotao(); avisar(); } });
   audio.addEventListener('error', () => {
     if (!audio.getAttribute('src')) return;
     anunciar('Não foi possível carregar esta música agora. Tente de novo em instantes.');
@@ -140,6 +151,7 @@ function tocarIndice(i) {
   const f = fila[i];
   if (!f) return;
   atual = i;
+  contado = { play: false, ouviu30: false };
   mostrarFaixa(f);
   audio.src = f.src;
   atualizarTempo();

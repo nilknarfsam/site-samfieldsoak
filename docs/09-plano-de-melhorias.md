@@ -357,6 +357,12 @@ process.exit(falhas ? 1 : 0);
 - **Pronto quando:** Trono de Fogo toca inteiro no celular e no PC, tela bloqueada funcionando, conferências ✅ em 390/1280px. Aceite do som pelo Franklin depois do merge. Revisão do Claude e merge só pelo Franklin.
 - **Depois:** tempos da letra (sincronizada), `AUDIO_BASE` em `audio.samfieldsoak.com.br`, os outros 6 álbuns (só dados), métricas, playlists, painel e visual da Música.
 
+### T-29 · Métricas de escuta, Minha playlist, abas da Música e faixa da semana
+
+- **Plano aprovado:** Fases 4, 5 e 7 do plano do Drive de 07/11/2026; Franklin pediu em 21/11/2026 ("vamos fazer isso que falta"). Especificação: `docs/15`.
+- **Arquivos:** `js/modules/contador.js` (`contarEvento`), `js/modules/tocador.js`, `js/modules/player.js`, `js/modules/playlist.js`, `js/telas/playlist.js`, `js/telas/primeiras-versoes.js`, `js/telas/inicio.js`, `js/modules/templates-primeiras.js`, `js/modules/roteador.js` (consulta `?f=`), `js/main.js`, `html/playlist.html`, `html/musica.html`, `html/primeiras-versoes.html`, `html/inicio.html`, CSS, sprite, `testar-rotas`, docs.
+- **Pronto quando:** eventos anônimos sem novo rastreador; "+" guarda e tira; playlist toca, compartilha e recebe link; abas cabem em 390px; faixa da semana toca; testes ✅ em 390/1280px. Merge só pelo Franklin.
+
 ## Manutenção proposta após esta rodada
 
 Estas observações estão registradas, sem implementação nesta T-20:

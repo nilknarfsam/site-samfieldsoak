@@ -26,3 +26,11 @@ export function contarVisita() {
     window.goatcounter?.count?.({ path: rota.replace(/^#/, '') || '/inicio', title: document.title });
   });
 }
+
+// Eventos anônimos (T-29): o que foi tocado e ouvido, nunca quem. Ex.: 'play/trono-de-fogo/01-salmo-36'.
+// Mesmo contador e mesmas regras: sem cookies, sem dados pessoais; desligado sem código em perfil.js.
+export function contarEvento(nome, titulo = '') {
+  if (!contador.codigo || !/^[a-z0-9-]+$/.test(contador.codigo)) return;
+  if (!/^[a-z0-9][a-z0-9/-]*$/.test(nome || '')) return;
+  carregar().then(() => window.goatcounter?.count?.({ path: nome, title: titulo, event: true }));
+}

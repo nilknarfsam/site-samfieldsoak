@@ -18,7 +18,8 @@ async function carregarView(caminho) {
 }
 
 async function renderizar() {
-  let [nome, segundo] = location.hash.slice(2).split('/').map(decodeURIComponent);
+  // A consulta (?f=...) é da tela, não da rota: #/playlist?f=a.01,b.02 abre a rota playlist.
+  let [nome, segundo] = location.hash.slice(2).split('?')[0].split('/').map(decodeURIComponent);
   if (!nome || !rotas[nome]) { nome = 'inicio'; segundo = undefined; history.replaceState(null, '', '#/inicio'); }
   const rota = rotas[nome];
   // Seções com páginas de detalhe usam o segundo segmento como slug (#/ia-sem-labia/<slug>)

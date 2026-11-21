@@ -9,6 +9,18 @@ import { capaAlbum, seloIA, destaqueFaixaSuno } from '../modules/templates-music
 import { animarCartoes } from '../modules/movimento.js';
 import { prepararPlayerSpotify, prepararPlayerSuno } from '../modules/player.js';
 import { protegerCapas } from '../modules/protecao.js';
+import { faixasPrimeiras } from '../dados/primeiras-versoes.js';
+import { idDaFaixa, resolverFaixa } from '../modules/playlist.js';
+import { faixaDaSemana } from '../modules/templates-primeiras.js';
+import { tocarFila } from '../modules/tocador.js';
+
+// Faixa da semana: percorre todas as faixas tocáveis, uma por semana (segunda a domingo, horário local).
+function escolherFaixaDaSemana(hoje = new Date()) {
+  const ids = Object.entries(faixasPrimeiras).flatMap(([slug, d]) => d.faixas.map((_, i) => idDaFaixa(slug, i)));
+  if (!ids.length) return null;
+  const dias = Math.floor((Date.UTC(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) / 86400000) + 3);   // 0 = segunda
+  return resolverFaixa(ids[Math.floor(dias / 7) % ids.length]);
+}
 
 // Quantas novidades aparecem na home (as mais novas de js/dados/novidades.js).
 const NOVIDADES_NA_HOME = 3;
@@ -90,6 +102,14 @@ export function iniciarInicio(app) {
     prepararPlayerSpotify(app.querySelector('[data-player-album]'), {
       tipo: 'album', id: destaque.spotifyId, titulo: `${destaque.titulo} no Spotify`, rotulo: 'Ouvir agora', compacto: true,
     });
+  }
+
+  // Primeiras versões: uma faixa por semana, tocando no player do site.
+  const semana = escolherFaixaDaSemana();
+  if (semana) {
+    app.querySelector('[data-semana]').innerHTML = faixaDaSemana(semana);
+    app.querySelector('[data-semana-bloco]').hidden = false;
+    app.querySelector('[data-acao="tocar-semana"]').addEventListener('click', () => tocarFila([semana], 0));
   }
 
   // Destaque individual: cadastro compartilhado com as faixas do álbum.
