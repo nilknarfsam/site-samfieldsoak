@@ -776,6 +776,7 @@ html.com-tela-tocando { overflow: hidden; }
   filter: blur(var(--desfoque-tocando)); opacity: var(--opacidade-fundo-tocando); transform: scale(1.2);
 }
 .tocando__topo, .tocando__corpo { position: relative; z-index: 1; }
+.tocando__corpo { z-index: 2; }   /* a gaveta (dentro do corpo) passa por cima do topo quando abre */
 .tocando__topo {
   display: flex; align-items: center; gap: var(--esp-2);
   padding: calc(var(--esp-2) + env(safe-area-inset-top)) var(--esp-3) var(--esp-2);
@@ -786,7 +787,7 @@ html.com-tela-tocando { overflow: hidden; }
 .tocando__corpo {
   flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
   display: flex; flex-direction: column; gap: var(--esp-4);
-  padding: 0 var(--esp-3) calc(var(--esp-4) + env(safe-area-inset-bottom));
+  padding: 0 var(--esp-3) calc(var(--gaveta-fechada) + var(--esp-4) + env(safe-area-inset-bottom));
 }
 .tocando__principal { display: flex; flex-direction: column; align-items: center; gap: var(--esp-3); }
 .tocando__capa { width: var(--capa-tocando); aspect-ratio: 1; border-radius: var(--raio); overflow: hidden; background: var(--cor-superficie-alta); box-shadow: var(--sombra); }
@@ -807,7 +808,29 @@ html.com-tela-tocando { overflow: hidden; }
 .tocando__pilula[aria-pressed="true"] { color: var(--cor-destaque); }
 @media (hover: hover) { .tocando__pilula:hover { background: var(--cor-borda); } }
 .tocando__alternar .icone { width: 1.75rem; height: 1.75rem; }
-.tocando__lado { display: flex; flex-direction: column; min-height: 0; }
+/* Gaveta (celular): presa embaixo mostrando só a alça e as abas; aberta, cobre a tela com um mini player no topo */
+.tocando__gaveta {
+  position: fixed; inset: 0; z-index: 2; display: flex; flex-direction: column;
+  background: var(--cor-superficie); border-radius: var(--raio) var(--raio) 0 0; box-shadow: var(--sombra);
+  transform: translateY(calc(100% - var(--gaveta-fechada) - env(safe-area-inset-bottom)));
+  transition: transform var(--duracao-gaveta) ease;
+}
+.tocando__gaveta[data-aberta="true"] { transform: none; border-radius: 0; }
+.tocando__gaveta--arrastando { transition: none; }
+.tocando__cabeca { flex: none; touch-action: none; padding: 0 var(--esp-3); user-select: none; -webkit-user-select: none; }
+.tocando--arrastando { user-select: none; -webkit-user-select: none; }
+.tocando__puxador { display: grid; place-items: center; width: 100%; height: var(--esp-5); border: 0; background: transparent; cursor: grab; }
+.tocando__puxador span { width: 2.5rem; height: 4px; border-radius: var(--raio-pilula); background: var(--cor-texto-suave); }
+.tocando__mini { display: none; align-items: center; gap: var(--esp-2); padding-bottom: var(--esp-2); }
+.tocando__gaveta[data-aberta="true"] .tocando__mini { display: flex; }
+.tocando__gaveta[data-aberta="true"] .tocando__cabeca { padding-top: env(safe-area-inset-top); }
+.tocando__mini-capa { flex: none; width: var(--capa-tocador); height: var(--capa-tocador); border-radius: var(--raio-pequeno); overflow: hidden; background: var(--cor-superficie-alta); }
+.tocando__mini-capa img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tocando__mini-textos { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.tocando__mini-titulo { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocando__mini-album { color: var(--cor-texto-suave); font-size: var(--texto-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocando__mini .icone { fill: currentColor; }
+.tocando__gaveta .tocando__painel { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: var(--esp-2) var(--esp-3) calc(var(--esp-4) + env(safe-area-inset-bottom)); }
 .tocando__abas { display: flex; border-bottom: var(--borda); }
 .tocando__aba {
   flex: 1; min-height: var(--toque-minimo); border: 0; border-bottom: 2px solid transparent; background: transparent;
@@ -831,15 +854,17 @@ html.com-tela-tocando { overflow: hidden; }
 .tocando__item-duracao { flex: none; font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
 .tocando__letra { user-select: none; -webkit-user-select: none; }
 .tocando__estrofes { padding: var(--esp-2) 0 var(--esp-5); }
-.tocando__linha { margin: 0; font-size: var(--texto-md); font-weight: 600; line-height: 1.5; }
+.tocando__linha { margin: 0 0 var(--esp-3); font-size: var(--texto-lg); font-weight: 700; line-height: 1.3; }
 .tocando__pausa { display: block; height: var(--esp-4); }
 .tocando__aviso { color: var(--cor-texto-suave); }
 @media (min-width: 1024px) {
   .tocando__corpo { flex-direction: row; align-items: stretch; gap: var(--esp-6); padding: var(--esp-4) var(--esp-6) var(--esp-5); overflow: hidden; }
   .tocando__principal { flex: 1; justify-content: center; }
   .tocando__capa, .tocando__info, .tocando__tempo, .tocando__acoes { width: var(--capa-tocando-lg); max-width: none; }
-  .tocando__lado { flex: none; width: var(--largura-tocando-lado); }
-  .tocando__painel { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .tocando__gaveta { position: static; transform: none; transition: none; flex: none; width: var(--largura-tocando-lado); background: transparent; box-shadow: none; border-radius: 0; }
+  .tocando__cabeca { padding: 0; touch-action: auto; }
+  .tocando__puxador, .tocando__gaveta .tocando__mini { display: none; }
+  .tocando__gaveta .tocando__painel { padding: var(--esp-2) 0 0; }
 }
 @media (hover: hover) { .tocando__item:hover { background: var(--cor-superficie); } }
 

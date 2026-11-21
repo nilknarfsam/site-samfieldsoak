@@ -87,6 +87,8 @@
   --capa-tocando: min(76vw, 40vh, 22rem);   /* capa grande da tela Tocando agora (T-30) */
   --capa-tocando-lg: min(38vw, 60vh, 32rem);
   --largura-tocando-lado: 30rem;           /* coluna da fila e da letra no computador */
+  --gaveta-fechada: 4.75rem;               /* celular: o que aparece da gaveta (alça + abas) */
+  --duracao-gaveta: 280ms;
   --desfoque-tocando: 60px;                /* fundo da tela: a capa bem desfocada */
   --opacidade-fundo-tocando: 0.35;
   --barrinhas-altura: 0.875rem;            /* barrinhas animadas da faixa que está tocando */

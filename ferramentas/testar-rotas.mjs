@@ -122,7 +122,8 @@ async function conferirTocador(pagina, slug) {
   await pagina.locator('[data-tocar="1"]').click();
   assert.equal(await pagina.locator('.tocador audio').getAttribute('src'), `${AUDIO_BASE}/${slug}/${dados.faixas[1].arquivo}`);
   assert.equal(await pagina.locator('.faixas li').nth(1).getAttribute('aria-current'), 'true');
-  // T-30: a barra abre a tela "Tocando agora", com a fila e a letra; Voltar fecha a tela e fica na página.
+  // T-30: a barra abre a tela "Tocando agora"; o botão Letra abre a gaveta (celular) com a letra;
+  // a fila troca de faixa; a alça recolhe a gaveta; Voltar fecha a tela e fica na página.
   const tela = pagina.locator('dialog.tocando');
   const hashAntes = await pagina.evaluate(() => location.hash);
   await pagina.locator('[data-tocador="abrir"]').click();
@@ -130,13 +131,19 @@ async function conferirTocador(pagina, slug) {
   assert.equal((await tela.locator('#tocando-titulo').textContent()).trim(), dados.faixas[1].titulo);
   assert.equal(await tela.locator('[data-tocando-fila]').count(), dados.faixas.length, 'fila da tela cheia');
   assert.equal(await pagina.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true, 'rolagem lateral na tela cheia');
-  if (dados.letras) {
-    await tela.locator('[data-tocando-aba="letra"]').click();
-    await tela.locator('.tocando__linha').first().waitFor();
-  }
+  const gaveta = tela.locator('[data-tocando-gaveta]');
+  const celular = await tela.locator('[data-tocando="puxador"]').isVisible();
+  await tela.locator('[data-tocando="letra"]').click();
+  if (celular) assert.equal(await gaveta.getAttribute('data-aberta'), 'true', 'Letra não abriu a gaveta');
+  if (dados.letras) await tela.locator('.tocando__linha').first().waitFor();
   await tela.locator('[data-tocando-aba="fila"]').click();
   await tela.locator('[data-tocando-fila="0"]').click();
   assert.equal((await tela.locator('#tocando-titulo').textContent()).trim(), dados.faixas[0].titulo);
+  if (celular) {
+    await tela.locator('[data-tocando="puxador"]').click();
+    await pagina.waitForFunction(() => document.querySelector('[data-tocando-gaveta]').dataset.aberta === 'false');
+    assert.equal(await tela.isVisible(), true, 'recolher a gaveta fechou a tela');
+  }
   await pagina.goBack();
   await tela.waitFor({ state: 'hidden' });
   assert.equal(await pagina.evaluate(() => location.hash), hashAntes, 'Voltar saiu da página em vez de fechar a tela');
