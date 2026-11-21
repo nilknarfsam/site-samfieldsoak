@@ -101,7 +101,7 @@ const rotas = [
   ...ferramentas.map((f) => `ia-sem-labia/${f.slug}`),
   ...reflexoes.map((r) => `palavra/${r.slug}`),
   ...albuns.map((a) => `musica/${a.slug}`),
-  'primeiras-versoes', 'primeiras-versoes/nao-existe',
+  'primeiras-versoes', 'primeiras-versoes/nao-existe', 'playlist', 'playlist?f=trono-de-fogo.01,nao-existe.99',
   ...Object.keys(faixasPrimeiras).map((slug) => `primeiras-versoes/${slug}`),
 ];
 
@@ -122,6 +122,15 @@ async function conferirTocador(pagina, slug) {
   await pagina.locator('[data-tocar="1"]').click();
   assert.equal(await pagina.locator('.tocador audio').getAttribute('src'), `${AUDIO_BASE}/${slug}/${dados.faixas[1].arquivo}`);
   assert.equal(await pagina.locator('.faixas li').nth(1).getAttribute('aria-current'), 'true');
+  // T-29: "+" guarda a faixa na Minha playlist (navegador), e a página da playlist toca a lista.
+  await pagina.evaluate(() => localStorage.removeItem('samfieldsoak-playlist'));
+  await pagina.locator('[data-playlist="0"]').click();
+  assert.equal(await pagina.locator('[data-playlist="0"]').getAttribute('aria-pressed'), 'true');
+  await pagina.evaluate(() => { location.hash = '#/playlist'; });
+  await pagina.waitForFunction(() => location.hash.startsWith('#/playlist') && document.querySelector('h1')?.textContent.includes('playlist'));
+  assert.equal(await pagina.locator('[data-playlist] li[data-faixa]').count(), 1, 'faixa não entrou na playlist');
+  await pagina.locator('[data-acao="tocar-playlist"]').click();
+  assert.equal(await pagina.locator('.tocador audio').getAttribute('src'), `${AUDIO_BASE}/${slug}/${dados.faixas[0].arquivo}`);
   await pagina.locator('a[href="#/sobre"]').last().click();
   await pagina.waitForFunction(() => location.hash === '#/sobre' && document.querySelector('h1')?.textContent.includes('Sobre'));
   assert.equal(await barra.isVisible(), true, 'o player sumiu ao trocar de página');
@@ -566,7 +575,7 @@ for (const largura of LARGURAS) {
         assert.equal(errosDaRota.length, 0, errosDaRota.join('; '));
       } catch (e) { falhas.push(`${largura}px #/${rota}: busca: ${e.message}`); }
     }
-    if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/\//g, '_')}.png`), fullPage: true });
+    if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/[/?=,.]/g, '_')}.png`), fullPage: true });
     if (rota.startsWith('primeiras-versoes/') && faixasPrimeiras[rota.split('/')[1]]) {
       try {
         await conferirTocador(pagina, rota.split('/')[1]);

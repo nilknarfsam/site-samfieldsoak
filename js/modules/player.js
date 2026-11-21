@@ -1,4 +1,5 @@
 import { icone, escapar } from './templates.js';
+import { contarEvento } from './contador.js';
 
 const ID_SUNO = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 let restaurarPlayerAtivo = null;
@@ -80,6 +81,7 @@ export function prepararPlayerSpotify(container, { tipo, id, titulo, rotulo = 'O
       </span>
     </button>`;
     container.querySelector('button').addEventListener('click', () => carregarExclusivo(container, () => {
+      contarEvento(`spotify/${tipo}/${id.toLowerCase()}`, titulo);   // métrica anônima (T-29)
       const quadro = document.createElement('iframe');
       quadro.className = compacto ? 'player__quadro player__quadro--compacto' : 'player__quadro';
       quadro.src = `https://open.spotify.com/embed/${tipo}/${id}?theme=0`;

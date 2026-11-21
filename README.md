@@ -23,6 +23,7 @@ Abra `http://127.0.0.1:8080/`. Módulos e views precisam de HTTP; abrir `index.h
 | `#/ia-sem-labia` | Análises e guias de tecnologia; categorias, datas e filtros preservados na aba |
 | `#/musica` | Discografia, singles, primeiras versões e jornada dos Salmos |
 | `#/primeiras-versoes` | Álbuns antigos; os que têm áudio no site tocam no player próprio (docs/15) |
+| `#/playlist` | Minha playlist das primeiras versões, guardada no navegador; `?f=` abre uma lista compartilhada |
 | `#/palavra` | Estudos bíblicos e pregações |
 | `#/busca` | Pesquisa local por títulos, resumos, temas e referências |
 | `#/sobre` | Apresentação, processo criativo e compromissos |

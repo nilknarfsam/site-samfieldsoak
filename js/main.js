@@ -12,6 +12,7 @@ import { iniciarNovidadesLista } from './telas/novidades-lista.js';
 import { iniciarNovidadesDetalhe } from './telas/novidades-detalhe.js';
 import { iniciarBusca } from './telas/busca.js';
 import { iniciarPrimeirasLista, iniciarPrimeirasAlbum } from './telas/primeiras-versoes.js';
+import { iniciarPlaylist } from './telas/playlist.js';
 
 const rotas = {
   inicio: { view: 'html/inicio.html', titulo: 'Início', iniciar: iniciarInicio },
@@ -33,6 +34,7 @@ const rotas = {
     view: 'html/primeiras-versoes.html', titulo: 'Primeiras versões', iniciar: iniciarPrimeirasLista, menu: 'musica',
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarPrimeirasAlbum },
   },
+  playlist: { view: 'html/playlist.html', titulo: 'Minha playlist', iniciar: iniciarPlaylist, menu: 'musica' },
   palavra: {
     view: 'html/palavra-lista.html', titulo: 'Palavra', iniciar: iniciarPalavraLista,
     detalhe: { view: 'html/palavra-detalhe.html', iniciar: iniciarPalavraDetalhe },

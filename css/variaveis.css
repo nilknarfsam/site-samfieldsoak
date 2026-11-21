@@ -86,6 +86,8 @@
   --capa-tocador: 48px;        /* miniatura da capa na barra */
   --largura-volume: 6rem;
   --largura-faixa-tocador: 16rem; /* título e álbum na barra, a partir de 768px */
+  --capa-faixa-semana: 7rem;     /* capa da Faixa da semana (Início) */
+  --capa-faixa-semana-md: 10rem;
   --altura-jornada: 2.5rem; /* barra 1–150 dos Salmos */
   --cor-veu: rgba(0, 0, 0, 0.55); /* degradê sobre capas e véus */
   --cor-veu-forte: rgba(18, 18, 18, 0.85); /* atrás do texto do topo da home */

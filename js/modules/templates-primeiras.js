@@ -30,6 +30,7 @@ export function detalhePrimeira(a, dados) {
           <span class="faixas__titulo">${escapar(f.titulo)}</span>
           ${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}
           <span class="faixas__duracao">${formatarTempo(f.duracao)}</span>
+          ${botaoPlaylist(i, f.titulo)}
         </li>`).join('')}
       </ol>
       <p class="nota">O player fica no rodapé e continua tocando enquanto você navega pelo site.</p>
@@ -49,3 +50,39 @@ export const cartaoPrimeiraPagina = (a, tocavel) => `
         : linkExterno(a.suno, 'Ouvir no Suno', 'botao botao--contorno')}
     </article>
   </li>`;
+
+// "+" da Minha playlist. O estado (na lista ou não) é marcado pela tela com marcarBotaoPlaylist.
+const botaoPlaylist = (i, titulo) => `<button class="faixa-mais" type="button" data-playlist="${i}" data-titulo="${escapar(titulo)}"
+  aria-pressed="false" aria-label="${escapar(`Adicionar à minha playlist: ${titulo}`)}">${icone('mais')}</button>`;
+
+export function marcarBotaoPlaylist(botao, naLista) {
+  const titulo = botao.dataset.titulo;
+  botao.setAttribute('aria-pressed', String(naLista));
+  botao.setAttribute('aria-label', `${naLista ? 'Tirar da minha playlist' : 'Adicionar à minha playlist'}: ${titulo}`);
+  botao.innerHTML = icone(naLista ? 'certo' : 'mais');
+}
+
+// Linha da página Minha playlist (#/playlist). Com remover = false, a lista é só para ouvir (link compartilhado).
+export const linhaPlaylist = (f, i, remover) => `
+  <li data-faixa="${i}">
+    <button class="faixa-tocar" type="button" data-tocar="${i}" aria-label="${escapar(`Tocar: ${f.titulo}`)}">${icone('play')}</button>
+    <span class="faixas__titulo">${escapar(f.titulo)}</span>
+    <span class="faixas__texto">${escapar([f.texto, f.albumTitulo].filter(Boolean).join(' · '))}</span>
+    <span class="faixas__duracao">${formatarTempo(f.duracao)}</span>
+    ${remover ? `<button class="faixa-mais" type="button" data-remover="${escapar(f.id)}" aria-label="${escapar(`Tirar da playlist: ${f.titulo}`)}">${icone('fechar')}</button>` : ''}
+  </li>`;
+
+// Faixa da semana (Início): uma faixa das primeiras versões, que muda sozinha toda semana.
+export const faixaDaSemana = (f) => `
+  <section class="faixa-semana" aria-labelledby="faixa-semana-titulo">
+    <div class="faixa-semana__capa">${capaAlbum({ titulo: f.albumTitulo, capa: f.capa, subtitulo: 'Primeira versão' }, { classe: 'capa--antiga' })}</div>
+    <div>
+      <p class="sobretitulo">Faixa da semana · Primeira versão</p>
+      <h3 id="faixa-semana-titulo">${escapar(f.titulo)}</h3>
+      <p class="nota mt-0">${escapar([f.texto, f.albumTitulo].filter(Boolean).join(' · '))}</p>
+      <p class="primeira-acoes">
+        <button class="botao" type="button" data-acao="tocar-semana">${icone('play')} Tocar</button>
+        <a class="botao botao--contorno" href="${rotaPrimeira(f.albumSlug)}">Ver o álbum</a>
+      </p>
+    </div>
+  </section>`;

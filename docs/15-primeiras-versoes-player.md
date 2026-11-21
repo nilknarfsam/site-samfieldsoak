@@ -11,7 +11,7 @@ O embed do Suno não informa ao site em que segundo a música está. Sem isso n�
 - Cloudflare R2, bucket `samfieldsoak-musicas`, fora do GitHub (≈150 MB por álbum em 320 kbps; 10 GB grátis no R2, sem cobrança por download).
 - Caminho: `primeiras-versoes/<slug-do-album>/<NN>-<slug-da-faixa>.mp3`, com `Content-Type: audio/mpeg` e `Cache-Control: public, max-age=31536000, immutable`.
 - CORS do bucket: GET/HEAD para `samfieldsoak.com.br`, `www`, `site-samfieldsoak.pages.dev` (e prévias) e `127.0.0.1:8080`/`localhost:8080`.
-- Endereço em `AUDIO_BASE` (`js/dados/primeiras-versoes.js`): `https://audio.samfieldsoak.com.br/primeiras-versoes`, domínio próprio ligado ao bucket (com cache do Cloudflare). O endereço público de teste do R2 (`pub-….r2.dev`) continua ligado só para testes.
+- Endereço em `AUDIO_BASE` (`js/dados/primeiras-versoes.js`): `https://audio.samfieldsoak.com.br/primeiras-versoes`, domínio próprio ligado ao bucket (com cache do Cloudflare). O endereço público de teste do R2 (`r2.dev`) foi desligado em 21/11/2026, depois do merge do PR #44.
 - Arquivos de origem: `Música\01 - Lançamentos e Autorais\Salmos - Primeiros Lançamentos\<álbum>\MP3` no PC do Franklin. A cópia com nomes padronizados fica em `C:\PROJETOS\audio-primeiras-versoes\`.
 
 ### Subir um álbum novo
@@ -42,6 +42,29 @@ A seção "As primeiras versões" de `#/musica` usa o mesmo cartão e leva para 
 - Tela bloqueada e fone Bluetooth: Media Session (capa, título, álbum, tocar/pausar, anterior, próxima, posição).
 - Um som por vez: tocar aqui fecha o embed do Spotify/Suno aberto; abrir um embed dispara `player-externo` e este player pausa.
 - Acessível: todos os botões com nome, `aria-current` na faixa que toca, aviso em `aria-live` se o áudio falhar, espaço tocar/pausar quando o foco não está num controle, alvos de 44px e tokens do Design System.
+
+## Minha playlist, abas e faixa da semana (T-29)
+
+- **Minha playlist** (`#/playlist`, `js/modules/playlist.js`, `js/telas/playlist.js`): o "+" de cada faixa guarda a faixa no navegador da pessoa (`localStorage`, chave `samfieldsoak-playlist`, até 200 faixas). Sem cadastro e sem servidor. A página explica que a lista não vai junto para outro celular.
+- **Compartilhar:** `#/playlist?f=trono-de-fogo.01,altar-da-contricao.05` (álbum + número da faixa). Quem abre ouve a lista e pode juntá-la à sua. Ids inválidos ou de faixas que não existem mais são ignorados. O roteador ignora a consulta (`?f=`) na hora de escolher a rota.
+- **Abas da seção Música:** Lançamentos (`#/musica`) · Primeiras versões · Playlist, com a aba ativa marcada (`aria-current`) e rolagem lateral no celular. As três rotas acendem "Música" no menu.
+- **Faixa da semana** (Início): uma faixa das primeiras versões, trocada toda segunda-feira, percorrendo todas em ordem; toca no player do site.
+- Playlists prontas, montadas pelo Franklin, ficam para quando ele escolher as faixas (não inventar curadoria).
+
+## Métricas sem rastrear ninguém (T-29)
+
+O GoatCounter (o mesmo contador das páginas, sem cookies e sem dados pessoais) recebe eventos anônimos (`contarEvento` em `js/modules/contador.js`):
+
+| Evento | Quando |
+|---|---|
+| `play/<álbum>/<NN-faixa>` | a faixa começou a tocar (uma vez por faixa) |
+| `ouviu30/<álbum>/<NN-faixa>` | passou de 30 segundos |
+| `fim/<álbum>/<NN-faixa>` | ouviu até o fim |
+| `letra/<álbum>/<NN-faixa>` | abriu a letra |
+| `playlist/adicionar`, `playlist/compartilhar`, `playlist/abrir-compartilhada` | uso da playlist |
+| `spotify/<tipo>/<id>` | abriu o player do Spotify no site |
+
+O painel do próprio GoatCounter mostra quantas vezes, de onde (Instagram, Google…), país e navegador; nunca quem.
 
 ## Letras
 
