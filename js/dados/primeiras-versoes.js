@@ -92,6 +92,38 @@ export const faixasPrimeiras = {
       { titulo: 'O Deus da Colheita e da Criação', texto: 'Salmo 65', arquivo: '15-salmo-65.mp3', duracao: 264 },
     ],
   },
+  'o-caminho-da-sabedoria': {
+    letras: 'o-caminho-da-sabedoria',
+    faixas: [
+      { titulo: 'Sabedoria Clama nas Ruas', texto: 'Provérbios 1', arquivo: '01-sabedoria-clama-nas-ruas.mp3', duracao: 155 },
+      { titulo: 'Tesouro Escondido', texto: 'Provérbios 2', arquivo: '02-tesouro-escondido.mp3', duracao: 160 },
+      { titulo: 'Confia de Todo Coração', texto: 'Provérbios 3', arquivo: '03-confia-de-todo-coracao.mp3', duracao: 194 },
+      { titulo: 'Guarda o Teu Coração', texto: 'Provérbios 4', arquivo: '04-guarda-o-teu-coracao.mp3', duracao: 155 },
+      { titulo: 'Beba da Sua Própria Fonte', texto: 'Provérbios 5', arquivo: '05-beba-da-sua-propria-fonte.mp3', duracao: 183 },
+      { titulo: 'Não Perca o Momento', texto: 'Provérbios 6', arquivo: '06-nao-perca-o-momento.mp3', duracao: 182 },
+      { titulo: 'Armadilha da Noite', texto: 'Provérbios 7', arquivo: '07-armadilha-da-noite.mp3', duracao: 177 },
+      { titulo: 'A Voz da Sabedoria', texto: 'Provérbios 8', arquivo: '08-a-voz-da-sabedoria.mp3', duracao: 172 },
+      { titulo: 'Dois Banquetes, Uma Escolha', texto: 'Provérbios 9', arquivo: '09-dois-banquetes-uma-escolha.mp3', duracao: 184 },
+    ],
+  },
+  'integridade': {
+    letras: 'integridade',
+    faixas: [
+      { titulo: 'Caminho do Justo x Caminho do Ímpio', texto: 'Provérbios 10', arquivo: '01-caminho-do-justo-x-caminho-do-impio.mp3', duracao: 183 },
+      { titulo: 'Peso Justo', texto: 'Provérbios 11', arquivo: '02-peso-justo.mp3', duracao: 175 },
+      { titulo: 'Verdade que Liberta', texto: 'Provérbios 12', arquivo: '03-verdade-que-liberta.mp3', duracao: 147 },
+      { titulo: 'Companhia e Caminho', texto: 'Provérbios 13', arquivo: '04-companhia-e-caminho.mp3', duracao: 176 },
+      { titulo: 'Caminho de Vida ou Caminho de Morte', texto: 'Provérbios 14', arquivo: '05-caminho-de-vida-ou-caminho-de-morte.mp3', duracao: 206 },
+      { titulo: 'Resposta que Traz Vida', texto: 'Provérbios 15', arquivo: '06-resposta-que-traz-vida.mp3', duracao: 145 },
+      { titulo: 'Planos e Caminhos', texto: 'Provérbios 16', arquivo: '07-planos-e-caminhos.mp3', duracao: 162 },
+      { titulo: 'Paz no Lar, Força na Amizade', texto: 'Provérbios 17', arquivo: '08-paz-no-lar-forca-na-amizade.mp3', duracao: 155 },
+      { titulo: 'Poder da Língua', texto: 'Provérbios 18', arquivo: '09-poder-da-lingua.mp3', duracao: 123 },
+      { titulo: 'Integridade que Vale Mais', texto: 'Provérbios 19', arquivo: '10-integridade-que-vale-mais.mp3', duracao: 136 },
+      { titulo: 'Peso Justo, Vida Íntegra', texto: 'Provérbios 20', arquivo: '11-peso-justo-vida-integra.mp3', duracao: 164 },
+      { titulo: 'Justiça Acima do Sacrifício', texto: 'Provérbios 21', arquivo: '12-justica-acima-do-sacrificio.mp3', duracao: 160 },
+      { titulo: 'Bom Nome, Caminho Certo', texto: 'Provérbios 22', arquivo: '13-bom-nome-caminho-certo.mp3', duracao: 164 },
+    ],
+  },
   'codigos-da-eternidade': {
     letras: 'codigos-da-eternidade',
     faixas: [
