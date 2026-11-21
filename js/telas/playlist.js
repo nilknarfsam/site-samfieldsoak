@@ -1,5 +1,5 @@
 import { lerPlaylist, resolverFaixa, idsDoEndereco, remover, esvaziar, substituir, linkDaPlaylist, aoMudarPlaylist } from '../modules/playlist.js';
-import { linhaPlaylist } from '../modules/templates-primeiras.js';
+import { linhaPlaylist, conteudoBotaoFaixa } from '../modules/templates-primeiras.js';
 import { tocarFila, tocarOuAlternar, aoMudar, estado } from '../modules/tocador.js';
 import { icone } from '../modules/templates.js';
 import { contarEvento } from '../modules/contador.js';
@@ -30,7 +30,7 @@ export function iniciarPlaylist(app) {
       acoes.innerHTML = '';
       lista.innerHTML = `<li class="playlist-vazia">${compartilhada
         ? 'Este link não tem faixas que ainda existam no site.'
-        : 'Sua playlist está vazia. Nas páginas das <a href="#/primeiras-versoes">primeiras versões</a>, toque no + ao lado de uma faixa para trazê-la para cá.'}</li>`;
+        : 'Sua playlist está vazia. Nos álbuns da página <a href="#/ouvir">Ouvir</a>, toque no + ao lado de uma faixa para trazê-la para cá.'}</li>`;
       return;
     }
     acoes.innerHTML = `<button class="botao" type="button" data-acao="tocar-playlist">${icone('play')} Tocar tudo</button>
@@ -49,7 +49,7 @@ export function iniciarPlaylist(app) {
       if (esta) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
       const botao = li.querySelector('[data-tocar]');
       const pausar = esta && tocando;
-      botao.innerHTML = icone(pausar ? 'pausa' : 'play');
+      botao.innerHTML = conteudoBotaoFaixa(i, esta, tocando);
       botao.setAttribute('aria-label', `${pausar ? 'Pausar' : 'Tocar'}: ${fila[i].titulo}`);
     });
   };

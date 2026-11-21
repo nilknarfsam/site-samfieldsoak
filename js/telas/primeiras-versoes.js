@@ -1,19 +1,18 @@
 import { primeirasVersoes } from '../dados/albuns.js';
 import { faixasPrimeiras, urlAudio, temPlayerProprio } from '../dados/primeiras-versoes.js';
-import { detalhePrimeira, cartaoPrimeiraPagina, marcarBotaoPlaylist } from '../modules/templates-primeiras.js';
+import { detalhePrimeira, cartaoPrimeiraPagina, marcarBotaoPlaylist, conteudoBotaoFaixa } from '../modules/templates-primeiras.js';
 import { idDaFaixa, naPlaylist, adicionar, remover, aoMudarPlaylist } from '../modules/playlist.js';
 import { blocoLetra } from '../modules/templates-musica.js';
-import { naoEncontrado, icone } from '../modules/templates.js';
+import { naoEncontrado } from '../modules/templates.js';
 import { tocarFila, tocarOuAlternar, aoMudar, estado } from '../modules/tocador.js';
 import { animarCartoes } from '../modules/movimento.js';
 import { protegerCapas } from '../modules/protecao.js';
 import { contarEvento } from '../modules/contador.js';
 
-// #/primeiras-versoes: os 7 álbuns; os que já têm áudio no site abrem a página com player.
+// #/ouvir: só os álbuns que já tocam aqui no site (T-30).
 export function iniciarPrimeirasLista(app) {
-  app.querySelector('[data-primeiras-texto]').textContent = primeirasVersoes.texto;
-  app.querySelector('[data-primeiras]').innerHTML = primeirasVersoes.albuns
-    .map((a) => cartaoPrimeiraPagina(a, temPlayerProprio(a.slug))).join('');
+  app.querySelector('[data-primeiras]').innerHTML = primeirasVersoes.albuns.filter((a) => temPlayerProprio(a.slug))
+    .map((a) => cartaoPrimeiraPagina(a, true)).join('');
   animarCartoes(app);
   protegerCapas(app);
 }
@@ -21,7 +20,7 @@ export function iniciarPrimeirasLista(app) {
 // Para de acompanhar o player quando a pessoa sai da página do álbum.
 let pararDeAcompanhar = null;
 
-// #/primeiras-versoes/<slug>. Devolve o título da aba.
+// #/ouvir/<slug>. Devolve o título da aba.
 export function iniciarPrimeirasAlbum(app, slug) {
   pararDeAcompanhar?.();
   pararDeAcompanhar = null;
@@ -30,7 +29,7 @@ export function iniciarPrimeirasAlbum(app, slug) {
   const dados = faixasPrimeiras[slug];
   if (!a || !dados?.faixas?.length) {
     alvo.classList.add('container--texto');
-    alvo.innerHTML = naoEncontrado('Primeiras versões', '#/primeiras-versoes');
+    alvo.innerHTML = naoEncontrado('Ouvir', '#/ouvir');
     return 'Conteúdo não encontrado';
   }
   alvo.innerHTML = detalhePrimeira(a, dados);
@@ -63,7 +62,7 @@ export function iniciarPrimeirasAlbum(app, slug) {
       if (esta) li.setAttribute('aria-current', 'true'); else li.removeAttribute('aria-current');
       const botao = li.querySelector('[data-tocar]');
       const pausar = esta && tocando;
-      botao.innerHTML = icone(pausar ? 'pausa' : 'play');
+      botao.innerHTML = conteudoBotaoFaixa(i, esta, tocando);
       botao.setAttribute('aria-label', `${pausar ? 'Pausar' : 'Tocar'}: ${fila[i].titulo}`);
     });
   };

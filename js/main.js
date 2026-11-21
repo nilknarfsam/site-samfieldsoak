@@ -12,6 +12,7 @@ import { iniciarNovidadesLista } from './telas/novidades-lista.js';
 import { iniciarNovidadesDetalhe } from './telas/novidades-detalhe.js';
 import { iniciarBusca } from './telas/busca.js';
 import { iniciarPrimeirasLista, iniciarPrimeirasAlbum } from './telas/primeiras-versoes.js';
+import { registrarTelaTocando } from './modules/tela-tocando.js';
 import { iniciarPlaylist } from './telas/playlist.js';
 
 const rotas = {
@@ -30,11 +31,14 @@ const rotas = {
     ancoras: ['lancamento', 'por-tras', 'como-eu-faco', 'jornada', 'ouvir', 'discografia', 'singles', 'primeiras-versoes'],
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarMusicaDetalhe },
   },
-  'primeiras-versoes': {
-    view: 'html/primeiras-versoes.html', titulo: 'Primeiras versões', iniciar: iniciarPrimeirasLista, menu: 'musica',
+  // Ouvir (T-30): os álbuns que tocam aqui no site (primeiras versões), com o player próprio.
+  ouvir: {
+    view: 'html/primeiras-versoes.html', titulo: 'Ouvir', iniciar: iniciarPrimeirasLista,
     detalhe: { view: 'html/musica-detalhe.html', iniciar: iniciarPrimeirasAlbum },
   },
-  playlist: { view: 'html/playlist.html', titulo: 'Minha playlist', iniciar: iniciarPlaylist, menu: 'musica' },
+  // Endereço antigo (links já compartilhados): #/primeiras-versoes/<slug> → #/ouvir/<slug>.
+  'primeiras-versoes': { redirecionar: 'ouvir' },
+  playlist: { view: 'html/playlist.html', titulo: 'Minha playlist', iniciar: iniciarPlaylist, menu: 'ouvir' },
   palavra: {
     view: 'html/palavra-lista.html', titulo: 'Palavra', iniciar: iniciarPalavraLista,
     detalhe: { view: 'html/palavra-detalhe.html', iniciar: iniciarPalavraDetalhe },
@@ -48,4 +52,5 @@ document.querySelector('[data-ano]').textContent = String(new Date().getFullYear
 registrarMenu();
 registrarEventosIaLista(app);
 registrarCompartilhar(app);
+registrarTelaTocando();
 iniciarRoteador(rotas);

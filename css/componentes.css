@@ -751,6 +751,123 @@ body.com-tocador { padding-bottom: var(--altura-tocador); }
   .tocador__botao--principal:not(:disabled):hover { background: var(--cor-texto); }
 }
 
+/* Botão da barra que abre a tela cheia: a faixa inteira (capa, título, setinha) */
+.tocador__faixa { border: 0; background: transparent; color: inherit; font: inherit; text-align: left; padding: 0; cursor: pointer; border-radius: var(--raio-pequeno); }
+.tocador__faixa:hover .tocador__titulo { text-decoration: underline; }
+.tocador__abrir { flex: none; display: inline-grid; place-items: center; color: var(--cor-texto-suave); }
+/* Celular: a barra fica enxuta (tocar e próxima); anterior e a setinha ficam na tela cheia */
+@media (max-width: 767px) {
+  .tocador [data-tocador="anterior"], .tocador__abrir .icone { display: none; }
+}
+.tocador__abrir .icone { width: 1.25rem; height: 1.25rem; }
+
+/* ---------- Tela "Tocando agora" (T-30) ----------
+   Celular: uma coluna (capa, controles, abas). Computador: capa à esquerda, fila/letra à direita. */
+html.com-tela-tocando { overflow: hidden; }
+.tocando {
+  width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0;
+  background: var(--cor-fundo); color: var(--cor-texto); overflow: hidden;
+}
+.tocando[open] { display: flex; flex-direction: column; }
+.tocando::backdrop { background: var(--cor-fundo); }
+.tocando__fundo {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-size: cover; background-position: center;
+  filter: blur(var(--desfoque-tocando)); opacity: var(--opacidade-fundo-tocando); transform: scale(1.2);
+}
+.tocando__topo, .tocando__corpo { position: relative; z-index: 1; }
+.tocando__corpo { z-index: 2; }   /* a gaveta (dentro do corpo) passa por cima do topo quando abre */
+.tocando__topo {
+  display: flex; align-items: center; gap: var(--esp-2);
+  padding: calc(var(--esp-2) + env(safe-area-inset-top)) var(--esp-3) var(--esp-2);
+}
+.tocando__topo .icone { fill: none; }
+.tocando__rotulo { flex: 1; margin: 0; text-align: center; font-size: var(--texto-xs); color: var(--cor-texto-suave); text-transform: uppercase; letter-spacing: 0.08em; }
+.tocando__album-link { font-size: var(--texto-xs); color: var(--cor-texto); white-space: nowrap; min-height: var(--toque-minimo); display: inline-flex; align-items: center; }
+.tocando__corpo {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  display: flex; flex-direction: column; gap: var(--esp-4);
+  padding: 0 var(--esp-3) calc(var(--gaveta-fechada) + var(--esp-4) + env(safe-area-inset-bottom));
+}
+.tocando__principal { display: flex; flex-direction: column; align-items: center; gap: var(--esp-3); }
+.tocando__capa { width: var(--capa-tocando); aspect-ratio: 1; border-radius: var(--raio); overflow: hidden; background: var(--cor-superficie-alta); box-shadow: var(--sombra); }
+.tocando__capa img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tocando__info { width: 100%; max-width: var(--capa-tocando); }
+.tocando__titulo { margin: 0; font-size: var(--texto-lg); line-height: 1.2; }
+.tocando__album { margin: var(--esp-1) 0 0; color: var(--cor-texto-suave); font-size: var(--texto-sm); }
+.tocando__tempo { width: 100%; max-width: var(--capa-tocando); }
+.tocando__tempo .tocador__barra { width: 100%; }
+.tocando__numeros { display: flex; justify-content: space-between; font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
+.tocando__controles { display: flex; align-items: center; gap: var(--esp-4); }
+.tocando__alternar { width: calc(var(--toque-minimo) * 1.5); height: calc(var(--toque-minimo) * 1.5); background: var(--cor-texto); color: var(--cor-fundo); }
+.tocando__acoes { display: flex; gap: var(--esp-2); width: 100%; max-width: var(--capa-tocando); overflow-x: auto; scrollbar-width: none; }
+.tocando__pilula {
+  display: inline-flex; align-items: center; gap: var(--esp-2); flex: none; min-height: var(--toque-minimo); padding: 0 var(--esp-3);
+  border: 0; border-radius: var(--raio-pilula); background: var(--cor-superficie-alta); color: var(--cor-texto); font: inherit; font-size: var(--texto-sm); cursor: pointer;
+}
+.tocando__pilula[aria-pressed="true"] { color: var(--cor-destaque); }
+@media (hover: hover) { .tocando__pilula:hover { background: var(--cor-borda); } }
+.tocando__alternar .icone { width: 1.75rem; height: 1.75rem; }
+/* Gaveta (celular): presa embaixo mostrando só a alça e as abas; aberta, cobre a tela com um mini player no topo */
+.tocando__gaveta {
+  position: fixed; inset: 0; z-index: 2; display: flex; flex-direction: column;
+  background: var(--cor-superficie); border-radius: var(--raio) var(--raio) 0 0; box-shadow: var(--sombra);
+  transform: translateY(calc(100% - var(--gaveta-fechada) - env(safe-area-inset-bottom)));
+  transition: transform var(--duracao-gaveta) ease;
+}
+.tocando__gaveta[data-aberta="true"] { transform: none; border-radius: 0; }
+.tocando__gaveta--arrastando { transition: none; }
+.tocando__cabeca { flex: none; touch-action: none; padding: 0 var(--esp-3); user-select: none; -webkit-user-select: none; }
+.tocando--arrastando { user-select: none; -webkit-user-select: none; }
+.tocando__puxador { display: grid; place-items: center; width: 100%; height: var(--esp-5); border: 0; background: transparent; cursor: grab; }
+.tocando__puxador span { width: 2.5rem; height: 4px; border-radius: var(--raio-pilula); background: var(--cor-texto-suave); }
+.tocando__mini { display: none; align-items: center; gap: var(--esp-2); padding-bottom: var(--esp-2); }
+.tocando__gaveta[data-aberta="true"] .tocando__mini { display: flex; }
+.tocando__gaveta[data-aberta="true"] .tocando__cabeca { padding-top: env(safe-area-inset-top); }
+.tocando__mini-capa { flex: none; width: var(--capa-tocador); height: var(--capa-tocador); border-radius: var(--raio-pequeno); overflow: hidden; background: var(--cor-superficie-alta); }
+.tocando__mini-capa img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tocando__mini-textos { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.tocando__mini-titulo { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocando__mini-album { color: var(--cor-texto-suave); font-size: var(--texto-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocando__mini .icone { fill: currentColor; }
+.tocando__gaveta .tocando__painel { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: var(--esp-2) var(--esp-3) calc(var(--esp-4) + env(safe-area-inset-bottom)); }
+.tocando__abas { display: flex; border-bottom: var(--borda); }
+.tocando__aba {
+  flex: 1; min-height: var(--toque-minimo); border: 0; border-bottom: 2px solid transparent; background: transparent;
+  color: var(--cor-texto-suave); font: inherit; font-weight: 600; cursor: pointer;
+}
+.tocando__aba[aria-selected="true"] { color: var(--cor-texto); border-bottom-color: var(--cor-destaque); }
+.tocando__painel { padding-top: var(--esp-2); }
+.tocando__painel[hidden] { display: none; }
+.tocando__item {
+  display: flex; align-items: center; gap: var(--esp-3); width: 100%; min-height: var(--toque-minimo);
+  padding: var(--esp-2); border: 0; border-radius: var(--raio-pequeno); background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+.tocando__item[aria-current="true"] { background: var(--cor-superficie-alta); }
+.tocando__item[aria-current="true"] .tocando__item-titulo { color: var(--cor-destaque); }
+.tocando__item-icone { flex: none; width: 1.5rem; display: inline-grid; place-items: center; color: var(--cor-texto-suave); }
+.tocando__item-icone .icone { fill: currentColor; color: var(--cor-destaque); }
+.tocando__item-numero { font-family: var(--fonte-mono); font-size: var(--texto-xs); }
+.tocando__item-textos { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.tocando__item-titulo { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocando__item-sub { color: var(--cor-texto-suave); font-size: var(--texto-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocando__item-duracao { flex: none; font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
+.tocando__letra { user-select: none; -webkit-user-select: none; }
+.tocando__estrofes { padding: var(--esp-2) 0 var(--esp-5); }
+.tocando__linha { margin: 0 0 var(--esp-3); font-size: var(--texto-lg); font-weight: 700; line-height: 1.3; }
+.tocando__pausa { display: block; height: var(--esp-4); }
+.tocando__aviso { color: var(--cor-texto-suave); }
+@media (min-width: 1024px) {
+  .tocando__corpo { flex-direction: row; align-items: stretch; gap: var(--esp-6); padding: var(--esp-4) var(--esp-6) var(--esp-5); overflow: hidden; }
+  .tocando__principal { flex: 1; justify-content: center; }
+  .tocando__capa, .tocando__info, .tocando__tempo, .tocando__acoes { width: var(--capa-tocando-lg); max-width: none; }
+  .tocando__gaveta { position: static; transform: none; transition: none; flex: none; width: var(--largura-tocando-lado); background: transparent; box-shadow: none; border-radius: 0; }
+  .tocando__cabeca { padding: 0; touch-action: auto; }
+  .tocando__puxador, .tocando__gaveta .tocando__mini { display: none; }
+  .tocando__gaveta .tocando__painel { padding: var(--esp-2) 0 0; }
+}
+@media (hover: hover) { .tocando__item:hover { background: var(--cor-superficie); } }
+
 /* Página do álbum das primeiras versões */
 .primeira-aviso { border-left: var(--borda-marca) solid var(--cor-destaque); padding-left: var(--esp-3); color: var(--cor-texto-suave); font-size: var(--texto-sm); }
 .primeira-acoes { display: flex; flex-wrap: wrap; gap: var(--esp-2); margin-top: var(--esp-3); }
@@ -759,14 +876,26 @@ body.com-tocador { padding-bottom: var(--altura-tocador); }
 .faixas--tocaveis li::before { display: none; }
 .faixa-tocar {
   display: inline-grid; place-items: center; flex: none; width: var(--toque-minimo); height: var(--toque-minimo);
-  border: var(--borda); border-radius: var(--raio-pilula); background: var(--cor-superficie); color: var(--cor-texto); cursor: pointer;
+  border: 0; border-radius: var(--raio-pilula); background: transparent; color: var(--cor-texto-suave); cursor: pointer;
 }
+.faixa-tocar__numero { font-family: var(--fonte-mono); font-size: var(--texto-sm); }
 .faixa-tocar .icone { width: 1rem; height: 1rem; fill: currentColor; }
 .faixas__duracao { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
 .faixas--tocaveis .letra { flex-basis: 100%; }
 .faixa--atual .faixas__titulo { color: var(--cor-destaque); }
-.faixa--atual .faixa-tocar { background: var(--cor-destaque); border-color: var(--cor-destaque); color: var(--cor-sobre-destaque); }
-@media (hover: hover) { .faixa-tocar:hover { border-color: var(--cor-texto); } }
+.faixa--atual .faixa-tocar { color: var(--cor-destaque); }
+@media (hover: hover) { .faixa-tocar:hover { background: var(--cor-superficie-alta); color: var(--cor-texto); } }
+
+/* Barrinhas da faixa atual: mexem enquanto toca, param na pausa (e sem animação para quem pediu menos movimento) */
+.barrinhas { display: inline-flex; align-items: flex-end; gap: 2px; height: var(--barrinhas-altura); color: var(--cor-destaque); }
+.barrinhas span { width: 3px; height: 40%; background: currentColor; border-radius: 1px; }
+.barrinhas span:nth-child(2) { height: 100%; }
+.barrinhas span:nth-child(3) { height: 65%; }
+.barrinhas--tocando span { animation: barrinha var(--barrinhas-duracao) ease-in-out infinite alternate; }
+.barrinhas--tocando span:nth-child(2) { animation-delay: -300ms; }
+.barrinhas--tocando span:nth-child(3) { animation-delay: -600ms; }
+@keyframes barrinha { from { height: 20%; } to { height: 100%; } }
+@media (prefers-reduced-motion: reduce) { .barrinhas--tocando span { animation: none; } }
 
 /* Abas da seção Música (T-29): Lançamentos · Primeiras versões · Minha playlist */
 .abas { margin: 0 calc(var(--esp-3) * -1) var(--esp-4); border-bottom: var(--borda); }

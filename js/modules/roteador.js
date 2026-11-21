@@ -21,6 +21,10 @@ async function renderizar() {
   // A consulta (?f=...) é da tela, não da rota: #/playlist?f=a.01,b.02 abre a rota playlist.
   let [nome, segundo] = location.hash.slice(2).split('?')[0].split('/').map(decodeURIComponent);
   if (!nome || !rotas[nome]) { nome = 'inicio'; segundo = undefined; history.replaceState(null, '', '#/inicio'); }
+  if (rotas[nome].redirecionar) {   // endereço antigo: troca no histórico, sem degrau no Voltar
+    nome = rotas[nome].redirecionar;
+    history.replaceState(null, '', `#/${nome}${segundo ? `/${encodeURIComponent(segundo)}` : ''}`);
+  }
   const rota = rotas[nome];
   // Seções com páginas de detalhe usam o segundo segmento como slug (#/ia-sem-labia/<slug>)
   // Âncoras declaradas na rota (#/musica/como-eu-faco) rolam até a seção em vez de abrir um detalhe.
@@ -38,7 +42,7 @@ async function renderizar() {
     molde.innerHTML = html;
     app.replaceChildren(molde.content);
     app.removeAttribute('aria-busy');
-    marcarMenuAtivo(ok ? (rota.menu || nome) : '');   // rota.menu: subpágina que acende outra seção (primeiras-versoes → musica)
+    marcarMenuAtivo(ok ? (rota.menu || nome) : '');   // rota.menu: subpágina que acende outra seção (playlist → ouvir)
     if (ok && alvoRota.iniciar) {
       try { titulo = alvoRota.iniciar(app, segundo) || titulo; } catch (e) { console.error('[roteador]', e); }
     }

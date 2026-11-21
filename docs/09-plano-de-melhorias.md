@@ -363,6 +363,13 @@ process.exit(falhas ? 1 : 0);
 - **Arquivos:** `js/modules/contador.js` (`contarEvento`), `js/modules/tocador.js`, `js/modules/player.js`, `js/modules/playlist.js`, `js/telas/playlist.js`, `js/telas/primeiras-versoes.js`, `js/telas/inicio.js`, `js/modules/templates-primeiras.js`, `js/modules/roteador.js` (consulta `?f=`), `js/main.js`, `html/playlist.html`, `html/musica.html`, `html/primeiras-versoes.html`, `html/inicio.html`, CSS, sprite, `testar-rotas`, docs.
 - **Pronto quando:** eventos anônimos sem novo rastreador; "+" guarda e tira; playlist toca, compartilha e recebe link; abas cabem em 390px; faixa da semana toca; testes ✅ em 390/1280px. Merge só pelo Franklin.
 
+### T-30 · Página Ouvir e tela "Tocando agora"
+
+- **Plano aprovado:** Franklin escolheu "Página Ouvir" em 21/11/2026: tirar as músicas da página Música, dar a elas uma página própria com link no topo e um player no jeito do YouTube Music, com botão de letra. Especificação: `docs/15`.
+- **Arquivos:** `js/modules/tela-tocando.js` (novo), `js/modules/tocador.js` (botão que abre a tela, fila/tempo/pular exportados), `js/modules/templates-primeiras.js`, `js/telas/primeiras-versoes.js`, `js/telas/playlist.js`, `js/telas/musica.js`, `js/main.js`, `js/modules/roteador.js` (`redirecionar`), `index.html` (menu e rodapé), `html/primeiras-versoes.html` (view de `#/ouvir`), `html/playlist.html`, `html/musica.html`, `html/inicio.html`, CSS, sprite (`subir`, `descer`), as duas ferramentas de conferência, README e docs.
+- **Pronto quando:** "Ouvir" no menu; Música sem as primeiras versões; links antigos redirecionam; tela cheia abre, troca de faixa, mostra a letra e fecha com Voltar; testes ✅ em 390/1280px. Merge só pelo Franklin.
+- **Depois:** letra sincronizada na aba Letra (tempos do Whisper).
+
 ## Manutenção proposta após esta rodada
 
 Estas observações estão registradas, sem implementação nesta T-20:

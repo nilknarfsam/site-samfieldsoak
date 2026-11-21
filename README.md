@@ -21,9 +21,9 @@ Abra `http://127.0.0.1:8080/`. Módulos e views precisam de HTTP; abrir `index.h
 | `#/inicio` | Destaques, lançamento, links da bio e publicações recentes |
 | `#/novidades` | Novidades em ordem de data e filtro por tema |
 | `#/ia-sem-labia` | Análises e guias de tecnologia; categorias, datas e filtros preservados na aba |
-| `#/musica` | Discografia, singles, primeiras versões e jornada dos Salmos |
-| `#/primeiras-versoes` | Álbuns antigos; os que têm áudio no site tocam no player próprio (docs/15) |
-| `#/playlist` | Minha playlist das primeiras versões, guardada no navegador; `?f=` abre uma lista compartilhada |
+| `#/musica` | Lançamentos no Spotify, discografia, singles e jornada dos Salmos |
+| `#/ouvir` | Álbuns que tocam aqui no site, com o player próprio e a tela "Tocando agora" (docs/15); `#/primeiras-versoes` redireciona para cá |
+| `#/playlist` | Minha playlist, guardada no navegador; `?f=` abre uma lista compartilhada |
 | `#/palavra` | Estudos bíblicos e pregações |
 | `#/busca` | Pesquisa local por títulos, resumos, temas e referências |
 | `#/sobre` | Apresentação, processo criativo e compromissos |
