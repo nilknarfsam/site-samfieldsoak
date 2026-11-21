@@ -5,6 +5,8 @@
 PR: https://github.com/nilknarfsam/site-samfieldsoak/pull/30
 Branch: `feat/t21-player-suno-por-faixa`. Situação: em revisão; nenhum merge pelo Codex.
 
+> **Atualização de 21/11/2026 (Fase 1 do plano de 07/11):** Franklin decidiu que os álbuns oficiais se ouvem só pelo Spotify. Os 12 `sunoId` abaixo saíram de `js/dados/albuns.js`, `destaqueSuno` passou a `null` e os álbuns oficiais perderam o link "Também no Suno". A tabela fica como registro histórico. O código do player continua no site e será reaproveitado na página das primeiras versões, que terá player próprio com os MP3 guardados no Cloudflare R2 (bucket `samfieldsoak-musicas`). `teste-player.html` continua no ar até Franklin pedir a retirada.
+
 ## Decisão e escopo autorizado
 
 Em 06/11/2026 Franklin confirmou que o embed individual toca na página de teste HTTPS, mas o embed de álbum redireciona para o Suno. Aprovou o plano para usar botões por música e encerrar o player anterior ao abrir outro.

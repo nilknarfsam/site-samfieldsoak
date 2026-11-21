@@ -272,6 +272,7 @@ process.exit(falhas ? 1 : 0);
 - **Lógica:** só criar iframe após clique por música. Um único player gerenciado (Suno ou Spotify) aberto; abrir outro remove o anterior e restaura a fachada. Encerrar ao trocar de página. Destaque do Salmo 73 aponta para o mesmo cadastro do Álbum 7. Letras, títulos e ordem preservados.
 - **Pronto quando:** dados aprovados; home e 12 faixas sem iframe inicial; troca primeira/última e Suno/Spotify sem sobreposição; letra independente; encerrar/foco e navegação funcionando em 390/1280px. Testes automatizados com embeds simulados; reprodução real em HTTPS confirmada por Franklin depois do merge. Revisão do Claude e merge só por Franklin.
 - **Depois:** mapear 15 IDs de Trono de Fogo e aprovar expansão às primeiras versões; não incluir gravações presumidas neste PR. Não apagar a página de teste.
+- **Mudança de rumo (Fase 1, aprovada por Franklin em 07/11 e executada em 21/11/2026):** álbuns oficiais se ouvem só pelo Spotify. Saíram os 12 `sunoId` do Álbum 7, o `destaqueSuno` da home e o link "Também no Suno" dos três álbuns oficiais que o tinham. O código do player (`player.js`, fachada e exclusividade) continua para ser reaproveitado no player próprio das primeiras versões, com áudio no Cloudflare R2. Detalhes em `docs/13`.
 
 ---
 

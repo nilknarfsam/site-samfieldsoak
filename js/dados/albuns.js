@@ -181,7 +181,7 @@ export const albuns = [
     ],
   },
   {
-    slug: 'o-rei-dos-povos', serie: 'salmos', volume: '9', subtitulo: 'Série dos Salmos, Álbum 9', titulo: 'O Rei dos Povos', base: 'Salmos 97–108', estilo: 'Metal épico', faixas: 12, lancamento: '2026-07-15', spotifyId: '6lLIScGkvmEHiqRMlTgEOP', suno: 'https://suno.com/s/TJ2IG1oF2J1txVIo', capa: 'imagens/albuns/o-rei-dos-povos',
+    slug: 'o-rei-dos-povos', serie: 'salmos', volume: '9', subtitulo: 'Série dos Salmos, Álbum 9', titulo: 'O Rei dos Povos', base: 'Salmos 97–108', estilo: 'Metal épico', faixas: 12, lancamento: '2026-07-15', spotifyId: '6lLIScGkvmEHiqRMlTgEOP', capa: 'imagens/albuns/o-rei-dos-povos',
     letras: 'o-rei-dos-povos', notaLetras: 'Letras minhas, escritas a partir dos Salmos 97 a 108, com ajuda de IA e revisadas por mim.',
     faixasLista: [
       { titulo: 'Fogo Vai Adiante Dele', texto: 'Salmo 97' },
@@ -217,7 +217,7 @@ export const albuns = [
     ],
   },
   {
-    slug: 'ecos-de-adoracao', serie: 'salmos', volume: '8', subtitulo: 'Série dos Salmos, Álbum 8', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12, lancamento: '2026-05-21', spotifyId: '6E8L5CSoLCFMqGCn2tk8hw', suno: 'https://suno.com/s/mE98iPfpt0KOV6MR', capa: 'imagens/albuns/ecos-de-adoracao',
+    slug: 'ecos-de-adoracao', serie: 'salmos', volume: '8', subtitulo: 'Série dos Salmos, Álbum 8', titulo: 'Ecos de Adoração', base: 'Salmos 85–96', estilo: 'Doom metal / rock atmosférico', faixas: 12, lancamento: '2026-05-21', spotifyId: '6E8L5CSoLCFMqGCn2tk8hw', capa: 'imagens/albuns/ecos-de-adoracao',
     letras: 'ecos-de-adoracao', notaLetras: 'Letras minhas, escritas a partir dos Salmos 85 a 96, com ajuda de IA e revisadas por mim.',
     faixasLista: [
       { titulo: 'Restaura-nos, Senhor!', texto: 'Salmo 85' },
@@ -253,21 +253,21 @@ export const albuns = [
     ],
   },
   {
-    slug: 'santuario-do-altissimo', serie: 'salmos', volume: '7', subtitulo: 'Série dos Salmos, Álbum 7', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12, lancamento: '2026-03-20', spotifyId: '5P3UmxFhhORrQmSoxDr8f9', suno: 'https://suno.com/s/MonMgpICt9kvQWml', capa: 'imagens/albuns/santuario-do-altissimo',
+    slug: 'santuario-do-altissimo', serie: 'salmos', volume: '7', subtitulo: 'Série dos Salmos, Álbum 7', titulo: 'Santuário do Altíssimo', base: 'Salmos 73–84', estilo: '', faixas: 12, lancamento: '2026-03-20', spotifyId: '5P3UmxFhhORrQmSoxDr8f9', capa: 'imagens/albuns/santuario-do-altissimo',
     letras: 'santuario-do-altissimo', notaLetras: 'Letras minhas, escritas a partir dos Salmos 73 a 84, com ajuda de IA e revisadas por mim.',
     faixasLista: [
-      { titulo: 'Até que Entre no Santuário', texto: 'Salmo 73', sunoId: 'b570fd08-038b-4149-95dd-4f1c1591c05d' },
-      { titulo: 'Lembra-Te, Senhor!', texto: 'Salmo 74', sunoId: '30e4239c-b731-4d76-9588-2ec560bea9cc' },
-      { titulo: 'O Deus Justo que Exalta e Abate', texto: 'Salmo 75', sunoId: '89ed1e71-6fde-46a6-8257-21e0a92de6c9' },
-      { titulo: 'O Guerreiro Invencível', texto: 'Salmo 76', sunoId: '6bf70476-37a7-48de-86f3-2d117d3ef0d1' },
-      { titulo: 'Eu Me Lembro das Tuas Obras', texto: 'Salmo 77', sunoId: '444e9d1b-5dc9-4c8f-8986-9a78afb0e90b' },
-      { titulo: 'Lembrem-se das Obras do Senhor', texto: 'Salmo 78', sunoId: '90cf57a6-d4d7-422b-8c42-e807b3c06748' },
-      { titulo: 'Tem Misericórdia, Senhor', texto: 'Salmo 79', sunoId: '918d4924-7a5c-4427-afce-145c1292ce28' },
-      { titulo: 'Restaura-nos, Senhor!', texto: 'Salmo 80', sunoId: '4c8cba46-8a82-45db-b884-d5e1bf34e883' },
-      { titulo: 'Ouve, ó Meu Povo!', texto: 'Salmo 81', sunoId: '0a86991f-bbf5-4b88-828d-554da751572b' },
-      { titulo: 'Levanta-Te, ó Deus, e Julga a Terra', texto: 'Salmo 82', sunoId: 'e6a0fe5a-d2b2-4a8b-8e69-294777c4b4eb' },
-      { titulo: 'Levanta-Te, Senhor dos Exércitos!', texto: 'Salmo 83', sunoId: '6f6a3557-1a22-4f8f-834c-bf989eff6658' },
-      { titulo: 'Um Dia nos Teus Átrios', texto: 'Salmo 84', sunoId: 'f239f506-cb98-4f7a-a419-00fea876416c' },
+      { titulo: 'Até que Entre no Santuário', texto: 'Salmo 73' },
+      { titulo: 'Lembra-Te, Senhor!', texto: 'Salmo 74' },
+      { titulo: 'O Deus Justo que Exalta e Abate', texto: 'Salmo 75' },
+      { titulo: 'O Guerreiro Invencível', texto: 'Salmo 76' },
+      { titulo: 'Eu Me Lembro das Tuas Obras', texto: 'Salmo 77' },
+      { titulo: 'Lembrem-se das Obras do Senhor', texto: 'Salmo 78' },
+      { titulo: 'Tem Misericórdia, Senhor', texto: 'Salmo 79' },
+      { titulo: 'Restaura-nos, Senhor!', texto: 'Salmo 80' },
+      { titulo: 'Ouve, ó Meu Povo!', texto: 'Salmo 81' },
+      { titulo: 'Levanta-Te, ó Deus, e Julga a Terra', texto: 'Salmo 82' },
+      { titulo: 'Levanta-Te, Senhor dos Exércitos!', texto: 'Salmo 83' },
+      { titulo: 'Um Dia nos Teus Átrios', texto: 'Salmo 84' },
     ],
   },
 ];
@@ -308,4 +308,4 @@ export const comoFaco = {
 };
 
 // Piloto: referência à faixa cadastrada, sem duplicar título, versão ou ID. Faixa começa em 1.
-export const destaqueSuno = { album: 'santuario-do-altissimo', faixa: 1 };
+export const destaqueSuno = null;   // Fase 1 (07/11): oficiais só no Spotify; a home volta a ter destaque nas primeiras versões.
