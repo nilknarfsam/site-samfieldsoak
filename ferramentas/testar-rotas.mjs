@@ -31,7 +31,11 @@ const EXTERNOS = /gc\.zgo\.at|goatcounter\.com|open\.spotify\.com|scdn\.co|https
 // O HTML neutro só substitui o conteúdo remoto; nossos botões e iframes são reais.
 async function conferirPlayers(pagina, rota) {
   const containers = pagina.locator('[data-player-suno]');
-  if (rota === 'inicio' && !destaqueSuno) {
+  // Fase 1 (07/11): álbuns oficiais só no Spotify. Sem sunoId cadastrado, nenhum player do Suno aparece.
+  const comSuno = rota === 'inicio'
+    ? Boolean(destaqueSuno)
+    : albuns.find((a) => a.slug === 'santuario-do-altissimo').faixasLista.some((f) => f.sunoId);
+  if (!comSuno) {
     assert.equal(await containers.count(), 0);
     return;
   }
