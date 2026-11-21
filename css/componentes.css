@@ -706,3 +706,64 @@ article[data-detalhe] h1 { font-size: var(--texto-h1-detalhe); }
 .botao-bio__icone .icone, .capa-icone .icone { width: 1em; height: 1em; }
 .player__icone .icone { width: 45%; height: 45%; fill: currentColor; stroke-width: 1.5; margin-left: 8%; }   /* play cheio, levemente à direita (centro ótico) */
 .single__icone .icone { width: 1em; height: 1em; }
+
+/* ---------- Player próprio das primeiras versões (T-28, docs/15) ----------
+   Barra fixa no rodapé, fora do #app: continua tocando entre as páginas. */
+body.com-tocador { padding-bottom: var(--altura-tocador); }
+.tocador {
+  position: fixed; inset: auto 0 0 0; z-index: 20;
+  display: grid; align-items: center; gap: var(--esp-2) var(--esp-3);
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "faixa controles fechar" "tempo tempo tempo";
+  padding: var(--esp-2) var(--esp-3) calc(var(--esp-2) + env(safe-area-inset-bottom));
+  background: var(--cor-topo); backdrop-filter: blur(var(--desfoque-topo)); -webkit-backdrop-filter: blur(var(--desfoque-topo));
+  border-top: var(--borda); box-shadow: var(--sombra);
+}
+.tocador[hidden] { display: none; }
+.tocador__faixa { grid-area: faixa; display: flex; align-items: center; gap: var(--esp-2); min-width: 0; }
+.tocador__capa { flex: none; width: var(--capa-tocador); height: var(--capa-tocador); border-radius: var(--raio-pequeno); overflow: hidden; background: var(--cor-superficie-alta); }
+.tocador__capa img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tocador__textos { display: flex; flex-direction: column; min-width: 0; }
+.tocador__titulo { color: var(--cor-texto); font-weight: 600; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocador__titulo:hover { text-decoration: underline; }
+.tocador__album { color: var(--cor-texto-suave); font-size: var(--texto-xs); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tocador__controles { grid-area: controles; display: flex; align-items: center; gap: var(--esp-1); }
+.tocador__botao {
+  display: inline-grid; place-items: center; width: var(--toque-minimo); height: var(--toque-minimo);
+  border: 0; border-radius: var(--raio-pilula); background: transparent; color: var(--cor-texto); cursor: pointer;
+}
+.tocador__botao .icone { width: 1.25rem; height: 1.25rem; fill: currentColor; }
+.tocador__botao--principal { background: var(--cor-destaque); color: var(--cor-sobre-destaque); }
+.tocador__botao:disabled { opacity: 0.4; cursor: default; }
+.tocador__fechar { grid-area: fechar; color: var(--cor-texto-suave); }
+.tocador__fechar .icone { fill: none; }
+.tocador__tempo { grid-area: tempo; display: flex; align-items: center; gap: var(--esp-2); }
+.tocador__numero { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); min-width: 4ch; text-align: center; }
+.tocador__barra, .tocador__volume input { flex: 1; min-width: 0; accent-color: var(--cor-destaque); height: var(--toque-minimo); margin: 0; cursor: pointer; }
+.tocador__volume { display: none; }
+@media (min-width: 768px) {
+  body.com-tocador { padding-bottom: var(--altura-tocador-md); }
+  .tocador { grid-template-columns: minmax(0, var(--largura-faixa-tocador)) auto minmax(0, 1fr) var(--largura-volume) auto; grid-template-areas: "faixa controles tempo volume fechar"; }
+  .tocador__volume { grid-area: volume; display: flex; }
+}
+@media (hover: hover) {
+  .tocador__botao:not(:disabled):hover { background: var(--cor-superficie-alta); }
+  .tocador__botao--principal:not(:disabled):hover { background: var(--cor-texto); }
+}
+
+/* Página do álbum das primeiras versões */
+.primeira-aviso { border-left: var(--borda-marca) solid var(--cor-destaque); padding-left: var(--esp-3); color: var(--cor-texto-suave); font-size: var(--texto-sm); }
+.primeira-acoes { display: flex; flex-wrap: wrap; gap: var(--esp-2); margin-top: var(--esp-3); }
+.primeira-acoes .botao .icone { fill: currentColor; }
+.faixas--tocaveis li { align-items: center; }
+.faixas--tocaveis li::before { display: none; }
+.faixa-tocar {
+  display: inline-grid; place-items: center; flex: none; width: var(--toque-minimo); height: var(--toque-minimo);
+  border: var(--borda); border-radius: var(--raio-pilula); background: var(--cor-superficie); color: var(--cor-texto); cursor: pointer;
+}
+.faixa-tocar .icone { width: 1rem; height: 1rem; fill: currentColor; }
+.faixas__duracao { font-family: var(--fonte-mono); font-size: var(--texto-xs); color: var(--cor-texto-suave); }
+.faixas--tocaveis .letra { flex-basis: 100%; }
+.faixa--atual .faixas__titulo { color: var(--cor-destaque); }
+.faixa--atual .faixa-tocar { background: var(--cor-destaque); border-color: var(--cor-destaque); color: var(--cor-sobre-destaque); }
+@media (hover: hover) { .faixa-tocar:hover { border-color: var(--cor-texto); } }

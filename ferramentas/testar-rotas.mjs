@@ -15,6 +15,7 @@ import { novidades } from '../js/dados/novidades.js';
 import { ferramentas } from '../js/dados/ferramentas.js';
 import { reflexoes } from '../js/dados/reflexoes.js';
 import { albuns, destaqueSuno } from '../js/dados/albuns.js';
+import { faixasPrimeiras, AUDIO_BASE } from '../js/dados/primeiras-versoes.js';
 import { listarPaginasPublicas } from '../js/modules/paginas-publicas.js';
 
 const require = createRequire(import.meta.url);   // require acha o Playwright instalado globalmente
@@ -25,7 +26,7 @@ const PORTA = 8099;
 const BASE = `http://127.0.0.1:${PORTA}`;
 const CAPTURAS = process.argv.includes('--capturas');
 const LARGURAS = [390, 1280];
-const EXTERNOS = /gc\.zgo\.at|goatcounter\.com|open\.spotify\.com|scdn\.co|https:\/\/suno\.com\/embed\//;   // fora do site: não contam (inclusive iframe encerrado na troca)
+const EXTERNOS = /gc\.zgo\.at|goatcounter\.com|open\.spotify\.com|scdn\.co|https:\/\/suno\.com\/embed\/|\.r2\.dev\/|audio\.samfieldsoak\.com\.br/;   // fora do site: não contam (inclusive iframe encerrado na troca)
 
 // Testa a integração do site sem depender de cookies, rede ou áudio dos provedores.
 // O HTML neutro só substitui o conteúdo remoto; nossos botões e iframes são reais.
@@ -100,7 +101,34 @@ const rotas = [
   ...ferramentas.map((f) => `ia-sem-labia/${f.slug}`),
   ...reflexoes.map((r) => `palavra/${r.slug}`),
   ...albuns.map((a) => `musica/${a.slug}`),
+  'primeiras-versoes', 'primeiras-versoes/nao-existe',
+  ...Object.keys(faixasPrimeiras).map((slug) => `primeiras-versoes/${slug}`),
 ];
+
+// T-28: player próprio. O áudio é substituído por uma resposta vazia (sem rede e sem som);
+// o teste confere a integração: barra, faixa atual, troca de página, um som por vez e fechar.
+async function conferirTocador(pagina, slug) {
+  const dados = faixasPrimeiras[slug];
+  const barra = pagina.locator('.tocador');
+  assert.equal(await barra.count(), 0, 'barra do player existe antes do clique');
+  assert.equal(await pagina.locator('.faixas [data-tocar]').count(), dados.faixas.length);
+  assert.equal(await pagina.locator('.faixas details.letra').count(), dados.letras ? dados.faixas.length : 0, 'letras das faixas');
+  await pagina.locator('[data-acao="tocar-album"]').click();
+  await barra.waitFor({ state: 'visible' });
+  assert.equal(await pagina.locator('.tocador audio').getAttribute('src'), `${AUDIO_BASE}/${slug}/${dados.faixas[0].arquivo}`);
+  assert.equal((await pagina.locator('[data-tocador-titulo]').textContent()).trim(), dados.faixas[0].titulo);
+  assert.equal(await pagina.locator('.faixas li').first().getAttribute('aria-current'), 'true');
+  assert.equal(await pagina.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), true, 'rolagem lateral com o player aberto');
+  await pagina.locator('[data-tocar="1"]').click();
+  assert.equal(await pagina.locator('.tocador audio').getAttribute('src'), `${AUDIO_BASE}/${slug}/${dados.faixas[1].arquivo}`);
+  assert.equal(await pagina.locator('.faixas li').nth(1).getAttribute('aria-current'), 'true');
+  await pagina.locator('a[href="#/sobre"]').last().click();
+  await pagina.waitForFunction(() => location.hash === '#/sobre' && document.querySelector('h1')?.textContent.includes('Sobre'));
+  assert.equal(await barra.isVisible(), true, 'o player sumiu ao trocar de página');
+  await pagina.locator('[data-tocador="fechar"]').click();
+  assert.equal(await barra.isVisible(), false, 'fechar não escondeu o player');
+  assert.equal(await pagina.evaluate(() => document.body.classList.contains('com-tocador')), false);
+}
 
 // Exercita a lista e os filtros sem depender de títulos ou quantidade fixa de publicações.
 async function conferirOrdemIa(pagina) {
@@ -473,6 +501,7 @@ for (const largura of LARGURAS) {
     // Uma página por rota: requisições canceladas na anterior não contaminam a próxima.
     const pagina = await navegador.newPage({ viewport: { width: largura, height: 900 } });
     let pedidosPlayer = 0;
+    await pagina.route(`${AUDIO_BASE}/**`, (r) => { pedidosPlayer++; return r.fulfill({ status: 204, body: '' }); });
     for (const url of ['https://suno.com/embed/**', 'https://open.spotify.com/embed/**']) {
       await pagina.route(url, (r) => {
         pedidosPlayer++;
@@ -538,6 +567,14 @@ for (const largura of LARGURAS) {
       } catch (e) { falhas.push(`${largura}px #/${rota}: busca: ${e.message}`); }
     }
     if (CAPTURAS) await pagina.screenshot({ path: join(RAIZ, 'ferramentas/capturas', `${largura}-${rota.replace(/\//g, '_')}.png`), fullPage: true });
+    if (rota.startsWith('primeiras-versoes/') && faixasPrimeiras[rota.split('/')[1]]) {
+      try {
+        await conferirTocador(pagina, rota.split('/')[1]);
+        const novosErros = errosDaRota.filter((e) => !problemas.includes(e));
+        assert.equal(novosErros.length, 0, novosErros.join('; '));
+      }
+      catch (e) { falhas.push(`${largura}px #/${rota}: player próprio: ${e.message}`); }
+    }
     if (rota === 'inicio' || rota === 'musica/santuario-do-altissimo') {
       try {
         await conferirPlayers(pagina, rota);

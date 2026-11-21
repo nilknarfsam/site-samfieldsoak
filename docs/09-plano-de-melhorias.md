@@ -349,6 +349,14 @@ process.exit(falhas ? 1 : 0);
 - Parágrafo da estimativa vazio se a inicialização falhar: observação sem bloqueio; nenhuma alteração necessária nesta tarefa.
 
 
+### T-28 · Primeiras versões com player próprio (piloto Trono de Fogo)
+
+- **Plano aprovado:** plano do Drive de 07/11/2026 (Fases 2 e 3). Franklin aprovou em 21/11/2026: página "Primeiras versões", MP3 320 kbps no Cloudflare R2, piloto Trono de Fogo. Especificação: `docs/15-primeiras-versoes-player.md`.
+- **Arquivos:** `js/dados/primeiras-versoes.js`, `js/dados/letras/trono-de-fogo.js`, `js/modules/tocador.js`, `js/modules/templates-primeiras.js`, `js/telas/primeiras-versoes.js`, `html/primeiras-versoes.html`, `js/main.js`, `js/modules/roteador.js` (campo `menu`), `js/modules/player.js` (evento `player-externo`), `js/telas/musica.js`, `html/musica.html`, `css/variaveis.css`, `css/componentes.css`, `imagens/icones/sprite.svg`, as duas ferramentas de conferência, README e docs.
+- **Lógica:** um `<audio preload="none">` numa barra fixa fora do `#app`, que continua entre as páginas; fila do álbum; Media Session; um som por vez com Spotify/Suno; letra por faixa (sem sincronizar ainda).
+- **Pronto quando:** Trono de Fogo toca inteiro no celular e no PC, tela bloqueada funcionando, conferências ✅ em 390/1280px. Aceite do som pelo Franklin depois do merge. Revisão do Claude e merge só pelo Franklin.
+- **Depois:** tempos da letra (sincronizada), `AUDIO_BASE` em `audio.samfieldsoak.com.br`, os outros 6 álbuns (só dados), métricas, playlists, painel e visual da Música.
+
 ## Manutenção proposta após esta rodada
 
 Estas observações estão registradas, sem implementação nesta T-20:

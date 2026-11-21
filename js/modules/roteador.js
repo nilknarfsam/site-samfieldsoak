@@ -37,7 +37,7 @@ async function renderizar() {
     molde.innerHTML = html;
     app.replaceChildren(molde.content);
     app.removeAttribute('aria-busy');
-    marcarMenuAtivo(ok ? nome : '');
+    marcarMenuAtivo(ok ? (rota.menu || nome) : '');   // rota.menu: subpágina que acende outra seção (primeiras-versoes → musica)
     if (ok && alvoRota.iniciar) {
       try { titulo = alvoRota.iniciar(app, segundo) || titulo; } catch (e) { console.error('[roteador]', e); }
     }
