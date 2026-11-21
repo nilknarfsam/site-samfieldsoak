@@ -28,7 +28,7 @@ export function detalhePrimeira(a, dados) {
         <li data-faixa="${i}">
           <button class="faixa-tocar" type="button" data-tocar="${i}" aria-label="${escapar(`Tocar: ${f.titulo}`)}">${icone('play')}</button>
           <span class="faixas__titulo">${escapar(f.titulo)}</span>
-          <span class="faixas__texto">${escapar(f.texto)}</span>
+          ${f.texto ? `<span class="faixas__texto">${escapar(f.texto)}</span>` : ''}
           <span class="faixas__duracao">${formatarTempo(f.duracao)}</span>
         </li>`).join('')}
       </ol>
