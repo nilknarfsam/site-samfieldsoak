@@ -282,6 +282,31 @@ for (const [slug, dados] of Object.entries(faixasPrimeiras || {})) {
       if (doAlbum.length !== dados.faixas.length) erro(`letras ${slug}`, `${doAlbum.length} letras para ${dados.faixas.length} faixas`);
       doAlbum.forEach((linhas, i) => { if (!Array.isArray(linhas) || linhas.some((l) => typeof l !== 'string')) erro(`letras ${slug}[${i}]`, 'cada letra é uma lista de linhas de texto'); });
       conferirTextos(doAlbum, `letras ${slug}`);
+      // Letra sincronizada (T-31): um tempo por linha, null nas linhas vazias, em ordem e dentro da faixa.
+      if (dados.tempos) {
+        const caminhoT = join(RAIZ, `js/dados/tempos/${dados.tempos}.js`);
+        if (!/^[a-z0-9-]+$/.test(dados.tempos) || !existsSync(caminhoT)) erro(onde, `arquivo de tempos não existe: ${dados.tempos}`);
+        else {
+          const { tempos } = await importarDados(pathToFileURL(caminhoT).href);
+          const doAlbumT = tempos?.[slug];
+          if (!Array.isArray(doAlbumT)) erro(`tempos ${dados.tempos}`, `não tem a chave "${slug}"`);
+          else {
+            if (doAlbumT.length !== doAlbum.length) erro(`tempos ${slug}`, `${doAlbumT.length} faixas com tempos para ${doAlbum.length} letras`);
+            doAlbumT.forEach((ts, i) => {
+              const ondeT = `tempos ${slug}[${i}]`, linhas = doAlbum[i] || [];
+              if (!Array.isArray(ts) || ts.length !== linhas.length) { erro(ondeT, `precisa de um tempo por linha da letra (${linhas.length})`); return; }
+              let antes = -1;
+              ts.forEach((t, j) => {
+                if (!linhas[j]) { if (t !== null) erro(ondeT, `linha ${j + 1} é vazia: o tempo precisa ser null`); return; }
+                if (typeof t !== 'number' || !Number.isFinite(t) || t < 0) { erro(ondeT, `linha ${j + 1} sem tempo em segundos`); return; }
+                if (t <= antes) erro(ondeT, `linha ${j + 1} começa antes da anterior (${t}s)`);
+                if (t > (dados.faixas[i]?.duracao || Infinity)) erro(ondeT, `linha ${j + 1} passa da duração da faixa (${t}s)`);
+                antes = t;
+              });
+            });
+          }
+        }
+      }
     }
   }
 }

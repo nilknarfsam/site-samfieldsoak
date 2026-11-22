@@ -67,7 +67,7 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 17 | **Acentos dos títulos grandes e sobretítulo encostando na faixa** | D-11 | pequeno | feito 2026-10-27 (Claude) dentro da fase 1 do plano visual (`docs/11`, V-02 e V-03) |
 | 18 | Ícones SVG no lugar dos emojis | D-08 | médio | feito 2026-10-27 (Claude) na fase 5 do plano visual (`docs/11`, V-13): ícones Lucide em `imagens/icones/sprite.svg` |
 | 19 | Busca no site | F-05 | grande | feito 2026-11-16; revisão do Claude e merge do PR [#39](https://github.com/nilknarfsam/site-samfieldsoak/pull/39), commit 35c0f2e |
-| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | em PR [#40](https://github.com/nilknarfsam/site-samfieldsoak/pull/40); plano e detalhes aprovados em 16/11/2026 |
+| 20 | Páginas de compartilhamento e sitemap gerados | F-06 | grande | feito 2026-11-16; merge do PR [#40](https://github.com/nilknarfsam/site-samfieldsoak/pull/40), commit 6b608a1 |
 | 21 | Player individual do Suno com reprodução exclusiva (piloto Álbum 7 + Salmo 73 na home) | F-10 | médio | piloto integrado no PR [#30](https://github.com/nilknarfsam/site-samfieldsoak/pull/30), merge confirmado em 06/11/2026; aceite real da integração continua separado |
 | 22 | IA sem lábia: mais recentes no topo, inclusive após filtros | F-11 | pequeno | feito 2026-11-12; revisão do Claude e merge do PR [#32](https://github.com/nilknarfsam/site-samfieldsoak/pull/32) pelo Franklin |
 | 23 | Conferência robusta de estrutura, campos IA e destinos internos | F-12 | médio | feito 2026-11-12; revisão do Claude e merge do PR [#33](https://github.com/nilknarfsam/site-samfieldsoak/pull/33) pelo Franklin |
@@ -75,6 +75,11 @@ Não faça merge. Me mostre o que mudou e as rotas para eu conferir.
 | 25 | Preservar filtros da IA sem lábia ao voltar do artigo | F-13 | pequeno | feito no PR [#35](https://github.com/nilknarfsam/site-samfieldsoak/pull/35), merge em 12/11/2026; correção do teste em PR [#36](https://github.com/nilknarfsam/site-samfieldsoak/pull/36) |
 | 26 | Índice de seções e tempo de leitura na IA sem lábia | D-13 | médio | feito 2026-11-16; revisão do Claude e merge do PR [#37](https://github.com/nilknarfsam/site-samfieldsoak/pull/37) pelo Franklin |
 | 27 | Apresentação e categorias da IA sem lábia | D-14 | pequeno/médio | feito 2026-11-16; revisão do Claude e merge do PR [#38](https://github.com/nilknarfsam/site-samfieldsoak/pull/38) pelo Franklin |
+| 28 | Primeiras versões com player próprio (piloto Trono de Fogo) | — | grande | feito 2026-11-21; merge do PR [#45](https://github.com/nilknarfsam/site-samfieldsoak/pull/45) pelo Franklin |
+| 29 | Métricas de escuta, Minha playlist, abas da Música e faixa da semana | — | grande | feito 2026-11-21; merge do PR [#46](https://github.com/nilknarfsam/site-samfieldsoak/pull/46) pelo Franklin |
+| 30 | Página Ouvir e tela "Tocando agora" | — | grande | feito 2026-11-21; merge do PR [#48](https://github.com/nilknarfsam/site-samfieldsoak/pull/48) pelo Franklin |
+| 31 | Letra sincronizada na tela "Tocando agora" (piloto Trono de Fogo) | — | médio | em PR (22/11/2026) |
+| 32 | Pacote de manutenção (aviso de escopo, rotaNovidade na busca, anúncio da busca, filtros vazios) | — | pequeno/médio | pendente: próxima, escolhida pelo Franklin em 22/11/2026 |
 
 As tarefas iniciais e fases visuais foram incorporadas nas rodadas anteriores. A tabela acima representa a situação atual; os itens e auditorias abaixo preservam a especificação e o histórico. Uma tarefa por PR, com escopo aprovado antes de alterar Produto.
 
@@ -369,6 +374,18 @@ process.exit(falhas ? 1 : 0);
 - **Arquivos:** `js/modules/tela-tocando.js` (novo), `js/modules/tocador.js` (botão que abre a tela, fila/tempo/pular exportados), `js/modules/templates-primeiras.js`, `js/telas/primeiras-versoes.js`, `js/telas/playlist.js`, `js/telas/musica.js`, `js/main.js`, `js/modules/roteador.js` (`redirecionar`), `index.html` (menu e rodapé), `html/primeiras-versoes.html` (view de `#/ouvir`), `html/playlist.html`, `html/musica.html`, `html/inicio.html`, CSS, sprite (`subir`, `descer`), as duas ferramentas de conferência, README e docs.
 - **Pronto quando:** "Ouvir" no menu; Música sem as primeiras versões; links antigos redirecionam; tela cheia abre, troca de faixa, mostra a letra e fecha com Voltar; testes ✅ em 390/1280px. Merge só pelo Franklin.
 - **Depois:** letra sincronizada na aba Letra (tempos do Whisper).
+
+### T-31 · Letra sincronizada na tela "Tocando agora"
+
+- **Plano aprovado:** Franklin escolheu "Letra sincronizada" em 22/11/2026, como próxima melhoria depois da T-30. Especificação: `docs/15`.
+- **Arquivos:** `ferramentas/tempos-da-letra.py` (novo, roda só no PC), `js/dados/tempos/trono-de-fogo.js` (novo), campo `tempos` em `js/dados/primeiras-versoes.js`, `js/modules/tela-tocando.js`, `css/componentes.css`, `ferramentas/conferir-dados.mjs`, `ferramentas/testar-rotas.mjs`, docs.
+- **Lógica:** o Whisper local dá o tempo de cada palavra; o script casa com a letra do Franklin (sem mudar o texto) e grava o início de cada linha. Na aba Letra, a linha atual acende (`aria-current`), a letra rola sozinha (pausa de 4 s quando a pessoa rola) e tocar numa linha pula para ela. Sem tempos, nada muda.
+- **Pronto quando:** Trono de Fogo com a letra acompanhando a voz; conferência dos tempos (um por linha, em ordem, dentro da faixa); testes ✅ em 390/1280px. Aceite do sincronismo pelo Franklin ouvindo. Merge só pelo Franklin.
+- **Depois:** tempos dos outros álbuns (só dados).
+
+### T-32 · Pacote de manutenção
+
+- **Plano aprovado:** Franklin escolheu em 22/11/2026, para depois da T-31. Itens da lista "Manutenção proposta após esta rodada" abaixo, mais a mensagem de lista vazia nos filtros da IA sem lábia.
 
 ## Manutenção proposta após esta rodada
 

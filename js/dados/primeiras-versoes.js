@@ -7,6 +7,7 @@
 //
 // Campos de uma faixa: titulo, texto (referência bíblica; opcional, '' quando o álbum não segue capítulos), arquivo, duracao (segundos, do próprio MP3).
 // letras: nome do arquivo em js/dados/letras/ (mesma ordem das faixas).
+// tempos (opcional, T-31): nome do arquivo em js/dados/tempos/ com o segundo de cada linha da letra (letra sincronizada).
 
 export const AUDIO_BASE = 'https://audio.samfieldsoak.com.br/primeiras-versoes';
 
@@ -53,6 +54,7 @@ export const faixasPrimeiras = {
   },
   'trono-de-fogo': {
     letras: 'trono-de-fogo',
+    tempos: 'trono-de-fogo',
     lancamentoSuno: '2026-10-05',
     faixas: [
       { titulo: 'O Amor Incomparável de Deus', texto: 'Salmo 36', arquivo: '01-salmo-36.mp3', duracao: 245 },
