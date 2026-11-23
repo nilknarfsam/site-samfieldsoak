@@ -84,7 +84,7 @@ const tipos = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
 const servidor = createServer(async (req, res) => {
   const caminho = normalize(decodeURIComponent(req.url.split('?')[0])).replace(/^(\.\.[/\\])+/, '');
   try {
-    const arquivo = join(RAIZ, caminho.endsWith('/') ? caminho + 'index.html' : caminho);
+    const arquivo = join(RAIZ, /[/\\]$/.test(caminho) ? caminho + 'index.html' : caminho);
     const corpo = await readFile(arquivo);
     res.writeHead(200, { 'Content-Type': tipos[extname(arquivo)] || 'application/octet-stream' });
     res.end(corpo);
@@ -136,6 +136,17 @@ async function conferirTocador(pagina, slug) {
   await tela.locator('[data-tocando="letra"]').click();
   if (celular) assert.equal(await gaveta.getAttribute('data-aberta'), 'true', 'Letra não abriu a gaveta');
   if (dados.letras) await tela.locator('.tocando__linha').first().waitFor();
+  // T-31: com tempos, toda linha cantada é sincronizada e tocar numa linha a acende.
+  if (dados.tempos) {
+    await tela.locator('.tocando__linha--sinc').first().waitFor();
+    assert.equal(await tela.locator('.tocando__linha--sinc').count(), await tela.locator('.tocando__linha').count(), 'linha da letra sem tempo');
+    const terceira = tela.locator('.tocando__linha--sinc').nth(2);
+    await terceira.click();
+    assert.equal(await terceira.getAttribute('aria-current'), 'true', 'tocar na linha não a acendeu');
+    assert.equal(await tela.locator('.tocando__linha[aria-current]').count(), 1, 'mais de uma linha acesa');
+  } else if (dados.letras) {
+    assert.equal(await tela.locator('.tocando__linha--sinc').count(), 0, 'álbum sem tempos com letra sincronizada');
+  }
   await tela.locator('[data-tocando-aba="fila"]').click();
   await tela.locator('[data-tocando-fila="0"]').click();
   assert.equal((await tela.locator('#tocando-titulo').textContent()).trim(), dados.faixas[0].titulo);

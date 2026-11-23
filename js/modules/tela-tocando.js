@@ -5,6 +5,9 @@
 // No computador (1024px+) a gaveta fica sempre aberta, à direita da capa.
 // É um <dialog> modal: prende o foco, fecha com Esc e com o Voltar do celular. A letra só é baixada
 // quando a pessoa abre a aba Letra (o arquivo de letras do álbum vem sob demanda e fica guardado).
+// Letra sincronizada (T-31): se o álbum tiver tempos (js/dados/tempos/), a linha cantada fica destacada,
+// a letra rola sozinha (para por uns segundos quando a pessoa rola com o dedo) e tocar numa linha pula
+// a música para ali. Sem tempos, a letra aparece inteira e parada, como antes.
 
 import { escapar, icone } from './templates.js';
 import { faixasPrimeiras } from '../dados/primeiras-versoes.js';
@@ -16,6 +19,11 @@ import { idDaFaixa, naPlaylist, adicionar, remover, aoMudarPlaylist } from './pl
 
 let tela, gaveta, aba = 'fila', faixaMostrada = null, arrastandoTempo = false;
 const letrasCarregadas = new Map();   // slug do arquivo de letras → Promise das letras
+const temposCarregados = new Map();   // slug do arquivo de tempos → Promise dos tempos
+let linhaAtual = -1, gestoNaLetra = 0;
+const PAUSA_ROLAGEM = 4000;   // ms sem rolar sozinha depois que a pessoa rola a letra
+const ADIANTO = 0.3;          // s: acende a linha um pouco antes da voz
+const semAnimacao = window.matchMedia('(prefers-reduced-motion: reduce)');
 const letraContada = new Set();
 const abas = [['fila', 'A seguir'], ['letra', 'Letra']];
 const computador = window.matchMedia('(min-width: 1024px)');
@@ -89,6 +97,8 @@ function montar() {
     else if (acao === 'compartilhar') compartilhar();
     else if (acao === 'letra') abrirGaveta('letra');
     else if (acao === 'puxador') { if (gavetaAberta()) fecharGaveta(); else abrirGaveta(aba); }
+    const linha = e.target.closest('[data-tocando-t]');
+    if (linha) { irPara(Number(linha.dataset.tocandoT)); gestoNaLetra = 0; marcarLinha(Number(linha.dataset.tocandoT), true); }
     const item = e.target.closest('[data-tocando-fila]');
     if (item) tocarNaFila(Number(item.dataset.tocandoFila));
     const trocar = e.target.closest('[data-tocando-aba]');
@@ -115,6 +125,8 @@ function montar() {
   posicao.addEventListener('input', () => { arrastandoTempo = true; tela.querySelector('[data-tocando-agora]').textContent = formatarTempo(Number(posicao.value)); });
   posicao.addEventListener('change', () => { arrastandoTempo = false; irPara(Number(posicao.value)); });
   prepararArrasto();
+  const painelLetra = tela.querySelector('[data-tocando-painel="letra"]');
+  ['wheel', 'touchmove', 'keydown'].forEach((tipo) => painelLetra.addEventListener(tipo, () => { gestoNaLetra = Date.now(); }, { passive: true }));
   // Fechou (setinha, Esc, Voltar): tira os degraus que a tela e a gaveta puseram no histórico.
   tela.addEventListener('close', () => {
     document.documentElement.classList.remove('com-tela-tocando');
@@ -133,7 +145,7 @@ function montar() {
   protegerCapas(tela);
   aoMudarPlaylist(() => { if (tela.open) marcarSalvar(); });
   aoMudar(() => { if (tela.open) desenhar(); });
-  aoTempo((t) => { if (tela.open) atualizarTempo(t); });
+  aoTempo((t) => { if (tela.open) { atualizarTempo(t); marcarLinha(t.agora); } });
 }
 
 // ---------- Gaveta (fila e letra) ----------
@@ -324,23 +336,64 @@ function letraDa(faixa) {
   return letrasCarregadas.get(dados.letras).then((letras) => letras?.[faixa.albumSlug]?.[indice] || null);
 }
 
+// Os tempos de cada linha (segundos), na mesma posição das letras; null se o álbum ainda não tem.
+function temposDa(faixa) {
+  const dados = faixasPrimeiras[faixa.albumSlug];
+  const indice = Number(String(faixa.arquivo || '').slice(0, 2)) - 1;
+  if (!dados?.tempos || !/^[a-z0-9-]+$/.test(dados.tempos) || indice < 0) return Promise.resolve(null);
+  if (!temposCarregados.has(dados.tempos)) {
+    temposCarregados.set(dados.tempos, import(`../dados/tempos/${dados.tempos}.js`).then((m) => m.tempos)
+      .catch((e) => { temposCarregados.delete(dados.tempos); console.error('[tempos]', e); return null; }));
+  }
+  return temposCarregados.get(dados.tempos).then((tempos) => tempos?.[faixa.albumSlug]?.[indice] || null);
+}
+
 function desenharLetra(faixa) {
   const painel = tela.querySelector('[data-tocando-painel="letra"]');
   if (!faixa) return;
   painel.dataset.faixa = faixa.src;
   painel.innerHTML = '<p class="tocando__aviso">Carregando a letra…</p>';
-  letraDa(faixa).then((linhas) => {
+  Promise.all([letraDa(faixa), temposDa(faixa)]).then(([linhas, tempos]) => {
     if (painel.dataset.faixa !== faixa.src) return;   // trocou de faixa enquanto carregava
     if (!linhas?.length) { painel.innerHTML = '<p class="tocando__aviso">Esta faixa ainda não tem letra aqui no site.</p>'; return; }
     // Linha vazia separa as partes da música (estrofe, refrão).
-    painel.innerHTML = `<div class="tocando__estrofes">${linhas.map((l) => (l ? `<p class="tocando__linha">${escapar(l)}</p>` : '<span class="tocando__pausa"></span>')).join('')}</div>`;
+    // Com tempos, cada linha guarda o segundo em que começa (só aceita tempos de tamanho igual ao da letra).
+    const sinc = Array.isArray(tempos) && tempos.length === linhas.length;
+    const linha = (l, i) => (sinc && Number.isFinite(tempos[i])
+      ? `<p class="tocando__linha tocando__linha--sinc" data-tocando-t="${tempos[i]}">${escapar(l)}</p>`
+      : `<p class="tocando__linha">${escapar(l)}</p>`);
+    painel.innerHTML = `${sinc ? '<p class="tocando__aviso tocando__aviso--sinc">Toque numa linha para ir até ela.</p>' : ''}
+      <div class="tocando__estrofes${sinc ? ' tocando__estrofes--sinc' : ''}">${linhas.map((l, i) => (l ? linha(l, i) : '<span class="tocando__pausa"></span>')).join('')}</div>`;
     painel.scrollTop = 0;
+    linhaAtual = -1;
+    if (sinc) marcarLinha(tempo().agora, true);
     const id = `${faixa.albumSlug}/${String(faixa.arquivo).replace(/\.mp3$/, '')}`;
     if (!letraContada.has(id)) { letraContada.add(id); contarEvento(`letra/${id}`, faixa.titulo); }
   }).catch((e) => {
     console.error('[letras]', e);
     if (painel.dataset.faixa === faixa.src) painel.innerHTML = '<p class="tocando__aviso">Não foi possível carregar a letra agora.</p>';
   });
+}
+
+// Acende a linha que está sendo cantada, apaga as anteriores e rola para deixá-la à vista.
+function marcarLinha(agora, forcar = false) {
+  if (aba !== 'letra') return;
+  const painel = tela.querySelector('[data-tocando-painel="letra"]');
+  const linhas = [...painel.querySelectorAll('[data-tocando-t]')];
+  if (!linhas.length) return;
+  let atual = -1;
+  for (let i = 0; i < linhas.length; i += 1) { if (Number(linhas[i].dataset.tocandoT) <= agora + ADIANTO) atual = i; else break; }
+  if (atual === linhaAtual && !forcar) return;
+  linhaAtual = atual;
+  linhas.forEach((l, i) => {
+    l.classList.toggle('tocando__linha--atual', i === atual);
+    l.classList.toggle('tocando__linha--passada', i < atual);
+    if (i === atual) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+  });
+  if (atual < 0 || painel.hidden || Date.now() - gestoNaLetra < PAUSA_ROLAGEM) return;
+  const alvo = linhas[atual];
+  const topo = alvo.offsetTop - painel.clientHeight * 0.35;   // o painel é o offsetParent (position: relative)
+  painel.scrollTo({ top: Math.max(0, topo), behavior: semAnimacao.matches ? 'auto' : 'smooth' });
 }
 
 function atualizarTempo({ agora, total }) {

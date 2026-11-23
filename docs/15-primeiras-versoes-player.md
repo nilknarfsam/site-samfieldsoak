@@ -82,15 +82,25 @@ O painel do próprio GoatCounter mostra quantas vezes, de onde (Instagram, Googl
 
 `js/dados/letras/trono-de-fogo.js` saiu do documento do Drive "Letras Album - Trono de Fogo → Salmos 36–50" (lido em 21/11/2026), sem os rótulos de seção. A linha em branco separa as seções. **Conferir com a gravação**: o documento é de agosto de 2025 e o álbum saiu no Suno em outubro de 2026.
 
-A letra sincronizada (linha destacada acompanhando a música, na aba Letra da tela Tocando agora) é o próximo passo: precisa dos tempos de cada linha, feitos com a mesma ferramenta dos lyric videos de Romanos (`tempos_letra.json`). Até lá, a letra aparece inteira e parada.
+### Letra sincronizada (T-31)
+
+Na aba Letra da tela Tocando agora, a linha cantada acende e a letra rola sozinha, no jeito do YouTube Music. Se a pessoa rolar a letra com o dedo, a rolagem automática espera 4 segundos. Tocar numa linha leva a música até ela. Com "reduzir movimento" ligado no aparelho, a rolagem é sem animação.
+
+- Os tempos ficam em `js/dados/tempos/<arquivo>.js`, no mesmo formato das letras: o segundo em que cada linha começa, `null` nas linhas vazias. O álbum liga com o campo `tempos` em `faixasPrimeiras`.
+- Gerar: baixar os MP3 do álbum numa pasta e rodar, na raiz do projeto:
+  `python ferramentas/tempos-da-letra.py <slug-do-album> --mp3 <pasta>`
+  O Whisper (faster-whisper, local, no PC) escuta cada faixa e casa as palavras ouvidas com a letra do Franklin; a letra nunca muda. Linha que ele não reconhece ganha um tempo estimado entre as vizinhas, e o script diz quantas foram estimadas em cada faixa.
+- Depois de gerar, ouvir no site: um tempo fora do lugar se corrige à mão no arquivo.
+- Álbum sem `tempos` continua com a letra inteira e parada.
+- Piloto: Trono de Fogo.
 
 ## Conferências
 
-- `conferir-dados.mjs`: `AUDIO_BASE` em https; álbum existe em `primeirasVersoes`; arquivo `NN-slug.mp3` na ordem, sem repetir; duração inteira; uma letra por faixa.
-- `testar-rotas.mjs`: `#/ouvir`, cada álbum e o endereço antigo em 390/1280px; tela Tocando agora (abre pela barra, fila, letra, Voltar fecha sem sair da página); nenhum pedido de áudio antes do clique; tocar o álbum, trocar de faixa, faixa atual marcada, player continua ao ir para Sobre, fechar. O áudio é substituído por uma resposta vazia: o teste não prova o som, que precisa do aceite do Franklin no celular e no PC.
+- `conferir-dados.mjs`: `AUDIO_BASE` em https; álbum existe em `primeirasVersoes`; arquivo `NN-slug.mp3` na ordem, sem repetir; duração inteira; uma letra por faixa; com `tempos`, um tempo por linha da letra, `null` nas vazias, em ordem e dentro da duração.
+- `testar-rotas.mjs`: `#/ouvir`, cada álbum e o endereço antigo em 390/1280px; tela Tocando agora (abre pela barra, fila, letra, letra sincronizada com tocar numa linha, Voltar fecha sem sair da página); nenhum pedido de áudio antes do clique; tocar o álbum, trocar de faixa, faixa atual marcada, player continua ao ir para Sobre, fechar. O áudio é substituído por uma resposta vazia: o teste não prova o som, que precisa do aceite do Franklin no celular e no PC.
 
 ## Próximos passos
 
 1. Franklin ouve o piloto (celular e PC, tela bloqueada) e confere as letras.
-2. Tempos da letra do Trono de Fogo → letra sincronizada.
+2. Franklin ouve o Trono de Fogo com a letra sincronizada; depois, os tempos dos outros álbuns (só dados, com `ferramentas/tempos-da-letra.py`).
 4. Os outros 6 álbuns (só dados), métricas (Fase 5), playlists (Fase 4), painel (Fase 6) e visual da Música (Fase 7).

@@ -97,6 +97,7 @@ As capturas ficam em `ferramentas/capturas/` (fora do Git) e no artefato `captur
 - **IA sem lábia:** análise mais recente primeiro, datas identificadas, filtros preservados na aba e status como filtro somente quando há variedade. Índice e tempo estimado ajudam na leitura.
 - **Menu:** painel recolhido até 991px; navegação aberta a partir de 992px.
 - **Players:** embeds só carregam após clique. Um Suno/Spotify gerenciado por vez; mudar de página encerra a reprodução. Abas externas não são controladas. [Cadastro e limites do piloto](docs/13-player-suno-por-faixa.md).
+- **Letra sincronizada:** álbuns com o campo `tempos` acendem a linha cantada na tela Tocando agora; tempos em `js/dados/tempos/`, gerados no PC com `python ferramentas/tempos-da-letra.py <album> --mp3 <pasta>` (Whisper local, docs/15).
 - **Letras:** carregadas sob demanda de `js/dados/letras/`. A proteção contra cópia é leve; não impede captura de tela.
 - **Métricas:** GoatCounter conta rotas sem cookies. Não recebe termos da busca nem conta a passagem de compartilhamento.
 
